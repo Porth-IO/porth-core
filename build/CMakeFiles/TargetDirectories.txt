@@ -1,0 +1,4 @@
+/home/harridavies/porth-core/build/CMakeFiles/mock_handshake.dir
+/home/harridavies/porth-core/build/CMakeFiles/zero_copy_handshake.dir
+/home/harridavies/porth-core/build/CMakeFiles/edit_cache.dir
+/home/harridavies/porth-core/build/CMakeFiles/rebuild_cache.dir

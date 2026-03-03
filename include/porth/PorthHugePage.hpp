@@ -39,10 +39,15 @@ public:
         ptr = mmap(nullptr, total_size, PROT_READ | PROT_WRITE, flags, -1, 0);
 
         if (ptr == MAP_FAILED) {
-            std::string err_msg = "[Porth-IO] Fatal: HugePage allocation failed.\n";
-            err_msg += "Check: 'sysctl vm.nr_hugepages' must be > 0.\n";
-            err_msg += "Check: Current user must have 'memlock' limits set in /etc/security/limits.conf.";
-            throw std::runtime_error(err_msg);
+            std::cout << "[Porth-IO] Note: HugePages not supported on this kernel. Falling back to standard pages." << std::endl;
+        
+            // TRY 2: The "Standard Way" (Remove MAP_HUGETLB)
+            flags = MAP_PRIVATE | MAP_ANONYMOUS | MAP_LOCKED;
+            ptr = mmap(nullptr, total_size, PROT_READ | PROT_WRITE, flags, -1, 0);
+            
+            if (ptr == MAP_FAILED) {
+                throw std::runtime_error("[Porth-IO] Fatal: Total memory allocation failure.");
+            }
         }
 
         // Advise the kernel that we intend to use this memory sequentially (optional but good practice)
@@ -59,7 +64,7 @@ public:
     PorthHugePage(const PorthHugePage&) = delete;
     PorthHugePage& operator=(const PorthHugePage&) = delete;
 
-    void* data() { return ptr; }
+    void* data() const { return ptr; }
     size_t size() const { return total_size; }
 
     /**
