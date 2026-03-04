@@ -65,11 +65,19 @@ CMAKE_BINARY_DIR = /home/harridavies/porth-core/build
 # The main recursive "all" target.
 all: CMakeFiles/mock_handshake.dir/all
 all: CMakeFiles/zero_copy_handshake.dir/all
+all: CMakeFiles/calibrate_clock.dir/all
+all: CMakeFiles/test_metrics.dir/all
+all: CMakeFiles/std_baseline.dir/all
+all: CMakeFiles/porth_vs_std.dir/all
 .PHONY : all
 
 # The main recursive "codegen" target.
 codegen: CMakeFiles/mock_handshake.dir/codegen
 codegen: CMakeFiles/zero_copy_handshake.dir/codegen
+codegen: CMakeFiles/calibrate_clock.dir/codegen
+codegen: CMakeFiles/test_metrics.dir/codegen
+codegen: CMakeFiles/std_baseline.dir/codegen
+codegen: CMakeFiles/porth_vs_std.dir/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
@@ -79,6 +87,10 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/mock_handshake.dir/clean
 clean: CMakeFiles/zero_copy_handshake.dir/clean
+clean: CMakeFiles/calibrate_clock.dir/clean
+clean: CMakeFiles/test_metrics.dir/clean
+clean: CMakeFiles/std_baseline.dir/clean
+clean: CMakeFiles/porth_vs_std.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -88,7 +100,7 @@ clean: CMakeFiles/zero_copy_handshake.dir/clean
 CMakeFiles/mock_handshake.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mock_handshake.dir/build.make CMakeFiles/mock_handshake.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mock_handshake.dir/build.make CMakeFiles/mock_handshake.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=1,2 "Built target mock_handshake"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=3,4 "Built target mock_handshake"
 .PHONY : CMakeFiles/mock_handshake.dir/all
 
 # Build rule for subdir invocation for target.
@@ -105,7 +117,7 @@ mock_handshake: CMakeFiles/mock_handshake.dir/rule
 # codegen rule for target.
 CMakeFiles/mock_handshake.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/mock_handshake.dir/build.make CMakeFiles/mock_handshake.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=1,2 "Finished codegen for target mock_handshake"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=3,4 "Finished codegen for target mock_handshake"
 .PHONY : CMakeFiles/mock_handshake.dir/codegen
 
 # clean rule for target.
@@ -120,7 +132,7 @@ CMakeFiles/mock_handshake.dir/clean:
 CMakeFiles/zero_copy_handshake.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_copy_handshake.dir/build.make CMakeFiles/zero_copy_handshake.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_copy_handshake.dir/build.make CMakeFiles/zero_copy_handshake.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=3,4 "Built target zero_copy_handshake"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=11,12 "Built target zero_copy_handshake"
 .PHONY : CMakeFiles/zero_copy_handshake.dir/all
 
 # Build rule for subdir invocation for target.
@@ -137,13 +149,141 @@ zero_copy_handshake: CMakeFiles/zero_copy_handshake.dir/rule
 # codegen rule for target.
 CMakeFiles/zero_copy_handshake.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_copy_handshake.dir/build.make CMakeFiles/zero_copy_handshake.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=3,4 "Finished codegen for target zero_copy_handshake"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=11,12 "Finished codegen for target zero_copy_handshake"
 .PHONY : CMakeFiles/zero_copy_handshake.dir/codegen
 
 # clean rule for target.
 CMakeFiles/zero_copy_handshake.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/zero_copy_handshake.dir/build.make CMakeFiles/zero_copy_handshake.dir/clean
 .PHONY : CMakeFiles/zero_copy_handshake.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/calibrate_clock.dir
+
+# All Build rule for target.
+CMakeFiles/calibrate_clock.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/calibrate_clock.dir/build.make CMakeFiles/calibrate_clock.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/calibrate_clock.dir/build.make CMakeFiles/calibrate_clock.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=1,2 "Built target calibrate_clock"
+.PHONY : CMakeFiles/calibrate_clock.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/calibrate_clock.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harridavies/porth-core/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/calibrate_clock.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harridavies/porth-core/build/CMakeFiles 0
+.PHONY : CMakeFiles/calibrate_clock.dir/rule
+
+# Convenience name for target.
+calibrate_clock: CMakeFiles/calibrate_clock.dir/rule
+.PHONY : calibrate_clock
+
+# codegen rule for target.
+CMakeFiles/calibrate_clock.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/calibrate_clock.dir/build.make CMakeFiles/calibrate_clock.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=1,2 "Finished codegen for target calibrate_clock"
+.PHONY : CMakeFiles/calibrate_clock.dir/codegen
+
+# clean rule for target.
+CMakeFiles/calibrate_clock.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/calibrate_clock.dir/build.make CMakeFiles/calibrate_clock.dir/clean
+.PHONY : CMakeFiles/calibrate_clock.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_metrics.dir
+
+# All Build rule for target.
+CMakeFiles/test_metrics.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_metrics.dir/build.make CMakeFiles/test_metrics.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_metrics.dir/build.make CMakeFiles/test_metrics.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=9,10 "Built target test_metrics"
+.PHONY : CMakeFiles/test_metrics.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_metrics.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harridavies/porth-core/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_metrics.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harridavies/porth-core/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_metrics.dir/rule
+
+# Convenience name for target.
+test_metrics: CMakeFiles/test_metrics.dir/rule
+.PHONY : test_metrics
+
+# codegen rule for target.
+CMakeFiles/test_metrics.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_metrics.dir/build.make CMakeFiles/test_metrics.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=9,10 "Finished codegen for target test_metrics"
+.PHONY : CMakeFiles/test_metrics.dir/codegen
+
+# clean rule for target.
+CMakeFiles/test_metrics.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_metrics.dir/build.make CMakeFiles/test_metrics.dir/clean
+.PHONY : CMakeFiles/test_metrics.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/std_baseline.dir
+
+# All Build rule for target.
+CMakeFiles/std_baseline.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/std_baseline.dir/build.make CMakeFiles/std_baseline.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/std_baseline.dir/build.make CMakeFiles/std_baseline.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=7,8 "Built target std_baseline"
+.PHONY : CMakeFiles/std_baseline.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/std_baseline.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harridavies/porth-core/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/std_baseline.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harridavies/porth-core/build/CMakeFiles 0
+.PHONY : CMakeFiles/std_baseline.dir/rule
+
+# Convenience name for target.
+std_baseline: CMakeFiles/std_baseline.dir/rule
+.PHONY : std_baseline
+
+# codegen rule for target.
+CMakeFiles/std_baseline.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/std_baseline.dir/build.make CMakeFiles/std_baseline.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=7,8 "Finished codegen for target std_baseline"
+.PHONY : CMakeFiles/std_baseline.dir/codegen
+
+# clean rule for target.
+CMakeFiles/std_baseline.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/std_baseline.dir/build.make CMakeFiles/std_baseline.dir/clean
+.PHONY : CMakeFiles/std_baseline.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/porth_vs_std.dir
+
+# All Build rule for target.
+CMakeFiles/porth_vs_std.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/porth_vs_std.dir/build.make CMakeFiles/porth_vs_std.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/porth_vs_std.dir/build.make CMakeFiles/porth_vs_std.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=5,6 "Built target porth_vs_std"
+.PHONY : CMakeFiles/porth_vs_std.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/porth_vs_std.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harridavies/porth-core/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/porth_vs_std.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/harridavies/porth-core/build/CMakeFiles 0
+.PHONY : CMakeFiles/porth_vs_std.dir/rule
+
+# Convenience name for target.
+porth_vs_std: CMakeFiles/porth_vs_std.dir/rule
+.PHONY : porth_vs_std
+
+# codegen rule for target.
+CMakeFiles/porth_vs_std.dir/codegen:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/porth_vs_std.dir/build.make CMakeFiles/porth_vs_std.dir/codegen
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/harridavies/porth-core/build/CMakeFiles --progress-num=5,6 "Finished codegen for target porth_vs_std"
+.PHONY : CMakeFiles/porth_vs_std.dir/codegen
+
+# clean rule for target.
+CMakeFiles/porth_vs_std.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/porth_vs_std.dir/build.make CMakeFiles/porth_vs_std.dir/clean
+.PHONY : CMakeFiles/porth_vs_std.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

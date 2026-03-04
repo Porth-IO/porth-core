@@ -1,4 +1,8 @@
 /home/harridavies/porth-core/build/CMakeFiles/mock_handshake.dir
 /home/harridavies/porth-core/build/CMakeFiles/zero_copy_handshake.dir
+/home/harridavies/porth-core/build/CMakeFiles/calibrate_clock.dir
+/home/harridavies/porth-core/build/CMakeFiles/test_metrics.dir
+/home/harridavies/porth-core/build/CMakeFiles/std_baseline.dir
+/home/harridavies/porth-core/build/CMakeFiles/porth_vs_std.dir
 /home/harridavies/porth-core/build/CMakeFiles/edit_cache.dir
 /home/harridavies/porth-core/build/CMakeFiles/rebuild_cache.dir

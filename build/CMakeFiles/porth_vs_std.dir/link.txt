@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/porth_vs_std.dir/link.d CMakeFiles/porth_vs_std.dir/examples/porth_vs_std.cpp.o -o porth_vs_std  /usr/lib/aarch64-linux-gnu/librt.a

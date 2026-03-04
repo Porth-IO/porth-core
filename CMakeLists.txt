@@ -44,6 +44,11 @@ endfunction()
 # Add your existing examples
 add_porth_example(mock_handshake examples/mock_handshake.cpp)
 add_porth_example(zero_copy_handshake examples/zero_copy_handshake.cpp)
+# Add to the "Build Examples" section
+add_porth_example(calibrate_clock examples/calibrate_clock.cpp)
+add_porth_example(test_metrics examples/test_metrics.cpp)
+add_porth_example(std_baseline examples/std_baseline.cpp)
+add_porth_example(porth_vs_std examples/porth_vs_std.cpp)
 
 message(STATUS "----------------------------------------------------")
 message(STATUS "Porth-IO Build Configuration Complete")
