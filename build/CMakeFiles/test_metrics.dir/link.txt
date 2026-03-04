@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/test_metrics.dir/link.d CMakeFiles/test_metrics.dir/examples/test_metrics.cpp.o -o test_metrics  /usr/lib/aarch64-linux-gnu/librt.a

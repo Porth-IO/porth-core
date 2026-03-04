@@ -1,1 +1,0 @@
-/usr/bin/c++ -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/zero_copy_handshake.dir/link.d CMakeFiles/zero_copy_handshake.dir/examples/zero_copy_handshake.cpp.o -o zero_copy_handshake  /usr/lib/aarch64-linux-gnu/librt.a
