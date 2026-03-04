@@ -2,38 +2,36 @@
 
 #include <cstdint>
 #include <cstddef>
-#include <type_traits>
-
 #include "PorthRegister.hpp"
 
+namespace porth {
+
 /**
- * PorthDeviceLayout: The physical memory map for Porth-IO hardware.
- * * This struct represents a 256-byte window (BAR) into the Cardiff chip.
- * Every register is exactly 64-bytes (one cache line) apart to ensure
- * maximum throughput and zero false-sharing between CPU cores.
+ * @struct PorthDeviceLayout
+ * @brief The physical memory map for Porth-IO compatible hardware.
+ * * This structure defines a 448-byte window into the Cardiff chip,
+ * covering Core Control, Photonics, and GaN Power domains.
  */
 struct alignas(64) PorthDeviceLayout {
-    // --- CORE REGISTERS ---
-    // Offset 0x00: Master control (Start/Stop/Reset)
+    /** @brief Offset 0x00: Master control (Start/Stop/Reset) */
     PorthRegister<uint32_t> control;
 
-    // Offset 0x40: Device status (Ready/Busy/Error)
+    /** @brief Offset 0x40: Device status (Ready/Busy/Error) */
     PorthRegister<uint32_t> status;
 
-    // Offset 0x80: Data Plane pointer (DMA address for InP/GaN processing)
+    /** @brief Offset 0x80: Data Plane pointer (DMA address for the Shuttle) */
     PorthRegister<uint64_t> data_ptr;
 
-    // Offset 0xC0: Telemetry counter (Packet/Work-unit count)
+    /** @brief Offset 0xC0: Telemetry counter (Packet/Work-unit count) */
     PorthRegister<uint64_t> counter;
 
-    // --- DOMAIN REGISTERS ---
-    // Offset 0x100: Photonics Laser Temperature (milli-Celsius)
+    /** @brief Offset 0x100: Photonics Laser Temperature (milli-Celsius) */
     PorthRegister<uint32_t> laser_temp;
 
-    // Offset 0x140: GaN Power Stage Voltage (milli-Volts)
+    /** @brief Offset 0x140: GaN Power Stage Voltage (milli-Volts) */
     PorthRegister<uint32_t> gan_voltage;
 
-    // Offset 0x180: RF Signal-to-Noise Ratio (dB * 100)
+    /** @brief Offset 0x180: RF Signal-to-Noise Ratio (dB * 100) */
     PorthRegister<int32_t> rf_snr;
 };
 
@@ -51,3 +49,5 @@ static_assert(offsetof(PorthDeviceLayout, data_ptr) == 0x80, "Data pointer offse
 static_assert(offsetof(PorthDeviceLayout, counter)  == 0xC0, "Counter offset must be 0xC0");
 static_assert(offsetof(PorthDeviceLayout, laser_temp) == 0x100, "Temp offset mismatch");
 static_assert(offsetof(PorthDeviceLayout, gan_voltage) == 0x140, "Voltage offset mismatch");
+
+} // namespace porth

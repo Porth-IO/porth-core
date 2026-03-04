@@ -5,6 +5,8 @@
 #include <vector>
 #include <stdexcept>
 
+namespace porth {
+    
 /**
  * PorthDescriptor: The "Cargo" box.
  * This represents a DMA-ready memory region that the Cardiff chip
@@ -93,3 +95,5 @@ public:
         return true;
     }
 };
+
+} // namespace porth

@@ -54,6 +54,8 @@ add_porth_example(test_sim_protocol examples/test_sim_protocol.cpp)
 add_porth_example(test_sim_domains examples/test_sim_domains.cpp)
 add_porth_example(test_sim_chaos examples/test_sim_chaos.cpp)
 add_porth_example(porth-sim-ctl examples/porth-sim-ctl.cpp)
+add_porth_example(porth_bench examples/porth_bench.cpp)
+add_porth_example(porth_full_demo examples/porth_full_demo.cpp)
 
 message(STATUS "----------------------------------------------------")
 message(STATUS "Porth-IO Build Configuration Complete")

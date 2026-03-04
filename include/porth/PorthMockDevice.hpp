@@ -9,6 +9,7 @@
 
 #include "PorthDeviceLayout.hpp"
 
+namespace porth {
 /**
  * PorthMockDevice: A RAII wrapper for POSIX Shared Memory.
  * This simulates the Physical PCIe BAR mapping for the Cardiff hardware.
@@ -81,3 +82,5 @@ public:
     // Easy access to the registers
     PorthDeviceLayout* operator->() { return device_ptr; }
 };
+
+}// namespace porth

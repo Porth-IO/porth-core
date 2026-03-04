@@ -7,6 +7,7 @@
 #include <string>
 #include <cstdint>
 
+namespace porth {
 /**
  * PorthHugePage: Strictly Linux RAII wrapper for HugePage memory.
  * Optimized for InP/GaN DMA transfers.
@@ -78,3 +79,5 @@ public:
         return static_cast<T*>(ptr);
     }
 };
+
+} // namespace porth

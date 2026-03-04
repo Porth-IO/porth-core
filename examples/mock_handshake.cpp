@@ -16,6 +16,8 @@ namespace CardiffChip {
     constexpr uint32_t STATUS_READY = 0x2;
 }
 
+using namespace porth;
+
 /**
  * The "Hardware" Thread: Simulates the Cardiff Indium Phosphide chip.
  * It sits in a tight loop watching the 'control' register.

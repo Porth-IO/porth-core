@@ -8,6 +8,8 @@
  * This script proves that we can pass a memory address through 
  * a hardware register (HAL) to establish a high-speed data link.
  */
+using namespace porth;
+
 int main() {
     try {
         std::cout << "--- Porth-IO: Task 2.4 Zero-Copy Validation ---" << std::endl;
