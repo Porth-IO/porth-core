@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['save_5fmarkdown_5freport_0',['save_markdown_report',['../classporth_1_1PorthMetric.html#a41c531fd1d0b0c80bb9212ce4a9c666c',1,'porth::PorthMetric']]],
+  ['save_5fto_5ffile_1',['save_to_file',['../classporth_1_1PorthMetric.html#a38e77476f2f4b04f689701822241f177',1,'porth::PorthMetric']]],
+  ['semiconductors_2',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]],
+  ['set_5fbus_5fhang_3',['set_bus_hang',['../classporth_1_1PorthSimDevice.html#a2bf6c243f209be0dca19c49ae556d987',1,'porth::PorthSimDevice']]],
+  ['set_5fconfig_4',['set_config',['../classporth_1_1PorthSimPHY.html#ae3c1e74116e5dc2e6f74d2b0e2d748f1',1,'porth::PorthSimPHY']]],
+  ['set_5frealtime_5fpriority_5',['set_realtime_priority',['../namespaceporth.html#a4bafa18852c2a829309567b8cfdc8a0b',1,'porth']]],
+  ['show_5fusage_6',['show_usage',['../porth-sim-ctl_8cpp.html#a78bf8646c074be1959943f73bd7458c0',1,'porth-sim-ctl.cpp']]],
+  ['simulator_20mode_7',['🏁 Quick Start: Simulator Mode',['../md_README.html#autotoc_md13',1,'']]],
+  ['size_8',['size',['../classporth_1_1PorthHugePage.html#a95951f537680d816e2a16d1b7560030e',1,'porth::PorthHugePage']]],
+  ['software_20inertia_9',['🏗️ The Problem: Software Inertia',['../md_README.html#autotoc_md3',1,'']]],
+  ['solution_3a_20porth_20io_20architecture_10',['⚡ The Solution: Porth-IO Architecture',['../md_README.html#autotoc_md5',1,'']]],
+  ['sovereign_20ecosystem_11',['🌍 The Sovereign Ecosystem',['../md_README.html#autotoc_md11',1,'']]],
+  ['sovereign_20logic_20layer_20for_20compound_20semiconductors_12',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]],
+  ['stack_13',['2. Build the Stack',['../md_README.html#autotoc_md15',1,'']]],
+  ['start_3a_20simulator_20mode_14',['🏁 Quick Start: Simulator Mode',['../md_README.html#autotoc_md13',1,'']]],
+  ['status_15',['status',['../structporth_1_1PorthDeviceLayout.html#abe2d779c1ea705f06a68bf7db6c50d31',1,'porth::PorthDeviceLayout']]],
+  ['status_5fbusy_16',['STATUS_BUSY',['../namespaceCardiffChip.html#a96eb63c5da8be94926ca1da2425acd9f',1,'CardiffChip']]],
+  ['status_5fidle_17',['STATUS_IDLE',['../namespaceCardiffChip.html#a8487f93a1d357056419dbf04cc732a4b',1,'CardiffChip']]],
+  ['status_5fready_18',['STATUS_READY',['../namespaceCardiffChip.html#a7e98abdf8b34bcc46a765d7ac0e65faf',1,'CardiffChip']]],
+  ['std_5fbaseline_2ecpp_19',['std_baseline.cpp',['../std__baseline_8cpp.html',1,'']]],
+  ['strategic_20alignment_20',['🏛️ Strategic Alignment',['../md_README.html#autotoc_md18',1,'']]],
+  ['success_21',['SUCCESS',['../namespaceporth.html#a978b08c2669e65948bbf47aca700e91dad0749aaba8b833466dfcbb0428e4f89c',1,'porth']]]
+];

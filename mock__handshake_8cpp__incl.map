@@ -1,0 +1,37 @@
+<map id="examples/mock_handshake.cpp" name="examples/mock_handshake.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="115,5,346,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,86,85,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,33,86,83,84,78,203,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="109,86,173,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,33,166,79,163,75,216,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="197,86,264,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,31,233,72,228,72,228,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="524,313,591,339"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="243,29,278,77,293,110,301,137,309,162,329,190,372,229,421,262,469,287,513,306,510,311,467,292,418,266,368,234,325,194,305,165,295,139,288,112,274,80,239,33"/>
+<area shape="rect" id="Node000006" href="$PorthMockDevice_8hpp.html" title=" " alt="" coords="523,79,715,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="288,28,513,73,512,79,287,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1027,167,1130,192"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="715,113,1015,164,1014,169,714,119"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="339,167,402,192"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="560,121,416,167,414,161,558,116"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="427,167,512,192"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="584,121,505,162,502,158,582,116"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="536,167,611,192"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="610,120,589,156,585,153,605,118"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="635,167,693,192"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="632,118,653,153,648,156,627,120"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="718,167,805,192"/>
+<area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="654,116,730,158,727,162,652,121"/>
+<area shape="rect" id="Node000013" href="$PorthDeviceLayout_8hpp.html" title=" " alt="" coords="829,167,1003,192"/>
+<area shape="poly" id="edge12_Node000006_Node000013" title=" " alt="" coords="691,116,860,161,859,166,689,121"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="935,313,1001,339"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="925,191,946,239,965,299,960,301,942,241,920,193"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="699,240,770,265"/>
+<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="888,195,778,237,776,232,886,190"/>
+<area shape="rect" id="Node000016" href="$PorthRegister_8hpp.html" title=" " alt="" coords="794,240,931,265"/>
+<area shape="poly" id="edge15_Node000013_Node000016" title=" " alt="" coords="909,194,882,231,877,228,905,191"/>
+<area shape="poly" id="edge17_Node000016_Node000005" title=" " alt="" coords="814,268,604,316,603,311,813,263"/>
+<area shape="poly" id="edge18_Node000016_Node000014" title=" " alt="" coords="881,263,941,303,938,308,878,268"/>
+<area shape="rect" id="Node000017" title=" " alt="" coords="817,313,909,339"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="865,266,865,300,860,300,860,266"/>
+</map>

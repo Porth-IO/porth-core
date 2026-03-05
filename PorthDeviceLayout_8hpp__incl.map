@@ -1,0 +1,14 @@
+<map id="include/porth/PorthDeviceLayout.hpp" name="include/porth/PorthDeviceLayout.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,196,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="42,167,109,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,47,68,69,55,94,53,109,54,124,64,153,59,155,49,126,48,109,50,93,63,66,80,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="65,93,136,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="103,46,103,79,98,79,98,46"/>
+<area shape="rect" id="Node000004" href="$PorthRegister_8hpp.html" title=" " alt="" coords="160,93,297,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,43,200,84,197,88,130,48"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="205,121,114,163,112,158,203,116"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="157,167,249,192"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="227,120,214,155,209,153,222,118"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="274,167,341,192"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="243,117,286,156,283,159,240,121"/>
+</map>
