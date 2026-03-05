@@ -1,0 +1,10 @@
+PROJECT_NAME           = "Porth-IO"
+PROJECT_BRIEF          = "The Sovereign Logic Layer for Compound Semiconductors"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = include examples README.md
+RECURSIVE              = YES
+USE_MDRANKS            = YES
+GENERATE_LATEX         = NO
+GENERATE_HTML          = YES
+HAVE_DOT               = YES
+EXTRACT_ALL            = YES
