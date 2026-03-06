@@ -81,28 +81,40 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Strictly Linux RAII wrapper for HugePage memory.  
+ <a href="classporth_1_1PorthHugePage.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="PorthHugePage_8hpp_source.html">PorthHugePage.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9290978f5b4478fa41d760aa471dd4bf" id="r_a9290978f5b4478fa41d760aa471dd4bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#a9290978f5b4478fa41d760aa471dd4bf">PorthHugePage</a> (size_t <a class="el" href="classporth_1_1PorthHugePage.html#a95951f537680d816e2a16d1b7560030e">size</a>)</td></tr>
+<tr class="memitem:a9290978f5b4478fa41d760aa471dd4bf" id="r_a9290978f5b4478fa41d760aa471dd4bf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#a9290978f5b4478fa41d760aa471dd4bf">PorthHugePage</a> (size_t <a class="el" href="classporth_1_1PorthHugePage.html#aabf1021b80ecffe256d5572e83173ae3">size</a>)</td></tr>
+<tr class="memdesc:a9290978f5b4478fa41d760aa471dd4bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Allocates pinned memory with HugePage support.  <br /></td></tr>
 <tr class="separator:a9290978f5b4478fa41d760aa471dd4bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1002a77325d5476ba603285612140933" id="r_a1002a77325d5476ba603285612140933"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#a1002a77325d5476ba603285612140933">~PorthHugePage</a> ()</td></tr>
+<tr class="memdesc:a1002a77325d5476ba603285612140933"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: Ensures atomic-level hardware memory is unmapped correctly.  <br /></td></tr>
 <tr class="separator:a1002a77325d5476ba603285612140933"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad31fec30b5bd873478af11a50146027" id="r_aad31fec30b5bd873478af11a50146027"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#aad31fec30b5bd873478af11a50146027">PorthHugePage</a> (const <a class="el" href="classporth_1_1PorthHugePage.html">PorthHugePage</a> &amp;)=delete</td></tr>
 <tr class="separator:aad31fec30b5bd873478af11a50146027"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64c6dd1ef060a50115a68abc688447f9" id="r_a64c6dd1ef060a50115a68abc688447f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthHugePage.html">PorthHugePage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#a64c6dd1ef060a50115a68abc688447f9">operator=</a> (const <a class="el" href="classporth_1_1PorthHugePage.html">PorthHugePage</a> &amp;)=delete</td></tr>
 <tr class="separator:a64c6dd1ef060a50115a68abc688447f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a955848cf2d8033553fd4243ea4d4ad46" id="r_a955848cf2d8033553fd4243ea4d4ad46"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#a955848cf2d8033553fd4243ea4d4ad46">data</a> () const</td></tr>
-<tr class="separator:a955848cf2d8033553fd4243ea4d4ad46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95951f537680d816e2a16d1b7560030e" id="r_a95951f537680d816e2a16d1b7560030e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#a95951f537680d816e2a16d1b7560030e">size</a> () const</td></tr>
-<tr class="separator:a95951f537680d816e2a16d1b7560030e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa909ce38b88d489f5d9ca83eff20268c" id="r_aa909ce38b88d489f5d9ca83eff20268c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#aa909ce38b88d489f5d9ca83eff20268c">data</a> () const noexcept</td></tr>
+<tr class="memdesc:aa909ce38b88d489f5d9ca83eff20268c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the raw pointer to the mapped memory.  <br /></td></tr>
+<tr class="separator:aa909ce38b88d489f5d9ca83eff20268c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabf1021b80ecffe256d5572e83173ae3" id="r_aabf1021b80ecffe256d5572e83173ae3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#aabf1021b80ecffe256d5572e83173ae3">size</a> () const noexcept</td></tr>
+<tr class="memdesc:aabf1021b80ecffe256d5572e83173ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total allocated size (including alignment padding).  <br /></td></tr>
+<tr class="separator:aabf1021b80ecffe256d5572e83173ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8d5186cb3bc4eab2912968ec4189507" id="r_aa8d5186cb3bc4eab2912968ec4189507"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:aa8d5186cb3bc4eab2912968ec4189507"><td class="memTemplItemLeft" align="right" valign="top">T *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#aa8d5186cb3bc4eab2912968ec4189507">get_as</a> ()</td></tr>
+<tr class="memdesc:aa8d5186cb3bc4eab2912968ec4189507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps the memory region to a specific structure type.  <br /></td></tr>
 <tr class="separator:aa8d5186cb3bc4eab2912968ec4189507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add4b274c47fb808fc195bfe4feb06285" id="r_add4b274c47fb808fc195bfe4feb06285"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html#add4b274c47fb808fc195bfe4feb06285">get_device_addr</a> () const noexcept</td></tr>
+<tr class="memdesc:add4b274c47fb808fc195bfe4feb06285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the device-visible address for DMA handshakes.  <br /></td></tr>
+<tr class="separator:add4b274c47fb808fc195bfe4feb06285"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classporth_1_1PorthHugePage.html">PorthHugePage</a>: Strictly Linux RAII wrapper for HugePage memory. Optimized for InP/GaN DMA transfers. </p>
+<div class="textblock"><p>Strictly Linux RAII wrapper for HugePage memory. </p>
+<p>Optimized for InP/GaN DMA transfers, this class provides pinned memory that is resistant to swapping and TLB overhead. It implements a robust fallback mechanism for environments without pre-allocated HugePage pools. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9290978f5b4478fa41d760aa471dd4bf" name="a9290978f5b4478fa41d760aa471dd4bf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9290978f5b4478fa41d760aa471dd4bf">&#9670;&#160;</a></span>PorthHugePage() <span class="overload">[1/2]</span></h2>
@@ -127,13 +139,25 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructor: Allocates pinned memory using MAP_HUGETLB. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Constructor: Allocates pinned memory with HugePage support. </p>
+<ul>
+<li>Attempts to allocate memory from the HugePage pool first. If the kernel is not configured for HugePages, it falls back to standard pages while retaining the MAP_LOCKED attribute to prevent jitter-inducing swaps.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">size</td><td>The requested size (will be rounded up to 2MB boundary). </td></tr>
+    <tr><td class="paramname">size</td><td>The requested size in bytes. </td></tr>
   </table>
   </dd>
 </dl>
-<p>MAP_PRIVATE: Not shared with other processes (unless forked). MAP_ANONYMOUS: Not backed by any file. MAP_HUGETLB: Use the 2MB HugePage pool. MAP_LOCKED: Pin pages in RAM; prevent the kernel from swapping them.</p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>If both allocation attempts fail. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
+<p>Attempt 1: The "Fast Path" MAP_PRIVATE: Copy-on-write mapping. MAP_ANONYMOUS: Not backed by any file (RAM only). MAP_HUGETLB: Utilize the 2MB HugePage pool. MAP_LOCKED: Pin pages to RAM to prevent kernel swapping.</p>
 
 </div>
 </div>
@@ -159,6 +183,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Destructor: Ensures atomic-level hardware memory is unmapped correctly. </p>
 
 </div>
 </div>
@@ -189,8 +215,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a955848cf2d8033553fd4243ea4d4ad46" name="a955848cf2d8033553fd4243ea4d4ad46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a955848cf2d8033553fd4243ea4d4ad46">&#9670;&#160;</a></span>data()</h2>
+<a id="aa909ce38b88d489f5d9ca83eff20268c" name="aa909ce38b88d489f5d9ca83eff20268c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa909ce38b88d489f5d9ca83eff20268c">&#9670;&#160;</a></span>data()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -207,10 +233,12 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the raw pointer to the mapped memory. </p>
 
 </div>
 </div>
@@ -238,7 +266,48 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classporth_1_1PorthHugePage.html#aa8d5186cb3bc4eab2912968ec4189507">get_as&lt;T&gt;()</a>: Casts the HugePage to your RingBuffer or Descriptor pool. </p>
+
+<p>Maps the memory region to a specific structure type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>The target structure (e.g., <a class="el" href="classporth_1_1PorthRingBuffer.html" title="A high-performance SPSC Lock-Free Queue.">PorthRingBuffer</a>). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>T* A typed view of the HugePage memory. </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>If the requested type is larger than the allocation. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="add4b274c47fb808fc195bfe4feb06285" name="add4b274c47fb808fc195bfe4feb06285"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add4b274c47fb808fc195bfe4feb06285">&#9670;&#160;</a></span>get_device_addr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t porth::PorthHugePage::get_device_addr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the device-visible address for DMA handshakes. </p>
 
 </div>
 </div>
@@ -268,8 +337,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a95951f537680d816e2a16d1b7560030e" name="a95951f537680d816e2a16d1b7560030e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95951f537680d816e2a16d1b7560030e">&#9670;&#160;</a></span>size()</h2>
+<a id="aabf1021b80ecffe256d5572e83173ae3" name="aabf1021b80ecffe256d5572e83173ae3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabf1021b80ecffe256d5572e83173ae3">&#9670;&#160;</a></span>size()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,10 +355,12 @@ template&lt;typename T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns the total allocated size (including alignment padding). </p>
 
 </div>
 </div>

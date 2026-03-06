@@ -92,16 +92,36 @@ $(function() {
 <h1><a class="anchor" id="autotoc_md5"></a>
 ⚡ The Solution: Porth-IO Architecture</h1>
 <p>Porth-IO eliminates the software-logic gap by bypassing the kernel and interacting directly with the physical layer (PDK-aware logic). </p><div class="fragment"><div class="line">graph TD</div>
-<div class="line">    A[Photonic/GaN Hardware] --&gt;|Exotic Signals| B(Porth-IO HAL)</div>
-<div class="line">    B --&gt;|Kernel Bypass / AF_XDP| C{Porth-IO SDK}</div>
-<div class="line">    C --&gt;|Sub-800ns Latency| D[HFT Execution Engines]</div>
-<div class="line">    C --&gt;|30% Energy Save| E[AI Power Architectures]</div>
-<div class="line">    C --&gt;|Memory Fabric| F[Optical RAM Clusters]</div>
-<div class="line">    </div>
-<div class="line">    subgraph &quot;Sovereign Logic Layer&quot;</div>
-<div class="line">    B</div>
-<div class="line">    C</div>
+<div class="line">    subgraph &quot;The Cardiff Bricks (Physical Layer)&quot;</div>
+<div class="line">        IQE[IQE: Atomic Epitaxy] --&gt;|InP/GaN Wafer| VN[Vishay Newport: Fabrication]</div>
+<div class="line">        VN --&gt;|Raw Silicon| MC[Microchip: Advanced Packaging]</div>
 <div class="line">    end</div>
+<div class="line"> </div>
+<div class="line">    subgraph &quot;Porth-IO: The Sovereign Logic Layer (The Mortar)&quot;</div>
+<div class="line">        HAL[Porth-IO HAL: PDK-Aware Logic]</div>
+<div class="line">        SDK[Porth-IO SDK: Kernel Bypass]</div>
+<div class="line">        Sim[Digital Twin: Thermal/Optical Simulation]</div>
+<div class="line">        </div>
+<div class="line">        MC --&gt;|Exotic Signals| HAL</div>
+<div class="line">        HAL &lt;--&gt; SDK</div>
+<div class="line">        SDK &lt;--&gt; Sim</div>
+<div class="line">    end</div>
+<div class="line"> </div>
+<div class="line">    subgraph &quot;Global Market Drivers&quot;</div>
+<div class="line">        HFT[High-Frequency Trading: &lt; 800ns]</div>
+<div class="line">        AI[AI Memory Fabrics: Optical RAM]</div>
+<div class="line">        Sat[Sovereign Satellite Comms]</div>
+<div class="line">    end</div>
+<div class="line"> </div>
+<div class="line">    SDK --&gt;|Zero-Copy / AF_XDP| HFT</div>
+<div class="line">    SDK --&gt; AI</div>
+<div class="line">    SDK --&gt; Sat</div>
+<div class="line"> </div>
+<div class="line">    style IQE fill:#f9f,stroke:#333,stroke-width:2px</div>
+<div class="line">    style VN fill:#f9f,stroke:#333,stroke-width:2px</div>
+<div class="line">    style MC fill:#f9f,stroke:#333,stroke-width:2px</div>
+<div class="line">    style HAL fill:#00758f,color:#fff,stroke-width:4px</div>
+<div class="line">    style SDK fill:#00758f,color:#fff,stroke-width:4px</div>
 </div><!-- fragment --><hr  />
 <h1><a class="anchor" id="autotoc_md7"></a>
 🌟 Core Capabilities</h1>

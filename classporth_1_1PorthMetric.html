@@ -81,23 +81,37 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Statistical analysis engine for ultra-low latency timing.  
+ <a href="classporth_1_1PorthMetric.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="PorthMetric_8hpp_source.html">PorthMetric.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a7b786df1156fccc78bd47fd7fc998c11" id="r_a7b786df1156fccc78bd47fd7fc998c11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMetric.html#a7b786df1156fccc78bd47fd7fc998c11">PorthMetric</a> (size_t max_samples=1000000)</td></tr>
+<tr class="memdesc:a7b786df1156fccc78bd47fd7fc998c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Metric engine with a fixed capacity.  <br /></td></tr>
 <tr class="separator:a7b786df1156fccc78bd47fd7fc998c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada4e7bb6a8cff596226e0ca1dd8af0d3" id="r_ada4e7bb6a8cff596226e0ca1dd8af0d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMetric.html#ada4e7bb6a8cff596226e0ca1dd8af0d3">record</a> (uint64_t latency)</td></tr>
-<tr class="separator:ada4e7bb6a8cff596226e0ca1dd8af0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2e908fc36c754abcf852fc4731a553" id="r_a6f2e908fc36c754abcf852fc4731a553"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMetric.html#a6f2e908fc36c754abcf852fc4731a553">record</a> (uint64_t latency) noexcept</td></tr>
+<tr class="memdesc:a6f2e908fc36c754abcf852fc4731a553"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classporth_1_1PorthMetric.html#a6f2e908fc36c754abcf852fc4731a553" title="record(): Stores a latency sample. No allocations here.">record()</a>: Stores a latency sample. No allocations here.  <br /></td></tr>
+<tr class="separator:a6f2e908fc36c754abcf852fc4731a553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38e77476f2f4b04f689701822241f177" id="r_a38e77476f2f4b04f689701822241f177"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMetric.html#a38e77476f2f4b04f689701822241f177">save_to_file</a> (const std::string &amp;filename)</td></tr>
+<tr class="memdesc:a38e77476f2f4b04f689701822241f177"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classporth_1_1PorthMetric.html#a38e77476f2f4b04f689701822241f177" title="save_to_file(): Legacy support for raw data export. Writes space-separated index and value pairs to a...">save_to_file()</a>: Legacy support for raw data export. Writes space-separated index and value pairs to a text file.  <br /></td></tr>
 <tr class="separator:a38e77476f2f4b04f689701822241f177"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac285e378869f345295031b473cda409f" id="r_ac285e378869f345295031b473cda409f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMetric.html#ac285e378869f345295031b473cda409f">print_stats</a> (double cycles_per_ns)</td></tr>
+<tr class="memdesc:ac285e378869f345295031b473cda409f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classporth_1_1PorthMetric.html#ac285e378869f345295031b473cda409f" title="print_stats(): Analyzes the collected data for Mean, StDev, and IQR.">print_stats()</a>: Analyzes the collected data for Mean, StDev, and IQR.  <br /></td></tr>
 <tr class="separator:ac285e378869f345295031b473cda409f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41c531fd1d0b0c80bb9212ce4a9c666c" id="r_a41c531fd1d0b0c80bb9212ce4a9c666c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMetric.html#a41c531fd1d0b0c80bb9212ce4a9c666c">save_markdown_report</a> (const std::string &amp;filename, const std::string &amp;label, double cycles_per_ns)</td></tr>
+<tr class="memdesc:a41c531fd1d0b0c80bb9212ce4a9c666c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classporth_1_1PorthMetric.html#a41c531fd1d0b0c80bb9212ce4a9c666c" title="save_markdown_report(): Generates an automated summary table for documentation.">save_markdown_report()</a>: Generates an automated summary table for documentation.  <br /></td></tr>
 <tr class="separator:a41c531fd1d0b0c80bb9212ce4a9c666c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24628196a46ea4cce8d43eceebfdc6b1" id="r_a24628196a46ea4cce8d43eceebfdc6b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMetric.html#a24628196a46ea4cce8d43eceebfdc6b1">reset</a> () noexcept</td></tr>
+<tr class="memdesc:a24628196a46ea4cce8d43eceebfdc6b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the sample count for a new run.  <br /></td></tr>
+<tr class="separator:a24628196a46ea4cce8d43eceebfdc6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classporth_1_1PorthMetric.html">PorthMetric</a>: Statistical analysis engine for ultra-low latency timing. Supports standard metrics, jitter analysis, and automated markdown reporting. </p>
+<div class="textblock"><p>Statistical analysis engine for ultra-low latency timing. </p>
+<ul>
+<li>Supports standard metrics, jitter analysis, and automated markdown reporting. This class uses a pre-allocated buffer to ensure recording samples does not trigger heap allocations, preserving the determinism of the test run. </li>
+</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7b786df1156fccc78bd47fd7fc998c11" name="a7b786df1156fccc78bd47fd7fc998c11"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b786df1156fccc78bd47fd7fc998c11">&#9670;&#160;</a></span>PorthMetric()</h2>
@@ -122,6 +136,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Construct a new Metric engine with a fixed capacity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">max_samples</td><td>Total samples to pre-allocate. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -149,12 +171,23 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classporth_1_1PorthMetric.html#ac285e378869f345295031b473cda409f">print_stats()</a>: Analyzes the collected data for Mean, StDev, and IQR. </p>
+
+<p><a class="el" href="classporth_1_1PorthMetric.html#ac285e378869f345295031b473cda409f" title="print_stats(): Analyzes the collected data for Mean, StDev, and IQR.">print_stats()</a>: Analyzes the collected data for Mean, StDev, and IQR. </p>
+<ul>
+<li>Converts raw cycles to nanoseconds and outputs a professional jitter report.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cycles_per_ns</td><td>Calibration factor (CPU GHz). </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
 
 </div>
 </div>
-<a id="ada4e7bb6a8cff596226e0ca1dd8af0d3" name="ada4e7bb6a8cff596226e0ca1dd8af0d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada4e7bb6a8cff596226e0ca1dd8af0d3">&#9670;&#160;</a></span>record()</h2>
+<a id="a6f2e908fc36c754abcf852fc4731a553" name="a6f2e908fc36c754abcf852fc4731a553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f2e908fc36c754abcf852fc4731a553">&#9670;&#160;</a></span>record()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,11 +205,49 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classporth_1_1PorthMetric.html#ada4e7bb6a8cff596226e0ca1dd8af0d3">record()</a>: Stores a latency sample. No allocations here. </p>
+
+<p><a class="el" href="classporth_1_1PorthMetric.html#a6f2e908fc36c754abcf852fc4731a553" title="record(): Stores a latency sample. No allocations here.">record()</a>: Stores a latency sample. No allocations here. </p>
+<ul>
+<li>This is the hot-path for telemetry. It performs a bounds check and a direct array write to ensure zero-jitter recording.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">latency</td><td>The raw cycle count delta to record. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a id="a24628196a46ea4cce8d43eceebfdc6b1" name="a24628196a46ea4cce8d43eceebfdc6b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24628196a46ea4cce8d43eceebfdc6b1">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void porth::PorthMetric::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the sample count for a new run. </p>
 
 </div>
 </div>
@@ -219,7 +290,20 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classporth_1_1PorthMetric.html#a41c531fd1d0b0c80bb9212ce4a9c666c">save_markdown_report()</a>: Generates an automated summary table for documentation. </p>
+
+<p><a class="el" href="classporth_1_1PorthMetric.html#a41c531fd1d0b0c80bb9212ce4a9c666c" title="save_markdown_report(): Generates an automated summary table for documentation.">save_markdown_report()</a>: Generates an automated summary table for documentation. </p>
+<ul>
+<li>Appends a benchmark summary to a markdown file, ideal for CI/CD artifacts.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>File path to append to. </td></tr>
+    <tr><td class="paramname">label</td><td>The name of the benchmark run. </td></tr>
+    <tr><td class="paramname">cycles_per_ns</td><td>Frequency for cycle-to-ns conversion. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -246,7 +330,14 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classporth_1_1PorthMetric.html#a38e77476f2f4b04f689701822241f177">save_to_file()</a>: Legacy support for raw data export. </p>
+
+<p><a class="el" href="classporth_1_1PorthMetric.html#a38e77476f2f4b04f689701822241f177" title="save_to_file(): Legacy support for raw data export. Writes space-separated index and value pairs to a...">save_to_file()</a>: Legacy support for raw data export. Writes space-separated index and value pairs to a text file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>Path to the output file. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

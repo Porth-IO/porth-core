@@ -81,27 +81,36 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A RAII wrapper for POSIX Shared Memory simulating hardware BAR mapping.  
+ <a href="classporth_1_1PorthMockDevice.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="PorthMockDevice_8hpp_source.html">PorthMockDevice.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a06f76a60dce38e2a7e7cf66ff609cc73" id="r_a06f76a60dce38e2a7e7cf66ff609cc73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#a06f76a60dce38e2a7e7cf66ff609cc73">PorthMockDevice</a> (const std::string &amp;mem_name, bool create=true)</td></tr>
+<tr class="memdesc:a06f76a60dce38e2a7e7cf66ff609cc73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Maps or creates the shared memory segment.  <br /></td></tr>
 <tr class="separator:a06f76a60dce38e2a7e7cf66ff609cc73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca32413eacd8be58699ddee864271ff5" id="r_aca32413eacd8be58699ddee864271ff5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#aca32413eacd8be58699ddee864271ff5">~PorthMockDevice</a> ()</td></tr>
+<tr class="memdesc:aca32413eacd8be58699ddee864271ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: Clean up the mapping and unlink if owner.  <br /></td></tr>
 <tr class="separator:aca32413eacd8be58699ddee864271ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f28c8ea560c6071b9cd277e90e5efe6" id="r_a4f28c8ea560c6071b9cd277e90e5efe6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#a4f28c8ea560c6071b9cd277e90e5efe6">PorthMockDevice</a> (const <a class="el" href="classporth_1_1PorthMockDevice.html">PorthMockDevice</a> &amp;)=delete</td></tr>
 <tr class="separator:a4f28c8ea560c6071b9cd277e90e5efe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb391e1830b9d3a73574e137df3c2a2b" id="r_abb391e1830b9d3a73574e137df3c2a2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthMockDevice.html">PorthMockDevice</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#abb391e1830b9d3a73574e137df3c2a2b">operator=</a> (const <a class="el" href="classporth_1_1PorthMockDevice.html">PorthMockDevice</a> &amp;)=delete</td></tr>
 <tr class="separator:abb391e1830b9d3a73574e137df3c2a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac05f26504c3644b143a09e44ec0a4f58" id="r_ac05f26504c3644b143a09e44ec0a4f58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#ac05f26504c3644b143a09e44ec0a4f58">view</a> ()</td></tr>
-<tr class="separator:ac05f26504c3644b143a09e44ec0a4f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d24fd2787aff9549b9a25a5e2651ef0" id="r_a8d24fd2787aff9549b9a25a5e2651ef0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#a8d24fd2787aff9549b9a25a5e2651ef0">view</a> () const</td></tr>
-<tr class="separator:a8d24fd2787aff9549b9a25a5e2651ef0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf8c925171f17acdc3b275554d9d2302" id="r_aaf8c925171f17acdc3b275554d9d2302"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#aaf8c925171f17acdc3b275554d9d2302">operator-&gt;</a> ()</td></tr>
-<tr class="separator:aaf8c925171f17acdc3b275554d9d2302"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a594a4d20b8a5b17d44b68c7674dc8bcf" id="r_a594a4d20b8a5b17d44b68c7674dc8bcf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#a594a4d20b8a5b17d44b68c7674dc8bcf">view</a> () noexcept</td></tr>
+<tr class="memdesc:a594a4d20b8a5b17d44b68c7674dc8bcf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a typed pointer to the register map.  <br /></td></tr>
+<tr class="separator:a594a4d20b8a5b17d44b68c7674dc8bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0387043b98057c0b4522239a6a445644" id="r_a0387043b98057c0b4522239a6a445644"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#a0387043b98057c0b4522239a6a445644">view</a> () const noexcept</td></tr>
+<tr class="memdesc:a0387043b98057c0b4522239a6a445644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const typed pointer to the register map.  <br /></td></tr>
+<tr class="separator:a0387043b98057c0b4522239a6a445644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2063b1b6d7cacd7dd33cee5267d03fcb" id="r_a2063b1b6d7cacd7dd33cee5267d03fcb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#a2063b1b6d7cacd7dd33cee5267d03fcb">operator-&gt;</a> () noexcept</td></tr>
+<tr class="memdesc:a2063b1b6d7cacd7dd33cee5267d03fcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overload for intuitive, pointer-like access to registers.  <br /></td></tr>
+<tr class="separator:a2063b1b6d7cacd7dd33cee5267d03fcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classporth_1_1PorthMockDevice.html">PorthMockDevice</a>: A RAII wrapper for POSIX Shared Memory. This simulates the Physical PCIe BAR mapping for the Cardiff hardware. </p>
+<div class="textblock"><p>A RAII wrapper for POSIX Shared Memory simulating hardware BAR mapping. </p>
+<p>This class simulates the Physical PCIe BAR mapping for the Cardiff hardware. It manages the lifecycle of the shared memory segment used for the register map, ensuring that only the "owner" (the simulated hardware) is responsible for unlinking the segment from the system. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a06f76a60dce38e2a7e7cf66ff609cc73" name="a06f76a60dce38e2a7e7cf66ff609cc73"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a06f76a60dce38e2a7e7cf66ff609cc73">&#9670;&#160;</a></span>PorthMockDevice() <span class="overload">[1/2]</span></h2>
@@ -136,10 +145,18 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructor: Maps or creates the shared memory segment. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Constructor: Maps or creates the shared memory segment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mem_name</td><td>The name in /dev/shm/ (e.g., "porth_dev0") </td></tr>
-    <tr><td class="paramname">create</td><td>If true, creates and truncates the memory. </td></tr>
+    <tr><td class="paramname">mem_name</td><td>The identifier in /dev/shm/ (e.g., "porth_dev0"). </td></tr>
+    <tr><td class="paramname">create</td><td>If true, creates and truncates the memory (Hardware mode). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>If shm_open, ftruncate, or mmap fails. </td></tr>
   </table>
   </dd>
 </dl>
@@ -168,6 +185,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Destructor: Clean up the mapping and unlink if owner. </p>
 
 </div>
 </div>
@@ -198,8 +217,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aaf8c925171f17acdc3b275554d9d2302" name="aaf8c925171f17acdc3b275554d9d2302"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf8c925171f17acdc3b275554d9d2302">&#9670;&#160;</a></span>operator-&gt;()</h2>
+<a id="a2063b1b6d7cacd7dd33cee5267d03fcb" name="a2063b1b6d7cacd7dd33cee5267d03fcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2063b1b6d7cacd7dd33cee5267d03fcb">&#9670;&#160;</a></span>operator-&gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -216,10 +235,12 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Operator overload for intuitive, pointer-like access to registers. </p>
 
 </div>
 </div>
@@ -249,33 +270,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ac05f26504c3644b143a09e44ec0a4f58" name="ac05f26504c3644b143a09e44ec0a4f58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac05f26504c3644b143a09e44ec0a4f58">&#9670;&#160;</a></span>view() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> * porth::PorthMockDevice::view </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8d24fd2787aff9549b9a25a5e2651ef0" name="a8d24fd2787aff9549b9a25a5e2651ef0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d24fd2787aff9549b9a25a5e2651ef0">&#9670;&#160;</a></span>view() <span class="overload">[2/2]</span></h2>
+<a id="a0387043b98057c0b4522239a6a445644" name="a0387043b98057c0b4522239a6a445644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0387043b98057c0b4522239a6a445644">&#9670;&#160;</a></span>view() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -292,10 +288,39 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Returns a const typed pointer to the register map. </p>
+
+</div>
+</div>
+<a id="a594a4d20b8a5b17d44b68c7674dc8bcf" name="a594a4d20b8a5b17d44b68c7674dc8bcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a594a4d20b8a5b17d44b68c7674dc8bcf">&#9670;&#160;</a></span>view() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> * porth::PorthMockDevice::view </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a typed pointer to the register map. </p>
 
 </div>
 </div>

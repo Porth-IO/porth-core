@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "123_abcdefghilmnopqrstuvwz~⚡🌍🌟🏁🏗🏛📊",
   1: "dp",
   2: "cp",
-  3: "cmprstz",
+  3: "cmprsz",
   4: "adfglmnoprstuvw~",
   5: "acdglrs",
   6: "p",

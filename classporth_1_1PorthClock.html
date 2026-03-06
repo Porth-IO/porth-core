@@ -81,22 +81,29 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Provides low-latency access to hardware timing primitives.  
+ <a href="classporth_1_1PorthClock.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="PorthClock_8hpp_source.html">PorthClock.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7c379dc4a51777544734b51dae152521" id="r_a7c379dc4a51777544734b51dae152521"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthClock.html#a7c379dc4a51777544734b51dae152521">now</a> ()</td></tr>
-<tr class="separator:a7c379dc4a51777544734b51dae152521"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6df10c69061af42070c173f0ae066f9" id="r_ad6df10c69061af42070c173f0ae066f9"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthClock.html#ad6df10c69061af42070c173f0ae066f9">now_precise</a> ()</td></tr>
-<tr class="separator:ad6df10c69061af42070c173f0ae066f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa34fa7e805a6a32f4fe4ec051a577ce1" id="r_aa34fa7e805a6a32f4fe4ec051a577ce1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthClock.html#aa34fa7e805a6a32f4fe4ec051a577ce1">fence</a> ()</td></tr>
-<tr class="separator:aa34fa7e805a6a32f4fe4ec051a577ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f70b2d7ec4c76f9d910e26054f64fc3" id="r_a6f70b2d7ec4c76f9d910e26054f64fc3"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthClock.html#a6f70b2d7ec4c76f9d910e26054f64fc3">now</a> () noexcept</td></tr>
+<tr class="memdesc:a6f70b2d7ec4c76f9d910e26054f64fc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the hardware cycle counter without serialization.  <br /></td></tr>
+<tr class="separator:a6f70b2d7ec4c76f9d910e26054f64fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef81b1f049248b225230e93df29368e8" id="r_aef81b1f049248b225230e93df29368e8"><td class="memItemLeft" align="right" valign="top">static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthClock.html#aef81b1f049248b225230e93df29368e8">now_precise</a> () noexcept</td></tr>
+<tr class="memdesc:aef81b1f049248b225230e93df29368e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the hardware cycle counter with instruction serialization.  <br /></td></tr>
+<tr class="separator:aef81b1f049248b225230e93df29368e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f57ba05bf94ced059bfcfd0e4880464" id="r_a0f57ba05bf94ced059bfcfd0e4880464"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthClock.html#a0f57ba05bf94ced059bfcfd0e4880464">fence</a> () noexcept</td></tr>
+<tr class="memdesc:a0f57ba05bf94ced059bfcfd0e4880464"><td class="mdescLeft">&#160;</td><td class="mdescRight">Injects a hardware memory barrier (Fence).  <br /></td></tr>
+<tr class="separator:a0f57ba05bf94ced059bfcfd0e4880464"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="classporth_1_1PorthClock.html">PorthClock</a>: Hardware-abstracted access to the CPU cycle counter. Automatically switches between Intel (TSC) and ARM (Generic Timer). </p>
+<div class="textblock"><p>Provides low-latency access to hardware timing primitives. </p>
+<p>This class abstracts the differences between Intel TSC (Time Stamp Counter) and the ARM64 Generic Timer (CNTVCT_EL0). It is designed for sub-microsecond latency measurements in HFT and high-speed interconnect environments. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa34fa7e805a6a32f4fe4ec051a577ce1" name="aa34fa7e805a6a32f4fe4ec051a577ce1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa34fa7e805a6a32f4fe4ec051a577ce1">&#9670;&#160;</a></span>fence()</h2>
+<a id="a0f57ba05bf94ced059bfcfd0e4880464" name="a0f57ba05bf94ced059bfcfd0e4880464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f57ba05bf94ced059bfcfd0e4880464">&#9670;&#160;</a></span>fence()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -113,16 +120,20 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classporth_1_1PorthClock.html#aa34fa7e805a6a32f4fe4ec051a577ce1">fence()</a>: Hardware memory barrier to prevent instruction reordering. </p>
+
+<p>Injects a hardware memory barrier (Fence). </p>
+<ul>
+<li>Prevents the CPU and compiler from reordering memory operations across this point. Critical for coordinating between the producer and consumer in lock-free structures like <a class="el" href="classporth_1_1PorthRingBuffer.html" title="A high-performance SPSC Lock-Free Queue.">PorthRingBuffer</a>. </li>
+</ul>
 
 </div>
 </div>
-<a id="a7c379dc4a51777544734b51dae152521" name="a7c379dc4a51777544734b51dae152521"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c379dc4a51777544734b51dae152521">&#9670;&#160;</a></span>now()</h2>
+<a id="a6f70b2d7ec4c76f9d910e26054f64fc3" name="a6f70b2d7ec4c76f9d910e26054f64fc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f70b2d7ec4c76f9d910e26054f64fc3">&#9670;&#160;</a></span>now()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,16 +150,21 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classporth_1_1PorthClock.html#a7c379dc4a51777544734b51dae152521">now()</a>: Fast, potentially unordered read of the cycle counter. </p>
+
+<p>Reads the hardware cycle counter without serialization. </p>
+<ul>
+<li>This is the fastest method to get a timestamp. Note that on modern out-of-order CPUs, this read may be reordered with respect to nearby instructions. Use <a class="el" href="classporth_1_1PorthClock.html#aef81b1f049248b225230e93df29368e8" title="Reads the hardware cycle counter with instruction serialization.">now_precise()</a> if strict ordering is required.</li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>uint64_t Current CPU clock cycles. </dd></dl>
 
 </div>
 </div>
-<a id="ad6df10c69061af42070c173f0ae066f9" name="ad6df10c69061af42070c173f0ae066f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6df10c69061af42070c173f0ae066f9">&#9670;&#160;</a></span>now_precise()</h2>
+<a id="aef81b1f049248b225230e93df29368e8" name="aef81b1f049248b225230e93df29368e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef81b1f049248b225230e93df29368e8">&#9670;&#160;</a></span>now_precise()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,11 +181,16 @@ Static Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p><a class="el" href="classporth_1_1PorthClock.html#ad6df10c69061af42070c173f0ae066f9">now_precise()</a>: Serializing read of the counter. Ensures all previous instructions are finished before reading. </p>
+
+<p>Reads the hardware cycle counter with instruction serialization. </p>
+<ul>
+<li>Ensures that all previous instructions have completed before the counter is read. This is essential for measuring the exact duration of a specific code block.</li>
+</ul>
+<dl class="section return"><dt>Returns</dt><dd>uint64_t Current CPU clock cycles (serialized). </dd></dl>
 
 </div>
 </div>

@@ -89,31 +89,35 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af1bf7427a4ca54baf02dfd9038ece47a" id="r_af1bf7427a4ca54baf02dfd9038ece47a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#af1bf7427a4ca54baf02dfd9038ece47a">PorthRegister</a> ()=default</td></tr>
+<tr class="memdesc:af1bf7427a4ca54baf02dfd9038ece47a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor for register initialization in mapped memory.  <br /></td></tr>
 <tr class="separator:af1bf7427a4ca54baf02dfd9038ece47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3697e867aa902743d2bb96f3d63b81c" id="r_ac3697e867aa902743d2bb96f3d63b81c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#ac3697e867aa902743d2bb96f3d63b81c">PorthRegister</a> (const <a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a> &amp;)=delete</td></tr>
 <tr class="separator:ac3697e867aa902743d2bb96f3d63b81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e8fdebbb6a98517fe9145256fd89640" id="r_a7e8fdebbb6a98517fe9145256fd89640"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#a7e8fdebbb6a98517fe9145256fd89640">operator=</a> (const <a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a> &amp;)=delete</td></tr>
 <tr class="separator:a7e8fdebbb6a98517fe9145256fd89640"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6314f20fe0754bcb038b8334ab85139e" id="r_a6314f20fe0754bcb038b8334ab85139e"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#a6314f20fe0754bcb038b8334ab85139e">load</a> () const</td></tr>
-<tr class="memdesc:a6314f20fe0754bcb038b8334ab85139e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the register value using Acquire semantics. Ensures all previous hardware writes are visible before the read.  <br /></td></tr>
-<tr class="separator:a6314f20fe0754bcb038b8334ab85139e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95ab13b98f543f487646417eeb12080e" id="r_a95ab13b98f543f487646417eeb12080e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#a95ab13b98f543f487646417eeb12080e">write</a> (T val)</td></tr>
-<tr class="memdesc:a95ab13b98f543f487646417eeb12080e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a value to the register using Release semantics. Ensures data buffers are committed to RAM before the register update.  <br /></td></tr>
-<tr class="separator:a95ab13b98f543f487646417eeb12080e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aece33024dae70e4c266efcd75cf71395" id="r_aece33024dae70e4c266efcd75cf71395"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#aece33024dae70e4c266efcd75cf71395">load</a> () const noexcept</td></tr>
+<tr class="memdesc:aece33024dae70e4c266efcd75cf71395"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the register value using Acquire semantics.  <br /></td></tr>
+<tr class="separator:aece33024dae70e4c266efcd75cf71395"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ed47fd7a2b4958fcb20d300c8e00418" id="r_a6ed47fd7a2b4958fcb20d300c8e00418"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#a6ed47fd7a2b4958fcb20d300c8e00418">write</a> (T val) noexcept</td></tr>
+<tr class="memdesc:a6ed47fd7a2b4958fcb20d300c8e00418"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a value to the register using Release semantics.  <br /></td></tr>
+<tr class="separator:a6ed47fd7a2b4958fcb20d300c8e00418"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80e66283b933c0d3211b6f87350d87ed" id="r_a80e66283b933c0d3211b6f87350d87ed"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#a80e66283b933c0d3211b6f87350d87ed">operator=</a> (T val) noexcept</td></tr>
+<tr class="memdesc:a80e66283b933c0d3211b6f87350d87ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload for assignment to allow intuitive 'reg = val' syntax.  <br /></td></tr>
+<tr class="separator:a80e66283b933c0d3211b6f87350d87ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af269ea907c1bcd3e3c1bfe62b1b8c0b9" id="r_af269ea907c1bcd3e3c1bfe62b1b8c0b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#af269ea907c1bcd3e3c1bfe62b1b8c0b9">operator T</a> () const noexcept</td></tr>
+<tr class="memdesc:af269ea907c1bcd3e3c1bfe62b1b8c0b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload for conversion to allow intuitive 'val = reg' syntax.  <br /></td></tr>
+<tr class="separator:af269ea907c1bcd3e3c1bfe62b1b8c0b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class porth::PorthRegister&lt; T &gt;</div><p>The atomic "brick" of the Porth-IO Hardware Abstraction Layer. </p>
-<ul>
-<li>Enforces 64-byte cache alignment to prevent false sharing and utilizes Acquire/Release semantics for jitter-free hardware synchronization.</li>
-<li><dl class="tparams"><dt>Template Parameters</dt><dd>
+<p>Enforces 64-byte cache alignment to prevent false sharing and utilizes Acquire/Release semantics for jitter-free hardware synchronization.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>The integral type of the register (must be trivially copyable). </td></tr>
   </table>
   </dd>
 </dl>
-</li>
-</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af1bf7427a4ca54baf02dfd9038ece47a" name="af1bf7427a4ca54baf02dfd9038ece47a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1bf7427a4ca54baf02dfd9038ece47a">&#9670;&#160;</a></span>PorthRegister() <span class="overload">[1/2]</span></h2>
@@ -139,6 +143,8 @@ template&lt;typename T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Default constructor for register initialization in mapped memory. </p>
 
 </div>
 </div>
@@ -171,8 +177,8 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6314f20fe0754bcb038b8334ab85139e" name="a6314f20fe0754bcb038b8334ab85139e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6314f20fe0754bcb038b8334ab85139e">&#9670;&#160;</a></span>load()</h2>
+<a id="aece33024dae70e4c266efcd75cf71395" name="aece33024dae70e4c266efcd75cf71395"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aece33024dae70e4c266efcd75cf71395">&#9670;&#160;</a></span>load()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,18 +197,51 @@ template&lt;typename T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reads the register value using Acquire semantics. Ensures all previous hardware writes are visible before the read. </p>
-<dl class="section return"><dt>Returns</dt><dd>The current value of the register. </dd></dl>
+<p>Reads the register value using Acquire semantics. </p>
+<ul>
+<li>Ensures all previous hardware writes (e.g., from the Newport chip) are visible to the CPU before the read operation completes.</li>
+<li><dl class="section return"><dt>Returns</dt><dd>The current value of the register. </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a id="af269ea907c1bcd3e3c1bfe62b1b8c0b9" name="af269ea907c1bcd3e3c1bfe62b1b8c0b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af269ea907c1bcd3e3c1bfe62b1b8c0b9">&#9670;&#160;</a></span>operator T()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classporth_1_1PorthRegister.html">porth::PorthRegister</a>&lt; T &gt;::operator T </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overload for conversion to allow intuitive 'val = reg' syntax. </p>
 
 </div>
 </div>
 <a id="a7e8fdebbb6a98517fe9145256fd89640" name="a7e8fdebbb6a98517fe9145256fd89640"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e8fdebbb6a98517fe9145256fd89640">&#9670;&#160;</a></span>operator=()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e8fdebbb6a98517fe9145256fd89640">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,8 +268,38 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a95ab13b98f543f487646417eeb12080e" name="a95ab13b98f543f487646417eeb12080e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95ab13b98f543f487646417eeb12080e">&#9670;&#160;</a></span>write()</h2>
+<a id="a80e66283b933c0d3211b6f87350d87ed" name="a80e66283b933c0d3211b6f87350d87ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80e66283b933c0d3211b6f87350d87ed">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="classporth_1_1PorthRegister.html">porth::PorthRegister</a>&lt; T &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overload for assignment to allow intuitive 'reg = val' syntax. </p>
+
+</div>
+</div>
+<a id="a6ed47fd7a2b4958fcb20d300c8e00418" name="a6ed47fd7a2b4958fcb20d300c8e00418"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ed47fd7a2b4958fcb20d300c8e00418">&#9670;&#160;</a></span>write()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,18 +319,22 @@ template&lt;typename T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Writes a value to the register using Release semantics. Ensures data buffers are committed to RAM before the register update. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Writes a value to the register using Release semantics. </p>
+<ul>
+<li>Ensures that any data buffers prepared by the CPU are committed to RAM before the register update signals the hardware to begin processing.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">val</td><td>The value to write. </td></tr>
+    <tr><td class="paramname">val</td><td>The value to write to the register. </td></tr>
   </table>
   </dd>
 </dl>
+</li>
+</ul>
 
 </div>
 </div>

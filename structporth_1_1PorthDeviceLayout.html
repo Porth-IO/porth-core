@@ -81,7 +81,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>The physical memory map for Porth-IO compatible hardware.  
+<p>The physical memory-mapped I/O (MMIO) layout for Porth-compatible hardware.  
  <a href="structporth_1_1PorthDeviceLayout.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="PorthDeviceLayout_8hpp_source.html">PorthDeviceLayout.hpp</a>&gt;</code></p>
@@ -90,7 +90,7 @@ Collaboration diagram for porth::PorthDeviceLayout:</div>
 <div class="dyncontent">
 <div class="center"><img src="structporth_1_1PorthDeviceLayout__coll__graph.png" border="0" usemap="#aporth_1_1PorthDeviceLayout_coll__map" alt="Collaboration graph"/></div>
 <map name="aporth_1_1PorthDeviceLayout_coll__map" id="aporth_1_1PorthDeviceLayout_coll__map">
-<area shape="rect" title="The physical memory map for Porth&#45;IO compatible hardware." alt="" coords="287,101,473,126"/>
+<area shape="rect" title="The physical memory&#45;mapped I/O (MMIO) layout for Porth&#45;compatible hardware." alt="" coords="287,101,473,126"/>
 <area shape="rect" href="classporth_1_1PorthRegister.html" title=" " alt="" coords="5,29,157,69"/>
 <area shape="poly" title=" " alt="" coords="171,59,263,76,341,98,340,103,262,81,170,64"/>
 <area shape="rect" href="classporth_1_1PorthRegister.html" title=" " alt="" coords="5,93,157,133"/>
@@ -103,32 +103,35 @@ Collaboration diagram for porth::PorthDeviceLayout:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a7ad48a4b73de74094b0fb8634940fe8c" id="r_a7ad48a4b73de74094b0fb8634940fe8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#a7ad48a4b73de74094b0fb8634940fe8c">control</a></td></tr>
-<tr class="memdesc:a7ad48a4b73de74094b0fb8634940fe8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x00: Master control (Start/Stop/Reset)  <br /></td></tr>
+<tr class="memdesc:a7ad48a4b73de74094b0fb8634940fe8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x00: Master control register (Start/Stop/Reset)  <br /></td></tr>
 <tr class="separator:a7ad48a4b73de74094b0fb8634940fe8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe2d779c1ea705f06a68bf7db6c50d31" id="r_abe2d779c1ea705f06a68bf7db6c50d31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#abe2d779c1ea705f06a68bf7db6c50d31">status</a></td></tr>
-<tr class="memdesc:abe2d779c1ea705f06a68bf7db6c50d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x40: Device status (Ready/Busy/Error)  <br /></td></tr>
+<tr class="memdesc:abe2d779c1ea705f06a68bf7db6c50d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x40: Device status register (Ready/Busy/Error)  <br /></td></tr>
 <tr class="separator:abe2d779c1ea705f06a68bf7db6c50d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac204991c3a0e49f9f12f193585d17b94" id="r_ac204991c3a0e49f9f12f193585d17b94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#ac204991c3a0e49f9f12f193585d17b94">data_ptr</a></td></tr>
-<tr class="memdesc:ac204991c3a0e49f9f12f193585d17b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x80: Data Plane pointer (DMA address for the Shuttle)  <br /></td></tr>
+<tr class="memdesc:ac204991c3a0e49f9f12f193585d17b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x80: Data Plane pointer (DMA base address for the Shuttle)  <br /></td></tr>
 <tr class="separator:ac204991c3a0e49f9f12f193585d17b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0d2c4e602d258db4649cb6b30d09f72" id="r_ab0d2c4e602d258db4649cb6b30d09f72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#ab0d2c4e602d258db4649cb6b30d09f72">counter</a></td></tr>
-<tr class="memdesc:ab0d2c4e602d258db4649cb6b30d09f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0xC0: Telemetry counter (Packet/Work-unit count)  <br /></td></tr>
+<tr class="memdesc:ab0d2c4e602d258db4649cb6b30d09f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0xC0: Telemetry counter (Packet/Work-unit throughput)  <br /></td></tr>
 <tr class="separator:ab0d2c4e602d258db4649cb6b30d09f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2a6ecb586518ca6f429cef786d7df6b" id="r_ad2a6ecb586518ca6f429cef786d7df6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#ad2a6ecb586518ca6f429cef786d7df6b">laser_temp</a></td></tr>
-<tr class="memdesc:ad2a6ecb586518ca6f429cef786d7df6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x100: Photonics Laser Temperature (milli-Celsius)  <br /></td></tr>
+<tr class="memdesc:ad2a6ecb586518ca6f429cef786d7df6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x100: Photonics Laser Temperature in milli-Celsius.  <br /></td></tr>
 <tr class="separator:ad2a6ecb586518ca6f429cef786d7df6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adde56e9ec0ff52c8f1d19fc963b01fc6" id="r_adde56e9ec0ff52c8f1d19fc963b01fc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#adde56e9ec0ff52c8f1d19fc963b01fc6">gan_voltage</a></td></tr>
-<tr class="memdesc:adde56e9ec0ff52c8f1d19fc963b01fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x140: GaN Power Stage Voltage (milli-Volts)  <br /></td></tr>
+<tr class="memdesc:adde56e9ec0ff52c8f1d19fc963b01fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x140: GaN Power Stage Voltage in milli-Volts.  <br /></td></tr>
 <tr class="separator:adde56e9ec0ff52c8f1d19fc963b01fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaf6f8a9c47a3a8316caa7f32b7b9b8f" id="r_abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; int32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#abaf6f8a9c47a3a8316caa7f32b7b9b8f">rf_snr</a></td></tr>
-<tr class="memdesc:abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x180: RF Signal-to-Noise Ratio (dB * 100)  <br /></td></tr>
+<tr class="memdesc:abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x180: RF Signal-to-Noise Ratio (scaled dB: value * 100)  <br /></td></tr>
 <tr class="separator:abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The physical memory map for Porth-IO compatible hardware. </p>
-<ul>
-<li>This structure defines a 448-byte window into the Cardiff chip, covering Core Control, Photonics, and GaN Power domains. </li>
-</ul>
+<div class="textblock"><p>The physical memory-mapped I/O (MMIO) layout for Porth-compatible hardware. </p>
+<p>This structure defines the precise register offsets for interaction with Cardiff-based compound semiconductor chips. It covers three primary domains:</p><ol type="1">
+<li>Core Control: Basic device lifecycle management.</li>
+<li>Photonics: Laser telemetry and mode coupling.</li>
+<li>Power: GaN-based power stage monitoring.</li>
+</ol>
+<p>The layout is cache-line aligned (64 bytes) to ensure deterministic access and compatibility with high-speed PCIe Gen 6 interconnects. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a7ad48a4b73de74094b0fb8634940fe8c" name="a7ad48a4b73de74094b0fb8634940fe8c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7ad48a4b73de74094b0fb8634940fe8c">&#9670;&#160;</a></span>control</h2>
@@ -142,7 +145,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x00: Master control (Start/Stop/Reset) </p>
+<p>Offset 0x00: Master control register (Start/Stop/Reset) </p>
 
 </div>
 </div>
@@ -158,7 +161,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0xC0: Telemetry counter (Packet/Work-unit count) </p>
+<p>Offset 0xC0: Telemetry counter (Packet/Work-unit throughput) </p>
 
 </div>
 </div>
@@ -174,7 +177,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x80: Data Plane pointer (DMA address for the Shuttle) </p>
+<p>Offset 0x80: Data Plane pointer (DMA base address for the Shuttle) </p>
 
 </div>
 </div>
@@ -190,7 +193,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x140: GaN Power Stage Voltage (milli-Volts) </p>
+<p>Offset 0x140: GaN Power Stage Voltage in milli-Volts. </p>
 
 </div>
 </div>
@@ -206,7 +209,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x100: Photonics Laser Temperature (milli-Celsius) </p>
+<p>Offset 0x100: Photonics Laser Temperature in milli-Celsius. </p>
 
 </div>
 </div>
@@ -222,7 +225,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x180: RF Signal-to-Noise Ratio (dB * 100) </p>
+<p>Offset 0x180: RF Signal-to-Noise Ratio (scaled dB: value * 100) </p>
 
 </div>
 </div>
@@ -238,7 +241,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x40: Device status (Ready/Busy/Error) </p>
+<p>Offset 0x40: Device status register (Ready/Busy/Error) </p>
 
 </div>
 </div>

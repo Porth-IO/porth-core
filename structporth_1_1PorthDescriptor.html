@@ -81,17 +81,25 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>The "Cargo" box for DMA transactions.  
+ <a href="structporth_1_1PorthDescriptor.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="PorthRingBuffer_8hpp_source.html">PorthRingBuffer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:abae5b2824728536f673747bae1adf60d" id="r_abae5b2824728536f673747bae1adf60d"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDescriptor.html#abae5b2824728536f673747bae1adf60d">addr</a></td></tr>
+<tr class="memdesc:abae5b2824728536f673747bae1adf60d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Physical or Virtual memory address.  <br /></td></tr>
 <tr class="separator:abae5b2824728536f673747bae1adf60d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5265703b7470c8a6ba765971f171e97" id="r_ad5265703b7470c8a6ba765971f171e97"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDescriptor.html#ad5265703b7470c8a6ba765971f171e97">len</a></td></tr>
+<tr class="memdesc:ad5265703b7470c8a6ba765971f171e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the data buffer in bytes.  <br /></td></tr>
 <tr class="separator:ad5265703b7470c8a6ba765971f171e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a>: The "Cargo" box. This represents a DMA-ready memory region that the Cardiff chip can read from or write to directly. </p>
+<div class="textblock"><p>The "Cargo" box for DMA transactions. </p>
+<ul>
+<li>This represents a DMA-ready memory region that the Cardiff chip can read from or write to directly without CPU intervention. </li>
+</ul>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="abae5b2824728536f673747bae1adf60d" name="abae5b2824728536f673747bae1adf60d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abae5b2824728536f673747bae1adf60d">&#9670;&#160;</a></span>addr</h2>
@@ -104,6 +112,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Physical or Virtual memory address. </p>
 
 </div>
 </div>
@@ -118,6 +128,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Length of the data buffer in bytes. </p>
 
 </div>
 </div>

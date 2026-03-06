@@ -1,50 +1,62 @@
 <map id="include/porth/PorthDriver.hpp" name="include/porth/PorthDriver.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="315,5,527,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="111,79,189,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="378,33,203,79,201,74,377,28"/>
-<area shape="rect" id="Node000003" href="$PorthDeviceLayout_8hpp.html" title=" " alt="" coords="213,79,386,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="403,33,332,74,329,69,400,28"/>
-<area shape="rect" id="Node000009" href="$PorthShuttle_8hpp.html" title=" " alt="" coords="477,79,607,104"/>
-<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="442,28,512,69,509,74,439,33"/>
-<area shape="rect" id="Node000019" href="$PorthUtil_8hpp.html" title=" " alt="" coords="809,152,915,177"/>
-<area shape="poly" id="edge23_Node000001_Node000019" title=" " alt="" coords="462,28,620,76,819,145,817,150,619,81,460,33"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="213,225,279,251"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="288,106,269,127,254,153,247,183,246,212,241,212,242,182,249,151,265,124,284,103"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="264,152,335,177"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="302,104,302,138,297,138,297,104"/>
-<area shape="rect" id="Node000006" href="$PorthRegister_8hpp.html" title=" " alt="" coords="51,152,188,177"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="271,107,162,149,160,144,269,102"/>
-<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="141,175,215,216,212,221,138,180"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="5,225,97,251"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="110,180,74,217,70,213,106,176"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="122,225,189,251"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="128,176,146,212,141,214,123,179"/>
-<area shape="rect" id="Node000010" href="$PorthHugePage_8hpp.html" title=" " alt="" coords="534,152,683,177"/>
-<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="555,103,590,140,587,144,551,106"/>
-<area shape="rect" id="Node000016" href="$PorthRingBuffer_8hpp.html" title=" " alt="" coords="359,152,509,177"/>
-<area shape="poly" id="edge17_Node000009_Node000016" title=" " alt="" coords="526,106,465,147,462,142,523,102"/>
-<area shape="rect" id="Node000018" title=" " alt="" coords="708,152,757,177"/>
-<area shape="poly" id="edge22_Node000009_Node000018" title=" " alt="" coords="574,102,696,147,694,152,572,107"/>
-<area shape="poly" id="edge16_Node000010_Node000004" title=" " alt="" coords="542,180,293,228,292,223,541,175"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="601,225,704,251"/>
-<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="618,176,641,212,636,215,614,179"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="502,225,577,251"/>
-<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="599,180,562,217,558,214,595,176"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="729,225,809,251"/>
-<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="635,175,731,217,729,222,633,180"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="391,225,477,251"/>
-<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="582,180,476,222,474,218,580,175"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="833,225,891,251"/>
-<area shape="poly" id="edge15_Node000010_Node000015" title=" " alt="" coords="650,175,820,222,819,227,649,180"/>
-<area shape="poly" id="edge19_Node000016_Node000004" title=" " alt="" coords="405,180,290,223,289,218,403,175"/>
-<area shape="poly" id="edge18_Node000016_Node000008" title=" " alt="" coords="390,180,203,227,202,222,389,175"/>
-<area shape="poly" id="edge21_Node000016_Node000014" title=" " alt="" coords="437,178,437,212,431,212,431,178"/>
-<area shape="rect" id="Node000017" title=" " alt="" coords="304,225,367,251"/>
-<area shape="poly" id="edge20_Node000016_Node000017" title=" " alt="" coords="420,180,364,219,361,215,417,175"/>
-<area shape="poly" id="edge26_Node000019_Node000013" title=" " alt="" coords="849,179,796,219,793,215,845,175"/>
-<area shape="poly" id="edge27_Node000019_Node000015" title=" " alt="" coords="865,178,865,212,859,212,859,178"/>
-<area shape="rect" id="Node000020" title=" " alt="" coords="1012,225,1096,251"/>
-<area shape="poly" id="edge24_Node000019_Node000020" title=" " alt="" coords="894,175,1011,218,1009,223,892,180"/>
-<area shape="rect" id="Node000021" title=" " alt="" coords="915,225,987,251"/>
-<area shape="poly" id="edge25_Node000019_Node000021" title=" " alt="" coords="878,175,928,214,924,219,875,179"/>
+<area shape="rect" id="Node000001" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="635,5,847,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="82,79,159,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="634,29,425,48,174,81,173,76,425,43,634,24"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="859,225,939,251"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="761,29,790,49,820,77,845,111,866,147,894,211,889,213,861,150,841,114,816,80,787,54,758,33"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="1251,225,1318,251"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="792,28,872,48,960,76,1042,110,1121,150,1252,216,1249,221,1118,154,1039,115,958,81,871,54,791,33"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="521,225,608,251"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="724,33,695,54,665,80,638,114,614,151,578,214,574,211,609,148,634,111,661,77,691,50,720,29"/>
+<area shape="rect" id="Node000006" href="$PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="183,79,357,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="665,33,359,79,359,74,665,28"/>
+<area shape="rect" id="Node000012" href="$PorthShuttle_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="675,79,806,104"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="743,31,743,65,738,65,738,31"/>
+<area shape="rect" id="Node000020" href="$PorthUtil_8hpp.html" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="946,152,1053,177"/>
+<area shape="poly" id="edge32_Node000001_Node000020" title=" " alt="" coords="807,28,868,46,899,60,929,77,962,107,987,139,983,142,959,110,926,81,897,65,866,51,805,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="270,225,337,251"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="275,104,300,211,295,213,270,105"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="197,152,268,177"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="266,106,247,141,243,139,261,103"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="5,225,97,251"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="205,107,93,130,48,143,25,154,20,167,21,182,36,213,31,215,16,184,14,166,21,150,46,138,92,125,204,101"/>
+<area shape="rect" id="Node000010" href="$PorthRegister_8hpp.html" title=" " alt="" coords="36,152,173,177"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="244,106,145,149,143,144,242,102"/>
+<area shape="poly" id="edge12_Node000010_Node000007" title=" " alt="" coords="137,175,259,218,257,223,136,180"/>
+<area shape="poly" id="edge10_Node000010_Node000009" title=" " alt="" coords="98,179,70,216,66,213,94,176"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="123,225,190,251"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="115,176,142,213,138,216,111,179"/>
+<area shape="poly" id="edge29_Node000012_Node000003" title=" " alt="" coords="764,102,798,122,834,150,864,182,887,212,883,216,860,185,831,154,795,127,761,106"/>
+<area shape="poly" id="edge30_Node000012_Node000004" title=" " alt="" coords="806,98,928,118,1065,149,1165,183,1248,217,1246,222,1163,188,1064,155,927,123,806,104"/>
+<area shape="poly" id="edge31_Node000012_Node000007" title=" " alt="" coords="676,101,514,121,437,136,383,154,347,183,320,216,316,212,343,179,381,150,435,131,513,116,675,96"/>
+<area shape="rect" id="Node000013" href="$PorthHugePage_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="671,152,821,177"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="744,104,747,138,741,139,739,105"/>
+<area shape="rect" id="Node000017" href="$PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer." alt="" coords="395,152,545,177"/>
+<area shape="poly" id="edge22_Node000012_Node000017" title=" " alt="" coords="698,107,528,151,526,146,697,101"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="448,225,497,251"/>
+<area shape="poly" id="edge28_Node000012_Node000019" title=" " alt="" coords="720,107,507,221,505,216,718,102"/>
+<area shape="poly" id="edge17_Node000013_Node000003" title=" " alt="" coords="772,175,863,217,861,222,770,180"/>
+<area shape="poly" id="edge21_Node000013_Node000004" title=" " alt="" coords="821,169,1007,189,1238,223,1237,228,1006,194,821,175"/>
+<area shape="poly" id="edge18_Node000013_Node000005" title=" " alt="" coords="718,180,608,223,606,218,716,175"/>
+<area shape="poly" id="edge20_Node000013_Node000007" title=" " alt="" coords="672,178,527,198,351,228,350,223,526,192,671,172"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="732,225,835,251"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="755,176,773,212,769,215,750,179"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="633,225,707,251"/>
+<area shape="poly" id="edge16_Node000013_Node000015" title=" " alt="" coords="736,179,694,218,691,214,732,175"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="963,225,1022,251"/>
+<area shape="poly" id="edge19_Node000013_Node000016" title=" " alt="" coords="786,175,951,222,950,227,785,180"/>
+<area shape="poly" id="edge26_Node000017_Node000005" title=" " alt="" coords="487,175,540,215,537,219,484,179"/>
+<area shape="poly" id="edge24_Node000017_Node000007" title=" " alt="" coords="444,180,344,222,342,217,442,175"/>
+<area shape="poly" id="edge23_Node000017_Node000011" title=" " alt="" coords="420,180,204,229,203,224,419,175"/>
+<area shape="rect" id="Node000018" title=" " alt="" coords="361,225,424,251"/>
+<area shape="poly" id="edge25_Node000017_Node000018" title=" " alt="" coords="459,179,417,218,414,214,456,175"/>
+<area shape="poly" id="edge27_Node000017_Node000019" title=" " alt="" coords="473,178,474,212,469,212,468,178"/>
+<area shape="poly" id="edge35_Node000020_Node000003" title=" " alt="" coords="985,180,928,219,925,215,982,175"/>
+<area shape="poly" id="edge37_Node000020_Node000004" title=" " alt="" coords="1046,175,1239,222,1237,228,1045,180"/>
+<area shape="poly" id="edge38_Node000020_Node000007" title=" " alt="" coords="946,172,651,196,483,212,351,228,350,223,482,206,650,191,946,167"/>
+<area shape="poly" id="edge36_Node000020_Node000016" title=" " alt="" coords="1001,178,998,212,992,212,996,177"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="1143,225,1227,251"/>
+<area shape="poly" id="edge33_Node000020_Node000021" title=" " alt="" coords="1030,175,1143,218,1141,223,1028,180"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="1046,225,1118,251"/>
+<area shape="poly" id="edge34_Node000020_Node000022" title=" " alt="" coords="1014,175,1060,214,1056,218,1011,179"/>
 </map>

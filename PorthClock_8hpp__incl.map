@@ -1,5 +1,5 @@
 <map id="include/porth/PorthClock.hpp" name="include/porth/PorthClock.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,215,31"/>
+<area shape="rect" id="Node000001" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="5,5,215,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="77,79,143,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,31,113,65,107,65,107,31"/>
 </map>

@@ -80,30 +80,36 @@ $(function() {
   <div class="headertitle"><div class="title">PorthHugePage.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Hardware-abstracted access to high-precision CPU cycle counters.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;sys/mman.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;stdexcept&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;format&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for PorthHugePage.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthHugePage_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthHugePage_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthHugePage_8hpp" id="ainclude_2porth_2PorthHugePage_8hpp">
-<area shape="rect" title=" " alt="" coords="205,5,444,31"/>
+<area shape="rect" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="260,5,499,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,108,104"/>
-<area shape="poly" title=" " alt="" coords="282,33,114,78,112,73,281,28"/>
+<area shape="poly" title=" " alt="" coords="328,33,122,78,121,73,327,28"/>
 <area shape="rect" title=" " alt="" coords="133,79,207,104"/>
-<area shape="poly" title=" " alt="" coords="301,33,209,75,207,70,299,28"/>
+<area shape="poly" title=" " alt="" coords="347,33,218,77,216,72,345,28"/>
 <area shape="rect" title=" " alt="" coords="231,79,311,104"/>
-<area shape="poly" title=" " alt="" coords="318,33,290,69,286,66,314,29"/>
+<area shape="poly" title=" " alt="" coords="363,33,302,73,299,69,361,28"/>
 <area shape="rect" title=" " alt="" coords="336,79,423,104"/>
-<area shape="poly" title=" " alt="" coords="336,29,364,66,360,69,332,33"/>
+<area shape="poly" title=" " alt="" coords="382,31,382,65,377,65,377,31"/>
 <area shape="rect" title=" " alt="" coords="447,79,506,104"/>
-<area shape="poly" title=" " alt="" coords="350,28,441,70,439,75,348,33"/>
+<area shape="poly" title=" " alt="" coords="397,29,451,68,448,72,393,33"/>
 <area shape="rect" title=" " alt="" coords="530,79,597,104"/>
-<area shape="poly" title=" " alt="" coords="364,28,517,74,516,79,362,33"/>
+<area shape="poly" title=" " alt="" coords="410,28,521,71,519,76,408,33"/>
+<area shape="rect" title=" " alt="" coords="621,79,687,104"/>
+<area shape="poly" title=" " alt="" coords="424,28,608,75,607,81,423,33"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -111,15 +117,20 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthHugePage_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthHugePage_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthHugePage_8hppdep" id="ainclude_2porth_2PorthHugePage_8hppdep">
-<area shape="rect" title=" " alt="" coords="68,5,307,31"/>
-<area shape="rect" href="PorthShuttle_8hpp.html" title=" " alt="" coords="78,79,297,104"/>
-<area shape="poly" title=" " alt="" coords="190,44,190,79,185,79,185,44"/>
+<area shape="rect" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="172,5,411,31"/>
+<area shape="rect" href="PorthShuttle_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="182,79,401,104"/>
+<area shape="poly" title=" " alt="" coords="294,44,294,79,289,79,289,44"/>
 <area shape="rect" href="zero__copy__handshake_8cpp.html" title=" " alt="" coords="5,152,161,192"/>
-<area shape="poly" title=" " alt="" coords="163,114,110,154,107,150,160,110"/>
-<area shape="rect" href="PorthDriver_8hpp.html" title=" " alt="" coords="185,159,397,185"/>
-<area shape="poly" title=" " alt="" coords="215,110,278,157,274,161,212,114"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title=" " alt="" coords="215,240,367,280"/>
-<area shape="poly" title=" " alt="" coords="294,198,294,240,289,240,289,198"/>
+<area shape="poly" title=" " alt="" coords="249,111,134,154,132,149,248,106"/>
+<area shape="rect" href="PorthDriver_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="185,159,397,185"/>
+<area shape="poly" title=" " alt="" coords="294,118,294,159,289,159,289,118"/>
+<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="422,159,665,185"/>
+<area shape="poly" title=" " alt="" coords="342,106,507,157,506,162,340,111"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="253,240,405,280"/>
+<area shape="poly" title=" " alt="" coords="304,196,323,238,318,241,299,198"/>
+<area shape="poly" title=" " alt="" coords="503,192,377,242,375,237,501,187"/>
+<area shape="rect" href="porth-sim-ctl_8cpp.html" title=" " alt="" coords="467,240,620,280"/>
+<area shape="poly" title=" " alt="" coords="546,198,546,240,541,240,541,198"/>
 </map>
 </div>
 </div>
@@ -128,6 +139,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html">porth::PorthHugePage</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Strictly Linux RAII wrapper for HugePage memory.  <a href="classporth_1_1PorthHugePage.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -135,7 +147,11 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespaceporth" id="r_namespaceporth"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html">porth</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Hardware-abstracted access to high-precision CPU cycle counters. </p>
+<p>Porth-IO: The Sovereign Logic Layer</p>
+<p>Copyright (c) 2026 Porth-IO Contributors SPDX-License-Identifier: Apache-2.0 </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
