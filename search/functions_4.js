@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['load_0',['load',['../classporth_1_1PorthRegister.html#aece33024dae70e4c266efcd75cf71395',1,'porth::PorthRegister']]]
+  ['load_0',['load',['../classporth_1_1PorthRegister.html#abf16cb244b1a96126acce411b59d182d',1,'porth::PorthRegister']]]
 ];

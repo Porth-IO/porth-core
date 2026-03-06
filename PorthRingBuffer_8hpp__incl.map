@@ -1,13 +1,15 @@
 <map id="include/porth/PorthRingBuffer.hpp" name="include/porth/PorthRingBuffer.hpp">
-<area shape="rect" id="Node000001" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer." alt="" coords="92,5,332,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,72,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,33,81,76,79,71,183,28"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="96,79,163,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,33,155,72,152,67,197,29"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="187,79,237,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="215,31,215,65,209,65,209,31"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="261,79,347,104"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="228,29,280,68,277,72,225,33"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="371,79,434,104"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="244,28,360,71,358,76,242,33"/>
+<area shape="rect" id="Node000001" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer." alt="" coords="131,5,371,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,61,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,33,76,79,74,74,215,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="85,79,152,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="231,33,153,74,151,70,228,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="176,79,243,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="246,32,225,68,221,65,242,30"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="267,79,317,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="260,30,281,65,276,68,255,32"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="341,79,427,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="273,28,351,70,349,74,271,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="451,79,514,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="289,28,439,74,438,79,287,33"/>
 </map>

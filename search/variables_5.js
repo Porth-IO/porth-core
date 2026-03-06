@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rf_5fsnr_0',['rf_snr',['../structporth_1_1PorthDeviceLayout.html#abaf6f8a9c47a3a8316caa7f32b7b9b8f',1,'porth::PorthDeviceLayout']]]
+  ['gan_5fvoltage_0',['gan_voltage',['../structporth_1_1PorthDeviceLayout.html#adde56e9ec0ff52c8f1d19fc963b01fc6',1,'porth::PorthDeviceLayout']]]
 ];
