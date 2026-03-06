@@ -1,39 +1,49 @@
 ---
-# Porth-IO: Sovereign C++ Style Manifesto
-# Enforces a consistent, readable standard across the Newport HAL.
-Language: Cpp
-BasedOnStyle: LLVM
+# Porth-IO: Sovereign Logic Layer Code Style
+# Based on LLVM with HFT-grade refinements for C++23
+Language:        Cpp
+BasedOnStyle:    LLVM
 
+# 1. Structural Layout
 AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
 AlignConsecutiveAssignments: true
 AlignConsecutiveDeclarations: false
+AlignEscapedNewlines: Right
+AlignOperands:   true
+AlignTrailingComments: true
+
+# 2. Functional Spacing
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: false
 AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
 
-# Formatting for C++23 Readiness
-Standard: Latest
-ColumnLimit: 100
-IndentWidth: 4
-TabWidth: 4
-UseTab: Never
+# 3. Branding & Legibility
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: false
+BinPackParameters: false
 
-# Brace Wrapping for "Immaculate" Architecture
-BreakBeforeBraces: Custom
-BraceWrapping:
-  AfterClass: true
-  AfterControlStatement: false
-  AfterEnum: true
-  AfterFunction: true
-  AfterNamespace: false
-  AfterStruct: true
-  BeforeElse: false
-  IndentBraces: false
+# 4. Indentation (Cardiff Standard)
+BreakBeforeBinaryOperators: None
+BreakBeforeBraces: Attach
+ColumnLimit:     100
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+IndentWidth:     4
+NamespaceIndentation: None
 
-# Pointer Alignment (Right-aligned for HFT standard)
-PointerAlignment: Right
-
-# Spaces and Padding
+# 5. Modern C++ Refinements
+PointerAlignment: Left
+ReflowComments:  true
+SortIncludes:    true
 SpaceAfterCStyleCast: false
+SpaceAfterTemplateKeyword: true
 SpaceBeforeAssignmentOperators: true
 SpaceBeforeParens: ControlStatements
-...
+SpacesInContainerLiterals: false
+SpacesInAngles:  false
+Standard:        Latest
