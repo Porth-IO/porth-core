@@ -1,7 +1,7 @@
+#include "../include/porth/PorthSimDevice.hpp"
+#include <chrono>
 #include <iostream>
 #include <thread>
-#include <chrono>
-#include "../include/porth/PorthSimDevice.hpp"
 
 int main() {
     using namespace porth;
@@ -15,10 +15,11 @@ int main() {
         std::cout << "[Chaos] Enabling Status Register Corruption..." << std::endl;
         dev->status.write(0x2); // Set to READY
         sim.trigger_corruption(true);
-        
+
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
         uint32_t corrupted = sim.read_reg(dev->status);
-        std::cout << "  - Status (Expected 0x2): 0x" << std::hex << corrupted << std::dec << std::endl;
+        std::cout << "  - Status (Expected 0x2): 0x" << std::hex << corrupted << std::dec
+                  << std::endl;
         sim.trigger_corruption(false);
 
         // 2. Test Deadlock & Watchdog (4.2)
@@ -27,21 +28,23 @@ int main() {
 
         // Simple Watchdog Logic
         uint32_t last_temp = sim.read_reg(dev->laser_temp);
-        bool recovered = false;
+        bool recovered     = false;
 
-        for(int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 5; ++i) {
             std::this_thread::sleep_for(std::chrono::milliseconds(200));
             uint32_t current_temp = sim.read_reg(dev->laser_temp);
-            
+
             if (current_temp == last_temp) {
-                std::cout << "  - Watchdog Alert: Hardware is HUNG. Attempting Reset..." << std::endl;
+                std::cout << "  - Watchdog Alert: Hardware is HUNG. Attempting Reset..."
+                          << std::endl;
                 sim.trigger_deadlock(false); // Simulated Hardware Reset
                 recovered = true;
                 break;
             }
         }
 
-        if (recovered) std::cout << "[Success] Watchdog recovered the system." << std::endl;
+        if (recovered)
+            std::cout << "[Success] Watchdog recovered the system." << std::endl;
 
     } catch (const std::exception& e) {
         std::cerr << "Fatal: " << e.what() << std::endl;

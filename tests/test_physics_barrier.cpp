@@ -9,8 +9,8 @@
 #include "../include/porth/PorthDriver.hpp"
 #include "../include/porth/PorthSimDevice.hpp"
 #include <cassert>
-#include <iostream>
 #include <format>
+#include <iostream>
 
 using namespace porth;
 
@@ -27,11 +27,11 @@ void test_thermal_feedback_loop() {
     // 2. Measure Base Latency (at 25C)
     uint32_t base_temp = driver.get_regs()->laser_temp.load();
     std::cout << std::format("  - Base Temp: {} mC\n", base_temp);
-    
+
     // 3. Force Thermal Load
     std::cout << "  - Injecting operational load (Heating)...\n";
-    driver.get_regs()->command.write(0x1); 
-    
+    driver.get_regs()->command.write(0x1);
+
     // Wait for thermal lattice to heat up (Simulation loop runs at 100Hz)
     std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
@@ -44,7 +44,8 @@ void test_thermal_feedback_loop() {
 
     // 5. Verification: Driver Resilience
     // Ensure the handshake remains stable under heat
-    assert(driver.get_regs()->data_ptr.read() != 0 && "Hardware Failure: Handshake lost during thermal spike.");
+    assert(driver.get_regs()->data_ptr.read() != 0 &&
+           "Hardware Failure: Handshake lost during thermal spike.");
 
     std::cout << "[Success] Physics Barrier Test Passed: Thermal Determinism Validated.\n";
 }

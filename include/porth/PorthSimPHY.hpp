@@ -10,32 +10,32 @@
 
 #pragma once
 
-#include <random>
-#include <atomic>
-#include <algorithm>
 #include "PorthClock.hpp"
+#include <algorithm>
+#include <atomic>
+#include <random>
 
 namespace porth {
 
 /**
  * @class PorthSimPHY
  * @brief Emulates PCIe physical layer effects for compound semiconductor interconnects.
- * * This class implements the Task 4.3 Thermal/Power Feedback Loop, providing a 
- * high-fidelity simulation of propagation delays, jitter, and signal degradation 
+ * * This class implements the Task 4.3 Thermal/Power Feedback Loop, providing a
+ * high-fidelity simulation of propagation delays, jitter, and signal degradation
  * caused by physics-level fluctuations in InP/GaN hardware.
  */
 class PorthSimPHY {
 private:
-    uint64_t base_delay_ns;  ///< Base propagation delay in nanoseconds.
-    uint64_t jitter_ns;      ///< Maximum configurable jitter.
-    double cycles_per_ns;    ///< Calibrated CPU cycles per nanosecond.
-    
+    uint64_t base_delay_ns; ///< Base propagation delay in nanoseconds.
+    uint64_t jitter_ns;     ///< Maximum configurable jitter.
+    double cycles_per_ns;   ///< Calibrated CPU cycles per nanosecond.
+
     // Task 2.2: FEC Simulation constants
-    double fec_error_rate = 0.001;  ///< Probability of a Forward Error Correction retry.
-    uint64_t fec_penalty_ns = 5;    ///< Base latency penalty for FEC processing.
+    double fec_error_rate   = 0.001; ///< Probability of a Forward Error Correction retry.
+    uint64_t fec_penalty_ns = 5;     ///< Base latency penalty for FEC processing.
 
     // Task 4.3: Thermal Feedback (milli-Celsius)
-    std::atomic<uint32_t> current_temp_mc{25000}; 
+    std::atomic<uint32_t> current_temp_mc{25000};
 
     std::mt19937 gen;
     std::uniform_int_distribution<int64_t> jitter_dist;
@@ -50,7 +50,7 @@ public:
      */
     explicit PorthSimPHY(uint64_t base_ns = 100, uint64_t jitter_init = 25, double cpns = 2.4)
         : base_delay_ns(base_ns), jitter_ns(jitter_init), cycles_per_ns(cpns),
-          gen(std::random_device{}()), 
+          gen(std::random_device{}()),
           jitter_dist(-static_cast<int64_t>(jitter_init), static_cast<int64_t>(jitter_init)),
           error_dist(0.0, 1.0) {}
 
@@ -74,7 +74,7 @@ public:
         // Task 4.3: Calculate thermal jitter multiplier
         // Jitter increases by 1ns for every 1 degree above 40C (40000 mC)
         uint64_t thermal_jitter = 0;
-        const uint32_t temp = current_temp_mc.load(std::memory_order_relaxed);
+        const uint32_t temp     = current_temp_mc.load(std::memory_order_relaxed);
         if (temp > 40000) {
             thermal_jitter = (temp - 40000) / 1000;
         }
@@ -84,19 +84,19 @@ public:
 
         // Simulate FEC retry spike (Task 2.2)
         if (error_dist(gen) < fec_error_rate) {
-            total_delay_ns += 500; 
+            total_delay_ns += 500;
         }
-        
+
         const uint64_t target_cycles = static_cast<uint64_t>(total_delay_ns * cycles_per_ns);
-        const uint64_t start = PorthClock::now_precise();
+        const uint64_t start         = PorthClock::now_precise();
 
         // High-precision busy wait using architecture-specific hints
         while (PorthClock::now_precise() - start < target_cycles) {
-            #if defined(__i386__) || defined(__x86_64__)
-                asm volatile("pause" ::: "memory");
-            #elif defined(__aarch64__)
-                asm volatile("isb" ::: "memory");
-            #endif
+#if defined(__i386__) || defined(__x86_64__)
+            asm volatile("pause" ::: "memory");
+#elif defined(__aarch64__)
+            asm volatile("isb" ::: "memory");
+#endif
         }
     }
 
@@ -107,11 +107,9 @@ public:
      */
     void set_config(uint64_t base, uint64_t jitter) {
         base_delay_ns = base;
-        jitter_ns = jitter;
-        jitter_dist = std::uniform_int_distribution<int64_t>(
-            -static_cast<int64_t>(jitter), 
-            static_cast<int64_t>(jitter)
-        );
+        jitter_ns     = jitter;
+        jitter_dist   = std::uniform_int_distribution<int64_t>(-static_cast<int64_t>(jitter),
+                                                             static_cast<int64_t>(jitter));
     }
 };
 

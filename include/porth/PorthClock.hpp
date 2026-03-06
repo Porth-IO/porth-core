@@ -14,7 +14,7 @@
 
 // Only include architecture-specific headers if we are on a supported platform
 #if defined(__x86_64__) || defined(__i386__)
-    #include <x86intrin.h>
+#include <x86intrin.h>
 #endif
 
 namespace porth {
@@ -46,13 +46,13 @@ public:
         asm volatile("mrs %0, cntvct_el0" : "=r"(virtual_timer_value));
         return virtual_timer_value;
 #else
-        #error "Porth-IO: Unsupported CPU architecture for high-precision timing."
+#error "Porth-IO: Unsupported CPU architecture for high-precision timing."
 #endif
     }
 
     /**
      * @brief Reads the hardware cycle counter with instruction serialization.
-     * * Ensures that all previous instructions have completed before the 
+     * * Ensures that all previous instructions have completed before the
      * counter is read. This is essential for measuring the exact duration
      * of a specific code block.
      *
@@ -64,7 +64,7 @@ public:
         return __rdtscp(&aux); // Intel Path (RDTSCP is serializing)
 #elif defined(__aarch64__)
         uint64_t val;
-        // ARM64 Path: ISB (Instruction Synchronization Barrier) ensures 
+        // ARM64 Path: ISB (Instruction Synchronization Barrier) ensures
         // that all previous instructions are completed before the MRS read.
         asm volatile("isb; mrs %0, cntvct_el0" : "=r"(val));
         return val;
@@ -74,15 +74,15 @@ public:
     /**
      * @brief Injects a hardware memory barrier (Fence).
      * * Prevents the CPU and compiler from reordering memory operations
-     * across this point. Critical for coordinating between the producer 
+     * across this point. Critical for coordinating between the producer
      * and consumer in lock-free structures like PorthRingBuffer.
      */
     static inline void fence() noexcept {
 #if defined(__x86_64__) || defined(__i386__)
         // LFENCE provides a load fence on x86, preventing instruction reordering.
-        asm volatile("lfence" ::: "memory"); 
+        asm volatile("lfence" ::: "memory");
 #elif defined(__aarch64__)
-        // ARM64 Path: Data Memory Barrier (Inner Shareable) ensures 
+        // ARM64 Path: Data Memory Barrier (Inner Shareable) ensures
         // global visibility of memory operations across the cluster.
         asm volatile("dmb ish" ::: "memory");
 #endif

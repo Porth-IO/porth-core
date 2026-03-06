@@ -10,12 +10,12 @@
 
 #pragma once
 
+#include <cstdint>
+#include <format>
+#include <iostream>
 #include <pthread.h>
 #include <sched.h>
-#include <iostream>
 #include <string>
-#include <format>
-#include <cstdint>
 
 namespace porth {
 
@@ -27,13 +27,13 @@ namespace porth {
  * or OS-level failures back to the financial execution engines.
  */
 enum class PorthStatus : uint8_t {
-    SUCCESS = 0,             ///< Operation completed without error.
-    BUSY,                    ///< Hardware is currently processing.
-    EMPTY,                   ///< Ring buffer has no available data.
-    FULL,                    ///< Ring buffer is at maximum capacity.
-    ERROR_AFFINITY,          ///< Failed to isolate thread on the requested core.
-    ERROR_PRIORITY,          ///< Failed to elevate to Real-Time priority.
-    ERROR_HARDWARE_TIMEOUT   ///< Hardware failed to respond within the PDK limit.
+    SUCCESS = 0,           ///< Operation completed without error.
+    BUSY,                  ///< Hardware is currently processing.
+    EMPTY,                 ///< Ring buffer has no available data.
+    FULL,                  ///< Ring buffer is at maximum capacity.
+    ERROR_AFFINITY,        ///< Failed to isolate thread on the requested core.
+    ERROR_PRIORITY,        ///< Failed to elevate to Real-Time priority.
+    ERROR_HARDWARE_TIMEOUT ///< Hardware failed to respond within the PDK limit.
 };
 
 /**
@@ -50,14 +50,15 @@ enum class PorthStatus : uint8_t {
     CPU_SET(core_id, &cpuset);
 
     pthread_t current_thread = pthread_self();
-    int result = pthread_setaffinity_np(current_thread, sizeof(cpu_set_t), &cpuset);
+    int result               = pthread_setaffinity_np(current_thread, sizeof(cpu_set_t), &cpuset);
 
     if (result != 0) {
         // Preserving your specific warning message
-        std::cerr << std::format("[Porth-Util] Warning: Could not pin thread to core {}\n", core_id);
+        std::cerr << std::format("[Porth-Util] Warning: Could not pin thread to core {}\n",
+                                 core_id);
         return PorthStatus::ERROR_AFFINITY;
     }
-    
+
     // Preserving your specific success message
     std::cout << std::format("[Porth-Util] Thread successfully pinned to core {}\n", core_id);
     return PorthStatus::SUCCESS;
@@ -66,7 +67,7 @@ enum class PorthStatus : uint8_t {
 /**
  * @brief set_realtime_priority: Elevates the calling thread to SCHED_FIFO.
  * * Ensures the Porth driver is not interrupted by background system tasks.
- * Sets the scheduling priority to 99 (the highest possible for FIFO), 
+ * Sets the scheduling priority to 99 (the highest possible for FIFO),
  * granting the Sovereign Logic Layer total control over the CPU slice.
  * * @return PorthStatus::SUCCESS or PorthStatus::ERROR_PRIORITY.
  */
@@ -76,7 +77,7 @@ enum class PorthStatus : uint8_t {
 
     // Using pthread_setschedparam to maintain compatibility with the affinity logic
     int result = pthread_setschedparam(pthread_self(), SCHED_FIFO, &param);
-    
+
     if (result != 0) {
         // Preserving your specific requirement note (sudo/root)
         std::cerr << "[Porth-Util] Warning: Could not set SCHED_FIFO (requires sudo/root)\n";

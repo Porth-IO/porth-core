@@ -10,10 +10,10 @@
 
 #pragma once
 
-#include <cstdint>
-#include <cstddef>
-#include <type_traits>
 #include "PorthRegister.hpp"
+#include <cstddef>
+#include <cstdint>
+#include <type_traits>
 
 namespace porth {
 
@@ -21,7 +21,7 @@ namespace porth {
  * @struct PorthDeviceLayout
  * @brief The physical memory-mapped I/O (MMIO) layout for Porth-compatible hardware.
  *
- * This structure defines the precise register offsets for interaction with 
+ * This structure defines the precise register offsets for interaction with
  * Cardiff-based compound semiconductor chips. It covers three primary domains:
  * 1. Core Control: Basic device lifecycle management.
  * 2. Photonics: Laser telemetry and mode coupling.
@@ -54,21 +54,24 @@ struct alignas(64) PorthDeviceLayout {
 };
 
 // --- PHYSICAL MEMORY AUDIT ---
-// These assertions are the primary defense against compiler-introduced padding 
+// These assertions are the primary defense against compiler-introduced padding
 // or reordering, which would render the logic layer incompatible with the physical PDK.
 
-static_assert(std::is_standard_layout_v<PorthDeviceLayout>, 
-    "PorthDeviceLayout must maintain a standard layout for binary MMIO compatibility.");
+static_assert(std::is_standard_layout_v<PorthDeviceLayout>,
+              "PorthDeviceLayout must maintain a standard layout for binary MMIO compatibility.");
 
-static_assert(sizeof(PorthDeviceLayout) == 448, 
-    "PorthDeviceLayout size mismatch detected. Layout must be exactly 448 bytes.");
+static_assert(sizeof(PorthDeviceLayout) == 448,
+              "PorthDeviceLayout size mismatch detected. Layout must be exactly 448 bytes.");
 
 static_assert(offsetof(PorthDeviceLayout, control) == 0x00, "Invalid offset: control must be 0x00");
-static_assert(offsetof(PorthDeviceLayout, status)  == 0x40, "Invalid offset: status must be 0x40");
-static_assert(offsetof(PorthDeviceLayout, data_ptr) == 0x80, "Invalid offset: data_ptr must be 0x80");
-static_assert(offsetof(PorthDeviceLayout, counter)  == 0xC0, "Invalid offset: counter must be 0xC0");
-static_assert(offsetof(PorthDeviceLayout, laser_temp) == 0x100, "Invalid offset: laser_temp must be 0x100");
-static_assert(offsetof(PorthDeviceLayout, gan_voltage) == 0x140, "Invalid offset: gan_voltage must be 0x140");
+static_assert(offsetof(PorthDeviceLayout, status) == 0x40, "Invalid offset: status must be 0x40");
+static_assert(offsetof(PorthDeviceLayout, data_ptr) == 0x80,
+              "Invalid offset: data_ptr must be 0x80");
+static_assert(offsetof(PorthDeviceLayout, counter) == 0xC0, "Invalid offset: counter must be 0xC0");
+static_assert(offsetof(PorthDeviceLayout, laser_temp) == 0x100,
+              "Invalid offset: laser_temp must be 0x100");
+static_assert(offsetof(PorthDeviceLayout, gan_voltage) == 0x140,
+              "Invalid offset: gan_voltage must be 0x140");
 static_assert(offsetof(PorthDeviceLayout, rf_snr) == 0x180, "Invalid offset: rf_snr must be 0x180");
 
 } // namespace porth

@@ -1,6 +1,6 @@
+#include "../include/porth/PorthSimDevice.hpp"
 #include <iostream>
 #include <thread>
-#include "../include/porth/PorthSimDevice.hpp"
 
 int main() {
     using namespace porth;
@@ -11,15 +11,15 @@ int main() {
         auto* dev = sim.view();
 
         std::cout << "[Photonics] Monitoring Laser Temperature..." << std::endl;
-        for(int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 5; ++i) {
             uint32_t t = sim.read_reg(dev->laser_temp);
             std::cout << "  - Laser Temp: " << (t / 1000.0) << " C" << std::endl;
-            
+
             if (i == 1) {
                 std::cout << "[Driver] Starting Hardware (Heating Laser)..." << std::endl;
                 sim.write_reg(dev->control, 0x1u);
             }
-            
+
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
         }
 

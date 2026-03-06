@@ -6,15 +6,15 @@
  * cross-core synchronization during the Real-Time power-on sequence.
  */
 
-#include <iostream>
-#include <format>
-#include <thread>
-#include <chrono>
-#include "../include/porth/PorthDriver.hpp"
-#include "../include/porth/PorthSimDevice.hpp"
-#include "../include/porth/PorthMetric.hpp"
-#include "../include/porth/PorthUtil.hpp"
 #include "../include/porth/PorthClock.hpp"
+#include "../include/porth/PorthDriver.hpp"
+#include "../include/porth/PorthMetric.hpp"
+#include "../include/porth/PorthSimDevice.hpp"
+#include "../include/porth/PorthUtil.hpp"
+#include <chrono>
+#include <format>
+#include <iostream>
+#include <thread>
 
 int main() {
     using namespace porth;
@@ -23,7 +23,7 @@ int main() {
     try {
         /**
          * PHASE 1: Isolated Hardware Initialization
-         * The PorthSimDevice will automatically isolate its physics 
+         * The PorthSimDevice will automatically isolate its physics
          * engine on Core 0.
          */
         PorthSimDevice hw_sim("porth_newport_0", true);
@@ -42,13 +42,13 @@ int main() {
          */
         Driver<1024> driver(regs);
         std::cout << "[System] Powering on Newport Cluster...\n";
-        regs->control.write(0x1); 
-        
+        regs->control.write(0x1);
+
         /**
          * HANDSHAKE SAFETY PROTOCOL:
          * We poll the status register for the READY bit (0x1).
-         * We include a 1ms sleep during the handshake phase to allow the 
-         * Simulator thread (on Core 0) to propagate memory state across 
+         * We include a 1ms sleep during the handshake phase to allow the
+         * Simulator thread (on Core 0) to propagate memory state across
          * the L3 cache boundary to our RT thread (on Core 1).
          */
         int timeout_ms = 0;
@@ -58,7 +58,8 @@ int main() {
         }
 
         if (regs->status.load() == 0) {
-            throw std::runtime_error("Hardware handshake timed out. Check thread isolation levels.");
+            throw std::runtime_error(
+                "Hardware handshake timed out. Check thread isolation levels.");
         }
 
         std::cout << "[System] Hardware Ready. Laser stabilized at 25.00 °C.\n";
@@ -70,28 +71,30 @@ int main() {
 
         for (size_t i = 0; i < iterations; ++i) {
             const uint64_t t1 = PorthClock::now_precise();
-            
+
             // Execute transmission
             if (driver.transmit({0x1000, 64}) != PorthStatus::SUCCESS) {
                 std::cerr << "[Error] Shuttle saturated.\n";
                 break;
             }
-            
+
             /**
              * PHYSICAL PROPAGATION DELAY:
              * Simulating 100ns of PCIe Gen 6 wire flight time.
-             * This prevents ring-buffer saturation by pacing the Driver 
+             * This prevents ring-buffer saturation by pacing the Driver
              * to the physical limits of the 1.6T transceiver.
              */
             const uint64_t start_delay = PorthClock::now_precise();
-            while (PorthClock::now_precise() - start_delay < 240); 
+            while (PorthClock::now_precise() - start_delay < 240)
+                ;
 
             const uint64_t t2 = PorthClock::now_precise();
             metric.record(t2 - t1);
-            
+
             if (i % 10000 == 0) {
                 const float temp_c = regs->laser_temp.load() / 1000.0f;
-                std::cout << std::format("  - Progress: {:5} cycles | Temp: {:.2f} °C\n", i, temp_c);
+                std::cout << std::format(
+                    "  - Progress: {:5} cycles | Temp: {:.2f} °C\n", i, temp_c);
             }
         }
 

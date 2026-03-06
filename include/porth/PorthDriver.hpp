@@ -10,13 +10,13 @@
 
 #pragma once
 
-#include <memory>
-#include <iostream>
-#include <format>
-#include <stdexcept>
 #include "PorthDeviceLayout.hpp"
 #include "PorthShuttle.hpp"
 #include "PorthUtil.hpp"
+#include <format>
+#include <iostream>
+#include <memory>
+#include <stdexcept>
 
 namespace porth {
 
@@ -25,7 +25,7 @@ namespace porth {
  * @brief The high-level Master Driver for the Newport Cluster.
  *
  * This class encapsulates the HAL (Registers) and the Shuttle (Data Plane).
- * It manages the lifecycle of the memory fabric and automates the hardware 
+ * It manages the lifecycle of the memory fabric and automates the hardware
  * handshake during initialization.
  *
  * @tparam RingSize Depth of the DMA ring buffer. Must be a power of two.
@@ -33,7 +33,7 @@ namespace porth {
 template <size_t RingSize = 1024>
 class Driver {
 private:
-    PorthDeviceLayout* regs;                         ///< Pointer to memory-mapped hardware registers.
+    PorthDeviceLayout* regs; ///< Pointer to memory-mapped hardware registers.
     std::unique_ptr<PorthShuttle<RingSize>> shuttle; ///< The zero-copy memory shuttle.
 
 public:
@@ -43,9 +43,8 @@ public:
      * * @param hardware_regs Pointer to the device layout.
      * @throws std::runtime_error If hardware_regs is null.
      */
-    explicit Driver(PorthDeviceLayout* hardware_regs) 
-        : regs(hardware_regs) {
-        
+    explicit Driver(PorthDeviceLayout* hardware_regs) : regs(hardware_regs) {
+
         if (!regs) {
             throw std::runtime_error("Porth-Driver: Hardware registers pointer is null");
         }
@@ -59,7 +58,9 @@ public:
         regs->data_ptr.write(dma_addr);
 
         // Professional logging using C++23 std::format
-        std::cout << std::format("[Porth-Driver] Handshake Complete. Shuttle address 0x{:x} committed to hardware.\n", dma_addr);
+        std::cout << std::format(
+            "[Porth-Driver] Handshake Complete. Shuttle address 0x{:x} committed to hardware.\n",
+            dma_addr);
     }
 
     /**

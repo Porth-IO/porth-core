@@ -6,26 +6,26 @@
  * Copyright (c) 2026 Porth-IO Contributors
  */
 
-#include <iostream>
-#include <format>
-#include <cstddef>
-#include "../include/porth/PorthSimDevice.hpp"
-#include "../include/porth/PorthMetric.hpp"
 #include "../include/porth/PorthClock.hpp"
+#include "../include/porth/PorthMetric.hpp"
+#include "../include/porth/PorthSimDevice.hpp"
+#include <cstddef>
+#include <format>
+#include <iostream>
 
 int main() {
     using namespace porth;
-    
+
     try {
         std::cout << "--- Porth-Sim: Task 2 (Advanced Protocol) ---\n";
-        
+
         // Initialize the Digital Twin for protocol-level verification
         PorthSimDevice sim("porth_sim_proto_test", true);
         auto* dev = sim.view();
-        
+
         /**
          * @brief Simulated FLIT-mode Write.
-         * We write to the control register using the protocol-aware interface, 
+         * We write to the control register using the protocol-aware interface,
          * which simulates the specific TLP overhead of PCIe Gen 6.
          */
         std::cout << "[Sim] Executing FLIT-mode Write to Control Register...\n";
@@ -36,14 +36,14 @@ int main() {
 
         for (int i = 0; i < 500; ++i) {
             const uint64_t t1 = PorthClock::now_precise();
-            
+
             /**
-             * @note read_flit is marked [[nodiscard]] to ensure protocol 
-             * completions are never ignored in production. We cast to void 
+             * @note read_flit is marked [[nodiscard]] to ensure protocol
+             * completions are never ignored in production. We cast to void
              * here for the benchmark.
              */
             (void)sim.read_flit(dev->status, offsetof(PorthDeviceLayout, status));
-            
+
             const uint64_t t2 = PorthClock::now_precise();
             protocol_metric.record(t2 - t1);
         }

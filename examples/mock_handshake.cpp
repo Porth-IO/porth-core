@@ -1,20 +1,20 @@
+#include <atomic>
+#include <chrono>
 #include <iostream>
 #include <thread>
-#include <chrono>
-#include <atomic>
 
 #include "../include/porth/PorthMockDevice.hpp"
 
 // Hardware Constants (The "Dictionary" for our Chip)
 namespace CardiffChip {
-    constexpr uint32_t CTRL_IDLE  = 0x0;
-    constexpr uint32_t CTRL_START = 0x1;
-    constexpr uint32_t CTRL_RESET = 0x9;
+constexpr uint32_t CTRL_IDLE  = 0x0;
+constexpr uint32_t CTRL_START = 0x1;
+constexpr uint32_t CTRL_RESET = 0x9;
 
-    constexpr uint32_t STATUS_IDLE  = 0x0;
-    constexpr uint32_t STATUS_BUSY  = 0x1;
-    constexpr uint32_t STATUS_READY = 0x2;
-}
+constexpr uint32_t STATUS_IDLE  = 0x0;
+constexpr uint32_t STATUS_BUSY  = 0x1;
+constexpr uint32_t STATUS_READY = 0x2;
+} // namespace CardiffChip
 
 using namespace porth;
 
@@ -24,13 +24,13 @@ using namespace porth;
  */
 void run_mock_hardware(const std::string& dev_name) {
     std::cout << "[Hardware] Powering on Cardiff Mock Chip..." << std::endl;
-    
+
     // Connect to the device as a non-owner (the driver creates it)
     // We wait a moment to ensure the driver has initialized the memory first.
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    
+
     try {
-        PorthMockDevice hw(dev_name, false); 
+        PorthMockDevice hw(dev_name, false);
         auto* chip = hw.view();
 
         std::cout << "[Hardware] Chip is online and Polling..." << std::endl;
@@ -42,7 +42,7 @@ void run_mock_hardware(const std::string& dev_name) {
 
             if (ctrl == CardiffChip::CTRL_START) {
                 std::cout << "[Hardware] START received! Processing photonics data..." << std::endl;
-                
+
                 // Set status to BUSY
                 chip->status.write(CardiffChip::STATUS_BUSY);
 
@@ -52,9 +52,9 @@ void run_mock_hardware(const std::string& dev_name) {
                 // Update results: Increment counter and set status to READY
                 uint64_t current_count = chip->counter.load();
                 chip->counter.write(current_count + 1);
-                
+
                 std::cout << "[Hardware] Task complete. Result committed to counter." << std::endl;
-                
+
                 // Signal completion
                 chip->status.write(CardiffChip::STATUS_READY);
 
@@ -66,10 +66,10 @@ void run_mock_hardware(const std::string& dev_name) {
                 running = false;
             }
 
-            // High-performance "Pause" to avoid CPU pipeline stalls
-            #if defined(__i386__) || defined(__x86_64__)
-                asm volatile("pause" ::: "memory");
-            #endif
+// High-performance "Pause" to avoid CPU pipeline stalls
+#if defined(__i386__) || defined(__x86_64__)
+            asm volatile("pause" ::: "memory");
+#endif
         }
     } catch (const std::exception& e) {
         std::cerr << "[Hardware] Fatal Error: " << e.what() << std::endl;
@@ -100,10 +100,10 @@ int main() {
         // 4. Spin-Wait for the result (Zero-Latency Polling)
         std::cout << "[Driver] Polling status register..." << std::endl;
         while (dev->status.load() != CardiffChip::STATUS_READY) {
-            // Hot-spinning... 
-            #if defined(__i386__) || defined(__x86_64__)
-                asm volatile("pause" ::: "memory");
-            #endif
+// Hot-spinning...
+#if defined(__i386__) || defined(__x86_64__)
+            asm volatile("pause" ::: "memory");
+#endif
         }
 
         // 5. Read the telemetry data

@@ -10,20 +10,20 @@
 
 #pragma once
 
-#include <fstream>
-#include <chrono>
-#include <iomanip>
-#include <thread>
 #include <atomic>
-#include <random>
+#include <chrono>
 #include <format>
+#include <fstream>
+#include <iomanip>
+#include <random>
 #include <string>
+#include <thread>
 
 #include "PorthMockDevice.hpp"
-#include "PorthSimPHY.hpp"
 #include "PorthRingBuffer.hpp"
-#include "PorthUtil.hpp"
 #include "PorthShuttle.hpp"
+#include "PorthSimPHY.hpp"
+#include "PorthUtil.hpp"
 
 namespace porth {
 
@@ -38,13 +38,13 @@ namespace porth {
  */
 class PorthSimDevice {
 private:
-    PorthMockDevice mock_hw;            ///< Shared memory register backend.
-    PorthSimPHY phy;                    ///< Physical layer propagation and jitter model.
-    std::ofstream tlp_log;              ///< Persistent log for transaction layer packets.
-    
+    PorthMockDevice mock_hw; ///< Shared memory register backend.
+    PorthSimPHY phy;         ///< Physical layer propagation and jitter model.
+    std::ofstream tlp_log;   ///< Persistent log for transaction layer packets.
+
     // Physics & Simulation Threads
-    std::thread physics_thread;         ///< Dedicated thread for the hardware physics model.
-    std::atomic<bool> run_sim{true};    ///< Lifecycle flag for the simulation loop.
+    std::thread physics_thread;      ///< Dedicated thread for the hardware physics model.
+    std::atomic<bool> run_sim{true}; ///< Lifecycle flag for the simulation loop.
 
     // --- Chaos & Error Injection State ---
     std::atomic<bool> inject_deadlock{false}; ///< Artificially halts the physics loop.
@@ -53,8 +53,8 @@ private:
 
     /**
      * @brief Internal Physics Engine: Simulates thermal and electrical behavior.
-     * * This loop runs at 100Hz (10ms steps) to model the real-time physics of 
-     * InP/GaN hardware, including thermal fluctuations based on operation load 
+     * * This loop runs at 100Hz (10ms steps) to model the real-time physics of
+     * InP/GaN hardware, including thermal fluctuations based on operation load
      * and 48V power rail noise.
      */
     void run_physics_loop() {
@@ -66,7 +66,7 @@ private:
         (void)pin_thread_to_core(0);
 
         PorthDeviceLayout* dev = mock_hw.view();
-        
+
         uint32_t temp = 25000; // Base operating temperature of 25.0 C (milli-Celsius)
         std::mt19937 gen(std::random_device{}());
         std::uniform_int_distribution<uint32_t> bit_dist(0, 31);
@@ -96,22 +96,23 @@ private:
                 // Task 3: Photonics/GaN Model
                 // Heating logic: Increases temp by 0.1C when active (control == 0x1)
                 if (dev->control.load() == 0x1) {
-                    temp += 100; 
+                    temp += 100;
                 } else {
                     // Cooling logic: Decreases temp by 0.05C until base temp reached
-                    if (temp > 25000) temp -= 50; 
+                    if (temp > 25000)
+                        temp -= 50;
                 }
-                
+
                 dev->laser_temp.write(temp);
-                
+
                 // Task 4.3: Thermal Jitter Feedback
                 // Pushes current temperature back into the PHY delay engine to calculate jitter
                 phy.update_thermal_load(temp);
 
                 // GaN Power Rail Noise (Simulating 48V base + millivolt-scale jitter)
-                [[maybe_unused]] const uint32_t noise = (std::rand() % 100); 
+                [[maybe_unused]] const uint32_t noise = (std::rand() % 100);
                 // Note: gan_voltage is modeled in the extended register map
-                // dev->gan_voltage.write(48000 + noise); 
+                // dev->gan_voltage.write(48000 + noise);
 
                 // Sub-task 4.1: Register Corruption (Single-event upset emulation)
                 if (corrupt_status.load(std::memory_order_relaxed)) {
@@ -129,13 +130,12 @@ public:
      * @param name Name of the device for shared memory allocation.
      * @param create If true, creates the segment; if false, attaches as observer.
      */
-    PorthSimDevice(const std::string& name, bool create = true) 
-        : mock_hw(name, create) {
-        
+    PorthSimDevice(const std::string& name, bool create = true) : mock_hw(name, create) {
+
         // --- PRE-INITIALIZATION ---
         // Ensure registers have valid defaults before the physics thread wakes up.
         PorthDeviceLayout* dev = mock_hw.view();
-        dev->laser_temp.write(25000); 
+        dev->laser_temp.write(25000);
         dev->status.write(0);
         dev->control.write(0);
 
@@ -157,7 +157,7 @@ public:
     }
 
     // --- Task 5: Orchestrator & Scenario Control ---
-    
+
     /**
      * @brief Configures a specific performance or failure scenario.
      * @param base_ns The base propagation delay.
@@ -166,7 +166,8 @@ public:
      */
     void apply_scenario(uint64_t base_ns, uint64_t jitter_ns, bool chaos = false) {
         phy.set_config(base_ns, jitter_ns);
-        if (chaos) trigger_corruption(true);
+        if (chaos)
+            trigger_corruption(true);
     }
 
     // --- Task 4: Chaos Control Interface ---
@@ -176,15 +177,15 @@ public:
 
     /**
      * @brief Sub-task 4.3: Buffer Overflow Testing.
-     * * Artificially saturates the RingBuffer to test driver resilience. 
+     * * Artificially saturates the RingBuffer to test driver resilience.
      * Pushes 2048 junk descriptors into the 1024-slot ring.
      * * @param ring Reference to the ring buffer to overflow.
      */
     void force_buffer_overflow(PorthRingBuffer<1024>& ring) {
         const PorthDescriptor junk = {0xDEADBEEF, 64};
-        for(int i = 0; i < 2048; ++i) {
+        for (int i = 0; i < 2048; ++i) {
             // Explicitly ignore nodiscard return
-            (void)ring.push(junk); 
+            (void)ring.push(junk);
         }
     }
 
@@ -193,7 +194,8 @@ public:
     /** @brief MMIO read with simulated bus hang and protocol latency. */
     template <typename T>
     [[nodiscard]] T read_reg(PorthRegister<T>& reg) {
-        if (bus_hang.load()) std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if (bus_hang.load())
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         phy.apply_protocol_delay();
         return reg.load();
     }
@@ -201,7 +203,8 @@ public:
     /** @brief MMIO write with simulated bus hang and protocol latency. */
     template <typename T>
     void write_reg(PorthRegister<T>& reg, T val) {
-        if (bus_hang.load()) std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if (bus_hang.load())
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         phy.apply_protocol_delay();
         reg.write(val);
     }
@@ -209,7 +212,8 @@ public:
     /** @brief Protocol-aware read simulating a PCIe Gen 6 FLIT completion with logging. */
     template <typename T>
     [[nodiscard]] T read_flit(PorthRegister<T>& reg, uint64_t offset) {
-        if (bus_hang.load()) std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if (bus_hang.load())
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         log_tlp("READ_REQ", offset);
         phy.apply_protocol_delay();
         const T val = reg.load();
@@ -220,7 +224,8 @@ public:
     /** @brief Protocol-aware write simulating a PCIe Gen 6 Memory Write TLP with logging. */
     template <typename T>
     void write_flit(PorthRegister<T>& reg, uint64_t offset, T val) {
-        if (bus_hang.load()) std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        if (bus_hang.load())
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         log_tlp("WRITE_MEM", offset, static_cast<uint64_t>(val));
         phy.apply_protocol_delay();
         reg.write(val);
@@ -241,16 +246,16 @@ private:
         if (tlp_log.is_open()) {
             const auto now = std::chrono::system_clock::now();
             const auto t_c = std::chrono::system_clock::to_time_t(now);
-            
+
             // Strictly preserving your hex-formatted logging logic
             tlp_log << "[" << std::put_time(std::localtime(&t_c), "%H:%M:%S") << "] "
-                    << "TLP_" << type << " | Addr: 0x" << std::hex << addr 
-                    << " | Data: 0x" << val << std::dec << std::endl;
+                    << "TLP_" << type << " | Addr: 0x" << std::hex << addr << " | Data: 0x" << val
+                    << std::dec << std::endl;
         }
     }
 
     // Simulation orchestrators own unique thread resources and cannot be copied.
-    PorthSimDevice(const PorthSimDevice&) = delete;
+    PorthSimDevice(const PorthSimDevice&)            = delete;
     PorthSimDevice& operator=(const PorthSimDevice&) = delete;
 };
 

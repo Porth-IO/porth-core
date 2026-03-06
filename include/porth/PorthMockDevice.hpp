@@ -10,13 +10,13 @@
 
 #pragma once
 
-#include <sys/mman.h>
 #include <fcntl.h>
+#include <format>
+#include <stdexcept>
+#include <string>
+#include <sys/mman.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <string>
-#include <stdexcept>
-#include <format>
 
 #include "PorthDeviceLayout.hpp"
 
@@ -27,15 +27,15 @@ namespace porth {
  * @brief A RAII wrapper for POSIX Shared Memory simulating hardware BAR mapping.
  *
  * This class simulates the Physical PCIe BAR mapping for the Cardiff hardware.
- * It manages the lifecycle of the shared memory segment used for the register 
- * map, ensuring that only the "owner" (the simulated hardware) is responsible 
+ * It manages the lifecycle of the shared memory segment used for the register
+ * map, ensuring that only the "owner" (the simulated hardware) is responsible
  * for unlinking the segment from the system.
  */
 class PorthMockDevice {
 private:
-    std::string name;                   ///< POSIX shared memory name (prepended with /).
+    std::string name;                       ///< POSIX shared memory name (prepended with /).
     PorthDeviceLayout* device_ptr{nullptr}; ///< Pointer to the memory-mapped register space.
-    bool is_owner;                      ///< Flag indicating if this instance owns the SHM lifecycle.
+    bool is_owner; ///< Flag indicating if this instance owns the SHM lifecycle.
 
 public:
     /**
@@ -44,12 +44,13 @@ public:
      * @param create If true, creates and truncates the memory (Hardware mode).
      * @throws std::runtime_error If shm_open, ftruncate, or mmap fails.
      */
-    PorthMockDevice(const std::string& mem_name, bool create = true) 
+    PorthMockDevice(const std::string& mem_name, bool create = true)
         : name("/" + mem_name), is_owner(create) {
-        
+
         // 1. Open/Create the shared memory object
         int flags = O_RDWR;
-        if (create) flags |= O_CREAT;
+        if (create)
+            flags |= O_CREAT;
 
         const int fd = shm_open(name.c_str(), flags, 0666);
         if (fd == -1) {
@@ -65,9 +66,9 @@ public:
         }
 
         // 3. Map into process address space
-        void* raw_ptr = mmap(nullptr, sizeof(PorthDeviceLayout), 
-                             PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-        
+        void* raw_ptr =
+            mmap(nullptr, sizeof(PorthDeviceLayout), PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+
         // Resource Safety: We can close the FD immediately after the mapping is established
         close(fd);
 
@@ -85,7 +86,7 @@ public:
         if (device_ptr) {
             munmap(device_ptr, sizeof(PorthDeviceLayout));
         }
-        
+
         // Only the owner (the "Hardware" process) should delete the SHM file
         if (is_owner) {
             shm_unlink(name.c_str());
@@ -93,7 +94,7 @@ public:
     }
 
     // Prevent copying to maintain strict RAII identity for the hardware mapping
-    PorthMockDevice(const PorthMockDevice&) = delete;
+    PorthMockDevice(const PorthMockDevice&)            = delete;
     PorthMockDevice& operator=(const PorthMockDevice&) = delete;
 
     /** @brief Returns a typed pointer to the register map. */
@@ -101,7 +102,7 @@ public:
 
     /** @brief Returns a const typed pointer to the register map. */
     [[nodiscard]] const PorthDeviceLayout* view() const noexcept { return device_ptr; }
-    
+
     /** @brief Operator overload for intuitive, pointer-like access to registers. */
     [[nodiscard]] PorthDeviceLayout* operator->() noexcept { return device_ptr; }
 };

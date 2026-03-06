@@ -12,9 +12,9 @@
 
 #include <atomic>
 #include <cstdint>
-#include <vector>
-#include <stdexcept>
 #include <new>
+#include <stdexcept>
+#include <vector>
 
 namespace porth {
 
@@ -34,7 +34,7 @@ struct PorthDescriptor {
  * @brief A high-performance SPSC Lock-Free Queue.
  *
  * Optimized for Zero-Copy data transfer between Hardware and Application.
- * This implementation enforces strict cache-line separation between the 
+ * This implementation enforces strict cache-line separation between the
  * producer (head) and consumer (tail) to eliminate cache-coherency bottlenecks.
  *
  * @tparam SIZE Number of descriptors. Must be a power of two for bitwise optimization.
@@ -61,7 +61,7 @@ public:
      * @brief Constructor: Can wrap existing memory (like a HugePage) or allocate its own.
      * @param external_buffer Optional pointer to pre-allocated hardware-visible memory.
      */
-    explicit PorthRingBuffer(PorthDescriptor* external_buffer = nullptr) 
+    explicit PorthRingBuffer(PorthDescriptor* external_buffer = nullptr)
         : buffer(external_buffer), owns_buffer(external_buffer == nullptr) {
         if (owns_buffer) {
             buffer = new PorthDescriptor[SIZE];
@@ -79,7 +79,7 @@ public:
 
     /**
      * @brief push() - Executed by the Producer.
-     * * Adds a new descriptor to the ring. Uses Release semantics to ensure 
+     * * Adds a new descriptor to the ring. Uses Release semantics to ensure
      * the descriptor data is visible to the consumer before the index update.
      * * @param desc The descriptor to push.
      * @return true if successful, false if the ring is full.
@@ -103,7 +103,7 @@ public:
 
     /**
      * @brief pop() - Executed by the Consumer.
-     * * Retrieves a descriptor from the ring. Uses Acquire semantics to 
+     * * Retrieves a descriptor from the ring. Uses Acquire semantics to
      * ensure the data is fully visible before processing begins.
      * * @param out_desc Reference to store the retrieved descriptor.
      * @return true if data was retrieved, false if the ring is empty.
@@ -126,7 +126,7 @@ public:
     }
 
     // Hardware-visible memory structures are non-copyable to maintain logical identity.
-    PorthRingBuffer(const PorthRingBuffer&) = delete;
+    PorthRingBuffer(const PorthRingBuffer&)            = delete;
     PorthRingBuffer& operator=(const PorthRingBuffer&) = delete;
 };
 

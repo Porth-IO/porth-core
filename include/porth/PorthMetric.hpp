@@ -10,15 +10,15 @@
 
 #pragma once
 
-#include <vector>
 #include <algorithm>
-#include <iostream>
-#include <fstream>
 #include <cmath>
-#include <numeric>
-#include <iomanip>
-#include <string>
 #include <format>
+#include <fstream>
+#include <iomanip>
+#include <iostream>
+#include <numeric>
+#include <string>
+#include <vector>
 
 namespace porth {
 
@@ -63,8 +63,9 @@ public:
      */
     void save_to_file(const std::string& filename) {
         std::ofstream out(filename);
-        if (!out.is_open()) return;
-        
+        if (!out.is_open())
+            return;
+
         for (size_t i = 0; i < count; ++i) {
             out << i << " " << samples[i] << "\n";
         }
@@ -76,28 +77,31 @@ public:
      * * @param cycles_per_ns Calibration factor (CPU GHz).
      */
     void print_stats(double cycles_per_ns) {
-        if (count == 0) return;
+        if (count == 0)
+            return;
 
         // Copy and sort for percentile analysis
         std::vector<uint64_t> sorted_samples(samples.begin(), samples.begin() + count);
         std::sort(sorted_samples.begin(), sorted_samples.end());
 
         // Basic statistics
-        const double sum = std::accumulate(sorted_samples.begin(), sorted_samples.end(), 0.0);
+        const double sum  = std::accumulate(sorted_samples.begin(), sorted_samples.end(), 0.0);
         const double mean = sum / static_cast<double>(count);
-        
+
         // Standard Deviation using inner product for precision
-        const double sq_sum = std::inner_product(sorted_samples.begin(), sorted_samples.end(), sorted_samples.begin(), 0.0);
+        const double sq_sum = std::inner_product(
+            sorted_samples.begin(), sorted_samples.end(), sorted_samples.begin(), 0.0);
         const double stdev = std::sqrt(std::abs(sq_sum / static_cast<double>(count) - mean * mean));
 
         auto get_p = [&](double percentile) {
             size_t idx = static_cast<size_t>(percentile * static_cast<double>(count) / 100.0);
-            if (idx >= count) idx = count - 1;
+            if (idx >= count)
+                idx = count - 1;
             return static_cast<double>(sorted_samples[idx]) / cycles_per_ns;
         };
 
-        const double q1 = get_p(25.0);
-        const double q3 = get_p(75.0);
+        const double q1  = get_p(25.0);
+        const double q3  = get_p(75.0);
         const double iqr = q3 - q1;
 
         // Immaculate C++23 formatted output
@@ -115,16 +119,20 @@ public:
      * @param label The name of the benchmark run.
      * @param cycles_per_ns Frequency for cycle-to-ns conversion.
      */
-    void save_markdown_report(const std::string& filename, const std::string& label, double cycles_per_ns) {
+    void save_markdown_report(const std::string& filename,
+                              const std::string& label,
+                              double cycles_per_ns) {
         std::ofstream out(filename, std::ios::app);
-        if (!out.is_open() || count == 0) return;
+        if (!out.is_open() || count == 0)
+            return;
 
         std::vector<uint64_t> sorted_samples(samples.begin(), samples.begin() + count);
         std::sort(sorted_samples.begin(), sorted_samples.end());
 
         auto get_p = [&](double percentile) {
             size_t idx = static_cast<size_t>(percentile * static_cast<double>(count) / 100.0);
-            if (idx >= count) idx = count - 1;
+            if (idx >= count)
+                idx = count - 1;
             return static_cast<double>(sorted_samples[idx]) / cycles_per_ns;
         };
 
@@ -132,10 +140,12 @@ public:
         out << "### Benchmark: " << label << "\n";
         out << "| Metric | Latency (ns) |\n";
         out << "| :--- | :--- |\n";
-        out << std::format("| Minimum | {:.2f} |\n", static_cast<double>(sorted_samples[0]) / cycles_per_ns);
+        out << std::format("| Minimum | {:.2f} |\n",
+                           static_cast<double>(sorted_samples[0]) / cycles_per_ns);
         out << std::format("| Median (P50) | {:.2f} |\n", get_p(50.0));
         out << std::format("| P99.9 | {:.2f} |\n", get_p(99.9));
-        out << std::format("| Maximum | {:.2f} |\n\n", static_cast<double>(sorted_samples[count - 1]) / cycles_per_ns);
+        out << std::format("| Maximum | {:.2f} |\n\n",
+                           static_cast<double>(sorted_samples[count - 1]) / cycles_per_ns);
     }
 
     /** @brief Resets the sample count for a new run. */
