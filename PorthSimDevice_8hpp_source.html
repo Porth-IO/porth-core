@@ -284,9 +284,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        <span class="keywordflow">if</span> (tlp_log.is_open()) {</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>            <span class="keyword">const</span> <span class="keyword">auto</span> now = std::chrono::system_clock::now();</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            <span class="keyword">const</span> <span class="keyword">auto</span> t_c = std::chrono::system_clock::to_time_t(now);</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            <span class="comment">// Strictly preserving your hex-formatted logging logic</span></div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>            tlp_log &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; std::put_time(std::localtime(&amp;t_c), <span class="stringliteral">&quot;%H:%M:%S&quot;</span>) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            <span class="keyword">const</span> <span class="keywordtype">char</span>* ts  = <span class="stringliteral">&quot;%H:%M:%S&quot;</span>;</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>            tlp_log &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; std::put_time(std::localtime(&amp;t_c), ts) &lt;&lt; <span class="stringliteral">&quot;] &quot;</span></div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                    &lt;&lt; <span class="stringliteral">&quot;TLP_&quot;</span> &lt;&lt; type &lt;&lt; <span class="stringliteral">&quot; | Addr: 0x&quot;</span> &lt;&lt; std::hex &lt;&lt; addr &lt;&lt; <span class="stringliteral">&quot; | Data: 0x&quot;</span> &lt;&lt; val</div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                    &lt;&lt; std::dec &lt;&lt; std::endl;</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>        }</div>
