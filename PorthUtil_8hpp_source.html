@@ -85,24 +85,24 @@ $(document).ready(function() { init_codefold(0); });
 <a href="PorthUtil_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;pthread.h&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;sched.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;format&gt;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;format&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;pthread.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;sched.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceporth.html">porth</a> {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">   29</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> : uint8_t {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ad0749aaba8b833466dfcbb0428e4f89c">SUCCESS</a> = 0,             </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a802706a9238e2928077f97736854bad4">BUSY</a>,                    </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995aba2b45bdc11e2a4a6e86aab2ac693cbb">EMPTY</a>,                   </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995aba7de5bc6888294e5884b024a4c894f1">FULL</a>,                    </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a7b3872e55fb088e41a464a2b277e46b6">ERROR_AFFINITY</a>,          </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ac5a70f36195b7930decdbfe9ebbd9cff">ERROR_PRIORITY</a>,          </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a84893226f3641200094b08f4a4535446">ERROR_HARDWARE_TIMEOUT</a>   </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ad0749aaba8b833466dfcbb0428e4f89c">SUCCESS</a> = 0,           </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a802706a9238e2928077f97736854bad4">BUSY</a>,                  </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995aba2b45bdc11e2a4a6e86aab2ac693cbb">EMPTY</a>,                 </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995aba7de5bc6888294e5884b024a4c894f1">FULL</a>,                  </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a7b3872e55fb088e41a464a2b277e46b6">ERROR_AFFINITY</a>,        </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ac5a70f36195b7930decdbfe9ebbd9cff">ERROR_PRIORITY</a>,        </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a84893226f3641200094b08f4a4535446">ERROR_HARDWARE_TIMEOUT</a> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
 </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
@@ -113,43 +113,44 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    CPU_SET(core_id, &amp;cpuset);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    pthread_t current_thread = pthread_self();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> result = pthread_setaffinity_np(current_thread, <span class="keyword">sizeof</span>(cpu_set_t), &amp;cpuset);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">int</span> result               = pthread_setaffinity_np(current_thread, <span class="keyword">sizeof</span>(cpu_set_t), &amp;cpuset);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> (result != 0) {</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="comment">// Preserving your specific warning message</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;[Porth-Util] Warning: Could not pin thread to core {}\n&quot;</span>, core_id);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a7b3872e55fb088e41a464a2b277e46b6">PorthStatus::ERROR_AFFINITY</a>;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="comment">// Preserving your specific success message</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    std::cout &lt;&lt; std::format(<span class="stringliteral">&quot;[Porth-Util] Thread successfully pinned to core {}\n&quot;</span>, core_id);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ad0749aaba8b833466dfcbb0428e4f89c">PorthStatus::SUCCESS</a>;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>}</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        std::cerr &lt;&lt; std::format(<span class="stringliteral">&quot;[Porth-Util] Warning: Could not pin thread to core {}\n&quot;</span>,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                                 core_id);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a7b3872e55fb088e41a464a2b277e46b6">PorthStatus::ERROR_AFFINITY</a>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// Preserving your specific success message</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    std::cout &lt;&lt; std::format(<span class="stringliteral">&quot;[Porth-Util] Thread successfully pinned to core {}\n&quot;</span>, core_id);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ad0749aaba8b833466dfcbb0428e4f89c">PorthStatus::SUCCESS</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
 </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="namespaceporth.html#acdfedcb72856b5eab6a6b2ecd3205236">   73</a></span>[[nodiscard]] <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> <a class="code hl_function" href="namespaceporth.html#acdfedcb72856b5eab6a6b2ecd3205236">set_realtime_priority</a>() noexcept {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">struct </span>sched_param param;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    param.sched_priority = 99; <span class="comment">// Highest possible FIFO priority</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// Using pthread_setschedparam to maintain compatibility with the affinity logic</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">int</span> result = pthread_setschedparam(pthread_self(), SCHED_FIFO, &amp;param);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">if</span> (result != 0) {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="comment">// Preserving your specific requirement note (sudo/root)</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;[Porth-Util] Warning: Could not set SCHED_FIFO (requires sudo/root)\n&quot;</span>;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ac5a70f36195b7930decdbfe9ebbd9cff">PorthStatus::ERROR_PRIORITY</a>;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;[Porth-Util] Thread priority elevated to Real-Time (SCHED_FIFO)\n&quot;</span>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ad0749aaba8b833466dfcbb0428e4f89c">PorthStatus::SUCCESS</a>;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="namespaceporth.html#acdfedcb72856b5eab6a6b2ecd3205236">   74</a></span>[[nodiscard]] <span class="keyword">inline</span> <a class="code hl_enumeration" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> <a class="code hl_function" href="namespaceporth.html#acdfedcb72856b5eab6a6b2ecd3205236">set_realtime_priority</a>() noexcept {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">struct </span>sched_param param;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    param.sched_priority = 99; <span class="comment">// Highest possible FIFO priority</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// Using pthread_setschedparam to maintain compatibility with the affinity logic</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">int</span> result = pthread_setschedparam(pthread_self(), SCHED_FIFO, &amp;param);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">if</span> (result != 0) {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="comment">// Preserving your specific requirement note (sudo/root)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;[Porth-Util] Warning: Could not set SCHED_FIFO (requires sudo/root)\n&quot;</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ac5a70f36195b7930decdbfe9ebbd9cff">PorthStatus::ERROR_PRIORITY</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    }</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;[Porth-Util] Thread priority elevated to Real-Time (SCHED_FIFO)\n&quot;</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">return</span> <a class="code hl_enumvalue" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ad0749aaba8b833466dfcbb0428e4f89c">PorthStatus::SUCCESS</a>;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
 </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>} <span class="comment">// namespace porth</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>} <span class="comment">// namespace porth</span></div>
 <div class="ttc" id="anamespaceporth_html"><div class="ttname"><a href="namespaceporth.html">porth</a></div><div class="ttdef"><b>Definition</b> PorthClock.hpp:20</div></div>
 <div class="ttc" id="anamespaceporth_html_abfbf8a8e6a55a89778e6dbf70d483aca"><div class="ttname"><a href="namespaceporth.html#abfbf8a8e6a55a89778e6dbf70d483aca">porth::pin_thread_to_core</a></div><div class="ttdeci">PorthStatus pin_thread_to_core(int core_id) noexcept</div><div class="ttdoc">pin_thread_to_core: Locks a thread to a specific CPU core.</div><div class="ttdef"><b>Definition</b> PorthUtil.hpp:47</div></div>
-<div class="ttc" id="anamespaceporth_html_acdfedcb72856b5eab6a6b2ecd3205236"><div class="ttname"><a href="namespaceporth.html#acdfedcb72856b5eab6a6b2ecd3205236">porth::set_realtime_priority</a></div><div class="ttdeci">PorthStatus set_realtime_priority() noexcept</div><div class="ttdoc">set_realtime_priority: Elevates the calling thread to SCHED_FIFO.</div><div class="ttdef"><b>Definition</b> PorthUtil.hpp:73</div></div>
+<div class="ttc" id="anamespaceporth_html_acdfedcb72856b5eab6a6b2ecd3205236"><div class="ttname"><a href="namespaceporth.html#acdfedcb72856b5eab6a6b2ecd3205236">porth::set_realtime_priority</a></div><div class="ttdeci">PorthStatus set_realtime_priority() noexcept</div><div class="ttdoc">set_realtime_priority: Elevates the calling thread to SCHED_FIFO.</div><div class="ttdef"><b>Definition</b> PorthUtil.hpp:74</div></div>
 <div class="ttc" id="anamespaceporth_html_af826f97977979efeae6b9ac3cf7b5995"><div class="ttname"><a href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">porth::PorthStatus</a></div><div class="ttdeci">PorthStatus</div><div class="ttdoc">Explicit status codes for high-speed I/O operations.</div><div class="ttdef"><b>Definition</b> PorthUtil.hpp:29</div></div>
 <div class="ttc" id="anamespaceporth_html_af826f97977979efeae6b9ac3cf7b5995a7b3872e55fb088e41a464a2b277e46b6"><div class="ttname"><a href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a7b3872e55fb088e41a464a2b277e46b6">porth::PorthStatus::ERROR_AFFINITY</a></div><div class="ttdeci">@ ERROR_AFFINITY</div><div class="ttdoc">Failed to isolate thread on the requested core.</div></div>
 <div class="ttc" id="anamespaceporth_html_af826f97977979efeae6b9ac3cf7b5995a802706a9238e2928077f97736854bad4"><div class="ttname"><a href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a802706a9238e2928077f97736854bad4">porth::PorthStatus::BUSY</a></div><div class="ttdeci">@ BUSY</div><div class="ttdoc">Hardware is currently processing.</div></div>

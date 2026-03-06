@@ -87,9 +87,9 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;atomic&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;new&gt;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;new&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceporth.html">porth</a> {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
@@ -120,7 +120,7 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00064" data-start="{" data-end="}">
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classporth_1_1PorthRingBuffer.html#aaf3b79e228ecc52231216e794d099d62">   64</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classporth_1_1PorthRingBuffer.html#aaf3b79e228ecc52231216e794d099d62">PorthRingBuffer</a>(<a class="code hl_struct" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a>* external_buffer = <span class="keyword">nullptr</span>) </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classporth_1_1PorthRingBuffer.html#aaf3b79e228ecc52231216e794d099d62">   64</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classporth_1_1PorthRingBuffer.html#aaf3b79e228ecc52231216e794d099d62">PorthRingBuffer</a>(<a class="code hl_struct" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a>* external_buffer = <span class="keyword">nullptr</span>)</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        : buffer(external_buffer), owns_buffer(external_buffer == nullptr) {</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">if</span> (owns_buffer) {</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            buffer = <span class="keyword">new</span> <a class="code hl_struct" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a>[SIZE];</div>
@@ -175,7 +175,7 @@ $(document).ready(function() { init_codefold(0); });
 </div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    <span class="comment">// Hardware-visible memory structures are non-copyable to maintain logical identity.</span></div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classporth_1_1PorthRingBuffer.html#ad8db1c8ea0d4aac8ea5b0b4cbb6555b9">  129</a></span>    <a class="code hl_function" href="classporth_1_1PorthRingBuffer.html#ad8db1c8ea0d4aac8ea5b0b4cbb6555b9">PorthRingBuffer</a>(<span class="keyword">const</span> <a class="code hl_class" href="classporth_1_1PorthRingBuffer.html">PorthRingBuffer</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classporth_1_1PorthRingBuffer.html#ad8db1c8ea0d4aac8ea5b0b4cbb6555b9">  129</a></span>    <a class="code hl_function" href="classporth_1_1PorthRingBuffer.html#ad8db1c8ea0d4aac8ea5b0b4cbb6555b9">PorthRingBuffer</a>(<span class="keyword">const</span> <a class="code hl_class" href="classporth_1_1PorthRingBuffer.html">PorthRingBuffer</a>&amp;)            = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classporth_1_1PorthRingBuffer.html#ad8e5e468016ee2669f9301282821d89f">  130</a></span>    <a class="code hl_class" href="classporth_1_1PorthRingBuffer.html">PorthRingBuffer</a>&amp; <a class="code hl_function" href="classporth_1_1PorthRingBuffer.html#ad8e5e468016ee2669f9301282821d89f">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classporth_1_1PorthRingBuffer.html">PorthRingBuffer</a>&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>};</div>
 </div>
