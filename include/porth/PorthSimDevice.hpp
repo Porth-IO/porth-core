@@ -246,9 +246,8 @@ private:
         if (tlp_log.is_open()) {
             const auto now = std::chrono::system_clock::now();
             const auto t_c = std::chrono::system_clock::to_time_t(now);
-            const char* ts  = "%H:%M:%S";
-            
-            tlp_log << "[" << std::put_time(std::localtime(&t_c), ts) << "] "
+
+            tlp_log << "[" << std::put_time(std::localtime(&t_c), "%H:%M:%S") << "] "
                     << "TLP_" << type << " | Addr: 0x" << std::hex << addr << " | Data: 0x" << val
                     << std::dec << std::endl;
         }
