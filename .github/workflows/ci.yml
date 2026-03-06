@@ -1,30 +1,55 @@
-name: CI
+name: Sovereign Logic Layer CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
 
 jobs:
-  build:
+  verify-and-audit:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-    - name: Install Dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake g++-12
+      - name: Install System Toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-format clang-tidy cmake ninja-build
 
-    - name: Configure CMake
-      run: cmake -S . -B build -DCMAKE_CXX_COMPILER=g++-12
+      - name: 1. Format Audit
+        run: |
+          # Dry-run format check; fails if code doesn't match .clang-format
+          # This ensures the "Immaculate" style is enforced automatically.
+          find include examples tests -name "*.hpp" -o -name "*.cpp" | xargs clang-format --dry-run -Werror
 
-    - name: Build
-      run: cmake --build build --parallel $(nproc)
+      - name: 2. Configure Build (C++23)
+        run: |
+          # We use Ninja for faster builds and enable clang-tidy for static analysis.
+          cmake -B build -G Ninja \
+            -DCMAKE_CXX_CLANG_TIDY="clang-tidy" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_TESTING=ON
 
-    - name: Run Tests
-      run: |
-        cd build
-        ctest --output-on-failure
+      - name: 3. Compile Sovereign Stack
+        run: cmake --build build --parallel $(nproc)
+
+      - name: 4. Execute Physics Barrier Verification
+        run: |
+          # Runs the formal verification tests to ensure the Digital Twin 
+          # correctly models the Newport cluster physics.
+          cd build
+          ctest --output-on-failure
+
+      - name: 5. Generate SBOM (Software Bill of Materials)
+        run: |
+          # Tier-1 Trust: Generating CycloneDX SBOM for HFT compliance.
+          # This proves the software has zero undocumented dependencies.
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
+          ./syft . -o cyclonedx-json=porth-io-sbom.json
+        
+      - name: Archive Compliance Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: porth-io-compliance-bundle
+          path: porth-io-sbom.json

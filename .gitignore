@@ -1,4 +1,3 @@
-/notes
 # --- Build Artifacts ---
 # Ignore the entire build directory where CMake generates files and binaries
 build/
@@ -33,3 +32,6 @@ cmake-build-*/
 # --- Temporary / Swap Files ---
 *.swp
 *~
+
+# --- Personal Notes ---
+/notes

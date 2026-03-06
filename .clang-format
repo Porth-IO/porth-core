@@ -1,0 +1,39 @@
+---
+# Porth-IO: Sovereign C++ Style Manifesto
+# Enforces a consistent, readable standard across the Newport HAL.
+Language: Cpp
+BasedOnStyle: LLVM
+
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: false
+AllowShortFunctionsOnASingleLine: Inline
+
+# Formatting for C++23 Readiness
+Standard: Latest
+ColumnLimit: 100
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# Brace Wrapping for "Immaculate" Architecture
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: false
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: false
+  AfterStruct: true
+  BeforeElse: false
+  IndentBraces: false
+
+# Pointer Alignment (Right-aligned for HFT standard)
+PointerAlignment: Right
+
+# Spaces and Padding
+SpaceAfterCStyleCast: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+...

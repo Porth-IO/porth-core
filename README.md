@@ -29,16 +29,36 @@ While the CSconnected cluster in South Wales produces world-class "bricks" (Gall
 Porth-IO eliminates the software-logic gap by bypassing the kernel and interacting directly with the physical layer (PDK-aware logic).
 ```mermaid
 graph TD
-    A[Photonic/GaN Hardware] -->|Exotic Signals| B(Porth-IO HAL)
-    B -->|Kernel Bypass / AF_XDP| C{Porth-IO SDK}
-    C -->|Sub-800ns Latency| D[HFT Execution Engines]
-    C -->|30% Energy Save| E[AI Power Architectures]
-    C -->|Memory Fabric| F[Optical RAM Clusters]
-    
-    subgraph "Sovereign Logic Layer"
-    B
-    C
+    subgraph "The Cardiff Bricks (Physical Layer)"
+        IQE[IQE: Atomic Epitaxy] -->|InP/GaN Wafer| VN[Vishay Newport: Fabrication]
+        VN -->|Raw Silicon| MC[Microchip: Advanced Packaging]
     end
+
+    subgraph "Porth-IO: The Sovereign Logic Layer (The Mortar)"
+        HAL[Porth-IO HAL: PDK-Aware Logic]
+        SDK[Porth-IO SDK: Kernel Bypass]
+        Sim[Digital Twin: Thermal/Optical Simulation]
+        
+        MC -->|Exotic Signals| HAL
+        HAL <--> SDK
+        SDK <--> Sim
+    end
+
+    subgraph "Global Market Drivers"
+        HFT[High-Frequency Trading: < 800ns]
+        AI[AI Memory Fabrics: Optical RAM]
+        Sat[Sovereign Satellite Comms]
+    end
+
+    SDK -->|Zero-Copy / AF_XDP| HFT
+    SDK --> AI
+    SDK --> Sat
+
+    style IQE fill:#f9f,stroke:#333,stroke-width:2px
+    style VN fill:#f9f,stroke:#333,stroke-width:2px
+    style MC fill:#f9f,stroke:#333,stroke-width:2px
+    style HAL fill:#00758f,color:#fff,stroke-width:4px
+    style SDK fill:#00758f,color:#fff,stroke-width:4px
 ```
 
 ---

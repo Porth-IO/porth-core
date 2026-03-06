@@ -37,7 +37,7 @@ Code must be strictly formatted according to the project's `.clang-format` confi
  *
  * Porth-IO: The Sovereign Logic Layer
  *
- * Copyright (c) 2024 Porth-IO Contributors
+ * Copyright (c) 2026 Porth-IO Contributors
  * SPDX-License-Identifier: Apache-2.0
  */
 ```
