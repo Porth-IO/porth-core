@@ -22,7 +22,7 @@ auto main() -> int {
     }
 
     // Set up a loopback address (127.0.0.1)
-    // Fix: Value-initialize the struct to satisfy cppcoreguidelines-pro-type-member-init
+    // Value-initialize the struct to satisfy cppcoreguidelines-pro-type-member-init
     struct sockaddr_in addr{};
     addr.sin_family      = AF_INET;
     addr.sin_port        = htons(8888);

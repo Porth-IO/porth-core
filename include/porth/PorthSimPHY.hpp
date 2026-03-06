@@ -122,8 +122,8 @@ public:
      * @param base New base delay in ns.
      * @param jitter New maximum jitter in ns.
      */
-    auto set_config(uint64_t base, uint64_t jitter)
-        -> void { // NOLINT(bugprone-easily-swappable-parameters)
+    auto set_config(uint64_t base,
+                    uint64_t jitter) -> void { // NOLINT(bugprone-easily-swappable-parameters)
         base_delay_ns = base;
         jitter_ns     = jitter;
         jitter_dist   = std::uniform_int_distribution<int64_t>(-static_cast<int64_t>(jitter),
