@@ -21,7 +21,7 @@
  * Runs multiple iterations to ensure statistical significance across the
  * semiconductor execution fabric.
  */
-int main() {
+auto main() -> int {
     using namespace porth;
 
     // Setup environment: Enforce thread affinity to isolate jitter
@@ -34,7 +34,10 @@ int main() {
     const int iterations       = 10;
     const int samples_per_run  = 100000;
 
-    PorthMetric global_metric(iterations * samples_per_run);
+    // Explicitly cast to size_t to resolve widening conversion warning
+    const size_t total_samples =
+        static_cast<size_t>(iterations) * static_cast<size_t>(samples_per_run);
+    PorthMetric global_metric(total_samples);
 
     std::cout << std::format("[Bench] Starting Newport Cluster Speed Test ({} iterations)...\n",
                              iterations);

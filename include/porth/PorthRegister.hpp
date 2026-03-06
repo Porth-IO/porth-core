@@ -10,11 +10,15 @@
 
 #pragma once
 
+#include <array>
 #include <atomic>
 #include <cstdint>
 #include <type_traits>
 
 namespace porth {
+
+/** @brief Standard cache line size to avoid magic number warnings. */
+constexpr size_t CACHE_LINE_SIZE = 64;
 
 /**
  * @class PorthRegister
@@ -26,10 +30,10 @@ namespace porth {
  * @tparam T The integral type of the register (must be trivially copyable).
  */
 template <typename T>
-class alignas(64) PorthRegister {
+class alignas(CACHE_LINE_SIZE) PorthRegister {
     // Task 1.3: Compile-Time Verification
-    static_assert(std::is_integral<T>::value, "PorthRegister only accepts integer types.");
-    static_assert(std::is_trivially_copyable<T>::value,
+    static_assert(std::is_integral_v<T>, "PorthRegister only accepts integer types.");
+    static_assert(std::is_trivially_copyable_v<T>,
                   "PorthRegister types must be trivially copyable for MMIO.");
 
 private:
@@ -39,15 +43,21 @@ private:
      * Prevents "False Sharing" where multiple registers inhabit the same cache line,
      * which would introduce latency spikes during high-frequency hardware updates.
      */
-    unsigned char padding[64 - sizeof(std::atomic<T>)];
+    std::array<unsigned char, CACHE_LINE_SIZE - sizeof(std::atomic<T>)> padding{};
 
 public:
     /** @brief Default constructor for register initialization in mapped memory. */
     PorthRegister() = default;
 
+    /** @brief Destructor. */
+    ~PorthRegister() = default;
+
     // Hardware registers represent unique physical locations and cannot be copied or moved.
-    PorthRegister(const PorthRegister&)            = delete;
-    PorthRegister& operator=(const PorthRegister&) = delete;
+    PorthRegister(const PorthRegister&)                    = delete;
+    auto operator=(const PorthRegister&) -> PorthRegister& = delete;
+
+    PorthRegister(PorthRegister&&)                    = delete;
+    auto operator=(PorthRegister&&) -> PorthRegister& = delete;
 
     /**
      * @brief Reads the register value using Acquire semantics.
@@ -55,7 +65,7 @@ public:
      * are visible to the CPU before the read operation completes.
      * * @return The current value of the register.
      */
-    [[nodiscard]] T load() const noexcept { return value.load(std::memory_order_acquire); }
+    [[nodiscard]] auto load() const noexcept -> T { return value.load(std::memory_order_acquire); }
 
     /**
      * @brief Writes a value to the register using Release semantics.
@@ -63,12 +73,12 @@ public:
      * to RAM before the register update signals the hardware to begin processing.
      * * @param val The value to write to the register.
      */
-    void write(T val) noexcept { value.store(val, std::memory_order_release); }
+    auto write(T val) noexcept -> void { value.store(val, std::memory_order_release); }
 
     /** @brief Overload for assignment to allow intuitive 'reg = val' syntax. */
-    T operator=(T val) noexcept {
+    auto operator=(T val) noexcept -> PorthRegister& {
         write(val);
-        return val;
+        return *this;
     }
 
     /** @brief Overload for conversion to allow intuitive 'val = reg' syntax. */

@@ -10,13 +10,29 @@
 
 #pragma once
 
+#include <array>
 #include <atomic>
 #include <cstdint>
 #include <new>
 #include <stdexcept>
 #include <vector>
 
+/**
+ * @namespace gsl
+ * @brief Minimal Guideline Support Library implementation to satisfy clang-tidy ownership checks.
+ */
+namespace gsl {
+template <typename T>
+using owner = T;
+} // namespace gsl
+
 namespace porth {
+
+/** @brief Standard cache line size for padding and alignment. */
+constexpr size_t RING_CACHE_LINE_SIZE = 64;
+
+/** @brief Default ring buffer capacity. */
+constexpr size_t DEFAULT_RING_CAPACITY = 1024;
 
 /**
  * @struct PorthDescriptor
@@ -39,22 +55,25 @@ struct PorthDescriptor {
  *
  * @tparam SIZE Number of descriptors. Must be a power of two for bitwise optimization.
  */
-template <size_t SIZE = 1024>
+template <size_t SIZE = DEFAULT_RING_CAPACITY>
 class PorthRingBuffer {
     // We enforce power-of-two for the bitwise wrap-around trick
     static_assert((SIZE & (SIZE - 1)) == 0, "SIZE must be a power of two!");
 
 private:
-    PorthDescriptor* buffer; ///< Pointer to the underlying descriptor array.
-    bool owns_buffer;        ///< RAII flag for memory lifecycle management.
+    /** * @brief Pointer to the underlying descriptor array.
+     * Fixed: Added gsl::owner to satisfy clang-tidy memory ownership requirements.
+     */
+    gsl::owner<PorthDescriptor*> buffer;
+    bool owns_buffer; ///< RAII flag for memory lifecycle management.
 
     // Cache-line 1: The Producer's territory (Typically the Chip or TX side)
-    alignas(64) std::atomic<uint32_t> head{0};
-    uint8_t _pad0[64 - sizeof(std::atomic<uint32_t>)];
+    alignas(RING_CACHE_LINE_SIZE) std::atomic<uint32_t> head{0};
+    std::array<uint8_t, RING_CACHE_LINE_SIZE - sizeof(std::atomic<uint32_t>)> pad0{};
 
     // Cache-line 2: The Consumer's territory (Typically the Driver or RX side)
-    alignas(64) std::atomic<uint32_t> tail{0};
-    uint8_t _pad1[64 - sizeof(std::atomic<uint32_t>)];
+    alignas(RING_CACHE_LINE_SIZE) std::atomic<uint32_t> tail{0};
+    std::array<uint8_t, RING_CACHE_LINE_SIZE - sizeof(std::atomic<uint32_t>)> pad1{};
 
 public:
     /**
@@ -62,7 +81,8 @@ public:
      * @param external_buffer Optional pointer to pre-allocated hardware-visible memory.
      */
     explicit PorthRingBuffer(PorthDescriptor* external_buffer = nullptr)
-        : buffer(external_buffer), owns_buffer(external_buffer == nullptr) {
+        : buffer(external_buffer),
+          owns_buffer(external_buffer == nullptr) { // NOLINT(cppcoreguidelines-owning-memory)
         if (owns_buffer) {
             buffer = new PorthDescriptor[SIZE];
         }
@@ -84,7 +104,7 @@ public:
      * * @param desc The descriptor to push.
      * @return true if successful, false if the ring is full.
      */
-    [[nodiscard]] inline bool push(const PorthDescriptor& desc) noexcept {
+    [[nodiscard]] auto push(const PorthDescriptor& desc) noexcept -> bool {
         const uint32_t h = head.load(std::memory_order_relaxed);
         const uint32_t t = tail.load(std::memory_order_acquire);
 
@@ -108,7 +128,7 @@ public:
      * * @param out_desc Reference to store the retrieved descriptor.
      * @return true if data was retrieved, false if the ring is empty.
      */
-    [[nodiscard]] inline bool pop(PorthDescriptor& out_desc) noexcept {
+    [[nodiscard]] auto pop(PorthDescriptor& out_desc) noexcept -> bool {
         const uint32_t t = tail.load(std::memory_order_relaxed);
         const uint32_t h = head.load(std::memory_order_acquire);
 
@@ -126,8 +146,12 @@ public:
     }
 
     // Hardware-visible memory structures are non-copyable to maintain logical identity.
-    PorthRingBuffer(const PorthRingBuffer&)            = delete;
-    PorthRingBuffer& operator=(const PorthRingBuffer&) = delete;
+    PorthRingBuffer(const PorthRingBuffer&)                    = delete;
+    auto operator=(const PorthRingBuffer&) -> PorthRingBuffer& = delete;
+
+    // Rule of Five compliance: Delete move operations
+    PorthRingBuffer(PorthRingBuffer&&)                    = delete;
+    auto operator=(PorthRingBuffer&&) -> PorthRingBuffer& = delete;
 };
 
 } // namespace porth

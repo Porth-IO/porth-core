@@ -19,6 +19,9 @@
 
 namespace porth {
 
+/** @brief Real-time scheduling constants to resolve magic number warnings. */
+constexpr int MAX_PTHREAD_FIFO_PRIORITY = 99;
+
 /**
  * @enum PorthStatus
  * @brief Explicit status codes for high-speed I/O operations.
@@ -44,7 +47,7 @@ enum class PorthStatus : uint8_t {
  * * @param core_id The logical CPU index to pin the calling thread to.
  * @return PorthStatus::SUCCESS or PorthStatus::ERROR_AFFINITY.
  */
-[[nodiscard]] inline PorthStatus pin_thread_to_core(int core_id) noexcept {
+[[nodiscard]] inline auto pin_thread_to_core(int core_id) noexcept -> PorthStatus {
     cpu_set_t cpuset;
     CPU_ZERO(&cpuset);
     CPU_SET(core_id, &cpuset);
@@ -71,9 +74,9 @@ enum class PorthStatus : uint8_t {
  * granting the Sovereign Logic Layer total control over the CPU slice.
  * * @return PorthStatus::SUCCESS or PorthStatus::ERROR_PRIORITY.
  */
-[[nodiscard]] inline PorthStatus set_realtime_priority() noexcept {
-    struct sched_param param;
-    param.sched_priority = 99; // Highest possible FIFO priority
+[[nodiscard]] inline auto set_realtime_priority() noexcept -> PorthStatus {
+    struct sched_param param{};
+    param.sched_priority = MAX_PTHREAD_FIFO_PRIORITY; // Highest possible FIFO priority
 
     // Using pthread_setschedparam to maintain compatibility with the affinity logic
     int result = pthread_setschedparam(pthread_self(), SCHED_FIFO, &param);

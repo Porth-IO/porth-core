@@ -27,6 +27,17 @@
 
 namespace porth {
 
+/** @brief Simulation Constants to resolve magic number warnings. */
+constexpr uint32_t SIM_BASE_TEMP_MC           = 25000;
+constexpr uint32_t SIM_TEMP_INC_MC            = 100;
+constexpr uint32_t SIM_TEMP_DEC_MC            = 50;
+constexpr uint32_t SIM_STATUS_MAX_BIT         = 31;
+constexpr size_t SIM_DEFAULT_SHUTTLE_SIZE     = 1024;
+constexpr int SIM_PHYSICS_STEP_US             = 100;
+constexpr int SIM_BUS_HANG_MS                 = 100;
+constexpr int SIM_OVERFLOW_ITERATIONS         = 2048;
+constexpr uint32_t SIM_DESCRIPTOR_LEN_DEFAULT = 64;
+
 /**
  * @class PorthSimDevice
  * @brief The high-fidelity Digital Twin for Cardiff Photonics.
@@ -37,6 +48,16 @@ namespace porth {
  * hooks for chaos engineering and protocol-aware register access.
  */
 class PorthSimDevice {
+public:
+    // Move deleted members to public to satisfy modernize-use-equals-delete
+    // Simulation orchestrators own unique thread resources and cannot be copied.
+    PorthSimDevice(const PorthSimDevice&)                    = delete;
+    auto operator=(const PorthSimDevice&) -> PorthSimDevice& = delete;
+
+    // Rule of Five: Explicitly delete move operations.
+    PorthSimDevice(PorthSimDevice&&)                    = delete;
+    auto operator=(PorthSimDevice&&) -> PorthSimDevice& = delete;
+
 private:
     PorthMockDevice mock_hw; ///< Shared memory register backend.
     PorthSimPHY phy;         ///< Physical layer propagation and jitter model.
@@ -57,7 +78,7 @@ private:
      * InP/GaN hardware, including thermal fluctuations based on operation load
      * and 48V power rail noise.
      */
-    void run_physics_loop() {
+    void run_physics_loop() { // NOLINT(readability-function-cognitive-complexity)
         /**
          * Porth-IO Isolation Protocol:
          * We pin the hardware simulator to Core 0 to prevent starvation
@@ -67,9 +88,9 @@ private:
 
         PorthDeviceLayout* dev = mock_hw.view();
 
-        uint32_t temp = 25000; // Base operating temperature of 25.0 C (milli-Celsius)
+        uint32_t temp = SIM_BASE_TEMP_MC; // Base operating temperature of 25.0 C (milli-Celsius)
         std::mt19937 gen(std::random_device{}());
-        std::uniform_int_distribution<uint32_t> bit_dist(0, 31);
+        std::uniform_int_distribution<uint32_t> bit_dist(0, SIM_STATUS_MAX_BIT);
 
         while (run_sim.load(std::memory_order_relaxed)) {
             // Signal to the driver that hardware logic is active and ready
@@ -85,8 +106,10 @@ private:
                  */
                 uint64_t shuttle_addr = dev->data_ptr.load();
                 if (shuttle_addr != 0) {
-                    auto* shuttle = reinterpret_cast<PorthShuttle<1024>*>(shuttle_addr);
-                    PorthDescriptor desc;
+                    // NOLINTNEXTLINE(performance-no-int-to-ptr)
+                    auto* shuttle =
+                        reinterpret_cast<PorthShuttle<SIM_DEFAULT_SHUTTLE_SIZE>*>(shuttle_addr);
+                    PorthDescriptor desc{};
                     // Drain the shuttle as fast as the "hardware" can process it
                     while (shuttle->ring()->pop(desc)) {
                         // In a real device, this is where photons are fired.
@@ -96,11 +119,12 @@ private:
                 // Task 3: Photonics/GaN Model
                 // Heating logic: Increases temp by 0.1C when active (control == 0x1)
                 if (dev->control.load() == 0x1) {
-                    temp += 100;
+                    temp += SIM_TEMP_INC_MC;
                 } else {
                     // Cooling logic: Decreases temp by 0.05C until base temp reached
-                    if (temp > 25000)
-                        temp -= 50;
+                    if (temp > SIM_BASE_TEMP_MC) {
+                        temp -= SIM_TEMP_DEC_MC;
+                    }
                 }
 
                 dev->laser_temp.write(temp);
@@ -110,17 +134,17 @@ private:
                 phy.update_thermal_load(temp);
 
                 // GaN Power Rail Noise (Simulating 48V base + millivolt-scale jitter)
-                [[maybe_unused]] const uint32_t noise = (std::rand() % 100);
+                [[maybe_unused]] const uint32_t noise = (static_cast<uint32_t>(std::rand()) % 100);
                 // Note: gan_voltage is modeled in the extended register map
                 // dev->gan_voltage.write(48000 + noise);
 
                 // Sub-task 4.1: Register Corruption (Single-event upset emulation)
                 if (corrupt_status.load(std::memory_order_relaxed)) {
                     uint32_t current_status = dev->status.load();
-                    dev->status.write(current_status ^ (1 << bit_dist(gen)));
+                    dev->status.write(current_status ^ (1U << bit_dist(gen)));
                 }
             }
-            std::this_thread::sleep_for(std::chrono::microseconds(100));
+            std::this_thread::sleep_for(std::chrono::microseconds(SIM_PHYSICS_STEP_US));
         }
     }
 
@@ -135,7 +159,7 @@ public:
         // --- PRE-INITIALIZATION ---
         // Ensure registers have valid defaults before the physics thread wakes up.
         PorthDeviceLayout* dev = mock_hw.view();
-        dev->laser_temp.write(25000);
+        dev->laser_temp.write(SIM_BASE_TEMP_MC);
         dev->status.write(0);
         dev->control.write(0);
 
@@ -166,8 +190,9 @@ public:
      */
     void apply_scenario(uint64_t base_ns, uint64_t jitter_ns, bool chaos = false) {
         phy.set_config(base_ns, jitter_ns);
-        if (chaos)
+        if (chaos) {
             trigger_corruption(true);
+        }
     }
 
     // --- Task 4: Chaos Control Interface ---
@@ -181,9 +206,9 @@ public:
      * Pushes 2048 junk descriptors into the 1024-slot ring.
      * * @param ring Reference to the ring buffer to overflow.
      */
-    void force_buffer_overflow(PorthRingBuffer<1024>& ring) {
-        const PorthDescriptor junk = {0xDEADBEEF, 64};
-        for (int i = 0; i < 2048; ++i) {
+    static void force_buffer_overflow(PorthRingBuffer<SIM_DEFAULT_SHUTTLE_SIZE>& ring) {
+        const PorthDescriptor junk = {.addr = 0xDEADBEEF, .len = SIM_DESCRIPTOR_LEN_DEFAULT};
+        for (int i = 0; i < SIM_OVERFLOW_ITERATIONS; ++i) {
             // Explicitly ignore nodiscard return
             (void)ring.push(junk);
         }
@@ -193,27 +218,30 @@ public:
 
     /** @brief MMIO read with simulated bus hang and protocol latency. */
     template <typename T>
-    [[nodiscard]] T read_reg(PorthRegister<T>& reg) {
-        if (bus_hang.load())
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    [[nodiscard]] auto read_reg(PorthRegister<T>& reg) -> T {
+        if (bus_hang.load()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(SIM_BUS_HANG_MS));
+        }
         phy.apply_protocol_delay();
         return reg.load();
     }
 
     /** @brief MMIO write with simulated bus hang and protocol latency. */
     template <typename T>
-    void write_reg(PorthRegister<T>& reg, T val) {
-        if (bus_hang.load())
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    auto write_reg(PorthRegister<T>& reg, T val) -> void {
+        if (bus_hang.load()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(SIM_BUS_HANG_MS));
+        }
         phy.apply_protocol_delay();
         reg.write(val);
     }
 
     /** @brief Protocol-aware read simulating a PCIe Gen 6 FLIT completion with logging. */
     template <typename T>
-    [[nodiscard]] T read_flit(PorthRegister<T>& reg, uint64_t offset) {
-        if (bus_hang.load())
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    [[nodiscard]] auto read_flit(PorthRegister<T>& reg, uint64_t offset) -> T {
+        if (bus_hang.load()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(SIM_BUS_HANG_MS));
+        }
         log_tlp("READ_REQ", offset);
         phy.apply_protocol_delay();
         const T val = reg.load();
@@ -223,19 +251,20 @@ public:
 
     /** @brief Protocol-aware write simulating a PCIe Gen 6 Memory Write TLP with logging. */
     template <typename T>
-    void write_flit(PorthRegister<T>& reg, uint64_t offset, T val) {
-        if (bus_hang.load())
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    auto write_flit(PorthRegister<T>& reg, uint64_t offset, T val) -> void {
+        if (bus_hang.load()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(SIM_BUS_HANG_MS));
+        }
         log_tlp("WRITE_MEM", offset, static_cast<uint64_t>(val));
         phy.apply_protocol_delay();
         reg.write(val);
     }
 
     /** @brief Access the register layout for handshakes. */
-    [[nodiscard]] PorthDeviceLayout* view() noexcept { return mock_hw.view(); }
+    [[nodiscard]] auto view() noexcept -> PorthDeviceLayout* { return mock_hw.view(); }
 
     /** @brief Access the PHY simulator configuration. */
-    [[nodiscard]] PorthSimPHY& get_phy() noexcept { return phy; }
+    [[nodiscard]] auto get_phy() noexcept -> PorthSimPHY& { return phy; }
 
 private:
     /**
@@ -249,13 +278,9 @@ private:
 
             tlp_log << "[" << std::put_time(std::localtime(&t_c), "%H:%M:%S") << "] ";
             tlp_log << "TLP_" << type << " | Addr: 0x" << std::hex << addr;
-            tlp_log << " | Data: 0x" << val << std::dec << std::endl;
+            tlp_log << " | Data: 0x" << val << std::dec << '\n';
         }
     }
-
-    // Simulation orchestrators own unique thread resources and cannot be copied.
-    PorthSimDevice(const PorthSimDevice&)            = delete;
-    PorthSimDevice& operator=(const PorthSimDevice&) = delete;
 };
 
 } // namespace porth

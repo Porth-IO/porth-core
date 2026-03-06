@@ -17,7 +17,22 @@
 #include <iostream>
 #include <new>
 
+/**
+ * @namespace gsl
+ * @brief Minimal Guideline Support Library implementation to satisfy clang-tidy ownership checks.
+ */
+namespace gsl {
+template <typename T>
+using owner = T;
+} // namespace gsl
+
 namespace porth {
+
+/** @brief Default capacity for the Shuttle ring buffer. */
+constexpr size_t DEFAULT_SHUTTLE_CAPACITY = 1024;
+
+/** @brief Standard 2MB HugePage size for memory allocation. */
+constexpr size_t SHUTTLE_PAGE_SIZE = static_cast<size_t>(2) * 1024 * 1024;
 
 /**
  * @class PorthShuttle
@@ -29,11 +44,12 @@ namespace porth {
  *
  * @tparam Capacity The number of descriptors in the ring. Defaults to 1024.
  */
-template <size_t Capacity = 1024>
+template <size_t Capacity = DEFAULT_SHUTTLE_CAPACITY>
 class PorthShuttle {
 private:
-    PorthHugePage memory;                ///< The underlying HugePage memory allocation.
-    PorthRingBuffer<Capacity>* ring_ptr; ///< Typed pointer to the ring buffer within the HugePage.
+    PorthHugePage memory; ///< The underlying HugePage memory allocation.
+    gsl::owner<PorthRingBuffer<Capacity>*>
+        ring_ptr; ///< Typed pointer to the ring buffer within the HugePage.
 
 public:
     /**
@@ -42,7 +58,7 @@ public:
      * structure directly onto that memory region. Because HugePages are
      * 2MB aligned, the ring buffer is guaranteed to be 64-byte aligned.
      */
-    PorthShuttle() : memory(2 * 1024 * 1024) { // Allocate 2MB HugePage pool
+    PorthShuttle() : memory(SHUTTLE_PAGE_SIZE), ring_ptr(nullptr) { // Allocate 2MB HugePage pool
 
         // Task 2.4: Get the raw address from the HugePage
         void* base_addr = memory.data();
@@ -63,7 +79,7 @@ public:
      * underlying memory mapping.
      */
     ~PorthShuttle() {
-        if (ring_ptr) {
+        if (ring_ptr != nullptr) {
             // Task: Manually call the destructor for the placement-mapped object
             ring_ptr->~PorthRingBuffer();
         }
@@ -74,19 +90,27 @@ public:
      * * Converts the HugePage pointer to a uint64_t for the Hardware Handshake.
      * @return uint64_t The physical/device address of the memory region.
      */
-    [[nodiscard]] uint64_t get_device_addr() const noexcept {
+    [[nodiscard]] auto get_device_addr() const noexcept -> uint64_t {
         return reinterpret_cast<uint64_t>(memory.data());
     }
 
     /** @brief Access the zero-copy ring buffer for data transmission. */
-    [[nodiscard]] PorthRingBuffer<Capacity>* ring() noexcept { return ring_ptr; }
+    [[nodiscard]] auto ring() noexcept -> PorthRingBuffer<Capacity>* {
+        return ring_ptr; // NOLINT(cppcoreguidelines-owning-memory)
+    }
 
     /** @brief Const access to the zero-copy ring buffer. */
-    [[nodiscard]] const PorthRingBuffer<Capacity>* ring() const noexcept { return ring_ptr; }
+    [[nodiscard]] auto ring() const noexcept -> const PorthRingBuffer<Capacity>* {
+        return ring_ptr; // NOLINT(cppcoreguidelines-owning-memory)
+    }
 
     // Hardware-mapped orchestrators cannot be copied to prevent memory aliasing conflicts.
-    PorthShuttle(const PorthShuttle&)            = delete;
-    PorthShuttle& operator=(const PorthShuttle&) = delete;
+    PorthShuttle(const PorthShuttle&)                    = delete;
+    auto operator=(const PorthShuttle&) -> PorthShuttle& = delete;
+
+    // Rule of Five compliance: Explicitly delete move operations.
+    PorthShuttle(PorthShuttle&&)                    = delete;
+    auto operator=(PorthShuttle&&) -> PorthShuttle& = delete;
 };
 
 } // namespace porth

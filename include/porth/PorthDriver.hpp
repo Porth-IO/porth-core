@@ -20,6 +20,9 @@
 
 namespace porth {
 
+/** @brief Default capacity for the DMA ring buffer to avoid magic number warnings. */
+constexpr size_t DEFAULT_RING_SIZE = 1024;
+
 /**
  * @class Driver
  * @brief The high-level Master Driver for the Newport Cluster.
@@ -30,7 +33,7 @@ namespace porth {
  *
  * @tparam RingSize Depth of the DMA ring buffer. Must be a power of two.
  */
-template <size_t RingSize = 1024>
+template <size_t RingSize = DEFAULT_RING_SIZE>
 class Driver {
 private:
     PorthDeviceLayout* regs; ///< Pointer to memory-mapped hardware registers.
@@ -45,7 +48,7 @@ public:
      */
     explicit Driver(PorthDeviceLayout* hardware_regs) : regs(hardware_regs) {
 
-        if (!regs) {
+        if (regs == nullptr) {
             throw std::runtime_error("Porth-Driver: Hardware registers pointer is null");
         }
 
@@ -68,7 +71,7 @@ public:
      * @param desc The descriptor to push to hardware.
      * @return PorthStatus::SUCCESS on success, PorthStatus::FULL if the ring is saturated.
      */
-    [[nodiscard]] PorthStatus transmit(const PorthDescriptor& desc) noexcept {
+    [[nodiscard]] auto transmit(const PorthDescriptor& desc) noexcept -> PorthStatus {
         if (shuttle->ring()->push(desc)) {
             return PorthStatus::SUCCESS;
         }
@@ -80,7 +83,7 @@ public:
      * @param out_desc Reference to store the popped descriptor.
      * @return PorthStatus::SUCCESS on success, PorthStatus::EMPTY if no data.
      */
-    [[nodiscard]] PorthStatus receive(PorthDescriptor& out_desc) noexcept {
+    [[nodiscard]] auto receive(PorthDescriptor& out_desc) noexcept -> PorthStatus {
         if (shuttle->ring()->pop(out_desc)) {
             return PorthStatus::SUCCESS;
         }
@@ -88,10 +91,12 @@ public:
     }
 
     /** @brief Returns the underlying register layout. */
-    [[nodiscard]] PorthDeviceLayout* get_regs() const noexcept { return regs; }
+    [[nodiscard]] auto get_regs() const noexcept -> PorthDeviceLayout* { return regs; }
 
     /** @brief Returns the shuttle management object. */
-    [[nodiscard]] PorthShuttle<RingSize>* get_shuttle() const noexcept { return shuttle.get(); }
+    [[nodiscard]] auto get_shuttle() const noexcept -> PorthShuttle<RingSize>* {
+        return shuttle.get();
+    }
 };
 
 } // namespace porth

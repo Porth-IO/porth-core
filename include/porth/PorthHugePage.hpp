@@ -35,7 +35,7 @@ private:
     size_t total_size;   ///< Total size after alignment to HugePage boundaries.
 
     /** @brief Standard 2MB HugePage size for x86_64 architecture. */
-    static constexpr size_t HP_SIZE = 2 * 1024 * 1024;
+    static constexpr size_t HP_SIZE = static_cast<size_t>(2) * 1024 * 1024;
 
 public:
     /**
@@ -46,9 +46,7 @@ public:
      * * @param size The requested size in bytes.
      * @throws std::runtime_error If both allocation attempts fail.
      */
-    explicit PorthHugePage(size_t size) {
-        // Round up to nearest 2MB boundary to satisfy HugePage alignment requirements
-        total_size = ((size + HP_SIZE - 1) / HP_SIZE) * HP_SIZE;
+    explicit PorthHugePage(size_t size) : total_size(((size + HP_SIZE - 1) / HP_SIZE) * HP_SIZE) {
 
         /**
          * Attempt 1: The "Fast Path"
@@ -74,25 +72,29 @@ public:
         }
 
         // Advise the kernel on access patterns to optimize TLB behavior
-        madvise(ptr, total_size, MADV_HUGEPAGE | MADV_SEQUENTIAL);
+        (void)madvise(ptr, total_size, MADV_HUGEPAGE | MADV_SEQUENTIAL);
     }
 
     /** @brief Destructor: Ensures atomic-level hardware memory is unmapped correctly. */
     ~PorthHugePage() {
-        if (ptr && ptr != MAP_FAILED) {
-            munmap(ptr, total_size);
+        if (ptr != nullptr && ptr != MAP_FAILED) {
+            (void)munmap(ptr, total_size);
         }
     }
 
     // No copying: Memory ownership must be unique to prevent double-freeing mapped regions
-    PorthHugePage(const PorthHugePage&)            = delete;
-    PorthHugePage& operator=(const PorthHugePage&) = delete;
+    PorthHugePage(const PorthHugePage&)                    = delete;
+    auto operator=(const PorthHugePage&) -> PorthHugePage& = delete;
+
+    // No moving: Maintaining strict unique ownership as per original design
+    PorthHugePage(PorthHugePage&&)                    = delete;
+    auto operator=(PorthHugePage&&) -> PorthHugePage& = delete;
 
     /** @brief Returns the raw pointer to the mapped memory. */
-    [[nodiscard]] void* data() const noexcept { return ptr; }
+    [[nodiscard]] auto data() const noexcept -> void* { return ptr; }
 
     /** @brief Returns the total allocated size (including alignment padding). */
-    [[nodiscard]] size_t size() const noexcept { return total_size; }
+    [[nodiscard]] auto size() const noexcept -> size_t { return total_size; }
 
     /**
      * @brief Maps the memory region to a specific structure type.
@@ -101,7 +103,7 @@ public:
      * @throws std::runtime_error If the requested type is larger than the allocation.
      */
     template <typename T>
-    [[nodiscard]] T* get_as() {
+    [[nodiscard]] auto get_as() -> T* {
         if (sizeof(T) > total_size) {
             throw std::runtime_error("Porth-IO: Requested structure exceeds HugePage size.");
         }
@@ -111,7 +113,7 @@ public:
     /**
      * @brief Returns the device-visible address for DMA handshakes.
      */
-    [[nodiscard]] uint64_t get_device_addr() const noexcept {
+    [[nodiscard]] auto get_device_addr() const noexcept -> uint64_t {
         return reinterpret_cast<uint64_t>(ptr);
     }
 };

@@ -23,26 +23,29 @@ void pin_to_core(int core_id) {
     pthread_setaffinity_np(pthread_self(), sizeof(cpu_set_t), &cpuset);
 }
 
-int main() {
+auto main() -> int {
     pin_to_core(1);
     const double cycles_per_ns = 2.4;
     const int iterations       = 100000;
 
-    PorthMetric std_results(iterations);
-    PorthMetric porth_results(iterations);
+    // Use explicit size_t to avoid widening warnings if they appear later
+    PorthMetric std_results(static_cast<size_t>(iterations));
+    PorthMetric porth_results(static_cast<size_t>(iterations));
 
-    std::cout << "--- Porth-IO vs Standard Linux: Benchmark ---" << std::endl;
+    std::cout << "--- Porth-IO vs Standard Linux: Benchmark ---" << '\n';
 
     int sock = socket(AF_INET, SOCK_DGRAM, 0);
-    struct sockaddr_in addr;
-    std::memset(&addr, 0, sizeof(addr));
+
+    // Initialize the struct directly to satisfy cppcoreguidelines-pro-type-member-init
+    struct sockaddr_in addr{};
     addr.sin_family      = AF_INET;
     addr.sin_port        = htons(8888);
     addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
 
     for (int i = 0; i < iterations; ++i) {
         uint64_t t1 = PorthClock::now_precise();
-        sendto(sock, "ping", 4, 0, (struct sockaddr*)&addr, sizeof(addr));
+        // Use reinterpret_cast instead of C-style cast
+        sendto(sock, "ping", 4, 0, reinterpret_cast<const struct sockaddr*>(&addr), sizeof(addr));
         uint64_t t2 = PorthClock::now_precise();
         std_results.record(t2 - t1);
     }
@@ -59,7 +62,7 @@ int main() {
         porth_results.record(t2 - t1);
     }
 
-    std::cout << "\n[Results] Comparison complete." << std::endl;
+    std::cout << "\n[Results] Comparison complete." << '\n';
     std::cout << "\nStandard POSIX Results:";
     std_results.print_stats(cycles_per_ns);
 

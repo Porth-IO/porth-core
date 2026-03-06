@@ -17,12 +17,17 @@ using namespace porth;
 /**
  * @brief Validates that the driver handles thermal spikes deterministically.
  */
-void test_thermal_feedback_loop() {
+auto test_thermal_feedback_loop() -> void {
     std::cout << "[Test] Initializing Physics Barrier Verification...\n";
+
+    // Constants to resolve magic number warnings
+    constexpr size_t test_ring_size = 1024;
+    constexpr auto heat_wait_ms     = std::chrono::milliseconds(200);
+    constexpr uint32_t start_cmd    = 0x1;
 
     // 1. Setup Digital Twin
     PorthSimDevice hw("test_dev_0", true);
-    Driver<1024> driver(hw.view());
+    Driver<test_ring_size> driver(hw.view());
 
     // 2. Measure Base Latency (at 25C)
     uint32_t base_temp = driver.get_regs()->laser_temp.load();
@@ -30,10 +35,11 @@ void test_thermal_feedback_loop() {
 
     // 3. Force Thermal Load
     std::cout << "  - Injecting operational load (Heating)...\n";
-    driver.get_regs()->command.write(0x1);
+    // Fixed: renamed 'command' to 'control' to match PorthDeviceLayout
+    driver.get_regs()->control.write(start_cmd);
 
     // Wait for thermal lattice to heat up (Simulation loop runs at 100Hz)
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+    std::this_thread::sleep_for(heat_wait_ms);
 
     uint32_t active_temp = driver.get_regs()->laser_temp.load();
     std::cout << std::format("  - Active Temp: {} mC\n", active_temp);
@@ -44,13 +50,14 @@ void test_thermal_feedback_loop() {
 
     // 5. Verification: Driver Resilience
     // Ensure the handshake remains stable under heat
-    assert(driver.get_regs()->data_ptr.read() != 0 &&
+    // Fixed: changed '.read()' to '.load()' to match PorthRegister API
+    assert(driver.get_regs()->data_ptr.load() != 0 &&
            "Hardware Failure: Handshake lost during thermal spike.");
 
     std::cout << "[Success] Physics Barrier Test Passed: Thermal Determinism Validated.\n";
 }
 
-int main() {
+auto main() -> int {
     try {
         test_thermal_feedback_loop();
         return 0;

@@ -49,8 +49,9 @@ public:
 
         // 1. Open/Create the shared memory object
         int flags = O_RDWR;
-        if (create)
+        if (create) {
             flags |= O_CREAT;
+        }
 
         const int fd = shm_open(name.c_str(), flags, 0666);
         if (fd == -1) {
@@ -60,7 +61,7 @@ public:
         // 2. Set size (only if we are the creator/owner of the "hardware" segment)
         if (create) {
             if (ftruncate(fd, sizeof(PorthDeviceLayout)) == -1) {
-                close(fd);
+                (void)close(fd);
                 throw std::runtime_error("Porth-IO Error: ftruncate failed");
             }
         }
@@ -70,7 +71,7 @@ public:
             mmap(nullptr, sizeof(PorthDeviceLayout), PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
         // Resource Safety: We can close the FD immediately after the mapping is established
-        close(fd);
+        (void)close(fd);
 
         if (raw_ptr == MAP_FAILED) {
             throw std::runtime_error("Porth-IO Error: mmap failed");
@@ -83,28 +84,32 @@ public:
      * @brief Destructor: Clean up the mapping and unlink if owner.
      */
     ~PorthMockDevice() {
-        if (device_ptr) {
-            munmap(device_ptr, sizeof(PorthDeviceLayout));
+        if (device_ptr != nullptr) {
+            (void)munmap(device_ptr, sizeof(PorthDeviceLayout));
         }
 
         // Only the owner (the "Hardware" process) should delete the SHM file
         if (is_owner) {
-            shm_unlink(name.c_str());
+            (void)shm_unlink(name.c_str());
         }
     }
 
     // Prevent copying to maintain strict RAII identity for the hardware mapping
-    PorthMockDevice(const PorthMockDevice&)            = delete;
-    PorthMockDevice& operator=(const PorthMockDevice&) = delete;
+    PorthMockDevice(const PorthMockDevice&)                    = delete;
+    auto operator=(const PorthMockDevice&) -> PorthMockDevice& = delete;
+
+    // Rule of Five: Explicitly delete move operations
+    PorthMockDevice(PorthMockDevice&&)                    = delete;
+    auto operator=(PorthMockDevice&&) -> PorthMockDevice& = delete;
 
     /** @brief Returns a typed pointer to the register map. */
-    [[nodiscard]] PorthDeviceLayout* view() noexcept { return device_ptr; }
+    [[nodiscard]] auto view() noexcept -> PorthDeviceLayout* { return device_ptr; }
 
     /** @brief Returns a const typed pointer to the register map. */
-    [[nodiscard]] const PorthDeviceLayout* view() const noexcept { return device_ptr; }
+    [[nodiscard]] auto view() const noexcept -> const PorthDeviceLayout* { return device_ptr; }
 
     /** @brief Operator overload for intuitive, pointer-like access to registers. */
-    [[nodiscard]] PorthDeviceLayout* operator->() noexcept { return device_ptr; }
+    [[nodiscard]] auto operator->() noexcept -> PorthDeviceLayout* { return device_ptr; }
 };
 
 } // namespace porth

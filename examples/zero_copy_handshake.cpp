@@ -10,9 +10,9 @@
  */
 using namespace porth;
 
-int main() {
+auto main() -> int {
     try {
-        std::cout << "--- Porth-IO: Task 2.4 Zero-Copy Validation ---" << std::endl;
+        std::cout << "--- Porth-IO: Task 2.4 Zero-Copy Validation ---" << '\n';
 
         // 1. Initialize the HAL (Mock Register Map)
         // We create it as the owner ("porth_vdev_0")
@@ -20,7 +20,8 @@ int main() {
         auto* device = hal.view();
 
         // 2. Initialize the Shuttle (HugePage + RingBuffer)
-        porth::PorthShuttle<1024> shuttle;
+        static constexpr size_t SHUTTLE_CAPACITY = 1024;
+        porth::PorthShuttle<SHUTTLE_CAPACITY> shuttle;
 
         // 3. THE HANDSHAKE (Task 2.4)
         // We take the address of our high-speed conveyor belt...
@@ -28,7 +29,7 @@ int main() {
 
         // ...and we write it into the hardware's data pointer register.
         std::cout << "[Driver] Writing Shuttle Address (" << std::hex << bus_address
-                  << ") to hardware data_ptr register..." << std::dec << std::endl;
+                  << ") to hardware data_ptr register..." << std::dec << '\n';
 
         device->data_ptr.write(bus_address);
 
@@ -36,16 +37,16 @@ int main() {
         uint64_t read_back = device->data_ptr.load();
         if (read_back == bus_address) {
             std::cout << "[SUCCESS] Hardware and Software are now linked via Zero-Copy address!"
-                      << std::endl;
-            std::cout << "  - Registers: Shared Memory (HAL)" << std::endl;
-            std::cout << "  - Data Plane: HugePage (Shuttle)" << std::endl;
+                      << '\n';
+            std::cout << "  - Registers: Shared Memory (HAL)" << '\n';
+            std::cout << "  - Data Plane: HugePage (Shuttle)" << '\n';
         } else {
-            std::cerr << "[FAILURE] Address mismatch in register!" << std::endl;
+            std::cerr << "[FAILURE] Address mismatch in register!" << '\n';
             return 1;
         }
 
     } catch (const std::exception& e) {
-        std::cerr << "Fatal Error: " << e.what() << std::endl;
+        std::cerr << "Fatal Error: " << e.what() << '\n';
         return 1;
     }
 

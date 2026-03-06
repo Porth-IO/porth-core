@@ -16,8 +16,19 @@
 #include <iostream>
 #include <thread>
 
-int main() {
+auto main() -> int {
     using namespace porth;
+
+    // Constants to resolve magic number and formatting warnings
+    constexpr size_t shuttle_size               = 1024;
+    constexpr int handshake_timeout_ms          = 5000;
+    constexpr uint64_t test_addr                = 0x1000;
+    constexpr uint32_t test_len                 = 64;
+    constexpr uint64_t propagation_delay_cycles = 240;
+    constexpr size_t log_interval               = 10000;
+    constexpr float temp_divisor                = 1000.0F;
+    constexpr double cycles_per_ns_newport      = 2.4;
+
     std::cout << "--- Porth-IO: Sovereign Logic Layer MVP ---\n";
 
     try {
@@ -40,7 +51,7 @@ int main() {
          * PHASE 3: Master Driver Handshake
          * Map the zero-copy Shuttle and signal the hardware to START.
          */
-        Driver<1024> driver(regs);
+        Driver<shuttle_size> driver(regs);
         std::cout << "[System] Powering on Newport Cluster...\n";
         regs->control.write(0x1);
 
@@ -52,7 +63,7 @@ int main() {
          * the L3 cache boundary to our RT thread (on Core 1).
          */
         int timeout_ms = 0;
-        while (regs->status.load() == 0 && timeout_ms < 5000) {
+        while (regs->status.load() == 0 && timeout_ms < handshake_timeout_ms) {
             std::this_thread::sleep_for(std::chrono::milliseconds(1));
             timeout_ms++;
         }
@@ -72,8 +83,8 @@ int main() {
         for (size_t i = 0; i < iterations; ++i) {
             const uint64_t t1 = PorthClock::now_precise();
 
-            // Execute transmission
-            if (driver.transmit({0x1000, 64}) != PorthStatus::SUCCESS) {
+            // Execute transmission using designated initializers
+            if (driver.transmit({.addr = test_addr, .len = test_len}) != PorthStatus::SUCCESS) {
                 std::cerr << "[Error] Shuttle saturated.\n";
                 break;
             }
@@ -85,21 +96,22 @@ int main() {
              * to the physical limits of the 1.6T transceiver.
              */
             const uint64_t start_delay = PorthClock::now_precise();
-            while (PorthClock::now_precise() - start_delay < 240)
-                ;
+            while (PorthClock::now_precise() - start_delay < propagation_delay_cycles) {
+                // Spinning for delay
+            }
 
             const uint64_t t2 = PorthClock::now_precise();
             metric.record(t2 - t1);
 
-            if (i % 10000 == 0) {
-                const float temp_c = regs->laser_temp.load() / 1000.0f;
+            if (i % log_interval == 0) {
+                const float temp_c = static_cast<float>(regs->laser_temp.load()) / temp_divisor;
                 std::cout << std::format(
                     "  - Progress: {:5} cycles | Temp: {:.2f} °C\n", i, temp_c);
             }
         }
 
         // PHASE 5: Final Statistical Post-Processing
-        metric.print_stats(2.4);
+        metric.print_stats(cycles_per_ns_newport);
         std::cout << "[Success] Newport Cluster validated. System ready for 1.6T deployment.\n";
 
     } catch (const std::exception& e) {

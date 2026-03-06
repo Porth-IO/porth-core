@@ -25,8 +25,8 @@ CheckOptions:
     value:           '20'
   # Enforce professional naming conventions for the Newport cluster
   - key:             readability-identifier-naming.ClassCase
-    value:           'PascalCase'
+    value:           'CamelCase'
   - key:             readability-identifier-naming.FunctionCase
-    value:           'snake_case'
+    value:           'lower_case'
   - key:             readability-identifier-naming.MemberCase
-    value:           'snake_case'
+    value:           'lower_case'

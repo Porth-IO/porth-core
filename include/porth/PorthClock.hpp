@@ -37,11 +37,11 @@ public:
      *
      * @return uint64_t Current CPU clock cycles.
      */
-    static inline uint64_t now() noexcept {
+    static auto now() noexcept -> uint64_t {
 #if defined(__x86_64__) || defined(__i386__)
         return __rdtsc(); // Intel/AMD Path
 #elif defined(__aarch64__)
-        uint64_t virtual_timer_value;
+        uint64_t virtual_timer_value = 0;
         // ARM64 Path: Read the physical count register via system register MRS
         asm volatile("mrs %0, cntvct_el0" : "=r"(virtual_timer_value));
         return virtual_timer_value;
@@ -58,12 +58,12 @@ public:
      *
      * @return uint64_t Current CPU clock cycles (serialized).
      */
-    static inline uint64_t now_precise() noexcept {
+    static auto now_precise() noexcept -> uint64_t {
 #if defined(__x86_64__) || defined(__i386__)
-        unsigned int aux;
+        unsigned int aux = 0;
         return __rdtscp(&aux); // Intel Path (RDTSCP is serializing)
 #elif defined(__aarch64__)
-        uint64_t val;
+        uint64_t val = 0;
         // ARM64 Path: ISB (Instruction Synchronization Barrier) ensures
         // that all previous instructions are completed before the MRS read.
         asm volatile("isb; mrs %0, cntvct_el0" : "=r"(val));
@@ -77,7 +77,7 @@ public:
      * across this point. Critical for coordinating between the producer
      * and consumer in lock-free structures like PorthRingBuffer.
      */
-    static inline void fence() noexcept {
+    static void fence() noexcept {
 #if defined(__x86_64__) || defined(__i386__)
         // LFENCE provides a load fence on x86, preventing instruction reordering.
         asm volatile("lfence" ::: "memory");

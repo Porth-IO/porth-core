@@ -13,8 +13,13 @@
 #include <format>
 #include <iostream>
 
-int main() {
+auto main() -> int {
     using namespace porth;
+
+    // Constants to resolve magic number and literal suffix warnings
+    constexpr uint32_t start_command = 0x1U;
+    constexpr int flit_iterations    = 500;
+    constexpr double calibrated_cpns = 2.4;
 
     try {
         std::cout << "--- Porth-Sim: Task 2 (Advanced Protocol) ---\n";
@@ -29,12 +34,12 @@ int main() {
          * which simulates the specific TLP overhead of PCIe Gen 6.
          */
         std::cout << "[Sim] Executing FLIT-mode Write to Control Register...\n";
-        sim.write_flit(dev->control, offsetof(PorthDeviceLayout, control), 0x1u);
+        sim.write_flit(dev->control, offsetof(PorthDeviceLayout, control), start_command);
 
-        PorthMetric protocol_metric(500);
+        PorthMetric protocol_metric(static_cast<size_t>(flit_iterations));
         std::cout << "[Sim] Measuring 500 FLIT reads with simulated FEC noise...\n";
 
-        for (int i = 0; i < 500; ++i) {
+        for (int i = 0; i < flit_iterations; ++i) {
             const uint64_t t1 = PorthClock::now_precise();
 
             /**
@@ -49,7 +54,7 @@ int main() {
         }
 
         // Output the protocol-specific jitter analysis
-        protocol_metric.print_stats(2.4);
+        protocol_metric.print_stats(calibrated_cpns);
         std::cout << "\n[Success] Protocol Simulation Complete.\n";
 
     } catch (const std::exception& e) {
