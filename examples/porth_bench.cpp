@@ -11,10 +11,11 @@
 #include "../include/porth/PorthClock.hpp"
 #include "../include/porth/PorthMetric.hpp"
 #include "../include/porth/PorthUtil.hpp"
+#include <cstddef>
+#include <cstdint>
 #include <format>
 #include <iostream>
 #include <string>
-#include <vector>
 
 /**
  * @brief Task 3.1: Automated Benchmark Suite.

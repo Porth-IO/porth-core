@@ -33,9 +33,9 @@ namespace porth {
  */
 class PorthMockDevice {
 private:
-    std::string name;                       ///< POSIX shared memory name (prepended with /).
-    PorthDeviceLayout* device_ptr{nullptr}; ///< Pointer to the memory-mapped register space.
-    bool is_owner; ///< Flag indicating if this instance owns the SHM lifecycle.
+    std::string m_name;                       ///< POSIX shared memory name (prepended with /).
+    PorthDeviceLayout* m_device_ptr{nullptr}; ///< Pointer to the memory-mapped register space.
+    bool m_is_owner; ///< Flag indicating if this instance owns the SHM lifecycle.
 
 public:
     /**
@@ -45,7 +45,7 @@ public:
      * @throws std::runtime_error If shm_open, ftruncate, or mmap fails.
      */
     PorthMockDevice(const std::string& mem_name, bool create = true)
-        : name("/" + mem_name), is_owner(create) {
+        : m_name("/" + mem_name), m_is_owner(create) {
 
         // 1. Open/Create the shared memory object
         int flags = O_RDWR;
@@ -53,9 +53,9 @@ public:
             flags |= O_CREAT;
         }
 
-        const int fd = shm_open(name.c_str(), flags, 0666);
+        const int fd = shm_open(m_name.c_str(), flags, 0666);
         if (fd == -1) {
-            throw std::runtime_error(std::format("Porth-IO Error: shm_open failed for {}", name));
+            throw std::runtime_error(std::format("Porth-IO Error: shm_open failed for {}", m_name));
         }
 
         // 2. Set size (only if we are the creator/owner of the "hardware" segment)
@@ -77,20 +77,20 @@ public:
             throw std::runtime_error("Porth-IO Error: mmap failed");
         }
 
-        device_ptr = static_cast<PorthDeviceLayout*>(raw_ptr);
+        m_device_ptr = static_cast<PorthDeviceLayout*>(raw_ptr);
     }
 
     /**
      * @brief Destructor: Clean up the mapping and unlink if owner.
      */
     ~PorthMockDevice() {
-        if (device_ptr != nullptr) {
-            (void)munmap(device_ptr, sizeof(PorthDeviceLayout));
+        if (m_device_ptr != nullptr) {
+            (void)munmap(m_device_ptr, sizeof(PorthDeviceLayout));
         }
 
         // Only the owner (the "Hardware" process) should delete the SHM file
-        if (is_owner) {
-            (void)shm_unlink(name.c_str());
+        if (m_is_owner) {
+            (void)shm_unlink(m_name.c_str());
         }
     }
 
@@ -103,13 +103,13 @@ public:
     auto operator=(PorthMockDevice&&) -> PorthMockDevice& = delete;
 
     /** @brief Returns a typed pointer to the register map. */
-    [[nodiscard]] auto view() noexcept -> PorthDeviceLayout* { return device_ptr; }
+    [[nodiscard]] auto view() noexcept -> PorthDeviceLayout* { return m_device_ptr; }
 
     /** @brief Returns a const typed pointer to the register map. */
-    [[nodiscard]] auto view() const noexcept -> const PorthDeviceLayout* { return device_ptr; }
+    [[nodiscard]] auto view() const noexcept -> const PorthDeviceLayout* { return m_device_ptr; }
 
     /** @brief Operator overload for intuitive, pointer-like access to registers. */
-    [[nodiscard]] auto operator->() noexcept -> PorthDeviceLayout* { return device_ptr; }
+    [[nodiscard]] auto operator->() noexcept -> PorthDeviceLayout* { return m_device_ptr; }
 };
 
 } // namespace porth

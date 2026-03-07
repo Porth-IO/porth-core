@@ -1,6 +1,11 @@
 #include "../include/porth/PorthClock.hpp"
 #include "../include/porth/PorthMetric.hpp"
-#include <thread>
+#include <cstddef>
+#include <cstdint>
+#include <iostream>
+#include <memory>
+#include <pthread.h>
+#include <sched.h>
 
 auto main() -> int {
     cpu_set_t cpuset;

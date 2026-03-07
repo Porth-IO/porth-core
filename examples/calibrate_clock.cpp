@@ -1,6 +1,8 @@
 #include "../include/porth/PorthClock.hpp"
 #include <algorithm>
-#include <chrono>
+#include <bits/chrono.h>
+#include <cstdint>
+#include <functional>
 #include <iostream>
 #include <thread>
 #include <vector>

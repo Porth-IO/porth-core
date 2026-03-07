@@ -31,8 +31,8 @@ namespace porth {
  */
 class PorthHugePage {
 private:
-    void* ptr = nullptr; ///< Base address of the mapped memory region.
-    size_t total_size;   ///< Total size after alignment to HugePage boundaries.
+    void* m_ptr = nullptr; ///< Base address of the mapped memory region.
+    size_t m_total_size;   ///< Total size after alignment to HugePage boundaries.
 
     /** @brief Standard 2MB HugePage size for x86_64 architecture. */
     static constexpr size_t HP_SIZE = static_cast<size_t>(2) * 1024 * 1024;
@@ -46,7 +46,7 @@ public:
      * * @param size The requested size in bytes.
      * @throws std::runtime_error If both allocation attempts fail.
      */
-    explicit PorthHugePage(size_t size) : total_size(((size + HP_SIZE - 1) / HP_SIZE) * HP_SIZE) {
+    explicit PorthHugePage(size_t size) : m_total_size(((size + HP_SIZE - 1) / HP_SIZE) * HP_SIZE) {
 
         /**
          * Attempt 1: The "Fast Path"
@@ -56,29 +56,29 @@ public:
          * MAP_LOCKED: Pin pages to RAM to prevent kernel swapping.
          */
         int flags = MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_LOCKED;
-        ptr       = mmap(nullptr, total_size, PROT_READ | PROT_WRITE, flags, -1, 0);
+        m_ptr     = mmap(nullptr, m_total_size, PROT_READ | PROT_WRITE, flags, -1, 0);
 
-        if (ptr == MAP_FAILED) {
+        if (m_ptr == MAP_FAILED) {
             std::cout << "[Porth-IO] Note: HugePages not supported on this kernel. Falling back to "
                          "standard pages.\n";
 
             // Attempt 2: The "Standard Way" (Remove MAP_HUGETLB but keep the lock)
             flags = MAP_PRIVATE | MAP_ANONYMOUS | MAP_LOCKED;
-            ptr   = mmap(nullptr, total_size, PROT_READ | PROT_WRITE, flags, -1, 0);
+            m_ptr = mmap(nullptr, m_total_size, PROT_READ | PROT_WRITE, flags, -1, 0);
 
-            if (ptr == MAP_FAILED) {
+            if (m_ptr == MAP_FAILED) {
                 throw std::runtime_error("[Porth-IO] Fatal: Total memory allocation failure.");
             }
         }
 
         // Advise the kernel on access patterns to optimize TLB behavior
-        (void)madvise(ptr, total_size, MADV_HUGEPAGE | MADV_SEQUENTIAL);
+        (void)madvise(m_ptr, m_total_size, MADV_HUGEPAGE | MADV_SEQUENTIAL);
     }
 
     /** @brief Destructor: Ensures atomic-level hardware memory is unmapped correctly. */
     ~PorthHugePage() {
-        if (ptr != nullptr && ptr != MAP_FAILED) {
-            (void)munmap(ptr, total_size);
+        if (m_ptr != nullptr && m_ptr != MAP_FAILED) {
+            (void)munmap(m_ptr, m_total_size);
         }
     }
 
@@ -91,10 +91,10 @@ public:
     auto operator=(PorthHugePage&&) -> PorthHugePage& = delete;
 
     /** @brief Returns the raw pointer to the mapped memory. */
-    [[nodiscard]] auto data() const noexcept -> void* { return ptr; }
+    [[nodiscard]] auto data() const noexcept -> void* { return m_ptr; }
 
     /** @brief Returns the total allocated size (including alignment padding). */
-    [[nodiscard]] auto size() const noexcept -> size_t { return total_size; }
+    [[nodiscard]] auto size() const noexcept -> size_t { return m_total_size; }
 
     /**
      * @brief Maps the memory region to a specific structure type.
@@ -104,17 +104,17 @@ public:
      */
     template <typename T>
     [[nodiscard]] auto get_as() -> T* {
-        if (sizeof(T) > total_size) {
+        if (sizeof(T) > m_total_size) {
             throw std::runtime_error("Porth-IO: Requested structure exceeds HugePage size.");
         }
-        return static_cast<T*>(ptr);
+        return static_cast<T*>(m_ptr);
     }
 
     /**
      * @brief Returns the device-visible address for DMA handshakes.
      */
     [[nodiscard]] auto get_device_addr() const noexcept -> uint64_t {
-        return reinterpret_cast<uint64_t>(ptr);
+        return reinterpret_cast<uint64_t>(m_ptr);
     }
 };
 

@@ -1,7 +1,12 @@
+#include "../include/porth/PorthDeviceLayout.hpp"
 #include "../include/porth/PorthMockDevice.hpp"
+#include "../include/porth/PorthRegister.hpp"
 #include "../include/porth/PorthShuttle.hpp"
+#include <cstddef>
 #include <cstdint>
+#include <exception>
 #include <iostream>
+#include <memory>
 
 /**
  * Zero-Copy Handshake Test:

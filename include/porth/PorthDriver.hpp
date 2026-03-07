@@ -36,8 +36,8 @@ constexpr size_t DEFAULT_RING_SIZE = 1024;
 template <size_t RingSize = DEFAULT_RING_SIZE>
 class Driver {
 private:
-    PorthDeviceLayout* regs; ///< Pointer to memory-mapped hardware registers.
-    std::unique_ptr<PorthShuttle<RingSize>> shuttle; ///< The zero-copy memory shuttle.
+    PorthDeviceLayout* m_regs; ///< Pointer to memory-mapped hardware registers.
+    std::unique_ptr<PorthShuttle<RingSize>> m_shuttle; ///< The zero-copy memory shuttle.
 
 public:
     /**
@@ -46,19 +46,19 @@ public:
      * * @param hardware_regs Pointer to the device layout.
      * @throws std::runtime_error If hardware_regs is null.
      */
-    explicit Driver(PorthDeviceLayout* hardware_regs) : regs(hardware_regs) {
+    explicit Driver(PorthDeviceLayout* hardware_regs) : m_regs(hardware_regs) {
 
-        if (regs == nullptr) {
+        if (m_regs == nullptr) {
             throw std::runtime_error("Porth-Driver: Hardware registers pointer is null");
         }
 
         // Initialize the Shuttle (HugePage memory + RingBuffer)
-        shuttle = std::make_unique<PorthShuttle<RingSize>>();
+        m_shuttle = std::make_unique<PorthShuttle<RingSize>>();
 
         // Task 2.2: Automated Handshake
         // Write the DMA-ready address of the Shuttle to the hardware's data_ptr
-        const uint64_t dma_addr = shuttle->get_device_addr();
-        regs->data_ptr.write(dma_addr);
+        const uint64_t dma_addr = m_shuttle->get_device_addr();
+        m_regs->data_ptr.write(dma_addr);
 
         // Professional logging using C++23 std::format
         std::cout << std::format(
@@ -72,7 +72,7 @@ public:
      * @return PorthStatus::SUCCESS on success, PorthStatus::FULL if the ring is saturated.
      */
     [[nodiscard]] auto transmit(const PorthDescriptor& desc) noexcept -> PorthStatus {
-        if (shuttle->ring()->push(desc)) {
+        if (m_shuttle->ring()->push(desc)) {
             return PorthStatus::SUCCESS;
         }
         return PorthStatus::FULL;
@@ -84,18 +84,18 @@ public:
      * @return PorthStatus::SUCCESS on success, PorthStatus::EMPTY if no data.
      */
     [[nodiscard]] auto receive(PorthDescriptor& out_desc) noexcept -> PorthStatus {
-        if (shuttle->ring()->pop(out_desc)) {
+        if (m_shuttle->ring()->pop(out_desc)) {
             return PorthStatus::SUCCESS;
         }
         return PorthStatus::EMPTY;
     }
 
     /** @brief Returns the underlying register layout. */
-    [[nodiscard]] auto get_regs() const noexcept -> PorthDeviceLayout* { return regs; }
+    [[nodiscard]] auto get_regs() const noexcept -> PorthDeviceLayout* { return m_regs; }
 
     /** @brief Returns the shuttle management object. */
     [[nodiscard]] auto get_shuttle() const noexcept -> PorthShuttle<RingSize>* {
-        return shuttle.get();
+        return m_shuttle.get();
     }
 };
 

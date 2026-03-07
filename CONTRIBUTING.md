@@ -58,4 +58,51 @@ Check the project's Issue tracker for "Good First Issue" tags. These typically i
 
 ---
 
+## 🛠️ The Immaculate Toolkit
+
+To contribute to Porth-IO, you must use the same toolchain as our CI/CD pipeline. This ensures your code is "Immaculate" before you even open a Pull Request.
+
+---
+
+### 1. Static Analysis & Formatting
+
+We enforce the absolute latest standards. Do not attempt to format code manually.
+
+* **Clang-Format 20:** Enforces the Porth-IO structural layout.
+* **Clang-Tidy 20:** Enforces HFT-grade safety and naming (`m_` prefix).
+```bash
+# 1. Format all files before committing (Enforces structural layout)
+find include examples tests -name "*.hpp" -o -name "*.cpp" | xargs clang-format -i
+
+# 2. Run Static Analysis (Enforces m_ prefix and Cognitive Complexity < 12)
+# Note: This requires a 'build' directory and generated compile_commands.json
+cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+run-clang-tidy -p build include/porth/*.hpp
+```
+
+---
+
+### 2. Local CI Testing (`act`)
+
+We use `act` to run our GitHub Actions locally. This allows you to verify the Sovereign Logic Layer CI on your own machine.
+```bash
+# Run the entire audit and physics verification locally
+act -j verify-and-audit
+```
+
+---
+
+### 3. Automatic "Immaculate" Gates (Pre-Commit)
+We use `pre-commit` to ensure all code meets our standards before it even leaves your machine.
+
+**Installation:**
+1. Install the framework: `pip install pre-commit`
+2. Install the Porth-IO hooks: `pre-commit install`
+
+**Workflow:**
+The hooks require a compilation database to run `clang-tidy`. Ensure your build directory is configured:
+```bash
+cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+```
+
 **Build for Performance. Design for Sovereignty.**

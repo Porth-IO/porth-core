@@ -41,17 +41,70 @@ constexpr double PERCENTILE_P99_99 = 99.99;
  */
 class PorthMetric {
 private:
-    std::vector<uint64_t> samples; ///< Pre-allocated sample buffer.
-    size_t capacity;               ///< Maximum number of samples.
-    size_t count = 0;              ///< Current number of recorded samples.
+    std::vector<uint64_t> m_samples; ///< Pre-allocated sample buffer.
+    size_t m_capacity;               ///< Maximum number of samples.
+    size_t m_count = 0;              ///< Current number of recorded samples.
+
+    /** @brief Prepares a sorted copy of the recorded samples for analysis. */
+    [[nodiscard]] auto get_sorted_samples() const -> std::vector<uint64_t> {
+        std::vector<uint64_t> sorted(m_samples.begin(),
+                                     m_samples.begin() + static_cast<std::ptrdiff_t>(m_count));
+        std::ranges::sort(sorted);
+        return sorted;
+    }
+
+    /** @brief Calculates the arithmetic mean of the sample set. */
+    [[nodiscard]] auto calculate_mean(const std::vector<uint64_t>& samples) const noexcept
+        -> double {
+        const double sum = std::accumulate(samples.begin(), samples.end(), 0.0);
+        return sum / static_cast<double>(m_count);
+    }
+
+    /** @brief Calculates the standard deviation using the inner product for precision. */
+    [[nodiscard]] auto calculate_stdev(const std::vector<uint64_t>& samples,
+                                       double mean) const noexcept -> double {
+        const double sq_sum =
+            std::inner_product(samples.begin(), samples.end(), samples.begin(), 0.0);
+        return std::sqrt(std::abs((sq_sum / static_cast<double>(m_count)) - (mean * mean)));
+    }
+
+    /** @brief Retrieves a specific percentile and converts it to nanoseconds. */
+    [[nodiscard]] auto get_percentile_ns(const std::vector<uint64_t>& samples,
+                                         double percentile,
+                                         double cpns) const noexcept -> double {
+        auto idx = static_cast<size_t>(percentile * static_cast<double>(m_count) / 100.0);
+        if (idx >= m_count) {
+            idx = m_count - 1;
+        }
+        return static_cast<double>(samples[idx]) / cpns;
+    }
+
+    /**
+     * @brief Internal helper to write the formatted markdown table to a stream.
+     * Separates formatting logic from file I/O for better testing and lower complexity.
+     */
+    void write_markdown_table(std::ostream& out,
+                              const std::string& label,
+                              double min_ns,
+                              double median_ns,
+                              double p999_ns,
+                              double max_ns) const {
+        out << "### Benchmark: " << label << "\n";
+        out << "| Metric | Latency (ns) |\n";
+        out << "| :--- | :--- |\n";
+        out << std::format("| Minimum | {:.2f} |\n", min_ns);
+        out << std::format("| Median (P50) | {:.2f} |\n", median_ns);
+        out << std::format("| P99.9 | {:.2f} |\n", p999_ns);
+        out << std::format("| Maximum | {:.2f} |\n\n", max_ns);
+    }
 
 public:
     /**
      * @brief Construct a new Metric engine with a fixed capacity.
      * @param max_samples Total samples to pre-allocate.
      */
-    explicit PorthMetric(size_t max_samples = DEFAULT_METRIC_CAPACITY) : capacity(max_samples) {
-        samples.resize(capacity, 0);
+    explicit PorthMetric(size_t max_samples = DEFAULT_METRIC_CAPACITY) : m_capacity(max_samples) {
+        m_samples.resize(m_capacity, 0);
     }
 
     /**
@@ -61,8 +114,8 @@ public:
      * * @param latency The raw cycle count delta to record.
      */
     void record(uint64_t latency) noexcept {
-        if (count < capacity) {
-            samples[count++] = latency;
+        if (m_count < m_capacity) {
+            m_samples[m_count++] = latency;
         }
     }
 
@@ -77,54 +130,37 @@ public:
             return;
         }
 
-        for (size_t i = 0; i < count; ++i) {
-            out << i << " " << samples[i] << "\n";
+        for (size_t i = 0; i < m_count; ++i) {
+            out << i << " " << m_samples[i] << "\n";
         }
     }
 
     /**
-     * @brief print_stats(): Analyzes the collected data for Mean, StDev, and IQR.
-     * * Converts raw cycles to nanoseconds and outputs a professional jitter report.
-     * * @param cycles_per_ns Calibration factor (CPU GHz).
+     * @brief print_stats(): Analyzes the collected data and outputs a jitter report.
+     * Orchestrates data sorting, statistical modeling, and C++23 formatted output.
      */
     void print_stats(double cycles_per_ns) {
-        if (count == 0) {
+        if (m_count == 0)
             return;
-        }
 
-        // Copy and sort for percentile analysis
-        std::vector<uint64_t> sorted_samples(samples.begin(),
-                                             samples.begin() + static_cast<std::ptrdiff_t>(count));
-        std::ranges::sort(sorted_samples);
+        // 1. Prepare Data
+        const auto sorted_samples = get_sorted_samples();
 
-        // Basic statistics
-        const double sum  = std::accumulate(sorted_samples.begin(), sorted_samples.end(), 0.0);
-        const double mean = sum / static_cast<double>(count);
+        // 2. Compute Statistics (in cycles)
+        const double mean_cycles  = calculate_mean(sorted_samples);
+        const double stdev_cycles = calculate_stdev(sorted_samples, mean_cycles);
 
-        // Standard Deviation using inner product for precision
-        const double sq_sum = std::inner_product(
-            sorted_samples.begin(), sorted_samples.end(), sorted_samples.begin(), 0.0);
-        const double stdev =
-            std::sqrt(std::abs((sq_sum / static_cast<double>(count)) - (mean * mean)));
+        // 3. Compute Percentiles (converted to ns)
+        const double q1_ns  = get_percentile_ns(sorted_samples, PERCENTILE_Q1, cycles_per_ns);
+        const double q3_ns  = get_percentile_ns(sorted_samples, PERCENTILE_Q3, cycles_per_ns);
+        const double p99_ns = get_percentile_ns(sorted_samples, PERCENTILE_P99_99, cycles_per_ns);
 
-        auto get_p = [&](double percentile) {
-            auto idx = static_cast<size_t>(percentile * static_cast<double>(count) / 100.0);
-            if (idx >= count) {
-                idx = count - 1;
-            }
-            return static_cast<double>(sorted_samples[idx]) / cycles_per_ns;
-        };
-
-        const double q1  = get_p(PERCENTILE_Q1);
-        const double q3  = get_p(PERCENTILE_Q3);
-        const double iqr = q3 - q1;
-
-        // Immaculate C++23 formatted output
+        // 4. Final Jitter Analysis Output
         std::cout << "\n--- Porth-IO Jitter Analysis (ns) ---\n";
-        std::cout << std::format("Mean:    {:.2f} ns\n", mean / cycles_per_ns);
-        std::cout << std::format("StDev:   {:.2f} ns\n", stdev / cycles_per_ns);
-        std::cout << std::format("IQR:     {:.2f} ns\n", iqr);
-        std::cout << std::format("P99.99:  {:.2f} ns\n", get_p(PERCENTILE_P99_99));
+        std::cout << std::format("Mean:    {:.2f} ns\n", mean_cycles / cycles_per_ns);
+        std::cout << std::format("StDev:   {:.2f} ns\n", stdev_cycles / cycles_per_ns);
+        std::cout << std::format("IQR:     {:.2f} ns\n", q3_ns - q1_ns);
+        std::cout << std::format("P99.99:  {:.2f} ns\n", p99_ns);
     }
 
     /**
@@ -134,41 +170,29 @@ public:
      * @param label The name of the benchmark run.
      * @param cycles_per_ns Frequency for cycle-to-ns conversion.
      */
-    void save_markdown_report(
-        const std::string& filename, // NOLINT(bugprone-easily-swappable-parameters)
-        const std::string& label,
-        double cycles_per_ns) {
+    void save_markdown_report(const std::string& filename,
+                              const std::string& label,
+                              double cycles_per_ns) {
         std::ofstream out(filename, std::ios::app);
-        if (!out.is_open() || count == 0) {
+        if (!out.is_open() || m_count == 0) {
             return;
         }
 
-        std::vector<uint64_t> sorted_samples(samples.begin(),
-                                             samples.begin() + static_cast<std::ptrdiff_t>(count));
-        std::ranges::sort(sorted_samples);
+        // 1. Prepare Data using existing helpers
+        const auto sorted_samples = get_sorted_samples();
 
-        auto get_p = [&](double percentile) {
-            auto idx = static_cast<size_t>(percentile * static_cast<double>(count) / 100.0);
-            if (idx >= count) {
-                idx = count - 1;
-            }
-            return static_cast<double>(sorted_samples[idx]) / cycles_per_ns;
-        };
+        // 2. Extract specific metrics required for the report
+        const double min_ns    = get_percentile_ns(sorted_samples, 0.0, cycles_per_ns);
+        const double median_ns = get_percentile_ns(sorted_samples, PERCENTILE_P50, cycles_per_ns);
+        const double p999_ns   = get_percentile_ns(sorted_samples, PERCENTILE_P99_9, cycles_per_ns);
+        const double max_ns    = get_percentile_ns(sorted_samples, 100.0, cycles_per_ns);
 
-        // Formatting strictly according to the "Golden Example" standard
-        out << "### Benchmark: " << label << "\n";
-        out << "| Metric | Latency (ns) |\n";
-        out << "| :--- | :--- |\n";
-        out << std::format("| Minimum | {:.2f} |\n",
-                           static_cast<double>(sorted_samples[0]) / cycles_per_ns);
-        out << std::format("| Median (P50) | {:.2f} |\n", get_p(PERCENTILE_P50));
-        out << std::format("| P99.9 | {:.2f} |\n", get_p(PERCENTILE_P99_9));
-        out << std::format("| Maximum | {:.2f} |\n\n",
-                           static_cast<double>(sorted_samples[count - 1]) / cycles_per_ns);
+        // 3. Delegate the formatting and writing
+        write_markdown_table(out, label, min_ns, median_ns, p999_ns, max_ns);
     }
 
     /** @brief Resets the sample count for a new run. */
-    void reset() noexcept { count = 0; }
+    void reset() noexcept { m_count = 0; }
 };
 
 } // namespace porth

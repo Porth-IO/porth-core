@@ -2,8 +2,8 @@
 #define _GNU_SOURCE
 #endif
 
-#include <cstring>
-#include <iomanip>
+#include <arpa/inet.h>
+#include <cstdint>
 #include <iostream>
 #include <netinet/in.h>
 #include <pthread.h>

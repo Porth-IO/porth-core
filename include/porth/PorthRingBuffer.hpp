@@ -45,6 +45,12 @@ struct PorthDescriptor {
     uint32_t len;  ///< Length of the data buffer in bytes.
 };
 
+// Audit the PorthDescriptor struct
+static_assert(std::is_standard_layout_v<PorthDescriptor>,
+              "PorthDescriptor must be Standard Layout for DMA compatibility.");
+static_assert(std::is_trivially_copyable_v<PorthDescriptor>,
+              "PorthDescriptor must be Trivially Copyable for zero-copy transfers.");
+
 /**
  * @class PorthRingBuffer
  * @brief A high-performance SPSC Lock-Free Queue.
@@ -64,16 +70,16 @@ private:
     /** * @brief Pointer to the underlying descriptor array.
      * Fixed: Added gsl::owner to satisfy clang-tidy memory ownership requirements.
      */
-    gsl::owner<PorthDescriptor*> buffer;
-    bool owns_buffer; ///< RAII flag for memory lifecycle management.
+    gsl::owner<PorthDescriptor*> m_buffer;
+    bool m_owns_buffer; ///< RAII flag for memory lifecycle management.
 
     // Cache-line 1: The Producer's territory (Typically the Chip or TX side)
-    alignas(RING_CACHE_LINE_SIZE) std::atomic<uint32_t> head{0};
-    std::array<uint8_t, RING_CACHE_LINE_SIZE - sizeof(std::atomic<uint32_t>)> pad0{};
+    alignas(RING_CACHE_LINE_SIZE) std::atomic<uint32_t> m_head{0};
+    std::array<uint8_t, RING_CACHE_LINE_SIZE - sizeof(std::atomic<uint32_t>)> m_pad0{};
 
     // Cache-line 2: The Consumer's territory (Typically the Driver or RX side)
-    alignas(RING_CACHE_LINE_SIZE) std::atomic<uint32_t> tail{0};
-    std::array<uint8_t, RING_CACHE_LINE_SIZE - sizeof(std::atomic<uint32_t>)> pad1{};
+    alignas(RING_CACHE_LINE_SIZE) std::atomic<uint32_t> m_tail{0};
+    std::array<uint8_t, RING_CACHE_LINE_SIZE - sizeof(std::atomic<uint32_t>)> m_pad1{};
 
 public:
     /**
@@ -81,10 +87,10 @@ public:
      * @param external_buffer Optional pointer to pre-allocated hardware-visible memory.
      */
     explicit PorthRingBuffer(PorthDescriptor* external_buffer = nullptr)
-        : buffer(external_buffer),
-          owns_buffer(external_buffer == nullptr) { // NOLINT(cppcoreguidelines-owning-memory)
-        if (owns_buffer) {
-            buffer = new PorthDescriptor[SIZE];
+        : m_buffer(external_buffer),
+          m_owns_buffer(external_buffer == nullptr) { // NOLINT(cppcoreguidelines-owning-memory)
+        if (m_owns_buffer) {
+            m_buffer = new PorthDescriptor[SIZE];
         }
     }
 
@@ -92,8 +98,8 @@ public:
      * @brief Destructor: Ensures owned memory is released back to the system.
      */
     ~PorthRingBuffer() {
-        if (owns_buffer) {
-            delete[] buffer;
+        if (m_owns_buffer) {
+            delete[] m_buffer;
         }
     }
 
@@ -105,8 +111,8 @@ public:
      * @return true if successful, false if the ring is full.
      */
     [[nodiscard]] auto push(const PorthDescriptor& desc) noexcept -> bool {
-        const uint32_t h = head.load(std::memory_order_relaxed);
-        const uint32_t t = tail.load(std::memory_order_acquire);
+        const uint32_t h = m_head.load(std::memory_order_relaxed);
+        const uint32_t t = m_tail.load(std::memory_order_acquire);
 
         // Check if full: next head would hit tail
         if (((h + 1) & (SIZE - 1)) == t) {
@@ -114,10 +120,10 @@ public:
         }
 
         // Write the data to the current head slot
-        buffer[h] = desc;
+        m_buffer[h] = desc;
 
         // Release: Ensures buffer write is visible before the head index moves
-        head.store((h + 1) & (SIZE - 1), std::memory_order_release);
+        m_head.store((h + 1) & (SIZE - 1), std::memory_order_release);
         return true;
     }
 
@@ -129,8 +135,8 @@ public:
      * @return true if data was retrieved, false if the ring is empty.
      */
     [[nodiscard]] auto pop(PorthDescriptor& out_desc) noexcept -> bool {
-        const uint32_t t = tail.load(std::memory_order_relaxed);
-        const uint32_t h = head.load(std::memory_order_acquire);
+        const uint32_t t = m_tail.load(std::memory_order_relaxed);
+        const uint32_t h = m_head.load(std::memory_order_acquire);
 
         // Check if empty: tail caught up to head
         if (h == t) {
@@ -138,10 +144,10 @@ public:
         }
 
         // Read the data from the current tail slot
-        out_desc = buffer[t];
+        out_desc = m_buffer[t];
 
         // Release: Signals to producer that this slot is now free for new data
-        tail.store((t + 1) & (SIZE - 1), std::memory_order_release);
+        m_tail.store((t + 1) & (SIZE - 1), std::memory_order_release);
         return true;
     }
 
@@ -153,5 +159,8 @@ public:
     PorthRingBuffer(PorthRingBuffer&&)                    = delete;
     auto operator=(PorthRingBuffer&&) -> PorthRingBuffer& = delete;
 };
+
+static_assert(std::is_standard_layout_v<PorthRingBuffer<1024>>,
+              "PorthRingBuffer layout must be deterministic for HugePage mapping.");
 
 } // namespace porth

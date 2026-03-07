@@ -47,9 +47,9 @@ constexpr size_t SHUTTLE_PAGE_SIZE = static_cast<size_t>(2) * 1024 * 1024;
 template <size_t Capacity = DEFAULT_SHUTTLE_CAPACITY>
 class PorthShuttle {
 private:
-    PorthHugePage memory; ///< The underlying HugePage memory allocation.
+    PorthHugePage m_memory; ///< The underlying HugePage memory allocation.
     gsl::owner<PorthRingBuffer<Capacity>*>
-        ring_ptr; ///< Typed pointer to the ring buffer within the HugePage.
+        m_ring_ptr; ///< Typed pointer to the ring buffer within the HugePage.
 
 public:
     /**
@@ -58,14 +58,19 @@ public:
      * structure directly onto that memory region. Because HugePages are
      * 2MB aligned, the ring buffer is guaranteed to be 64-byte aligned.
      */
-    PorthShuttle() : memory(SHUTTLE_PAGE_SIZE), ring_ptr(nullptr) { // Allocate 2MB HugePage pool
+    PorthShuttle()
+        : m_memory(SHUTTLE_PAGE_SIZE), m_ring_ptr(nullptr) { // Allocate 2MB HugePage pool
 
-        // Task 2.4: Get the raw address from the HugePage
-        void* base_addr = memory.data();
+        // Safety check: Ensure the type is safe for memory-mapped placement
+        static_assert(std::is_standard_layout_v<PorthRingBuffer<Capacity>>,
+                      "Cannot map PorthRingBuffer: Type violates Standard Layout rules.");
+
+        // Get the raw address from the HugePage
+        void* base_addr = m_memory.data();
 
         // We initialize the RingBuffer at the very start of the HugePage.
         // This is a zero-copy operation that aligns the software structure with the hardware view.
-        ring_ptr = new (base_addr) PorthRingBuffer<Capacity>();
+        m_ring_ptr = new (base_addr) PorthRingBuffer<Capacity>();
 
         // Professional logging using C++23 std::format for zero-jitter reporting
         std::cout << std::format("[Porth-Shuttle] Zero-Copy Placement New successful at: {}\n",
@@ -79,9 +84,9 @@ public:
      * underlying memory mapping.
      */
     ~PorthShuttle() {
-        if (ring_ptr != nullptr) {
+        if (m_ring_ptr != nullptr) {
             // Task: Manually call the destructor for the placement-mapped object
-            ring_ptr->~PorthRingBuffer();
+            m_ring_ptr->~PorthRingBuffer();
         }
     }
 
@@ -91,17 +96,17 @@ public:
      * @return uint64_t The physical/device address of the memory region.
      */
     [[nodiscard]] auto get_device_addr() const noexcept -> uint64_t {
-        return reinterpret_cast<uint64_t>(memory.data());
+        return reinterpret_cast<uint64_t>(m_memory.data());
     }
 
     /** @brief Access the zero-copy ring buffer for data transmission. */
     [[nodiscard]] auto ring() noexcept -> PorthRingBuffer<Capacity>* {
-        return ring_ptr; // NOLINT(cppcoreguidelines-owning-memory)
+        return m_ring_ptr; // NOLINT(cppcoreguidelines-owning-memory)
     }
 
     /** @brief Const access to the zero-copy ring buffer. */
     [[nodiscard]] auto ring() const noexcept -> const PorthRingBuffer<Capacity>* {
-        return ring_ptr; // NOLINT(cppcoreguidelines-owning-memory)
+        return m_ring_ptr; // NOLINT(cppcoreguidelines-owning-memory)
     }
 
     // Hardware-mapped orchestrators cannot be copied to prevent memory aliasing conflicts.

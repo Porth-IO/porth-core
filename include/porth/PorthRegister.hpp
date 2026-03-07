@@ -1,6 +1,6 @@
 /**
- * @file PorthClock.hpp
- * @brief Hardware-abstracted access to high-precision CPU cycle counters.
+ * @file PorthRegister.hpp
+ * @brief The atomic "brick" of the Porth-IO Hardware Abstraction Layer.
  *
  * Porth-IO: The Sovereign Logic Layer
  *
@@ -37,13 +37,13 @@ class alignas(CACHE_LINE_SIZE) PorthRegister {
                   "PorthRegister types must be trivially copyable for MMIO.");
 
 private:
-    std::atomic<T> value; ///< The underlying atomic register value.
+    std::atomic<T> m_value; ///< The underlying atomic register value.
 
     /** * @brief Explicit padding to ensure each register occupies exactly one cache line.
      * Prevents "False Sharing" where multiple registers inhabit the same cache line,
      * which would introduce latency spikes during high-frequency hardware updates.
      */
-    std::array<unsigned char, CACHE_LINE_SIZE - sizeof(std::atomic<T>)> padding{};
+    std::array<unsigned char, CACHE_LINE_SIZE - sizeof(std::atomic<T>)> m_padding{};
 
 public:
     /** @brief Default constructor for register initialization in mapped memory. */
@@ -60,20 +60,30 @@ public:
     auto operator=(PorthRegister&&) -> PorthRegister& = delete;
 
     /**
-     * @brief Reads the register value using Acquire semantics.
-     * * Ensures all previous hardware writes (e.g., from the Newport chip)
-     * are visible to the CPU before the read operation completes.
-     * * @return The current value of the register.
+     * @brief Reads the register value using Volatile-Acquire semantics.
+     * Ensures the compiler never elides a read and that hardware writes
+     * are visible before the CPU continues.
      */
-    [[nodiscard]] auto load() const noexcept -> T { return value.load(std::memory_order_acquire); }
+    [[nodiscard]] auto load() const noexcept -> T {
+        // 1. Force a volatile read to prevent compiler 'redundant read' optimization
+        T val = *reinterpret_cast<const volatile T*>(&m_value);
+
+        // 2. Insert an Acquire fence to ensure subsequent loads are not reordered
+        std::atomic_thread_fence(std::memory_order_acquire);
+        return val;
+    }
 
     /**
-     * @brief Writes a value to the register using Release semantics.
-     * * Ensures that any data buffers prepared by the CPU are committed
-     * to RAM before the register update signals the hardware to begin processing.
-     * * @param val The value to write to the register.
+     * @brief Writes a value using Volatile-Release semantics.
+     * Ensures the value is committed to the bus and not optimized away.
      */
-    auto write(T val) noexcept -> void { value.store(val, std::memory_order_release); }
+    auto write(T val) noexcept -> void {
+        // 1. Insert a Release fence to ensure prior stores are visible to HW
+        std::atomic_thread_fence(std::memory_order_release);
+
+        // 2. Force a volatile write so the hardware always sees the signal
+        *reinterpret_cast<volatile T*>(&m_value) = val;
+    }
 
     /** @brief Overload for assignment to allow intuitive 'reg = val' syntax. */
     auto operator=(T val) noexcept -> PorthRegister& {

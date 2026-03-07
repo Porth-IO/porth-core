@@ -7,11 +7,15 @@
  */
 
 #include "../include/porth/PorthClock.hpp"
+#include "../include/porth/PorthDeviceLayout.hpp"
 #include "../include/porth/PorthMetric.hpp"
 #include "../include/porth/PorthSimDevice.hpp"
 #include <cstddef>
+#include <cstdint>
+#include <exception>
 #include <format>
 #include <iostream>
+#include <string>
 
 auto main() -> int {
     using namespace porth;

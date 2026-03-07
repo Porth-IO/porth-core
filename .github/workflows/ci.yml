@@ -30,6 +30,8 @@ jobs:
           sudo ln -sf /usr/bin/clang-format-20 /usr/bin/clang-format
           sudo ln -sf /usr/bin/clang-tidy-20 /usr/bin/clang-tidy
 
+          sudo apt-get install -y iwyu # Add iwyu to your existing install list
+
       - name: 1. Format Audit
         run: |
           # Dry-run format check; fails if code doesn't match .clang-format
@@ -49,20 +51,46 @@ jobs:
 
       - name: 4. Execute Physics Barrier Verification
         run: |
-          # Runs the formal verification tests to ensure the Digital Twin 
-          # correctly models the Newport cluster physics.
+          # The 'ctest' command now finds the tests registered in CMake
           cd build
           ctest --output-on-failure
 
-      - name: 5. Generate SBOM (Software Bill of Materials)
+      - name: 5. Execute Performance Gate
         run: |
-          # Tier-1 Trust: Generating CycloneDX SBOM for HFT compliance.
-          # This proves the software has zero undocumented dependencies.
-          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b .
-          ./syft . -o cyclonedx-json=porth-io-sbom.json
-        
+          # Use absolute-style path relative to workspace to avoid 127 errors
+          ./build/porth_bench
+          
+          # Verify the latency guard exists before running
+          if [ -f "scripts/latency_guard.py" ]; then
+            python3 scripts/latency_guard.py
+          else
+            echo "Warning: latency_guard.py not found, skipping gate."
+          fi
+
+      - name: 6. Generate Sovereign SBOM
+        run: |
+          # Hardened installation with 3 retries for transient 502 errors
+          for i in {1..3}; do
+            curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin && break || sleep 5;
+          done
+          
+          syft dir:. -o cyclonedx-json=porth-io-sbom.json
+
+      - name: 7. Audit Sovereign SBOM for Vulnerabilities
+        run: |
+          # Hardened installation with 3 retries
+          for i in {1..3}; do
+            curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin && break || sleep 5;
+          done
+          
+          grype sbom:porth-io-sbom.json --fail-on high
+
       - name: Archive Compliance Artifacts
+        # This 'if' check ensures the step only runs on real GitHub servers
+        if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v4
         with:
           name: porth-io-compliance-bundle
-          path: porth-io-sbom.json
+          path: |
+            porth-io-sbom.json
+            BENCHMARKS.md

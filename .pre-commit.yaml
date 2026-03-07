@@ -1,0 +1,21 @@
+# Porth-IO: Sovereign Pre-Commit Configuration
+# Automates Clang-Format and Clang-Tidy audits before every commit.
+
+repos:
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v18.1.8 # Matches modern LLVM standards
+    hooks:
+      - id: clang-format
+        types_or: [c++, c, header]
+        args: ["-i", "--style=file"]
+
+  - repo: local
+    hooks:
+      - id: clang-tidy
+        name: clang-tidy
+        # Enforces m_ prefix and Cognitive Complexity < 12
+        # Requires build/compile_commands.json to be present
+        entry: run-clang-tidy -p build
+        language: system
+        files: \.(cpp|hpp)$
+        pass_filenames: false

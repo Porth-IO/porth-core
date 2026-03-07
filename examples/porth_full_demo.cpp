@@ -7,13 +7,20 @@
  */
 
 #include "../include/porth/PorthClock.hpp"
+#include "../include/porth/PorthDeviceLayout.hpp"
 #include "../include/porth/PorthDriver.hpp"
 #include "../include/porth/PorthMetric.hpp"
+#include "../include/porth/PorthRegister.hpp"
 #include "../include/porth/PorthSimDevice.hpp"
 #include "../include/porth/PorthUtil.hpp"
-#include <chrono>
+#include <bits/chrono.h> // for milliseconds
+#include <cstddef>       // for size_t
+#include <cstdint>       // for uint64_t, uint32_t
+#include <exception>     // for exception
 #include <format>
 #include <iostream>
+#include <stdexcept> // for runtime_error
+#include <string>    // for allocator, operator<<
 #include <thread>
 
 auto main() -> int {

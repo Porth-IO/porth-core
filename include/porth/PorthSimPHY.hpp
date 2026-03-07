@@ -37,21 +37,50 @@ constexpr uint64_t FEC_RETRY_SPIKE_NS     = 500;
  */
 class PorthSimPHY {
 private:
-    uint64_t base_delay_ns; ///< Base propagation delay in nanoseconds.
-    uint64_t jitter_ns;     ///< Maximum configurable jitter.
-    double cycles_per_ns;   ///< Calibrated CPU cycles per nanosecond.
+    uint64_t m_base_delay_ns; ///< Base propagation delay in nanoseconds.
+    uint64_t m_jitter_ns;     ///< Maximum configurable jitter.
+    double m_cycles_per_ns;   ///< Calibrated CPU cycles per nanosecond.
 
     // Task 2.2: FEC Simulation constants
-    double fec_error_rate =
+    double m_fec_error_rate =
         DEFAULT_FEC_ERROR_RATE; ///< Probability of a Forward Error Correction retry.
-    uint64_t fec_penalty_ns = DEFAULT_FEC_PENALTY_NS; ///< Base latency penalty for FEC processing.
+    uint64_t m_fec_penalty_ns =
+        DEFAULT_FEC_PENALTY_NS; ///< Base latency penalty for FEC processing.
 
     // Task 4.3: Thermal Feedback (milli-Celsius)
-    std::atomic<uint32_t> current_temp_mc{DEFAULT_BASE_TEMP_MC};
+    std::atomic<uint32_t> m_current_temp_mc{DEFAULT_BASE_TEMP_MC};
 
-    std::mt19937 gen;
-    std::uniform_int_distribution<int64_t> jitter_dist;
-    std::uniform_real_distribution<double> error_dist;
+    std::mt19937 m_gen;
+    std::uniform_int_distribution<int64_t> m_jitter_dist;
+    std::uniform_real_distribution<double> m_error_dist;
+
+    /** @brief Calculates the added jitter based on current laser temperature. */
+    [[nodiscard]] auto calculate_thermal_jitter() const noexcept -> uint64_t {
+        uint64_t thermal_jitter = 0;
+        const uint32_t temp     = m_current_temp_mc.load(std::memory_order_relaxed);
+
+        if (temp > THERMAL_THRESHOLD_MC) {
+            thermal_jitter = (temp - THERMAL_THRESHOLD_MC) / MC_TO_C_DIVISOR;
+        }
+        return thermal_jitter;
+    }
+
+    /** @brief Checks for a simulated FEC retry event and returns the spike penalty. */
+    [[nodiscard]] auto get_fec_penalty() noexcept -> uint64_t {
+        if (m_error_dist(m_gen) < m_fec_error_rate) {
+            return FEC_RETRY_SPIKE_NS;
+        }
+        return 0;
+    }
+
+    /** @brief Architecture-specific CPU hint to yield execution during busy-wait. */
+    inline void cpu_relax() const noexcept {
+#if defined(__i386__) || defined(__x86_64__)
+        asm volatile("pause" ::: "memory");
+#elif defined(__aarch64__)
+        asm volatile("isb" ::: "memory");
+#endif
+    }
 
 public:
     /**
@@ -64,56 +93,41 @@ public:
         uint64_t base_ns = DEFAULT_BASE_DELAY_NS, // NOLINT(bugprone-easily-swappable-parameters)
         uint64_t jitter_init = DEFAULT_JITTER_INIT_NS,
         double cpns          = DEFAULT_CPNS)
-        : base_delay_ns(base_ns), jitter_ns(jitter_init), cycles_per_ns(cpns),
-          gen(std::random_device{}()),
-          jitter_dist(-static_cast<int64_t>(jitter_init), static_cast<int64_t>(jitter_init)),
-          error_dist(0.0, 1.0) {}
+        : m_base_delay_ns(base_ns), m_jitter_ns(jitter_init), m_cycles_per_ns(cpns),
+          m_gen(std::random_device{}()),
+          m_jitter_dist(-static_cast<int64_t>(jitter_init), static_cast<int64_t>(jitter_init)),
+          m_error_dist(0.0, 1.0) {}
 
     /**
      * @brief update_thermal_load: Allows the SimDevice to push temperature updates.
      * @param temp_mc Current laser temperature in milli-Celsius.
      */
     auto update_thermal_load(uint32_t temp_mc) noexcept -> void {
-        current_temp_mc.store(temp_mc, std::memory_order_relaxed);
+        m_current_temp_mc.store(temp_mc, std::memory_order_relaxed);
     }
 
     /**
      * @brief apply_protocol_delay: Busy-waits to simulate hardware propagation time.
-     * * This method implements the physics-aware delay logic:
-     * 1. Calculates thermal jitter (1ns increase per 1°C above 40°C).
-     * 2. Adds random jitter and FEC penalties.
-     * 3. Injects a 500ns spike if a simulated FEC error occurs.
-     * 4. Performs a high-precision busy-wait using the 'pause' instruction.
+     * High-level orchestrator that combines thermal, jitter, and FEC models.
      */
     auto apply_protocol_delay() noexcept -> void {
-        // Task 4.3: Calculate thermal jitter multiplier
-        // Jitter increases by 1ns for every 1 degree above 40C (40000 mC)
-        uint64_t thermal_jitter = 0;
-        const uint32_t temp     = current_temp_mc.load(std::memory_order_relaxed);
-        if (temp > THERMAL_THRESHOLD_MC) {
-            thermal_jitter = (temp - THERMAL_THRESHOLD_MC) / MC_TO_C_DIVISOR;
-        }
+        // 1. Accumulate total propagation delay
+        const int64_t random_jitter = (m_jitter_ns > 0) ? m_jitter_dist(m_gen) : 0;
 
-        const int64_t current_jitter = (jitter_ns > 0) ? jitter_dist(gen) : 0;
         uint64_t total_delay_ns =
-            base_delay_ns + static_cast<uint64_t>(current_jitter) + fec_penalty_ns + thermal_jitter;
+            m_base_delay_ns + m_fec_penalty_ns + static_cast<uint64_t>(random_jitter);
 
-        // Simulate FEC retry spike (Task 2.2)
-        if (error_dist(gen) < fec_error_rate) {
-            total_delay_ns += FEC_RETRY_SPIKE_NS;
-        }
+        // 2. Add physics-based penalties
+        total_delay_ns += calculate_thermal_jitter();
+        total_delay_ns += get_fec_penalty();
 
+        // 3. Convert to cycles and execute high-precision wait
         const auto target_cycles =
-            static_cast<uint64_t>(static_cast<double>(total_delay_ns) * cycles_per_ns);
-        const uint64_t start = PorthClock::now_precise();
+            static_cast<uint64_t>(static_cast<double>(total_delay_ns) * m_cycles_per_ns);
 
-        // High-precision busy wait using architecture-specific hints
-        while (PorthClock::now_precise() - start < target_cycles) {
-#if defined(__i386__) || defined(__x86_64__)
-            asm volatile("pause" ::: "memory");
-#elif defined(__aarch64__)
-            asm volatile("isb" ::: "memory");
-#endif
+        const uint64_t start_cycles = PorthClock::now_precise();
+        while (PorthClock::now_precise() - start_cycles < target_cycles) {
+            cpu_relax();
         }
     }
 
@@ -124,10 +138,10 @@ public:
      */
     auto set_config(uint64_t base,
                     uint64_t jitter) -> void { // NOLINT(bugprone-easily-swappable-parameters)
-        base_delay_ns = base;
-        jitter_ns     = jitter;
-        jitter_dist   = std::uniform_int_distribution<int64_t>(-static_cast<int64_t>(jitter),
-                                                             static_cast<int64_t>(jitter));
+        m_base_delay_ns = base;
+        m_jitter_ns     = jitter;
+        m_jitter_dist   = std::uniform_int_distribution<int64_t>(-static_cast<int64_t>(jitter),
+                                                               static_cast<int64_t>(jitter));
     }
 };
 

@@ -1,6 +1,8 @@
 #include "../include/porth/PorthClock.hpp"
 #include "../include/porth/PorthMetric.hpp"
-#include <cstring>
+#include <arpa/inet.h>
+#include <cstdint>
+#include <cstdio>
 #include <iostream>
 #include <netinet/in.h>
 #include <sys/socket.h>
