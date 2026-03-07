@@ -30,6 +30,6 @@ var searchData=
   ['status_5fbusy_27',['STATUS_BUSY',['../namespaceCardiffChip.html#a96eb63c5da8be94926ca1da2425acd9f',1,'CardiffChip']]],
   ['status_5fready_28',['STATUS_READY',['../namespaceCardiffChip.html#a7e98abdf8b34bcc46a765d7ac0e65faf',1,'CardiffChip']]],
   ['std_5fbaseline_2ecpp_29',['std_baseline.cpp',['../std__baseline_8cpp.html',1,'']]],
-  ['strategic_20alignment_30',['🏛️ Strategic Alignment',['../md_README.html#autotoc_md18',1,'']]],
+  ['strategic_20alignment_30',['🏛️ Strategic Alignment',['../md_README.html#autotoc_md20',1,'']]],
   ['success_31',['SUCCESS',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ad0749aaba8b833466dfcbb0428e4f89c',1,'porth']]]
 ];
