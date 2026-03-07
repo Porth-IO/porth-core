@@ -72,19 +72,30 @@ private:
     std::atomic<bool> m_corrupt_status{false};  ///< Triggers random bit-flips in status registers.
     std::atomic<bool> m_bus_hang{false};        ///< Simulates PCIe bus timeouts.
 
+    // Track the first valid address seen to detect corruption
+    std::atomic<uint64_t> m_last_valid_shuttle{0};
+
     /** @brief Internal helper to drain the DMA Shuttle. */
     void process_dma(PorthDeviceLayout* dev) noexcept {
         const uint64_t shuttle_addr = dev->data_ptr.load();
         if (shuttle_addr == 0)
             return;
 
-        // NOLINTNEXTLINE(performance-no-int-to-ptr)
-        auto* shuttle = reinterpret_cast<PorthShuttle<SIM_DEFAULT_SHUTTLE_SIZE>*>(shuttle_addr);
+        uint64_t expected = m_last_valid_shuttle.load();
+        if (expected != 0 && shuttle_addr != expected) {
+            return; // Chaos/Corruption detected, skip processing
+        }
+
+        if (expected == 0) {
+            m_last_valid_shuttle.store(shuttle_addr);
+        }
+
+        auto* ring = reinterpret_cast<PorthRingBuffer<SIM_DEFAULT_SHUTTLE_SIZE>*>(shuttle_addr);
         PorthDescriptor desc{};
 
-        // Drain the shuttle as fast as the "hardware" can process it
-        while (shuttle->ring()->pop(desc)) {
-            // Logic for firing photons would go here
+        // Drain the ring buffer
+        while (ring->pop(desc)) {
+            // Simulated photonics processing...
         }
     }
 
@@ -108,7 +119,14 @@ private:
                              std::uniform_int_distribution<uint32_t>& bit_dist) noexcept {
         if (m_corrupt_status.load(std::memory_order_relaxed)) {
             const uint32_t current_status = dev->status.load();
-            dev->status.write(current_status ^ (1U << bit_dist(gen)));
+
+            // Randomly flip bits in status OR corrupt the data_ptr
+            // to simulate a hard DMA pointer failure (approx 10% chance).
+            if (bit_dist(gen) > 28) {
+                dev->data_ptr.write(dev->data_ptr.load() ^ (1ULL << bit_dist(gen)));
+            } else {
+                dev->status.write(current_status ^ (1U << bit_dist(gen)));
+            }
         }
     }
 

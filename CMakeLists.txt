@@ -121,6 +121,12 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/PorthConfigVersion.cmake"
 
 # --- 5. Internal Development (Tests & Examples) ---
 option(BUILD_TESTING "Enable project tests" ON)
+option(ENABLE_COVERAGE "Enable code coverage reporting" OFF)
+
+if(ENABLE_COVERAGE AND NOT MSVC)
+    add_compile_options(--coverage -O0 -g)
+    add_link_options(--coverage)
+endif()
 
 function(add_porth_target name source is_test)
     add_executable(${name} ${source})
@@ -143,6 +149,9 @@ if(BUILD_TESTING)
     add_porth_target(test_sim_chaos tests/test_sim_chaos.cpp TRUE)
     add_porth_target(test_physics_barrier tests/test_physics_barrier.cpp TRUE)
     add_porth_target(unit_ring_buffer tests/unit_ring_buffer.cpp TRUE)
+    
+    add_porth_target(fuzz_ring_buffer tests/fuzz_ring_buffer.cpp TRUE)
+    add_porth_target(test_physics_response tests/test_physics_response.cpp TRUE)
 endif()
 
 # Build High-Fidelity Examples
