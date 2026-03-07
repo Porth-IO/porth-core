@@ -16,7 +16,7 @@
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="422,28,603,74,601,80,420,33"/>
 <area shape="rect" id="Node000009" href="$PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="714,79,887,104"/>
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="445,28,719,74,719,79,444,33"/>
-<area shape="rect" id="Node000010" href="$PorthRegister_8hpp.html" title=" " alt="" coords="600,152,737,177"/>
+<area shape="rect" id="Node000010" href="$PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="600,152,737,177"/>
 <area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="781,106,703,148,701,143,778,102"/>
 <area shape="rect" id="Node000013" title=" " alt="" coords="707,225,774,251"/>
 <area shape="poly" id="edge15_Node000009_Node000013" title=" " alt="" coords="798,105,753,214,748,211,793,103"/>

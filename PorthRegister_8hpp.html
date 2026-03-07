@@ -81,6 +81,9 @@ $(function() {
   <div class="headertitle"><div class="title">PorthRegister.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The atomic "brick" of the Porth-IO Hardware Abstraction Layer.  
+<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;array&gt;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
@@ -90,7 +93,7 @@ Include dependency graph for PorthRegister.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthRegister_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthRegister_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthRegister_8hpp" id="ainclude_2porth_2PorthRegister_8hpp">
-<area shape="rect" title=" " alt="" coords="51,5,277,31"/>
+<area shape="rect" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="51,5,277,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,61,104"/>
 <area shape="poly" title=" " alt="" coords="144,33,68,74,65,70,142,28"/>
 <area shape="rect" title=" " alt="" coords="85,79,152,104"/>
@@ -106,24 +109,31 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthRegister_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthRegister_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthRegister_8hppdep" id="ainclude_2porth_2PorthRegister_8hppdep">
-<area shape="rect" title=" " alt="" coords="126,5,353,31"/>
-<area shape="rect" href="PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="144,79,335,119"/>
-<area shape="poly" title=" " alt="" coords="242,44,242,79,237,79,237,44"/>
-<area shape="rect" href="PorthDriver_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="5,167,217,192"/>
-<area shape="poly" title=" " alt="" coords="198,128,132,169,129,164,196,124"/>
-<area shape="rect" href="PorthMockDevice_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="270,167,523,192"/>
-<area shape="poly" title=" " alt="" coords="290,122,375,164,372,169,288,127"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="189,328,341,368"/>
-<area shape="poly" title=" " alt="" coords="96,205,86,222,78,242,77,261,83,279,104,301,130,317,159,329,189,337,188,342,158,334,128,322,101,305,78,281,71,262,73,240,81,220,92,202"/>
-<area shape="rect" href="mock__handshake_8cpp.html" title=" " alt="" coords="93,247,324,273"/>
-<area shape="poly" title=" " alt="" coords="358,200,237,250,235,245,356,195"/>
-<area shape="rect" href="zero__copy__handshake_8cpp.html" title=" " alt="" coords="348,240,504,280"/>
-<area shape="poly" title=" " alt="" coords="408,204,421,239,416,241,403,206"/>
-<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="529,247,771,273"/>
-<area shape="poly" title=" " alt="" coords="447,194,614,245,612,250,446,199"/>
-<area shape="poly" title=" " alt="" coords="586,278,341,332,340,327,584,273"/>
-<area shape="rect" href="porth-sim-ctl_8cpp.html" title=" " alt="" coords="573,328,727,368"/>
-<area shape="poly" title=" " alt="" coords="653,286,653,328,647,328,647,286"/>
+<area shape="rect" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="54,5,281,31"/>
+<area shape="rect" href="mock__handshake_8cpp.html" title=" " alt="" coords="195,247,425,273"/>
+<area shape="poly" title=" " alt="" coords="134,39,87,68,42,106,26,127,16,148,15,170,26,190,52,209,95,224,147,236,201,245,201,250,146,241,93,229,49,213,21,194,10,171,11,147,21,125,38,103,84,64,132,35"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="55,328,207,368"/>
+<area shape="poly" title=" " alt="" coords="95,37,58,54,27,80,14,101,11,120,10,167,8,180,10,191,30,232,57,270,111,326,107,330,53,273,25,235,5,193,3,180,5,166,5,119,10,99,23,77,55,50,93,32"/>
+<area shape="rect" href="zero__copy__handshake_8cpp.html" title=" " alt="" coords="717,240,873,280"/>
+<area shape="poly" title=" " alt="" coords="295,26,395,41,507,67,564,85,620,107,674,133,725,165,745,181,762,201,788,238,783,241,758,204,741,185,722,169,672,138,618,112,562,90,505,72,394,46,294,31"/>
+<area shape="rect" href="PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="240,79,431,119"/>
+<area shape="poly" title=" " alt="" coords="205,34,296,76,294,81,203,39"/>
+<area shape="poly" title=" " alt="" coords="333,133,315,247,309,247,328,132"/>
+<area shape="poly" title=" " alt="" coords="317,132,292,163,261,194,240,209,221,217,203,226,184,242,168,263,156,286,139,329,134,327,151,284,164,260,180,238,200,221,218,212,237,204,258,190,288,159,313,128"/>
+<area shape="poly" title=" " alt="" coords="445,104,502,111,564,123,627,141,687,164,715,180,741,200,781,238,777,242,737,204,712,185,685,169,626,146,563,128,501,117,444,109"/>
+<area shape="rect" href="porth-sim-ctl_8cpp.html" title=" " alt="" coords="664,328,817,368"/>
+<area shape="poly" title=" " alt="" coords="445,108,569,125,703,151,765,169,819,189,861,212,888,239,896,260,888,281,874,298,857,312,819,332,816,327,854,308,871,295,884,279,891,260,884,241,858,216,817,193,763,174,702,157,568,130,444,113"/>
+<area shape="rect" href="PorthDriver_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="36,167,248,192"/>
+<area shape="poly" title=" " alt="" coords="278,126,172,169,170,164,276,121"/>
+<area shape="rect" href="PorthMockDevice_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="421,167,674,192"/>
+<area shape="poly" title=" " alt="" coords="400,121,517,164,515,169,398,126"/>
+<area shape="poly" title=" " alt="" coords="143,206,141,240,135,328,130,328,135,240,138,205"/>
+<area shape="poly" title=" " alt="" coords="501,199,346,250,344,245,499,194"/>
+<area shape="poly" title=" " alt="" coords="597,194,737,237,735,242,596,199"/>
+<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="450,247,693,273"/>
+<area shape="poly" title=" " alt="" coords="558,205,570,246,565,248,553,206"/>
+<area shape="poly" title=" " alt="" coords="500,278,208,334,207,329,499,273"/>
+<area shape="poly" title=" " alt="" coords="608,277,705,325,702,330,605,281"/>
 </map>
 </div>
 </div>
@@ -146,7 +156,11 @@ Variables</h2></td></tr>
 <tr class="memdesc:aea2007160ca0f9d6240e2d0e0fbc3fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard cache line size to avoid magic number warnings.  <br /></td></tr>
 <tr class="separator:aea2007160ca0f9d6240e2d0e0fbc3fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The atomic "brick" of the Porth-IO Hardware Abstraction Layer. </p>
+<p>Porth-IO: The Sovereign Logic Layer</p>
+<p>Copyright (c) 2026 Porth-IO Contributors SPDX-License-Identifier: Apache-2.0 </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8

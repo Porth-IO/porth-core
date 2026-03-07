@@ -40,7 +40,7 @@
 <area shape="poly" id="edge16_Node000010_Node000015" title=" " alt="" coords="877,107,834,124,815,137,798,154,785,182,781,212,776,211,780,180,794,150,812,133,832,120,875,102"/>
 <area shape="rect" id="Node000016" href="$PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="1107,152,1280,177"/>
 <area shape="poly" id="edge17_Node000010_Node000016" title=" " alt="" coords="974,101,1138,146,1137,151,972,107"/>
-<area shape="rect" id="Node000017" href="$PorthRegister_8hpp.html" title=" " alt="" coords="932,225,1069,251"/>
+<area shape="rect" id="Node000017" href="$PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="932,225,1069,251"/>
 <area shape="poly" id="edge18_Node000016_Node000017" title=" " alt="" coords="1163,180,1045,223,1044,218,1162,175"/>
 <area shape="rect" id="Node000019" title=" " alt="" coords="967,299,1034,324"/>
 <area shape="poly" id="edge24_Node000016_Node000019" title=" " alt="" coords="1197,178,1195,213,1189,234,1178,252,1149,276,1116,293,1080,304,1048,309,1047,304,1079,298,1114,288,1147,272,1174,249,1184,232,1190,213,1192,177"/>

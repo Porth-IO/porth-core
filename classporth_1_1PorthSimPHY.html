@@ -95,7 +95,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a02e65f590dfa4c5bc443a80d6c86058c"><td class="mdescLeft">&#160;</td><td class="mdescRight">update_thermal_load: Allows the SimDevice to push temperature updates.  <br /></td></tr>
 <tr class="separator:a02e65f590dfa4c5bc443a80d6c86058c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d16ac4e113ad6fec395a4b4aa4d4eb" id="r_ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthShuttle.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#ab4d16ac4e113ad6fec395a4b4aa4d4eb">apply_protocol_delay</a> () <a class="el" href="classporth_1_1PorthShuttle.html">noexcept</a> -&gt; <a class="el" href="classporth_1_1PorthShuttle.html">void</a></td></tr>
-<tr class="memdesc:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">apply_protocol_delay: Busy-waits to simulate hardware propagation time.  <br /></td></tr>
+<tr class="memdesc:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">apply_protocol_delay: Busy-waits to simulate hardware propagation time. High-level orchestrator that combines thermal, jitter, and FEC models.  <br /></td></tr>
 <tr class="separator:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad157483df75dc024ebe82e8c81f2240" id="r_aad157483df75dc024ebe82e8c81f2240"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthShuttle.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#aad157483df75dc024ebe82e8c81f2240">set_config</a> (<a class="el" href="classporth_1_1PorthShuttle.html">uint64_t</a> <a class="el" href="classporth_1_1PorthShuttle.html">base</a>, <a class="el" href="classporth_1_1PorthShuttle.html">uint64_t</a> <a class="el" href="classporth_1_1PorthShuttle.html">jitter</a>) -&gt; <a class="el" href="classporth_1_1PorthShuttle.html">void</a></td></tr>
 <tr class="memdesc:aad157483df75dc024ebe82e8c81f2240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hot-swappable configuration for different hardware scenarios.  <br /></td></tr>
@@ -183,16 +183,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>apply_protocol_delay: Busy-waits to simulate hardware propagation time. </p>
-<ul>
-<li>This method implements the physics-aware delay logic:</li>
-</ul>
-<ol type="1">
-<li>Calculates thermal jitter (1ns increase per 1°C above 40°C).</li>
-<li>Adds random jitter and FEC penalties.</li>
-<li>Injects a 500ns spike if a simulated FEC error occurs.</li>
-<li>Performs a high-precision busy-wait using the 'pause' instruction. </li>
-</ol>
+<p>apply_protocol_delay: Busy-waits to simulate hardware propagation time. High-level orchestrator that combines thermal, jitter, and FEC models. </p>
 
 </div>
 </div>
