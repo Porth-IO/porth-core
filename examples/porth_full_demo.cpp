@@ -6,13 +6,13 @@
  * cross-core synchronization during the Real-Time power-on sequence.
  */
 
-#include "../include/porth/PorthClock.hpp"
-#include "../include/porth/PorthDeviceLayout.hpp"
-#include "../include/porth/PorthDriver.hpp"
-#include "../include/porth/PorthMetric.hpp"
-#include "../include/porth/PorthRegister.hpp"
-#include "../include/porth/PorthSimDevice.hpp"
-#include "../include/porth/PorthUtil.hpp"
+#include "porth/PorthClock.hpp"
+#include "porth/PorthDeviceLayout.hpp"
+#include "porth/PorthDriver.hpp"
+#include "porth/PorthMetric.hpp"
+#include "porth/PorthRegister.hpp"
+#include "porth/PorthSimDevice.hpp"
+#include "porth/PorthUtil.hpp"
 #include <bits/chrono.h> // for milliseconds
 #include <cstddef>       // for size_t
 #include <cstdint>       // for uint64_t, uint32_t

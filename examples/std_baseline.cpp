@@ -1,5 +1,5 @@
-#include "../include/porth/PorthClock.hpp"
-#include "../include/porth/PorthMetric.hpp"
+#include "porth/PorthClock.hpp"
+#include "porth/PorthMetric.hpp"
 #include <arpa/inet.h>
 #include <cstdint>
 #include <cstdio>

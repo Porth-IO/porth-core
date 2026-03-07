@@ -1,6 +1,6 @@
-#include "../include/porth/PorthDeviceLayout.hpp"
-#include "../include/porth/PorthMockDevice.hpp"
-#include "../include/porth/PorthRegister.hpp"
+#include "porth/PorthDeviceLayout.hpp"
+#include "porth/PorthMockDevice.hpp"
+#include "porth/PorthRegister.hpp"
 #include <bits/chrono.h>
 #include <cstdint>
 #include <exception>

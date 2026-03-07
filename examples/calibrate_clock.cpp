@@ -1,4 +1,4 @@
-#include "../include/porth/PorthClock.hpp"
+#include "porth/PorthClock.hpp"
 #include <algorithm>
 #include <bits/chrono.h>
 #include <cstdint>

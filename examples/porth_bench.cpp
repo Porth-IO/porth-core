@@ -8,9 +8,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "../include/porth/PorthClock.hpp"
-#include "../include/porth/PorthMetric.hpp"
-#include "../include/porth/PorthUtil.hpp"
+#include "porth/PorthClock.hpp"
+#include "porth/PorthMetric.hpp"
+#include "porth/PorthUtil.hpp"
 #include <cstddef>
 #include <cstdint>
 #include <format>

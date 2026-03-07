@@ -11,8 +11,8 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#include "../include/porth/PorthClock.hpp"
-#include "../include/porth/PorthMetric.hpp"
+#include "porth/PorthClock.hpp"
+#include "porth/PorthMetric.hpp"
 
 using namespace porth;
 

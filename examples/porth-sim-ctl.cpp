@@ -1,6 +1,6 @@
-#include "../include/porth/PorthDeviceLayout.hpp"
-#include "../include/porth/PorthSimDevice.hpp"
-#include "../include/porth/PorthSimPHY.hpp"
+#include "porth/PorthDeviceLayout.hpp"
+#include "porth/PorthSimDevice.hpp"
+#include "porth/PorthSimPHY.hpp"
 #include <bits/chrono.h> // for seconds
 #include <cstdint>
 #include <exception>

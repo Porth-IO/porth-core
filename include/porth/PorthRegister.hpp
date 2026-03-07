@@ -10,15 +10,20 @@
 
 #pragma once
 
-#include <array>
 #include <atomic>
+#include <cstddef>
 #include <cstdint>
+#include <new>
 #include <type_traits>
 
 namespace porth {
 
-/** @brief Standard cache line size to avoid magic number warnings. */
-constexpr size_t CACHE_LINE_SIZE = 64;
+/** * @brief The Cardiff Standard Cache Line (64 Bytes).
+ * We hardcode this value to ensure the Physical Memory Map (MMIO) remains
+ * consistent across different build environments and CPU architectures.
+ * This prevents the layout from ballooning and breaking register offsets.
+ */
+constexpr size_t PORTH_CACHE_LINE_SIZE = 64;
 
 /**
  * @class PorthRegister
@@ -30,20 +35,24 @@ constexpr size_t CACHE_LINE_SIZE = 64;
  * @tparam T The integral type of the register (must be trivially copyable).
  */
 template <typename T>
-class alignas(CACHE_LINE_SIZE) PorthRegister {
-    // Task 1.3: Compile-Time Verification
+class alignas(PORTH_CACHE_LINE_SIZE) PorthRegister {
     static_assert(std::is_integral_v<T>, "PorthRegister only accepts integer types.");
     static_assert(std::is_trivially_copyable_v<T>,
                   "PorthRegister types must be trivially copyable for MMIO.");
+    static_assert(std::atomic<T>::is_always_lock_free,
+                  "PorthRegister must be lock-free on this architecture.");
 
 private:
-    std::atomic<T> m_value; ///< The underlying atomic register value.
-
-    /** * @brief Explicit padding to ensure each register occupies exactly one cache line.
-     * Prevents "False Sharing" where multiple registers inhabit the same cache line,
-     * which would introduce latency spikes during high-frequency hardware updates.
+    /** * @brief The raw value mapped to hardware.
+     * Uses explicit atomic_ref alignment requirements for 10/10 safety.
      */
-    std::array<unsigned char, CACHE_LINE_SIZE - sizeof(std::atomic<T>)> m_padding{};
+    alignas(std::atomic_ref<T>::required_alignment) T m_value{};
+
+    /** * @brief Explicit padding to guarantee cache-line isolation.
+     * We omit [[no_unique_address]] here because this space MUST be reserved
+     * to prevent other objects from inhabiting this cache line.
+     */
+    std::byte m_padding[PORTH_CACHE_LINE_SIZE - sizeof(T)];
 
 public:
     /** @brief Default constructor for register initialization in mapped memory. */
@@ -55,34 +64,24 @@ public:
     // Hardware registers represent unique physical locations and cannot be copied or moved.
     PorthRegister(const PorthRegister&)                    = delete;
     auto operator=(const PorthRegister&) -> PorthRegister& = delete;
-
-    PorthRegister(PorthRegister&&)                    = delete;
-    auto operator=(PorthRegister&&) -> PorthRegister& = delete;
+    PorthRegister(PorthRegister&&)                         = delete;
+    auto operator=(PorthRegister&&) -> PorthRegister&      = delete;
 
     /**
-     * @brief Reads the register value using Volatile-Acquire semantics.
-     * Ensures the compiler never elides a read and that hardware writes
-     * are visible before the CPU continues.
+     * @brief Reads the register value using Acquire semantics.
+     * std::atomic_ref ensures the compiler treats this as a volatile, atomic MMIO read.
      */
     [[nodiscard]] auto load() const noexcept -> T {
-        // 1. Force a volatile read to prevent compiler 'redundant read' optimization
-        T val = *reinterpret_cast<const volatile T*>(&m_value);
-
-        // 2. Insert an Acquire fence to ensure subsequent loads are not reordered
-        std::atomic_thread_fence(std::memory_order_acquire);
-        return val;
+        // Create a temporary atomic view of the raw memory
+        return std::atomic_ref<const T>(m_value).load(std::memory_order_acquire);
     }
 
     /**
-     * @brief Writes a value using Volatile-Release semantics.
-     * Ensures the value is committed to the bus and not optimized away.
+     * @brief Writes a value using Release semantics.
+     * Ensures the store is visible to hardware and subsequent reads are ordered.
      */
     auto write(T val) noexcept -> void {
-        // 1. Insert a Release fence to ensure prior stores are visible to HW
-        std::atomic_thread_fence(std::memory_order_release);
-
-        // 2. Force a volatile write so the hardware always sees the signal
-        *reinterpret_cast<volatile T*>(&m_value) = val;
+        std::atomic_ref<T>(m_value).store(val, std::memory_order_release);
     }
 
     /** @brief Overload for assignment to allow intuitive 'reg = val' syntax. */
@@ -93,10 +92,12 @@ public:
 
     /** @brief Overload for conversion to allow intuitive 'val = reg' syntax. */
     operator T() const noexcept { return load(); }
-
-    // Task 1.3: Ensure the architecture supports lock-free atomics for the chosen type.
-    static_assert(std::atomic<T>::is_always_lock_free,
-                  "PorthRegister must be lock-free on this architecture.");
 };
+
+/** * @brief Final layout verification.
+ * Essential for ensuring the Sovereign Logic Layer aligns with physical PDK offsets.
+ */
+static_assert(sizeof(PorthRegister<uint32_t>) == PORTH_CACHE_LINE_SIZE,
+              "PorthRegister size mismatch: check hardware alignment logic.");
 
 } // namespace porth

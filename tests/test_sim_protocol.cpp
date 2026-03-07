@@ -6,10 +6,10 @@
  * Copyright (c) 2026 Porth-IO Contributors
  */
 
-#include "../include/porth/PorthClock.hpp"
-#include "../include/porth/PorthDeviceLayout.hpp"
-#include "../include/porth/PorthMetric.hpp"
-#include "../include/porth/PorthSimDevice.hpp"
+#include "porth/PorthClock.hpp"
+#include "porth/PorthDeviceLayout.hpp"
+#include "porth/PorthMetric.hpp"
+#include "porth/PorthSimDevice.hpp"
 #include <cstddef>
 #include <cstdint>
 #include <exception>

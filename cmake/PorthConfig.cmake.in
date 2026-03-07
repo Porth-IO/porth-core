@@ -1,0 +1,12 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+find_dependency(Threads)
+
+# Logic for RT on Linux
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    find_library(RT_LIBRARY NAMES rt REQUIRED)
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/PorthTargets.cmake")
+check_required_components(Porth)

@@ -1,6 +1,6 @@
-#include "../include/porth/PorthDeviceLayout.hpp"
-#include "../include/porth/PorthRegister.hpp"
-#include "../include/porth/PorthSimDevice.hpp"
+#include "porth/PorthDeviceLayout.hpp"
+#include "porth/PorthRegister.hpp"
+#include "porth/PorthSimDevice.hpp"
 #include <bits/chrono.h> // for milliseconds
 #include <cstdint>       // for uint32_t
 #include <exception>     // for exception
