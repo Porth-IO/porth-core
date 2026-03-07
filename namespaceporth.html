@@ -180,9 +180,9 @@ Variables</h2></td></tr>
 <tr class="separator:acb2f09b17c551cd6876db4bc5a8ec5cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a692bcf7caf30e80dcf9f224e574d9f8c" id="r_a692bcf7caf30e80dcf9f224e574d9f8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthShuttle.html">constexpr</a> <a class="el" href="classporth_1_1PorthShuttle.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a692bcf7caf30e80dcf9f224e574d9f8c">PERCENTILE_P99_99</a> = 99.99</td></tr>
 <tr class="separator:a692bcf7caf30e80dcf9f224e574d9f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea2007160ca0f9d6240e2d0e0fbc3fbc" id="r_aea2007160ca0f9d6240e2d0e0fbc3fbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthShuttle.html">constexpr</a> <a class="el" href="classporth_1_1PorthShuttle.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aea2007160ca0f9d6240e2d0e0fbc3fbc">CACHE_LINE_SIZE</a> = 64</td></tr>
-<tr class="memdesc:aea2007160ca0f9d6240e2d0e0fbc3fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard cache line size to avoid magic number warnings.  <br /></td></tr>
-<tr class="separator:aea2007160ca0f9d6240e2d0e0fbc3fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0445d9d65f5f06a472597d6bfdb26a1" id="r_af0445d9d65f5f06a472597d6bfdb26a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthShuttle.html">constexpr</a> <a class="el" href="classporth_1_1PorthShuttle.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#af0445d9d65f5f06a472597d6bfdb26a1">PORTH_CACHE_LINE_SIZE</a> = 64</td></tr>
+<tr class="memdesc:af0445d9d65f5f06a472597d6bfdb26a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Cardiff Standard Cache Line (64 Bytes). We hardcode this value to ensure the Physical Memory Map (MMIO) remains consistent across different build environments and CPU architectures. This prevents the layout from ballooning and breaking register offsets.  <br /></td></tr>
+<tr class="separator:af0445d9d65f5f06a472597d6bfdb26a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13c13622bb48129275aba250446e5277" id="r_a13c13622bb48129275aba250446e5277"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthShuttle.html">constexpr</a> <a class="el" href="classporth_1_1PorthShuttle.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a13c13622bb48129275aba250446e5277">RING_CACHE_LINE_SIZE</a> = 64</td></tr>
 <tr class="memdesc:a13c13622bb48129275aba250446e5277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard cache line size for padding and alignment.  <br /></td></tr>
 <tr class="separator:a13c13622bb48129275aba250446e5277"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -373,30 +373,6 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="aea2007160ca0f9d6240e2d0e0fbc3fbc" name="aea2007160ca0f9d6240e2d0e0fbc3fbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea2007160ca0f9d6240e2d0e0fbc3fbc">&#9670;&#160;</a></span>CACHE_LINE_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthShuttle.html">constexpr</a> <a class="el" href="classporth_1_1PorthShuttle.html">size_t</a> porth::CACHE_LINE_SIZE = 64</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Standard cache line size to avoid magic number warnings. </p>
 
 </div>
 </div>
@@ -983,6 +959,33 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="af0445d9d65f5f06a472597d6bfdb26a1" name="af0445d9d65f5f06a472597d6bfdb26a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0445d9d65f5f06a472597d6bfdb26a1">&#9670;&#160;</a></span>PORTH_CACHE_LINE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classporth_1_1PorthShuttle.html">constexpr</a> <a class="el" href="classporth_1_1PorthShuttle.html">size_t</a> porth::PORTH_CACHE_LINE_SIZE = 64</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Cardiff Standard Cache Line (64 Bytes). We hardcode this value to ensure the Physical Memory Map (MMIO) remains consistent across different build environments and CPU architectures. This prevents the layout from ballooning and breaking register offsets. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>

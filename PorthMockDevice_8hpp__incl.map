@@ -16,18 +16,19 @@
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="422,28,603,74,601,80,420,33"/>
 <area shape="rect" id="Node000009" href="$PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="714,79,887,104"/>
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="445,28,719,74,719,79,444,33"/>
-<area shape="rect" id="Node000010" href="$PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="600,152,737,177"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="781,106,703,148,701,143,778,102"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="707,225,774,251"/>
-<area shape="poly" id="edge15_Node000009_Node000013" title=" " alt="" coords="798,105,753,214,748,211,793,103"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="799,225,891,251"/>
-<area shape="poly" id="edge16_Node000009_Node000014" title=" " alt="" coords="807,104,840,211,835,213,802,105"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="864,152,935,177"/>
-<area shape="poly" id="edge14_Node000009_Node000015" title=" " alt="" coords="818,102,874,142,871,146,815,106"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="537,225,593,251"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="653,180,595,219,592,215,650,175"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="617,225,683,251"/>
-<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="668,178,659,213,654,212,663,177"/>
-<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="682,176,721,214,717,218,679,180"/>
-<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="698,175,804,218,802,222,696,180"/>
+<area shape="rect" id="Node000010" href="$PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="679,152,816,177"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="794,106,766,143,762,140,790,103"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="553,225,624,251"/>
+<area shape="poly" id="edge15_Node000009_Node000012" title=" " alt="" coords="765,107,717,126,668,154,634,184,607,216,603,212,630,181,664,150,715,121,763,102"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="813,225,879,251"/>
+<area shape="poly" id="edge16_Node000009_Node000013" title=" " alt="" coords="809,103,830,151,844,211,839,212,825,153,804,105"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="904,225,996,251"/>
+<area shape="poly" id="edge17_Node000009_Node000015" title=" " alt="" coords="815,103,930,214,926,218,811,106"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="722,225,789,251"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="751,177,755,212,750,212,746,178"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="723,180,628,222,626,217,721,175"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="765,175,820,215,817,219,762,180"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="648,225,697,251"/>
+<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="737,179,697,218,693,214,734,175"/>
+<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="781,175,905,218,904,223,779,180"/>
 </map>

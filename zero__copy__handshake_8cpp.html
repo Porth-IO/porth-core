@@ -79,10 +79,10 @@ $(function() {
   <div class="headertitle"><div class="title">zero_copy_handshake.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="PorthDeviceLayout_8hpp_source.html">../include/porth/PorthDeviceLayout.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="PorthMockDevice_8hpp_source.html">../include/porth/PorthMockDevice.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="PorthRegister_8hpp_source.html">../include/porth/PorthRegister.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="PorthShuttle_8hpp_source.html">../include/porth/PorthShuttle.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="PorthDeviceLayout_8hpp_source.html">porth/PorthDeviceLayout.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="PorthMockDevice_8hpp_source.html">porth/PorthMockDevice.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="PorthRegister_8hpp_source.html">porth/PorthRegister.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="PorthShuttle_8hpp_source.html">porth/PorthShuttle.hpp</a>&quot;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;exception&gt;</code><br />
@@ -93,74 +93,75 @@ Include dependency graph for zero_copy_handshake.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="zero__copy__handshake_8cpp__incl.png" border="0" usemap="#aexamples_2zero__copy__handshake_8cpp" alt=""/></div>
 <map name="aexamples_2zero__copy__handshake_8cpp" id="aexamples_2zero__copy__handshake_8cpp">
-<area shape="rect" title=" " alt="" coords="461,5,617,45"/>
-<area shape="rect" href="PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="34,181,237,221"/>
-<area shape="poly" title=" " alt="" coords="462,37,361,57,307,74,257,96,229,112,204,132,162,173,159,169,201,128,226,108,254,91,306,69,360,52,460,32"/>
-<area shape="rect" href="PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="67,269,204,295"/>
-<area shape="poly" title=" " alt="" coords="462,40,344,60,210,91,147,110,93,132,50,156,24,183,18,201,24,220,48,245,78,262,75,266,44,249,20,223,12,201,20,180,47,152,90,127,145,105,208,86,342,55,461,35"/>
-<area shape="rect" title=" " alt="" coords="639,343,706,368"/>
-<area shape="poly" title=" " alt="" coords="496,48,441,77,387,117,366,140,352,165,347,192,353,220,365,246,379,263,422,292,459,307,513,321,626,344,625,349,512,326,458,312,419,297,375,267,360,249,347,222,342,192,347,163,362,137,384,113,438,72,493,43"/>
-<area shape="rect" title=" " alt="" coords="280,269,351,295"/>
-<area shape="poly" title=" " alt="" coords="505,48,469,69,433,95,387,135,352,183,335,220,324,256,318,255,330,218,348,180,384,131,430,91,466,65,502,43"/>
-<area shape="rect" href="PorthMockDevice_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="443,93,635,133"/>
-<area shape="poly" title=" " alt="" coords="542,46,542,79,537,79,537,46"/>
-<area shape="rect" href="PorthShuttle_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="935,101,1165,126"/>
-<area shape="poly" title=" " alt="" coords="618,37,969,96,968,101,617,42"/>
-<area shape="rect" title=" " alt="" coords="1046,269,1126,295"/>
-<area shape="poly" title=" " alt="" coords="618,27,753,35,915,47,1069,66,1132,77,1179,91,1221,106,1254,122,1280,144,1304,180,1311,204,1304,225,1287,241,1262,254,1202,271,1140,280,1139,275,1200,266,1260,249,1284,237,1299,222,1305,204,1300,182,1276,147,1251,126,1219,111,1177,96,1130,83,1068,71,915,53,753,40,617,33"/>
-<area shape="rect" title=" " alt="" coords="1416,101,1503,126"/>
-<area shape="poly" title=" " alt="" coords="618,25,763,28,958,39,1177,58,1288,73,1397,91,1413,94,1412,100,1396,96,1288,78,1176,64,957,44,763,34,617,30"/>
-<area shape="rect" title=" " alt="" coords="1527,101,1605,126"/>
-<area shape="poly" title=" " alt="" coords="618,26,1078,47,1331,66,1436,78,1516,91,1528,94,1526,99,1515,96,1436,83,1331,72,1077,53,618,32"/>
-<area shape="poly" title=" " alt="" coords="138,222,138,255,133,255,133,222"/>
-<area shape="poly" title=" " alt="" coords="158,220,206,258,236,277,268,292,626,345,626,350,267,297,234,281,203,262,154,224"/>
-<area shape="rect" title=" " alt="" coords="5,343,97,368"/>
-<area shape="poly" title=" " alt="" coords="102,223,77,244,56,270,49,300,50,329,44,329,44,299,52,268,73,240,99,219"/>
-<area shape="poly" title=" " alt="" coords="180,219,277,261,275,266,177,224"/>
-<area shape="rect" title=" " alt="" coords="126,343,182,368"/>
-<area shape="poly" title=" " alt="" coords="141,294,150,329,145,330,136,296"/>
-<area shape="rect" title=" " alt="" coords="510,343,577,368"/>
-<area shape="poly" title=" " alt="" coords="201,292,497,343,496,349,200,297"/>
-<area shape="poly" title=" " alt="" coords="204,290,589,340,626,345,625,350,588,345,204,295"/>
-<area shape="poly" title=" " alt="" coords="124,297,77,336,74,331,120,293"/>
-<area shape="poly" title=" " alt="" coords="451,136,238,181,237,176,450,131"/>
-<area shape="rect" title=" " alt="" coords="363,189,425,214"/>
-<area shape="poly" title=" " alt="" coords="509,136,426,184,424,179,506,131"/>
-<area shape="rect" title=" " alt="" coords="433,269,499,295"/>
-<area shape="poly" title=" " alt="" coords="533,135,479,258,474,256,528,133"/>
-<area shape="rect" title=" " alt="" coords="833,269,920,295"/>
-<area shape="poly" title=" " alt="" coords="557,132,601,182,642,219,712,240,820,266,819,271,711,245,639,224,597,185,553,136"/>
-<area shape="rect" title=" " alt="" coords="523,269,582,295"/>
-<area shape="poly" title=" " alt="" coords="543,133,549,221,552,256,547,256,543,222,538,134"/>
-<area shape="rect" title=" " alt="" coords="607,269,709,295"/>
-<area shape="poly" title=" " alt="" coords="550,132,570,174,599,220,635,258,631,262,595,223,565,176,545,135"/>
-<area shape="rect" title=" " alt="" coords="653,189,738,214"/>
-<area shape="poly" title=" " alt="" coords="575,131,664,180,661,184,572,136"/>
-<area shape="rect" title=" " alt="" coords="734,269,809,295"/>
-<area shape="poly" title=" " alt="" coords="636,121,667,129,698,141,727,158,752,180,764,197,771,217,775,255,770,256,765,218,759,200,748,183,724,162,696,146,666,134,635,126"/>
-<area shape="poly" title=" " alt="" coords="1052,127,1045,170,1038,197,1027,223,999,266,982,282,958,297,897,324,833,341,771,351,720,355,719,350,771,346,831,336,895,319,955,292,979,277,995,263,1022,220,1033,195,1040,169,1047,126"/>
-<area shape="poly" title=" " alt="" coords="1015,129,852,184,802,205,751,224,686,241,634,250,513,272,513,266,633,245,685,235,749,219,800,200,850,179,1013,124"/>
-<area shape="rect" href="PorthHugePage_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="863,189,1013,214"/>
-<area shape="poly" title=" " alt="" coords="1037,128,966,182,963,178,1033,124"/>
-<area shape="poly" title=" " alt="" coords="1056,126,1071,181,1085,255,1080,256,1066,182,1051,127"/>
-<area shape="rect" href="PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer." alt="" coords="1139,189,1289,214"/>
-<area shape="poly" title=" " alt="" coords="1073,124,1181,180,1178,185,1071,129"/>
-<area shape="rect" title=" " alt="" coords="1389,269,1439,295"/>
-<area shape="poly" title=" " alt="" coords="1131,123,1216,144,1261,159,1303,179,1331,197,1357,217,1397,257,1393,261,1353,221,1328,201,1301,184,1259,164,1214,149,1130,129"/>
-<area shape="poly" title=" " alt="" coords="944,214,949,253,945,276,935,296,920,308,898,318,842,334,778,345,720,353,720,347,777,340,841,329,897,313,917,304,931,293,940,274,943,253,939,215"/>
-<area shape="poly" title=" " alt="" coords="884,217,845,224,681,247,607,256,513,272,512,267,606,251,680,241,844,219,883,211"/>
-<area shape="poly" title=" " alt="" coords="931,216,896,260,892,257,927,213"/>
-<area shape="poly" title=" " alt="" coords="882,217,845,224,723,246,596,272,595,267,722,241,844,219,881,211"/>
-<area shape="poly" title=" " alt="" coords="898,217,713,268,711,263,897,211"/>
-<area shape="poly" title=" " alt="" coords="915,216,809,266,807,261,913,212"/>
-<area shape="poly" title=" " alt="" coords="961,212,1053,260,1051,265,959,217"/>
-<area shape="poly" title=" " alt="" coords="1211,216,1185,257,1164,279,1139,297,1093,306,999,314,719,332,196,355,195,350,719,326,998,309,1092,300,1137,292,1161,275,1180,254,1206,213"/>
-<area shape="poly" title=" " alt="" coords="1216,215,1209,256,1200,278,1184,297,1162,310,1136,321,1072,335,996,342,914,345,752,343,683,342,628,345,591,350,590,345,627,340,682,337,752,337,914,339,996,337,1071,330,1134,315,1160,305,1180,293,1195,275,1204,254,1211,214"/>
-<area shape="poly" title=" " alt="" coords="1224,213,1234,231,1242,253,1244,276,1235,297,1207,310,1157,322,1012,339,849,350,720,355,719,350,849,344,1011,334,1156,316,1205,305,1231,293,1239,275,1237,254,1229,233,1220,216"/>
-<area shape="poly" title=" " alt="" coords="1166,217,934,270,933,265,1164,211"/>
-<area shape="poly" title=" " alt="" coords="1244,212,1378,264,1376,269,1242,216"/>
-<area shape="rect" title=" " alt="" coords="1303,269,1365,295"/>
-<area shape="poly" title=" " alt="" coords="1233,212,1306,259,1303,264,1230,216"/>
+<area shape="rect" title=" " alt="" coords="510,5,666,45"/>
+<area shape="rect" href="PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="31,167,242,192"/>
+<area shape="poly" title=" " alt="" coords="511,36,391,56,325,73,262,96,206,126,162,160,158,156,203,122,259,91,323,68,390,51,510,31"/>
+<area shape="rect" href="PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="184,240,321,265"/>
+<area shape="poly" title=" " alt="" coords="511,40,395,62,346,78,313,95,289,125,272,161,262,196,257,227,252,226,257,195,267,159,284,122,309,91,343,73,394,57,510,35"/>
+<area shape="rect" title=" " alt="" coords="9,313,80,339"/>
+<area shape="poly" title=" " alt="" coords="511,36,382,51,233,78,162,95,100,116,52,141,34,154,21,168,13,184,9,201,11,236,21,271,34,300,29,302,16,273,6,237,4,200,8,182,17,165,30,150,49,136,98,111,160,90,231,72,381,46,510,31"/>
+<area shape="rect" title=" " alt="" coords="392,313,459,339"/>
+<area shape="poly" title=" " alt="" coords="543,48,505,67,465,94,427,128,397,168,385,194,380,215,380,237,387,264,396,284,408,301,404,304,391,287,382,266,375,238,374,215,380,192,393,165,423,124,461,90,503,63,541,43"/>
+<area shape="rect" href="PorthMockDevice_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="487,93,690,119"/>
+<area shape="poly" title=" " alt="" coords="591,46,591,79,586,79,586,46"/>
+<area shape="rect" href="PorthShuttle_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="971,93,1139,119"/>
+<area shape="poly" title=" " alt="" coords="667,37,974,88,973,94,666,42"/>
+<area shape="rect" title=" " alt="" coords="1380,240,1460,265"/>
+<area shape="poly" title=" " alt="" coords="667,28,886,48,1019,66,1152,91,1270,111,1319,128,1374,165,1399,194,1415,226,1410,228,1394,197,1371,169,1317,133,1269,116,1151,96,1018,71,886,53,666,34"/>
+<area shape="rect" title=" " alt="" coords="1458,93,1545,119"/>
+<area shape="poly" title=" " alt="" coords="667,27,1003,48,1220,66,1439,91,1445,92,1445,97,1439,96,1220,72,1003,53,667,33"/>
+<area shape="rect" title=" " alt="" coords="1570,93,1647,119"/>
+<area shape="poly" title=" " alt="" coords="667,25,827,30,1046,41,1298,61,1556,91,1555,96,1297,66,1046,47,827,36,667,31"/>
+<area shape="poly" title=" " alt="" coords="156,190,223,230,220,235,154,194"/>
+<area shape="poly" title=" " alt="" coords="131,194,61,303,57,300,127,191"/>
+<area shape="poly" title=" " alt="" coords="140,192,150,228,159,247,173,263,208,281,263,296,379,316,378,322,262,301,207,286,169,267,155,250,145,230,135,193"/>
+<area shape="rect" title=" " alt="" coords="156,313,248,339"/>
+<area shape="poly" title=" " alt="" coords="134,193,125,227,125,246,130,264,146,287,168,304,165,308,142,290,125,266,119,247,120,226,129,192"/>
+<area shape="rect" title=" " alt="" coords="796,313,863,339"/>
+<area shape="poly" title=" " alt="" coords="322,260,783,316,782,322,321,265"/>
+<area shape="poly" title=" " alt="" coords="220,268,92,311,90,306,218,263"/>
+<area shape="poly" title=" " alt="" coords="281,263,386,306,384,310,279,268"/>
+<area shape="rect" title=" " alt="" coords="1268,313,1317,339"/>
+<area shape="poly" title=" " alt="" coords="321,258,385,263,899,298,1254,320,1254,325,898,303,384,268,321,263"/>
+<area shape="poly" title=" " alt="" coords="246,267,220,304,216,301,242,264"/>
+<area shape="poly" title=" " alt="" coords="516,121,223,167,222,162,515,116"/>
+<area shape="rect" title=" " alt="" coords="418,167,481,192"/>
+<area shape="poly" title=" " alt="" coords="567,121,486,163,483,158,565,116"/>
+<area shape="rect" title=" " alt="" coords="807,240,874,265"/>
+<area shape="poly" title=" " alt="" coords="690,108,761,114,832,125,892,141,915,152,930,165,936,175,937,186,927,205,906,222,882,236,879,232,903,218,922,202,932,185,931,177,926,168,912,156,890,146,831,130,760,120,690,114"/>
+<area shape="rect" title=" " alt="" coords="898,240,985,265"/>
+<area shape="poly" title=" " alt="" coords="690,107,767,113,844,123,910,140,935,151,952,165,960,180,962,196,955,228,950,227,956,196,955,181,948,168,932,156,908,145,843,128,766,118,690,112"/>
+<area shape="rect" title=" " alt="" coords="396,240,455,265"/>
+<area shape="poly" title=" " alt="" coords="488,120,443,138,424,151,408,168,402,182,402,197,413,227,408,229,397,198,397,181,404,165,420,147,441,133,486,115"/>
+<area shape="rect" title=" " alt="" coords="530,240,633,265"/>
+<area shape="poly" title=" " alt="" coords="596,118,605,151,606,192,595,228,590,227,600,192,599,152,590,120"/>
+<area shape="rect" title=" " alt="" coords="506,167,591,192"/>
+<area shape="poly" title=" " alt="" coords="584,120,564,156,559,153,580,118"/>
+<area shape="rect" title=" " alt="" coords="658,240,732,265"/>
+<area shape="poly" title=" " alt="" coords="599,118,681,227,676,230,595,121"/>
+<area shape="poly" title=" " alt="" coords="971,117,875,129,759,153,636,189,577,214,521,242,479,273,446,305,443,301,476,269,518,238,575,209,635,184,757,148,874,124,971,111"/>
+<area shape="poly" title=" " alt="" coords="1140,113,1202,130,1232,145,1258,165,1281,195,1293,232,1297,268,1297,299,1292,299,1292,269,1288,233,1276,198,1255,169,1229,150,1200,135,1139,118"/>
+<area shape="poly" title=" " alt="" coords="1048,121,1017,156,974,194,931,219,888,238,886,233,929,214,971,190,1014,152,1044,117"/>
+<area shape="rect" href="PorthHugePage_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="767,167,916,192"/>
+<area shape="poly" title=" " alt="" coords="1022,121,890,165,888,160,1020,116"/>
+<area shape="poly" title=" " alt="" coords="1140,109,1238,127,1290,142,1339,164,1378,194,1407,227,1403,231,1374,198,1336,169,1288,147,1237,132,1139,115"/>
+<area shape="rect" href="PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer." alt="" coords="1093,167,1244,192"/>
+<area shape="poly" title=" " alt="" coords="1075,116,1140,157,1137,162,1072,121"/>
+<area shape="poly" title=" " alt="" coords="834,194,798,231,773,251,746,268,674,295,600,312,530,322,473,326,473,321,530,317,599,307,673,290,743,263,770,247,795,227,830,190"/>
+<area shape="poly" title=" " alt="" coords="844,192,844,227,838,226,839,192"/>
+<area shape="poly" title=" " alt="" coords="859,190,916,230,913,234,856,194"/>
+<area shape="poly" title=" " alt="" coords="775,195,469,247,468,241,774,189"/>
+<area shape="poly" title=" " alt="" coords="801,195,638,239,636,234,799,189"/>
+<area shape="poly" title=" " alt="" coords="819,194,732,236,730,232,817,190"/>
+<area shape="poly" title=" " alt="" coords="917,187,1367,242,1366,247,917,192"/>
+<area shape="poly" title=" " alt="" coords="1185,190,1202,206,1217,225,1225,246,1224,257,1218,267,1195,285,1159,298,1115,309,1066,316,964,325,877,327,877,322,963,319,1065,311,1114,303,1158,293,1192,280,1214,264,1219,255,1220,247,1213,228,1198,209,1182,194"/>
+<area shape="poly" title=" " alt="" coords="1147,194,1050,242,1025,257,999,268,926,286,851,301,702,319,571,327,473,328,473,323,570,321,702,313,850,295,925,281,997,263,1023,252,1047,238,1144,190"/>
+<area shape="poly" title=" " alt="" coords="1196,190,1230,210,1263,238,1280,268,1290,299,1285,300,1275,271,1258,242,1227,214,1194,194"/>
+<area shape="poly" title=" " alt="" coords="1133,195,992,238,991,233,1131,189"/>
+<area shape="rect" title=" " alt="" coords="1060,240,1116,265"/>
+<area shape="poly" title=" " alt="" coords="1157,194,1113,233,1110,229,1154,190"/>
+<area shape="rect" title=" " alt="" coords="1141,240,1204,265"/>
+<area shape="poly" title=" " alt="" coords="1172,192,1174,226,1168,227,1166,192"/>
 </map>
 </div>
 </div><table class="memberdecls">
