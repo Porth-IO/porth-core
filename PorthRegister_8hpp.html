@@ -82,7 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>The atomic "brick" of the Porth-IO Hardware Abstraction Layer.  
+<p>The atomic unit of the Porth-IO Hardware Abstraction Layer (HAL).  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
@@ -94,7 +94,7 @@ Include dependency graph for PorthRegister.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthRegister_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthRegister_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthRegister_8hpp" id="ainclude_2porth_2PorthRegister_8hpp">
-<area shape="rect" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="112,5,339,31"/>
+<area shape="rect" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="112,5,339,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,72,104"/>
 <area shape="poly" title=" " alt="" coords="196,33,83,76,81,71,194,28"/>
 <area shape="rect" title=" " alt="" coords="97,79,167,104"/>
@@ -112,10 +112,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthRegister_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthRegister_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthRegister_8hppdep" id="ainclude_2porth_2PorthRegister_8hppdep">
-<area shape="rect" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="179,5,405,31"/>
+<area shape="rect" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="179,5,405,31"/>
 <area shape="rect" href="mock__handshake_8cpp.html" title=" " alt="" coords="38,247,269,273"/>
 <area shape="poly" title=" " alt="" coords="281,44,162,249,158,246,276,41"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="417,328,569,368"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="417,328,569,368"/>
 <area shape="poly" title=" " alt="" coords="251,38,164,80,116,107,72,138,36,172,13,207,9,225,9,242,15,260,27,278,53,297,92,312,140,324,196,332,313,342,417,345,417,350,313,347,195,338,139,329,90,317,50,302,23,282,10,263,4,243,3,224,8,205,32,168,68,134,113,103,162,75,249,34"/>
 <area shape="rect" href="zero__copy__handshake_8cpp.html" title=" " alt="" coords="611,240,767,280"/>
 <area shape="poly" title=" " alt="" coords="419,30,551,48,691,76,756,94,813,115,858,138,887,165,896,183,894,199,884,213,867,224,821,241,768,252,767,247,819,236,864,220,880,209,889,197,891,184,883,168,854,143,810,119,754,99,690,81,550,53,419,35"/>
@@ -124,14 +124,14 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="poly" title=" " alt="" coords="390,125,330,144,272,169,240,188,211,210,167,249,164,245,208,206,238,184,269,164,328,139,388,120"/>
 <area shape="poly" title=" " alt="" coords="526,127,540,145,550,166,560,197,564,223,560,249,550,281,536,308,517,330,513,326,531,305,546,279,555,248,558,223,555,198,546,168,535,148,521,131"/>
 <area shape="poly" title=" " alt="" coords="535,124,594,165,637,203,673,238,669,242,634,207,590,169,532,128"/>
-<area shape="rect" href="PorthDriver_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="661,167,873,192"/>
+<area shape="rect" href="PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="661,167,873,192"/>
 <area shape="poly" title=" " alt="" coords="571,120,727,164,726,169,569,125"/>
-<area shape="rect" href="PorthMockDevice_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="283,167,536,192"/>
+<area shape="rect" href="PorthMockDevice_8hpp.html" title="Simulation layer for POSIX Shared Memory mapping of hardware registers." alt="" coords="283,167,536,192"/>
 <area shape="poly" title=" " alt="" coords="463,130,423,168,420,164,459,127"/>
 <area shape="poly" title=" " alt="" coords="782,204,792,242,791,263,782,282,768,294,748,304,694,321,631,334,570,342,569,337,630,328,693,316,746,299,765,289,778,278,786,262,787,243,776,205"/>
 <area shape="poly" title=" " alt="" coords="360,199,191,250,190,245,358,193"/>
 <area shape="poly" title=" " alt="" coords="464,193,623,237,621,242,463,198"/>
-<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="293,247,536,273"/>
+<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="293,247,536,273"/>
 <area shape="poly" title=" " alt="" coords="414,206,417,247,411,247,408,206"/>
 <area shape="poly" title=" " alt="" coords="436,281,478,326,474,329,433,285"/>
 </map>
@@ -153,11 +153,11 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:af0445d9d65f5f06a472597d6bfdb26a1" id="r_af0445d9d65f5f06a472597d6bfdb26a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#af0445d9d65f5f06a472597d6bfdb26a1">porth::PORTH_CACHE_LINE_SIZE</a> = 64</td></tr>
-<tr class="memdesc:af0445d9d65f5f06a472597d6bfdb26a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Cardiff Standard Cache Line (64 Bytes). We hardcode this value to ensure the Physical Memory Map (MMIO) remains consistent across different build environments and CPU architectures. This prevents the layout from ballooning and breaking register offsets.  <br /></td></tr>
+<tr class="memdesc:af0445d9d65f5f06a472597d6bfdb26a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Cardiff Standard Cache Line (64 Bytes). This constant is the physical foundation of our MMIO map. We hardcode 64 bytes to align with the Newport Cluster's PCIe TLP (Transaction Layer Packet) granularity. This prevents "Cache Line Bouncing" between the CPU and the InP/GaN DMA engine, ensuring deterministic register access.  <br /></td></tr>
 <tr class="separator:af0445d9d65f5f06a472597d6bfdb26a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The atomic "brick" of the Porth-IO Hardware Abstraction Layer. </p>
+<div class="textblock"><p>The atomic unit of the Porth-IO Hardware Abstraction Layer (HAL). </p>
 <p>Porth-IO: The Sovereign Logic Layer</p>
 <p>Copyright (c) 2026 Porth-IO Contributors SPDX-License-Identifier: Apache-2.0 </p>
 </div></div><!-- contents -->

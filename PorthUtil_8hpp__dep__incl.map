@@ -1,10 +1,10 @@
 <map id="include/porth/PorthUtil.hpp" name="include/porth/PorthUtil.hpp">
 <area shape="rect" id="Node000001" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="30,5,226,31"/>
-<area shape="rect" id="Node000002" href="$porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="52,152,204,192"/>
+<area shape="rect" id="Node000002" href="$porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="52,152,204,192"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,38,37,55,13,80,9,91,9,101,21,120,43,136,71,150,69,154,41,141,17,123,4,102,3,90,8,77,34,51,66,33"/>
-<area shape="rect" id="Node000003" href="$PorthDriver_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="22,79,234,104"/>
+<area shape="rect" id="Node000003" href="$PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="22,79,234,104"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="131,44,131,79,125,79,125,44"/>
-<area shape="rect" id="Node000004" href="$PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="259,79,501,104"/>
+<area shape="rect" id="Node000004" href="$PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="259,79,501,104"/>
 <area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="183,32,340,76,339,81,181,37"/>
 <area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="131,118,131,152,125,152,125,118"/>
 <area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="331,111,189,154,188,149,330,106"/>

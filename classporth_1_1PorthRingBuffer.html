@@ -89,16 +89,16 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aaf3b79e228ecc52231216e794d099d62" id="r_aaf3b79e228ecc52231216e794d099d62"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRingBuffer.html#aaf3b79e228ecc52231216e794d099d62">PorthRingBuffer</a> (<a class="el" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a> *<a class="el" href="classporth_1_1PorthRingBuffer.html">external_buffer</a>=<a class="el" href="classporth_1_1PorthRingBuffer.html">nullptr</a>)</td></tr>
-<tr class="memdesc:aaf3b79e228ecc52231216e794d099d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Can wrap existing memory (like a HugePage) or allocate its own.  <br /></td></tr>
+<tr class="memdesc:aaf3b79e228ecc52231216e794d099d62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Supports wrapping existing HugePage memory for hardware-visibility.  <br /></td></tr>
 <tr class="separator:aaf3b79e228ecc52231216e794d099d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8df960d466cf0ea54fc3aba35d257683" id="r_a8df960d466cf0ea54fc3aba35d257683"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRingBuffer.html#a8df960d466cf0ea54fc3aba35d257683">~PorthRingBuffer</a> ()</td></tr>
-<tr class="memdesc:a8df960d466cf0ea54fc3aba35d257683"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: Ensures owned memory is released back to the system.  <br /></td></tr>
+<tr class="memdesc:a8df960d466cf0ea54fc3aba35d257683"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: Ensures owned memory is released. Does not touch external_buffer if m_owns_buffer is false (Sovereign Ownership).  <br /></td></tr>
 <tr class="separator:a8df960d466cf0ea54fc3aba35d257683"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab018c1989c25ca9943ad47a6ed98a783" id="r_ab018c1989c25ca9943ad47a6ed98a783"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRingBuffer.html#ab018c1989c25ca9943ad47a6ed98a783">push</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">const</a> <a class="el" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a> &amp;<a class="el" href="classporth_1_1PorthRingBuffer.html">desc</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">bool</a></td></tr>
-<tr class="memdesc:ab018c1989c25ca9943ad47a6ed98a783"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classporth_1_1PorthRingBuffer.html#ab018c1989c25ca9943ad47a6ed98a783" title="push() - Executed by the Producer.">push()</a> - Executed by the Producer.  <br /></td></tr>
+<tr class="memdesc:ab018c1989c25ca9943ad47a6ed98a783"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classporth_1_1PorthRingBuffer.html#ab018c1989c25ca9943ad47a6ed98a783" title="push() - Executed by the Producer thread.">push()</a> - Executed by the Producer thread.  <br /></td></tr>
 <tr class="separator:ab018c1989c25ca9943ad47a6ed98a783"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa0bd3860245edcf6eae1d41a1cb4054" id="r_afa0bd3860245edcf6eae1d41a1cb4054"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRingBuffer.html#afa0bd3860245edcf6eae1d41a1cb4054">pop</a> (<a class="el" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a> &amp;<a class="el" href="classporth_1_1PorthRingBuffer.html">out_desc</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">bool</a></td></tr>
-<tr class="memdesc:afa0bd3860245edcf6eae1d41a1cb4054"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classporth_1_1PorthRingBuffer.html#afa0bd3860245edcf6eae1d41a1cb4054" title="pop() - Executed by the Consumer.">pop()</a> - Executed by the Consumer.  <br /></td></tr>
+<tr class="memdesc:afa0bd3860245edcf6eae1d41a1cb4054"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classporth_1_1PorthRingBuffer.html#afa0bd3860245edcf6eae1d41a1cb4054" title="pop() - Executed by the Consumer thread.">pop()</a> - Executed by the Consumer thread.  <br /></td></tr>
 <tr class="separator:afa0bd3860245edcf6eae1d41a1cb4054"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8db1c8ea0d4aac8ea5b0b4cbb6555b9" id="r_ad8db1c8ea0d4aac8ea5b0b4cbb6555b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRingBuffer.html#ad8db1c8ea0d4aac8ea5b0b4cbb6555b9">PorthRingBuffer</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">const</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">PorthRingBuffer</a> &amp;)=<a class="el" href="classporth_1_1PorthRingBuffer.html">delete</a></td></tr>
 <tr class="separator:ad8db1c8ea0d4aac8ea5b0b4cbb6555b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,10 +112,10 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html#aaf3b79e228ecc52231216e794d099d62">size_t</a> SIZE = DEFAULT_RING_CAPACITY&gt;<br />
 class porth::PorthRingBuffer&lt; SIZE &gt;</div><p>A high-performance SPSC Lock-Free Queue. </p>
-<p>Optimized for Zero-Copy data transfer between Hardware and Application. This implementation enforces strict cache-line separation between the producer (head) and consumer (tail) to eliminate cache-coherency bottlenecks.</p>
+<p>Optimized for Zero-Copy data transfer between Hardware and Application. This implementation enforces strict cache-line separation between the producer (head) and consumer (tail) to maximize throughput on many-core systems.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">SIZE</td><td>Number of descriptors. Must be a power of two for bitwise optimization. </td></tr>
+    <tr><td class="paramname">SIZE</td><td>Number of descriptors. Must be a power of two to allow the use of bitwise AND instead of the integer division (modulo) instruction. </td></tr>
   </table>
   </dd>
 </dl>
@@ -146,13 +146,17 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> S
 </table>
 </div><div class="memdoc">
 
-<p>Constructor: Can wrap existing memory (like a HugePage) or allocate its own. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Constructor: Supports wrapping existing HugePage memory for hardware-visibility. </p>
+<ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">external_buffer</td><td>Optional pointer to pre-allocated hardware-visible memory. </td></tr>
+    <tr><td class="paramname">external_buffer</td><td>Optional pointer to pre-allocated, pinned DMA memory. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>If external_buffer is null, the buffer is allocated on the heap, which is suitable for SIL testing but not for physical InP hardware deployment. </dd></dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -181,7 +185,7 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> S
 </table>
 </div><div class="memdoc">
 
-<p>Destructor: Ensures owned memory is released back to the system. </p>
+<p>Destructor: Ensures owned memory is released. Does not touch external_buffer if m_owns_buffer is false (Sovereign Ownership). </p>
 
 </div>
 </div>
@@ -324,9 +328,9 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> S
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classporth_1_1PorthRingBuffer.html#afa0bd3860245edcf6eae1d41a1cb4054" title="pop() - Executed by the Consumer.">pop()</a> - Executed by the Consumer. </p>
+<p><a class="el" href="classporth_1_1PorthRingBuffer.html#afa0bd3860245edcf6eae1d41a1cb4054" title="pop() - Executed by the Consumer thread.">pop()</a> - Executed by the Consumer thread. </p>
 <ul>
-<li>Retrieves a descriptor from the ring. Uses Acquire semantics to ensure the data is fully visible before processing begins.</li>
+<li>Retrieves a descriptor from the ring.</li>
 <li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">out_desc</td><td>Reference to store the retrieved descriptor. </td></tr>
@@ -334,6 +338,7 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> S
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if data was retrieved, false if the ring is empty. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Uses memory_order_acquire to ensure the descriptor data is fully synchronized from the producer thread before processing begins. </dd></dl>
 </li>
 </ul>
 
@@ -365,9 +370,9 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> S
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classporth_1_1PorthRingBuffer.html#ab018c1989c25ca9943ad47a6ed98a783" title="push() - Executed by the Producer.">push()</a> - Executed by the Producer. </p>
+<p><a class="el" href="classporth_1_1PorthRingBuffer.html#ab018c1989c25ca9943ad47a6ed98a783" title="push() - Executed by the Producer thread.">push()</a> - Executed by the Producer thread. </p>
 <ul>
-<li>Adds a new descriptor to the ring. Uses Release semantics to ensure the descriptor data is visible to the consumer before the index update.</li>
+<li>Adds a new descriptor to the ring.</li>
 <li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">desc</td><td>The descriptor to push. </td></tr>
@@ -375,6 +380,7 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> S
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if successful, false if the ring is full. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Uses memory_order_release to ensure the descriptor content is globally visible to the consumer BEFORE the head index update is committed. </dd></dl>
 </li>
 </ul>
 

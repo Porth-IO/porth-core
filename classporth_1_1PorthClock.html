@@ -100,7 +100,10 @@ Static Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides low-latency access to hardware timing primitives. </p>
-<p>This class abstracts the differences between Intel TSC (Time Stamp Counter) and the ARM64 Generic Timer (CNTVCT_EL0). It is designed for sub-microsecond latency measurements in HFT and high-speed interconnect environments. </p>
+<p>This class abstracts the differences between Intel TSC (Time Stamp Counter) and the ARM64 Generic Timer (CNTVCT_EL0). It is designed for sub-microsecond latency measurements in HFT and high-speed interconnect environments.</p><ul>
+<li><dl class="section note"><dt>Note</dt><dd>All methods assume an invariant TSC/Timer frequency. On the Newport Cluster, this prevents timing drift caused by P-state transitions or thermal throttling. </dd></dl>
+</li>
+</ul>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0f57ba05bf94ced059bfcfd0e4880464" name="a0f57ba05bf94ced059bfcfd0e4880464"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0f57ba05bf94ced059bfcfd0e4880464">&#9670;&#160;</a></span>fence()</h2>
@@ -127,7 +130,9 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Injects a hardware memory barrier (Fence). </p>
 <ul>
-<li>Prevents the CPU and compiler from reordering memory operations across this point. Critical for coordinating between the producer and consumer in lock-free structures like <a class="el" href="classporth_1_1PorthRingBuffer.html" title="A high-performance SPSC Lock-Free Queue.">PorthRingBuffer</a>. </li>
+<li>Prevents the CPU and compiler from reordering memory operations across this point. This is the "Sovereign Guard" for lock-free concurrency.</li>
+<li><dl class="section note"><dt>Note</dt><dd>Critical for SPSC/MPMC queues to ensure that data written to a buffer is globally visible before the 'tail' pointer update is committed. </dd></dl>
+</li>
 </ul>
 
 </div>
@@ -157,9 +162,11 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Reads the hardware cycle counter without serialization. </p>
 <ul>
-<li>This is the fastest method to get a timestamp. Note that on modern out-of-order CPUs, this read may be reordered with respect to nearby instructions. Use <a class="el" href="classporth_1_1PorthClock.html#ad0daacb4cc1b1503312768ed7a09cc9e" title="Reads the hardware cycle counter with instruction serialization.">now_precise()</a> if strict ordering is required.</li>
+<li>Fastest timing path available. On modern out-of-order CPUs, this read may be reordered by the front-end fetch unit.</li>
+<li><dl class="section return"><dt>Returns</dt><dd>uint64_t Current CPU clock cycles. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Use this for high-frequency telemetry where the overhead of a pipeline stall (serialization) outweighs the need for exact instruction-boundary precision. </dd></dl>
+</li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>uint64_t Current CPU clock cycles. </dd></dl>
 
 </div>
 </div>
@@ -188,9 +195,10 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Reads the hardware cycle counter with instruction serialization. </p>
 <ul>
-<li>Ensures that all previous instructions have completed before the counter is read. This is essential for measuring the exact duration of a specific code block.</li>
+<li>Ensures that all previous instructions have reached the "retirement" stage before the counter is sampled. Essential for measuring the execution delta of critical code paths.</li>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>uint64_t Current CPU clock cycles (serialized). </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>On x86, this also returns the processor ID via the aux parameter, though it is discarded here to maintain API parity with ARM64. </dd></dl>
 
 </div>
 </div>

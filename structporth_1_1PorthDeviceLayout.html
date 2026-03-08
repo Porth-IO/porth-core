@@ -103,35 +103,33 @@ Collaboration diagram for porth::PorthDeviceLayout:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a7ad48a4b73de74094b0fb8634940fe8c" id="r_a7ad48a4b73de74094b0fb8634940fe8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#a7ad48a4b73de74094b0fb8634940fe8c">control</a></td></tr>
-<tr class="memdesc:a7ad48a4b73de74094b0fb8634940fe8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x00: Master control register (Start/Stop/Reset)  <br /></td></tr>
+<tr class="memdesc:a7ad48a4b73de74094b0fb8634940fe8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x00: Master control register. Manages Start/Stop/Reset state machines. Writing 0x1 triggers the hardware-level sequencer for GaN power-on.  <br /></td></tr>
 <tr class="separator:a7ad48a4b73de74094b0fb8634940fe8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe2d779c1ea705f06a68bf7db6c50d31" id="r_abe2d779c1ea705f06a68bf7db6c50d31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#abe2d779c1ea705f06a68bf7db6c50d31">status</a></td></tr>
-<tr class="memdesc:abe2d779c1ea705f06a68bf7db6c50d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x40: Device status register (Ready/Busy/Error)  <br /></td></tr>
+<tr class="memdesc:abe2d779c1ea705f06a68bf7db6c50d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x40: Device status register. Indicates Ready/Busy/Error. Poll this register after a reset to ensure the InP lattice has stabilized.  <br /></td></tr>
 <tr class="separator:abe2d779c1ea705f06a68bf7db6c50d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac204991c3a0e49f9f12f193585d17b94" id="r_ac204991c3a0e49f9f12f193585d17b94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#ac204991c3a0e49f9f12f193585d17b94">data_ptr</a></td></tr>
-<tr class="memdesc:ac204991c3a0e49f9f12f193585d17b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x80: Data Plane pointer (DMA base address for the Shuttle)  <br /></td></tr>
+<tr class="memdesc:ac204991c3a0e49f9f12f193585d17b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x80: Data Plane pointer. Stores the 64-bit physical DMA base address. The hardware uses this to fetch payloads directly from HugePage memory via the Shuttle interconnect.  <br /></td></tr>
 <tr class="separator:ac204991c3a0e49f9f12f193585d17b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0d2c4e602d258db4649cb6b30d09f72" id="r_ab0d2c4e602d258db4649cb6b30d09f72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#ab0d2c4e602d258db4649cb6b30d09f72">counter</a></td></tr>
-<tr class="memdesc:ab0d2c4e602d258db4649cb6b30d09f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0xC0: Telemetry counter (Packet/Work-unit throughput)  <br /></td></tr>
+<tr class="memdesc:ab0d2c4e602d258db4649cb6b30d09f72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0xC0: Telemetry counter. Tracks packet/work-unit throughput. Designed for 64-bit hardware wrap-around; the software layer should handle monotonic increments.  <br /></td></tr>
 <tr class="separator:ab0d2c4e602d258db4649cb6b30d09f72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2a6ecb586518ca6f429cef786d7df6b" id="r_ad2a6ecb586518ca6f429cef786d7df6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#ad2a6ecb586518ca6f429cef786d7df6b">laser_temp</a></td></tr>
-<tr class="memdesc:ad2a6ecb586518ca6f429cef786d7df6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x100: Photonics Laser Temperature in milli-Celsius.  <br /></td></tr>
+<tr class="memdesc:ad2a6ecb586518ca6f429cef786d7df6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x100: Photonics Laser Temperature. Unit: milli-Celsius (mC).  <br /></td></tr>
 <tr class="separator:ad2a6ecb586518ca6f429cef786d7df6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adde56e9ec0ff52c8f1d19fc963b01fc6" id="r_adde56e9ec0ff52c8f1d19fc963b01fc6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#adde56e9ec0ff52c8f1d19fc963b01fc6">gan_voltage</a></td></tr>
-<tr class="memdesc:adde56e9ec0ff52c8f1d19fc963b01fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x140: GaN Power Stage Voltage in milli-Volts.  <br /></td></tr>
+<tr class="memdesc:adde56e9ec0ff52c8f1d19fc963b01fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x140: GaN Power Stage Voltage. Unit: milli-Volts (mV). Tracks the drain-source voltage of the Gallium Nitride power FETs.  <br /></td></tr>
 <tr class="separator:adde56e9ec0ff52c8f1d19fc963b01fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaf6f8a9c47a3a8316caa7f32b7b9b8f" id="r_abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">int32_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#abaf6f8a9c47a3a8316caa7f32b7b9b8f">rf_snr</a></td></tr>
-<tr class="memdesc:abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x180: RF Signal-to-Noise Ratio (scaled dB: value * 100)  <br /></td></tr>
+<tr class="memdesc:abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x180: RF Signal-to-Noise Ratio. Unit: scaled dB (Value = dB * 100). Represents the integrity of the high-speed RF mode coupling.  <br /></td></tr>
 <tr class="separator:abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The physical memory-mapped I/O (MMIO) layout for Porth-compatible hardware. </p>
-<p>This structure defines the precise register offsets for interaction with Cardiff-based compound semiconductor chips. It covers three primary domains:</p><ol type="1">
-<li>Core Control: Basic device lifecycle management.</li>
-<li>Photonics: Laser telemetry and mode coupling.</li>
-<li>Power: GaN-based power stage monitoring.</li>
-</ol>
-<p>The layout is cache-line aligned (64 bytes) to ensure deterministic access and compatibility with high-speed PCIe Gen 6 interconnects. </p>
+<p>This structure defines the precise register map for interaction with Newport Cluster compound semiconductor chips (InP/GaN).</p><ul>
+<li>The layout utilizes "Hardware Isolation Padding" (spacing registers by 64 bytes). This ensures that a PCIe Write TLP (Transaction Layer Packet) targeting one register does not inadvertently affect the cache-line-granular prefetch logic of the CPU for adjacent registers.</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>This struct MUST be mapped via 'mmap' with the MAP_SHARED flag over a UIO or VFIO file descriptor to bypass the kernel stack. </dd></dl>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a7ad48a4b73de74094b0fb8634940fe8c" name="a7ad48a4b73de74094b0fb8634940fe8c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7ad48a4b73de74094b0fb8634940fe8c">&#9670;&#160;</a></span>control</h2>
@@ -145,7 +143,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x00: Master control register (Start/Stop/Reset) </p>
+<p>Offset 0x00: Master control register. Manages Start/Stop/Reset state machines. Writing 0x1 triggers the hardware-level sequencer for GaN power-on. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -161,7 +162,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0xC0: Telemetry counter (Packet/Work-unit throughput) </p>
+<p>Offset 0xC0: Telemetry counter. Tracks packet/work-unit throughput. Designed for 64-bit hardware wrap-around; the software layer should handle monotonic increments. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -177,7 +181,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x80: Data Plane pointer (DMA base address for the Shuttle) </p>
+<p>Offset 0x80: Data Plane pointer. Stores the 64-bit physical DMA base address. The hardware uses this to fetch payloads directly from HugePage memory via the Shuttle interconnect. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -193,7 +200,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x140: GaN Power Stage Voltage in milli-Volts. </p>
+<p>Offset 0x140: GaN Power Stage Voltage. Unit: milli-Volts (mV). Tracks the drain-source voltage of the Gallium Nitride power FETs. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -209,7 +219,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x100: Photonics Laser Temperature in milli-Celsius. </p>
+<p>Offset 0x100: Photonics Laser Temperature. Unit: milli-Celsius (mC). </p>
+<p>*</p><dl class="section note"><dt>Note</dt><dd>Operational Limit: 45,000mC. Beyond this, Indium Phosphide lattice drift renders the signal-to-noise ratio (SNR) unusable. </dd></dl>
 
 </div>
 </div>
@@ -225,7 +236,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x180: RF Signal-to-Noise Ratio (scaled dB: value * 100) </p>
+<p>Offset 0x180: RF Signal-to-Noise Ratio. Unit: scaled dB (Value = dB * 100). Represents the integrity of the high-speed RF mode coupling. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -241,7 +255,10 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Offset 0x40: Device status register (Ready/Busy/Error) </p>
+<p>Offset 0x40: Device status register. Indicates Ready/Busy/Error. Poll this register after a reset to ensure the InP lattice has stabilized. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>

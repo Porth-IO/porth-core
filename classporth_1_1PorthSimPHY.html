@@ -92,10 +92,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a31fd2a80b990cc0014a168f5d1e646a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct the PHY emulator with specific performance targets.  <br /></td></tr>
 <tr class="separator:a31fd2a80b990cc0014a168f5d1e646a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02e65f590dfa4c5bc443a80d6c86058c" id="r_a02e65f590dfa4c5bc443a80d6c86058c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#a02e65f590dfa4c5bc443a80d6c86058c">update_thermal_load</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">temp_mc</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a></td></tr>
-<tr class="memdesc:a02e65f590dfa4c5bc443a80d6c86058c"><td class="mdescLeft">&#160;</td><td class="mdescRight">update_thermal_load: Allows the SimDevice to push temperature updates.  <br /></td></tr>
+<tr class="memdesc:a02e65f590dfa4c5bc443a80d6c86058c"><td class="mdescLeft">&#160;</td><td class="mdescRight">update_thermal_load: Pushes real-time temperature telemetry into the PHY model.  <br /></td></tr>
 <tr class="separator:a02e65f590dfa4c5bc443a80d6c86058c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d16ac4e113ad6fec395a4b4aa4d4eb" id="r_ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#ab4d16ac4e113ad6fec395a4b4aa4d4eb">apply_protocol_delay</a> () <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a></td></tr>
-<tr class="memdesc:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">apply_protocol_delay: Busy-waits to simulate hardware propagation time. High-level orchestrator that combines thermal, jitter, and FEC models.  <br /></td></tr>
+<tr class="memdesc:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">apply_protocol_delay: Busy-waits to simulate physical propagation time.  <br /></td></tr>
 <tr class="separator:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad157483df75dc024ebe82e8c81f2240" id="r_aad157483df75dc024ebe82e8c81f2240"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#aad157483df75dc024ebe82e8c81f2240">set_config</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">base</a>, <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">jitter</a>) -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a></td></tr>
 <tr class="memdesc:aad157483df75dc024ebe82e8c81f2240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hot-swappable configuration for different hardware scenarios.  <br /></td></tr>
@@ -103,9 +103,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Emulates PCIe physical layer effects for compound semiconductor interconnects. </p>
-<ul>
-<li>This class implements the Task 4.3 Thermal/Power Feedback Loop, providing a high-fidelity simulation of propagation delays, jitter, and signal degradation caused by physics-level fluctuations in InP/GaN hardware. </li>
-</ul>
+<p>This class implements the Sovereign thermal/power feedback loop. It provides a high-fidelity simulation of propagation delays and jitter caused by physical fluctuations in the InP/GaN hardware lattice. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a31fd2a80b990cc0014a168f5d1e646a5" name="a31fd2a80b990cc0014a168f5d1e646a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31fd2a80b990cc0014a168f5d1e646a5">&#9670;&#160;</a></span>PorthSimPHY()</h2>
@@ -183,7 +181,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>apply_protocol_delay: Busy-waits to simulate hardware propagation time. High-level orchestrator that combines thermal, jitter, and FEC models. </p>
+<p>apply_protocol_delay: Busy-waits to simulate physical propagation time. </p>
+<ul>
+<li>This is the high-level orchestrator for the PHY model. It enforces deterministic latency by summing fiber delay, jitter, thermal drift, and FEC retry penalties. <dl class="section note"><dt>Note</dt><dd>Utilizes a sovereign spin-loop to achieve nanosecond resolution that is impossible with standard OS sleep primitives. </dd></dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -224,8 +226,8 @@ Public Member Functions</h2></td></tr>
 <p>Hot-swappable configuration for different hardware scenarios. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">base</td><td>New base delay in ns. </td></tr>
-    <tr><td class="paramname">jitter</td><td>New maximum jitter in ns. </td></tr>
+    <tr><td class="paramname">base</td><td>New base delay in ns (Fiber length simulation). </td></tr>
+    <tr><td class="paramname">jitter</td><td>New maximum jitter in ns (Clock noise simulation). </td></tr>
   </table>
   </dd>
 </dl>
@@ -256,10 +258,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>update_thermal_load: Allows the SimDevice to push temperature updates. </p>
+<p>update_thermal_load: Pushes real-time temperature telemetry into the PHY model. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">temp_mc</td><td>Current laser temperature in milli-Celsius. </td></tr>
+    <tr><td class="paramname">temp_mc</td><td>Current laser temperature in milli-Celsius (mC). </td></tr>
   </table>
   </dd>
 </dl>

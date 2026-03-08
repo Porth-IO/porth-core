@@ -1,6 +1,6 @@
 <map id="include/porth/PorthDeviceLayout.hpp" name="include/porth/PorthDeviceLayout.hpp">
 <area shape="rect" id="Node000001" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="157,5,348,45"/>
-<area shape="rect" id="Node000002" href="$PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="131,93,268,119"/>
+<area shape="rect" id="Node000002" href="$PorthRegister_8hpp.html" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="131,93,268,119"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,47,217,83,213,80,238,44"/>
 <area shape="rect" id="Node000004" title=" " alt="" coords="5,167,76,192"/>
 <area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="205,48,162,69,120,95,86,126,59,157,55,154,82,122,116,91,160,64,203,43"/>

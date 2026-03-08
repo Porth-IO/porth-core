@@ -82,7 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Hardware-abstracted access to high-precision CPU cycle counters.  
+<p>Physics-based emulator for the Newport Cluster physical layer (PHY).  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="PorthClock_8hpp_source.html">PorthClock.hpp</a>&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
@@ -93,7 +93,7 @@ Include dependency graph for PorthSimPHY.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthSimPHY_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthSimPHY_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthSimPHY_8hpp" id="ainclude_2porth_2PorthSimPHY_8hpp">
-<area shape="rect" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="131,5,352,31"/>
+<area shape="rect" title="Physics&#45;based emulator for the Newport Cluster physical layer (PHY)." alt="" coords="131,5,352,31"/>
 <area shape="rect" href="PorthClock_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="5,79,125,104"/>
 <area shape="poly" title=" " alt="" coords="214,33,108,76,106,71,212,28"/>
 <area shape="rect" title=" " alt="" coords="149,79,235,104"/>
@@ -111,10 +111,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthSimPHY_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthSimPHY_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthSimPHY_8hppdep" id="ainclude_2porth_2PorthSimPHY_8hppdep">
-<area shape="rect" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="16,5,237,31"/>
-<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="5,79,248,104"/>
+<area shape="rect" title="Physics&#45;based emulator for the Newport Cluster physical layer (PHY)." alt="" coords="16,5,237,31"/>
+<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="5,79,248,104"/>
 <area shape="poly" title=" " alt="" coords="129,44,129,79,124,79,124,44"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="51,152,203,192"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="51,152,203,192"/>
 <area shape="poly" title=" " alt="" coords="129,118,129,152,124,152,124,118"/>
 </map>
 </div>
@@ -134,28 +134,36 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a9ae6f1b33fd449d9fcd4089d97bf8fd4" id="r_a9ae6f1b33fd449d9fcd4089d97bf8fd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9ae6f1b33fd449d9fcd4089d97bf8fd4">porth::DEFAULT_FEC_ERROR_RATE</a> = 0.001</td></tr>
-<tr class="memdesc:a9ae6f1b33fd449d9fcd4089d97bf8fd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY Simulation Constants to resolve magic number warnings.  <br /></td></tr>
+<tr class="memitem:a9ae6f1b33fd449d9fcd4089d97bf8fd4" id="r_a9ae6f1b33fd449d9fcd4089d97bf8fd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9ae6f1b33fd449d9fcd4089d97bf8fd4">porth::DEFAULT_FEC_ERROR_RATE</a></td></tr>
+<tr class="memdesc:a9ae6f1b33fd449d9fcd4089d97bf8fd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY Simulation Constants for Newport Cluster hardware modeling.  <br /></td></tr>
 <tr class="separator:a9ae6f1b33fd449d9fcd4089d97bf8fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a596551ab22ecf2a7315895c242ce6a2e" id="r_a596551ab22ecf2a7315895c242ce6a2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a596551ab22ecf2a7315895c242ce6a2e">porth::DEFAULT_FEC_PENALTY_NS</a> = 5</td></tr>
+<tr class="memdesc:a596551ab22ecf2a7315895c242ce6a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Baseline logic delay for FEC decoding (5ns).  <br /></td></tr>
 <tr class="separator:a596551ab22ecf2a7315895c242ce6a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaeff1ff084c4d6762fb760d3f1de0f7b" id="r_aaeff1ff084c4d6762fb760d3f1de0f7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aaeff1ff084c4d6762fb760d3f1de0f7b">porth::DEFAULT_BASE_TEMP_MC</a> = 25000</td></tr>
+<tr class="memitem:aaeff1ff084c4d6762fb760d3f1de0f7b" id="r_aaeff1ff084c4d6762fb760d3f1de0f7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aaeff1ff084c4d6762fb760d3f1de0f7b">porth::DEFAULT_BASE_TEMP_MC</a></td></tr>
+<tr class="memdesc:aaeff1ff084c4d6762fb760d3f1de0f7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">25.0°C - Standard laboratory ambient temperature.  <br /></td></tr>
 <tr class="separator:aaeff1ff084c4d6762fb760d3f1de0f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf4aaaad32bdb8a4267dc39e02fa2acc" id="r_acf4aaaad32bdb8a4267dc39e02fa2acc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#acf4aaaad32bdb8a4267dc39e02fa2acc">porth::DEFAULT_BASE_DELAY_NS</a> = 100</td></tr>
+<tr class="memitem:acf4aaaad32bdb8a4267dc39e02fa2acc" id="r_acf4aaaad32bdb8a4267dc39e02fa2acc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#acf4aaaad32bdb8a4267dc39e02fa2acc">porth::DEFAULT_BASE_DELAY_NS</a></td></tr>
+<tr class="memdesc:acf4aaaad32bdb8a4267dc39e02fa2acc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagation time for light in 20m of optical fiber.  <br /></td></tr>
 <tr class="separator:acf4aaaad32bdb8a4267dc39e02fa2acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5321df22e6a10df3405459885710d9ae" id="r_a5321df22e6a10df3405459885710d9ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a5321df22e6a10df3405459885710d9ae">porth::DEFAULT_JITTER_INIT_NS</a> = 25</td></tr>
+<tr class="memdesc:a5321df22e6a10df3405459885710d9ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Baseline clock recovery jitter.  <br /></td></tr>
 <tr class="separator:a5321df22e6a10df3405459885710d9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a67d2df2ae279e19c9e78c7ec3d782e" id="r_a2a67d2df2ae279e19c9e78c7ec3d782e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a2a67d2df2ae279e19c9e78c7ec3d782e">porth::DEFAULT_CPNS</a> = 2.4</td></tr>
+<tr class="memdesc:a2a67d2df2ae279e19c9e78c7ec3d782e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default calibration for a 2.4GHz CPU.  <br /></td></tr>
 <tr class="separator:a2a67d2df2ae279e19c9e78c7ec3d782e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe5606888a776081a60e12597964591a" id="r_afe5606888a776081a60e12597964591a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#afe5606888a776081a60e12597964591a">porth::THERMAL_THRESHOLD_MC</a> = 40000</td></tr>
+<tr class="memdesc:afe5606888a776081a60e12597964591a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Physical thermal threshold (40.0°C). Beyond this limit, the Indium Phosphide (InP) lattice drift significantly impacts signal-to-noise ratio (SNR), introducing non-linear jitter.  <br /></td></tr>
 <tr class="separator:afe5606888a776081a60e12597964591a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20922d8f3585b46cdcc1995bd45d5675" id="r_a20922d8f3585b46cdcc1995bd45d5675"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a20922d8f3585b46cdcc1995bd45d5675">porth::MC_TO_C_DIVISOR</a> = 1000</td></tr>
+<tr class="memdesc:a20922d8f3585b46cdcc1995bd45d5675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversion factor for milli-Celsius to Celsius.  <br /></td></tr>
 <tr class="separator:a20922d8f3585b46cdcc1995bd45d5675"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75fd02690afdefe2868cdd1b5f4e736f" id="r_a75fd02690afdefe2868cdd1b5f4e736f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a75fd02690afdefe2868cdd1b5f4e736f">porth::FEC_RETRY_SPIKE_NS</a> = 500</td></tr>
+<tr class="memdesc:a75fd02690afdefe2868cdd1b5f4e736f"><td class="mdescLeft">&#160;</td><td class="mdescRight">FEC Spike Penalty (500ns). Simulates a full packet retransmission or deep-interleaving buffer flush triggered by an uncorrectable error in the GaN power stage.  <br /></td></tr>
 <tr class="separator:a75fd02690afdefe2868cdd1b5f4e736f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Hardware-abstracted access to high-precision CPU cycle counters. </p>
+<div class="textblock"><p>Physics-based emulator for the Newport Cluster physical layer (PHY). </p>
 <p>Porth-IO: The Sovereign Logic Layer</p>
 <p>Copyright (c) 2026 Porth-IO Contributors SPDX-License-Identifier: Apache-2.0 </p>
 </div></div><!-- contents -->

@@ -82,7 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Hardware-abstracted access to high-precision CPU cycle counters.  
+<p>Statistical analysis engine for ultra-low latency timing telemetry.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
@@ -98,7 +98,7 @@ Include dependency graph for PorthMetric.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthMetric_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthMetric_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthMetric_8hpp" id="ainclude_2porth_2PorthMetric_8hpp">
-<area shape="rect" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="322,5,537,31"/>
+<area shape="rect" title="Statistical analysis engine for ultra&#45;low latency timing telemetry." alt="" coords="322,5,537,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,91,104"/>
 <area shape="poly" title=" " alt="" coords="365,33,105,81,104,76,364,28"/>
 <area shape="rect" title=" " alt="" coords="115,79,178,104"/>
@@ -124,8 +124,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthMetric_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthMetric_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthMetric_8hppdep" id="ainclude_2porth_2PorthMetric_8hppdep">
-<area shape="rect" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="74,5,289,31"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="5,79,157,119"/>
+<area shape="rect" title="Statistical analysis engine for ultra&#45;low latency timing telemetry." alt="" coords="74,5,289,31"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="5,79,157,119"/>
 <area shape="poly" title=" " alt="" coords="157,41,107,81,104,76,154,37"/>
 <area shape="rect" href="std__baseline_8cpp.html" title=" " alt="" coords="182,86,381,111"/>
 <area shape="poly" title=" " alt="" coords="209,37,268,84,265,88,205,41"/>
@@ -148,7 +148,7 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ae8240577da7894999e0d646dd4c3abd5" id="r_ae8240577da7894999e0d646dd4c3abd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ae8240577da7894999e0d646dd4c3abd5">porth::DEFAULT_METRIC_CAPACITY</a> = 1000000</td></tr>
-<tr class="memdesc:ae8240577da7894999e0d646dd4c3abd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default capacity for the metric buffer.  <br /></td></tr>
+<tr class="memdesc:ae8240577da7894999e0d646dd4c3abd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default capacity for the metric buffer. 1,000,000 samples provide a statistically significant window for 10Gbps line-rate packet analysis without excessive resident set size (RSS) pressure.  <br /></td></tr>
 <tr class="separator:ae8240577da7894999e0d646dd4c3abd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9a594d3bc323379ff3350c39efcd189" id="r_af9a594d3bc323379ff3350c39efcd189"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#af9a594d3bc323379ff3350c39efcd189">porth::PERCENTILE_Q1</a> = 25.0</td></tr>
 <tr class="memdesc:af9a594d3bc323379ff3350c39efcd189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Percentile constants for statistical analysis.  <br /></td></tr>
@@ -163,7 +163,7 @@ Variables</h2></td></tr>
 <tr class="separator:a692bcf7caf30e80dcf9f224e574d9f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Hardware-abstracted access to high-precision CPU cycle counters. </p>
+<div class="textblock"><p>Statistical analysis engine for ultra-low latency timing telemetry. </p>
 <p>Porth-IO: The Sovereign Logic Layer</p>
 <p>Copyright (c) 2026 Porth-IO Contributors SPDX-License-Identifier: Apache-2.0 </p>
 </div></div><!-- contents -->

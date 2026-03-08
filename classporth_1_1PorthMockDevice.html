@@ -106,15 +106,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a172d15726debb73193710b7789ce17bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a typed pointer to the register map.  <br /></td></tr>
 <tr class="separator:a172d15726debb73193710b7789ce17bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac54e39c895c473c46c4229a18cba2369" id="r_ac54e39c895c473c46c4229a18cba2369"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#ac54e39c895c473c46c4229a18cba2369">view</a> () <a class="el" href="classporth_1_1PorthRingBuffer.html">const</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">const</a> <a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *</td></tr>
-<tr class="memdesc:ac54e39c895c473c46c4229a18cba2369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const typed pointer to the register map.  <br /></td></tr>
+<tr class="memdesc:ac54e39c895c473c46c4229a18cba2369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a const typed pointer to the register map for telemetry.  <br /></td></tr>
 <tr class="separator:ac54e39c895c473c46c4229a18cba2369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed2b1d0ce65303c8c64636a16189cfc7" id="r_aed2b1d0ce65303c8c64636a16189cfc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMockDevice.html#aed2b1d0ce65303c8c64636a16189cfc7">operator-&gt;</a> () <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *</td></tr>
-<tr class="memdesc:aed2b1d0ce65303c8c64636a16189cfc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overload for intuitive, pointer-like access to registers.  <br /></td></tr>
+<tr class="memdesc:aed2b1d0ce65303c8c64636a16189cfc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overload for intuitive, pointer-like access to registers. Allows code like 'device-&gt;control.read()' to feel like direct hardware access.  <br /></td></tr>
 <tr class="separator:aed2b1d0ce65303c8c64636a16189cfc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A RAII wrapper for POSIX Shared Memory simulating hardware BAR mapping. </p>
-<p>This class simulates the Physical PCIe BAR mapping for the Cardiff hardware. It manages the lifecycle of the shared memory segment used for the register map, ensuring that only the "owner" (the simulated hardware) is responsible for unlinking the segment from the system. </p>
+<p>This class simulates the physical PCIe BAR (Base Address Register) mapping for the Newport Cluster hardware. It allows the Logic Layer to run in a "Mock" environment where a separate process simulates the InP/GaN chip behavior.</p><ul>
+<li><dl class="section note"><dt>Note</dt><dd>This is essential for Software-in-the-Loop (SIL) testing, ensuring register-level compatibility before deploying to physical Cardiff hardware. </dd></dl>
+</li>
+</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a06f76a60dce38e2a7e7cf66ff609cc73" name="a06f76a60dce38e2a7e7cf66ff609cc73"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a06f76a60dce38e2a7e7cf66ff609cc73">&#9670;&#160;</a></span>PorthMockDevice() <span class="overload">[1/3]</span></h2>
@@ -151,10 +154,12 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor: Maps or creates the shared memory segment. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<ul>
+<li>Simulates the act of the OS BIOS mapping the PCIe device into the CPU's physical address space.</li>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mem_name</td><td>The identifier in /dev/shm/ (e.g., "porth_dev0"). </td></tr>
-    <tr><td class="paramname">create</td><td>If true, creates and truncates the memory (Hardware mode). </td></tr>
+    <tr><td class="paramname">create</td><td>If true, creates and truncates the memory (Simulates Hardware Power-On). </td></tr>
   </table>
   </dd>
 </dl>
@@ -164,6 +169,8 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -191,6 +198,9 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Destructor: Clean up the mapping and unlink if owner. </p>
+<ul>
+<li>If this is the "Hardware" process (owner), it unlinks the SHM segment, simulating a hardware power-down/removal. </li>
+</ul>
 
 </div>
 </div>
@@ -270,7 +280,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Operator overload for intuitive, pointer-like access to registers. </p>
+<p>Operator overload for intuitive, pointer-like access to registers. Allows code like 'device-&gt;control.read()' to feel like direct hardware access. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -349,7 +362,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a const typed pointer to the register map. </p>
+<p>Returns a const typed pointer to the register map for telemetry. </p>
 
 </div>
 </div>

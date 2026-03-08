@@ -1,5 +1,5 @@
 <map id="include/porth/PorthMetric.hpp" name="include/porth/PorthMetric.hpp">
-<area shape="rect" id="Node000001" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="322,5,537,31"/>
+<area shape="rect" id="Node000001" title="Statistical analysis engine for ultra&#45;low latency timing telemetry." alt="" coords="322,5,537,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,91,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="365,33,105,81,104,76,364,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="115,79,178,104"/>

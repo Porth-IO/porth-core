@@ -1,6 +1,6 @@
 <map id="include/porth/PorthShuttle.hpp" name="include/porth/PorthShuttle.hpp">
-<area shape="rect" id="Node000001" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="407,5,625,31"/>
-<area shape="rect" id="Node000002" href="$PorthHugePage_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="296,79,445,104"/>
+<area shape="rect" id="Node000001" title="Zero&#45;copy orchestrator for mapping memory structures to physical hardware." alt="" coords="407,5,625,31"/>
+<area shape="rect" id="Node000002" href="$PorthHugePage_8hpp.html" title="Strictly Linux RAII wrapper for HugePage memory." alt="" coords="296,79,445,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="494,33,408,75,405,70,491,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="621,152,688,177"/>
 <area shape="poly" id="edge16_Node000001_Node000003" title=" " alt="" coords="529,29,636,140,632,144,525,33"/>
@@ -8,7 +8,7 @@
 <area shape="poly" id="edge17_Node000001_Node000004" title=" " alt="" coords="437,33,336,52,227,81,143,114,73,148,71,143,141,109,226,76,335,47,436,28"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="96,152,176,177"/>
 <area shape="poly" id="edge18_Node000001_Node000005" title=" " alt="" coords="453,33,372,53,285,81,219,113,165,147,162,142,217,109,283,76,370,47,452,28"/>
-<area shape="rect" id="Node000010" href="$PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer." alt="" coords="665,79,815,104"/>
+<area shape="rect" id="Node000010" href="$PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer for DMA telemetry." alt="" coords="665,79,815,104"/>
 <area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="553,28,692,72,690,77,551,33"/>
 <area shape="rect" id="Node000013" title=" " alt="" coords="970,152,1019,177"/>
 <area shape="poly" id="edge19_Node000001_Node000013" title=" " alt="" coords="614,28,719,47,829,76,904,109,966,142,963,147,902,113,827,81,718,52,613,33"/>

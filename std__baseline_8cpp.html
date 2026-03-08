@@ -98,7 +98,7 @@ Include dependency graph for std_baseline.cpp:</div>
 <area shape="poly" title=" " alt="" coords="586,33,218,81,218,75,585,28"/>
 <area shape="rect" title=" " alt="" coords="5,152,72,177"/>
 <area shape="poly" title=" " alt="" coords="612,33,378,81,86,154,85,148,377,76,611,28"/>
-<area shape="rect" href="PorthMetric_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="389,79,552,104"/>
+<area shape="rect" href="PorthMetric_8hpp.html" title="Statistical analysis engine for ultra&#45;low latency timing telemetry." alt="" coords="389,79,552,104"/>
 <area shape="poly" title=" " alt="" coords="642,33,517,77,515,72,640,28"/>
 <area shape="rect" title=" " alt="" coords="851,152,931,177"/>
 <area shape="poly" title=" " alt="" coords="658,33,639,48,622,66,613,85,614,94,618,102,640,125,663,138,686,145,711,147,768,145,801,145,837,149,837,155,801,151,768,150,711,152,685,150,661,143,637,129,614,106,608,95,608,84,617,63,635,44,654,29"/>
@@ -136,6 +136,7 @@ Include dependency graph for std_baseline.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8216c1645620cdb2f629cde3ac02ffef" id="r_a8216c1645620cdb2f629cde3ac02ffef"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="std__baseline_8cpp.html#a8216c1645620cdb2f629cde3ac02ffef">main</a> () -&gt; int</td></tr>
+<tr class="memdesc:a8216c1645620cdb2f629cde3ac02ffef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main execution for the POSIX 'sendto' benchmark. Measures the round-trip latency of the standard kernel stack.  <br /></td></tr>
 <tr class="separator:a8216c1645620cdb2f629cde3ac02ffef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -153,6 +154,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Main execution for the POSIX 'sendto' benchmark. Measures the round-trip latency of the standard kernel stack. </p>
+<p>THE SLOW PATH: Safety: reinterpret_cast is required for the legacy POSIX sockaddr API. We move the cast to a variable to prevent clang-format from breaking the suppression.</p>
 
 </div>
 </div>

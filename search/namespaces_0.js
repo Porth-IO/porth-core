@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cardiffchip_0',['CardiffChip',['../namespaceCardiffChip.html',1,'']]]
+  ['cardiff_5fchip_0',['cardiff_chip',['../namespacecardiff__chip.html',1,'']]]
 ];

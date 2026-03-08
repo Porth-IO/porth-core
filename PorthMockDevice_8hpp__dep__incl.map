@@ -1,11 +1,11 @@
 <map id="include/porth/PorthMockDevice.hpp" name="include/porth/PorthMockDevice.hpp">
-<area shape="rect" id="Node000001" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="211,5,465,31"/>
+<area shape="rect" id="Node000001" title="Simulation layer for POSIX Shared Memory mapping of hardware registers." alt="" coords="211,5,465,31"/>
 <area shape="rect" id="Node000002" href="$mock__handshake_8cpp.html" title=" " alt="" coords="5,86,236,111"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="294,38,153,88,151,83,293,33"/>
 <area shape="rect" id="Node000003" href="$zero__copy__handshake_8cpp.html" title=" " alt="" coords="260,79,416,119"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="341,44,341,79,335,79,335,44"/>
-<area shape="rect" id="Node000004" href="$PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="441,86,683,111"/>
+<area shape="rect" id="Node000004" href="$PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="441,86,683,111"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="384,33,530,83,529,88,382,38"/>
-<area shape="rect" id="Node000005" href="$porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="486,167,638,207"/>
+<area shape="rect" id="Node000005" href="$porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="486,167,638,207"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="565,125,565,166,559,166,559,125"/>
 </map>

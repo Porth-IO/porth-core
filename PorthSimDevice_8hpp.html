@@ -82,7 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>High-fidelity Digital Twin for Cardiff Photonics.  
+<p>High-fidelity Digital Twin for Cardiff Photonics hardware simulation.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
@@ -102,7 +102,7 @@ Include dependency graph for PorthSimDevice.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthSimDevice_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthSimDevice_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthSimDevice_8hpp" id="ainclude_2porth_2PorthSimDevice_8hpp">
-<area shape="rect" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="1174,5,1417,31"/>
+<area shape="rect" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="1174,5,1417,31"/>
 <area shape="rect" title=" " alt="" coords="57,299,123,324"/>
 <area shape="poly" title=" " alt="" coords="1174,21,910,26,750,33,584,44,423,61,276,84,154,115,105,133,66,154,38,175,17,196,8,221,9,234,15,249,32,272,55,290,52,294,29,276,10,252,4,235,3,220,13,193,34,171,63,150,103,129,152,110,275,79,422,55,584,39,750,27,910,21,1174,16"/>
 <area shape="rect" title=" " alt="" coords="1541,79,1607,104"/>
@@ -119,13 +119,13 @@ Include dependency graph for PorthSimDevice.hpp:</div>
 <area shape="poly" title=" " alt="" coords="1295,32,1269,100,1246,142,1214,179,1191,197,1165,211,1113,230,1111,225,1162,206,1188,193,1211,175,1241,139,1264,98,1290,30"/>
 <area shape="rect" title=" " alt="" coords="1829,79,1893,104"/>
 <area shape="poly" title=" " alt="" coords="1417,26,1601,44,1815,76,1815,81,1600,50,1417,31"/>
-<area shape="rect" href="PorthMockDevice_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="883,79,1047,104"/>
+<area shape="rect" href="PorthMockDevice_8hpp.html" title="Simulation layer for POSIX Shared Memory mapping of hardware registers." alt="" coords="883,79,1047,104"/>
 <area shape="poly" title=" " alt="" coords="1243,33,1032,78,1031,73,1242,28"/>
-<area shape="rect" href="PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer." alt="" coords="77,152,228,177"/>
+<area shape="rect" href="PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer for DMA telemetry." alt="" coords="77,152,228,177"/>
 <area shape="poly" title=" " alt="" coords="1174,27,890,45,722,61,554,81,366,116,211,151,210,146,365,111,554,76,721,55,890,40,1173,22"/>
-<area shape="rect" href="PorthShuttle_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="566,79,697,104"/>
+<area shape="rect" href="PorthShuttle_8hpp.html" title="Zero&#45;copy orchestrator for mapping memory structures to physical hardware." alt="" coords="566,79,697,104"/>
 <area shape="poly" title=" " alt="" coords="1189,33,710,84,710,79,1188,28"/>
-<area shape="rect" href="PorthSimPHY_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="1333,79,1465,104"/>
+<area shape="rect" href="PorthSimPHY_8hpp.html" title="Physics&#45;based emulator for the Newport Cluster physical layer (PHY)." alt="" coords="1333,79,1465,104"/>
 <area shape="poly" title=" " alt="" coords="1313,28,1372,68,1369,73,1310,33"/>
 <area shape="rect" href="PorthUtil_8hpp.html" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="1282,152,1389,177"/>
 <area shape="poly" title=" " alt="" coords="1301,30,1331,138,1326,139,1296,32"/>
@@ -143,7 +143,7 @@ Include dependency graph for PorthSimDevice.hpp:</div>
 <area shape="poly" title=" " alt="" coords="951,107,810,219,807,214,948,102"/>
 <area shape="rect" href="PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="1413,152,1586,177"/>
 <area shape="poly" title=" " alt="" coords="1047,101,1400,148,1400,153,1047,106"/>
-<area shape="rect" href="PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="1431,225,1568,251"/>
+<area shape="rect" href="PorthRegister_8hpp.html" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="1431,225,1568,251"/>
 <area shape="poly" title=" " alt="" coords="1502,178,1502,212,1497,212,1497,178"/>
 <area shape="rect" title=" " alt="" coords="1489,299,1560,324"/>
 <area shape="poly" title=" " alt="" coords="1527,175,1557,195,1571,208,1582,224,1585,243,1579,261,1554,291,1550,288,1575,259,1580,243,1577,226,1567,212,1553,199,1524,180"/>
@@ -169,7 +169,7 @@ Include dependency graph for PorthSimDevice.hpp:</div>
 <area shape="poly" title=" " alt="" coords="583,107,508,129,468,144,432,162,403,181,385,203,381,213,381,225,385,236,394,249,408,257,430,265,500,279,593,289,700,296,921,305,1089,307,1089,313,921,310,700,302,592,294,499,284,429,270,405,262,391,253,381,239,376,226,376,213,380,200,399,177,429,157,466,139,506,124,582,101"/>
 <area shape="poly" title=" " alt="" coords="566,103,443,122,387,137,350,154,321,184,300,219,284,255,274,286,269,284,279,253,295,217,317,180,347,150,386,132,442,117,566,97"/>
 <area shape="poly" title=" " alt="" coords="566,105,242,153,241,148,565,100"/>
-<area shape="rect" href="PorthHugePage_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="557,152,706,177"/>
+<area shape="rect" href="PorthHugePage_8hpp.html" title="Strictly Linux RAII wrapper for HugePage memory." alt="" coords="557,152,706,177"/>
 <area shape="poly" title=" " alt="" coords="634,104,634,138,629,138,629,104"/>
 <area shape="rect" title=" " alt="" coords="845,225,925,251"/>
 <area shape="poly" title=" " alt="" coords="653,102,854,216,852,221,650,107"/>
@@ -202,8 +202,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthSimDevice_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthSimDevice_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthSimDevice_8hppdep" id="ainclude_2porth_2PorthSimDevice_8hppdep">
-<area shape="rect" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="5,5,248,31"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="51,79,203,119"/>
+<area shape="rect" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="5,5,248,31"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="51,79,203,119"/>
 <area shape="poly" title=" " alt="" coords="129,44,129,79,124,79,124,44"/>
 </map>
 </div>
@@ -224,27 +224,35 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a8ad72df7aecf3cae43c47c5fa8e0fa2e" id="r_a8ad72df7aecf3cae43c47c5fa8e0fa2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8ad72df7aecf3cae43c47c5fa8e0fa2e">porth::SIM_BASE_TEMP_MC</a> = 25000</td></tr>
-<tr class="memdesc:a8ad72df7aecf3cae43c47c5fa8e0fa2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulation Constants to resolve magic number warnings.  <br /></td></tr>
+<tr class="memdesc:a8ad72df7aecf3cae43c47c5fa8e0fa2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulation Constants representing physical hardware limits of the Newport Cluster.  <br /></td></tr>
 <tr class="separator:a8ad72df7aecf3cae43c47c5fa8e0fa2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79c13456ebf6b4e99a125a10dc50eb33" id="r_a79c13456ebf6b4e99a125a10dc50eb33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a79c13456ebf6b4e99a125a10dc50eb33">porth::SIM_TEMP_INC_MC</a> = 100</td></tr>
+<tr class="memdesc:a79c13456ebf6b4e99a125a10dc50eb33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heating rate per step (0.1°C).  <br /></td></tr>
 <tr class="separator:a79c13456ebf6b4e99a125a10dc50eb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ef78d9fb30782c83e45c81ba549c35c" id="r_a5ef78d9fb30782c83e45c81ba549c35c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a5ef78d9fb30782c83e45c81ba549c35c">porth::SIM_TEMP_DEC_MC</a> = 50</td></tr>
+<tr class="memdesc:a5ef78d9fb30782c83e45c81ba549c35c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passive cooling rate per step (0.05°C).  <br /></td></tr>
 <tr class="separator:a5ef78d9fb30782c83e45c81ba549c35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c3fefecde019177f27d5c610ea17095" id="r_a8c3fefecde019177f27d5c610ea17095"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8c3fefecde019177f27d5c610ea17095">porth::SIM_STATUS_MAX_BIT</a> = 31</td></tr>
+<tr class="memdesc:a8c3fefecde019177f27d5c610ea17095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit-width of the hardware status register.  <br /></td></tr>
 <tr class="separator:a8c3fefecde019177f27d5c610ea17095"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec5ce4ce4725d24dc7c1ced3e399d364" id="r_aec5ce4ce4725d24dc7c1ced3e399d364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aec5ce4ce4725d24dc7c1ced3e399d364">porth::SIM_DEFAULT_SHUTTLE_SIZE</a> = 1024</td></tr>
+<tr class="memdesc:aec5ce4ce4725d24dc7c1ced3e399d364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of descriptors in the DMA ring.  <br /></td></tr>
 <tr class="separator:aec5ce4ce4725d24dc7c1ced3e399d364"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e8b7ea36f3650acdb76e3c736e4b951" id="r_a8e8b7ea36f3650acdb76e3c736e4b951"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8e8b7ea36f3650acdb76e3c736e4b951">porth::SIM_PHYSICS_STEP_US</a> = 100</td></tr>
+<tr class="memdesc:a8e8b7ea36f3650acdb76e3c736e4b951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Physics update frequency (10kHz).  <br /></td></tr>
 <tr class="separator:a8e8b7ea36f3650acdb76e3c736e4b951"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a049ca073ea45e6c8b00ce20acca81400" id="r_a049ca073ea45e6c8b00ce20acca81400"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a049ca073ea45e6c8b00ce20acca81400">porth::SIM_BUS_HANG_MS</a> = 100</td></tr>
+<tr class="memdesc:a049ca073ea45e6c8b00ce20acca81400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulated duration of a PCIe TLP timeout.  <br /></td></tr>
 <tr class="separator:a049ca073ea45e6c8b00ce20acca81400"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba0bc713d5d4942c7b2fda73f8717f88" id="r_aba0bc713d5d4942c7b2fda73f8717f88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aba0bc713d5d4942c7b2fda73f8717f88">porth::SIM_OVERFLOW_ITERATIONS</a> = 2048</td></tr>
+<tr class="memdesc:aba0bc713d5d4942c7b2fda73f8717f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterations to force RingBuffer saturation.  <br /></td></tr>
 <tr class="separator:aba0bc713d5d4942c7b2fda73f8717f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6b9db8e7c1b8db0fca6652335111d41" id="r_ab6b9db8e7c1b8db0fca6652335111d41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ab6b9db8e7c1b8db0fca6652335111d41">porth::SIM_DESCRIPTOR_LEN_DEFAULT</a> = 64</td></tr>
+<tr class="memdesc:ab6b9db8e7c1b8db0fca6652335111d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard flit-aligned descriptor length.  <br /></td></tr>
 <tr class="separator:ab6b9db8e7c1b8db0fca6652335111d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>High-fidelity Digital Twin for Cardiff Photonics. </p>
+<div class="textblock"><p>High-fidelity Digital Twin for Cardiff Photonics hardware simulation. </p>
 <p>Porth-IO: The Sovereign Logic Layer</p>
 <p>Copyright (c) 2026 Porth-IO Contributors SPDX-License-Identifier: Apache-2.0 </p>
 </div></div><!-- contents -->

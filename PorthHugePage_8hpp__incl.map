@@ -1,5 +1,5 @@
 <map id="include/porth/PorthHugePage.hpp" name="include/porth/PorthHugePage.hpp">
-<area shape="rect" id="Node000001" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="215,5,454,31"/>
+<area shape="rect" id="Node000001" title="Strictly Linux RAII wrapper for HugePage memory." alt="" coords="215,5,454,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,72,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="286,33,86,81,85,76,285,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="96,79,163,104"/>

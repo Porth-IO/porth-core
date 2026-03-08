@@ -94,7 +94,7 @@ Include dependency graph for PorthDeviceLayout.hpp:</div>
 <div class="center"><img src="PorthDeviceLayout_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthDeviceLayout_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthDeviceLayout_8hpp" id="ainclude_2porth_2PorthDeviceLayout_8hpp">
 <area shape="rect" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="157,5,348,45"/>
-<area shape="rect" href="PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="131,93,268,119"/>
+<area shape="rect" href="PorthRegister_8hpp.html" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="131,93,268,119"/>
 <area shape="poly" title=" " alt="" coords="242,47,217,83,213,80,238,44"/>
 <area shape="rect" title=" " alt="" coords="5,167,76,192"/>
 <area shape="poly" title=" " alt="" coords="205,48,162,69,120,95,86,126,59,157,55,154,82,122,116,91,160,64,203,43"/>
@@ -119,18 +119,18 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="403,5,593,45"/>
 <area shape="rect" href="mock__handshake_8cpp.html" title=" " alt="" coords="121,174,352,199"/>
 <area shape="poly" title=" " alt="" coords="442,54,361,96,299,138,252,176,248,172,296,134,358,91,439,49"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="422,255,574,295"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="422,255,574,295"/>
 <area shape="poly" title=" " alt="" coords="607,44,698,68,741,84,779,103,809,125,827,149,831,163,830,178,825,193,815,208,799,222,776,233,714,251,643,263,575,271,574,265,642,258,713,245,774,228,796,217,811,205,820,190,825,177,826,164,822,152,805,128,777,108,739,89,696,73,606,49"/>
 <area shape="rect" href="zero__copy__handshake_8cpp.html" title=" " alt="" coords="644,167,800,207"/>
 <area shape="poly" title=" " alt="" coords="562,49,601,68,638,91,679,128,710,165,706,168,675,132,635,95,598,72,560,53"/>
-<area shape="rect" href="PorthDriver_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="5,93,217,119"/>
+<area shape="rect" href="PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="5,93,217,119"/>
 <area shape="poly" title=" " alt="" coords="393,51,168,96,167,91,392,45"/>
-<area shape="rect" href="PorthMockDevice_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="371,93,625,119"/>
+<area shape="rect" href="PorthMockDevice_8hpp.html" title="Simulation layer for POSIX Shared Memory mapping of hardware registers." alt="" coords="371,93,625,119"/>
 <area shape="poly" title=" " alt="" coords="501,59,501,93,495,93,495,59"/>
 <area shape="poly" title=" " alt="" coords="105,132,99,170,102,189,111,205,131,220,161,233,242,252,336,263,422,269,422,274,335,269,241,258,159,238,128,225,107,208,97,190,94,170,100,131"/>
 <area shape="poly" title=" " alt="" coords="448,125,275,177,274,171,446,120"/>
 <area shape="poly" title=" " alt="" coords="545,121,669,164,667,169,543,126"/>
-<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="377,174,619,199"/>
+<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="377,174,619,199"/>
 <area shape="poly" title=" " alt="" coords="501,132,501,174,495,174,495,132"/>
 <area shape="poly" title=" " alt="" coords="501,213,501,254,495,254,495,213"/>
 </map>
@@ -152,8 +152,10 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a6da83c2b0b7c8e9583de6c77238c3a86" id="r_a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a6da83c2b0b7c8e9583de6c77238c3a86">porth::cache_line_alignment</a> = 64</td></tr>
+<tr class="memdesc:a6da83c2b0b7c8e9583de6c77238c3a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard x86_64/ARM64 cache line size. Aligned to 64 bytes to prevent "False Sharing" where the CPU's L1 cache coherency protocol (MESI/MOESI) would otherwise force unnecessary synchronization between registers in the same line.  <br /></td></tr>
 <tr class="separator:a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9feaff880cb1400c80e9198c2bcf10bb" id="r_a9feaff880cb1400c80e9198c2bcf10bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9feaff880cb1400c80e9198c2bcf10bb">porth::expected_layout_size</a> = 448</td></tr>
+<tr class="memdesc:a9feaff880cb1400c80e9198c2bcf10bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total footprint of the MMIO region. Must remain exactly 448 bytes to match the FPGA/ASIC register file RTL.  <br /></td></tr>
 <tr class="separator:a9feaff880cb1400c80e9198c2bcf10bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91a19d7d68a1f3175f1af84db17434cc" id="r_a91a19d7d68a1f3175f1af84db17434cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a91a19d7d68a1f3175f1af84db17434cc">porth::offset_control</a> = 0x00</td></tr>
 <tr class="separator:a91a19d7d68a1f3175f1af84db17434cc"><td class="memSeparator" colspan="2">&#160;</td></tr>

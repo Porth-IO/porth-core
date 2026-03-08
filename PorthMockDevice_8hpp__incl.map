@@ -1,5 +1,5 @@
 <map id="include/porth/PorthMockDevice.hpp" name="include/porth/PorthMockDevice.hpp">
-<area shape="rect" id="Node000001" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="250,5,503,31"/>
+<area shape="rect" id="Node000001" title="Simulation layer for POSIX Shared Memory mapping of hardware registers." alt="" coords="250,5,503,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,68,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="315,33,82,81,81,76,314,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="93,79,159,104"/>
@@ -16,7 +16,7 @@
 <area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="422,28,603,74,601,80,420,33"/>
 <area shape="rect" id="Node000009" href="$PorthDeviceLayout_8hpp.html" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="714,79,887,104"/>
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="445,28,719,74,719,79,444,33"/>
-<area shape="rect" id="Node000010" href="$PorthRegister_8hpp.html" title="The atomic &quot;brick&quot; of the Porth&#45;IO Hardware Abstraction Layer." alt="" coords="679,152,816,177"/>
+<area shape="rect" id="Node000010" href="$PorthRegister_8hpp.html" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="679,152,816,177"/>
 <area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="794,106,766,143,762,140,790,103"/>
 <area shape="rect" id="Node000012" title=" " alt="" coords="553,225,624,251"/>
 <area shape="poly" id="edge15_Node000009_Node000012" title=" " alt="" coords="765,107,717,126,668,154,634,184,607,216,603,212,630,181,664,150,715,121,763,102"/>

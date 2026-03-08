@@ -98,52 +98,58 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4677f77575ba582c1784bf9828cd2f6e" id="r_a4677f77575ba582c1784bf9828cd2f6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#a4677f77575ba582c1784bf9828cd2f6e">operator=</a> (<a class="el" href="classporth_1_1PorthSimDevice.html">PorthSimDevice</a> &amp;&amp;) -&gt; <a class="el" href="classporth_1_1PorthSimDevice.html">PorthSimDevice</a> &amp;=<a class="el" href="classporth_1_1PorthRingBuffer.html">delete</a></td></tr>
 <tr class="separator:a4677f77575ba582c1784bf9828cd2f6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2e8f50eb2cb5b9df565c95d1224696e" id="r_aa2e8f50eb2cb5b9df565c95d1224696e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#aa2e8f50eb2cb5b9df565c95d1224696e">PorthSimDevice</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">const</a> std::string &amp;<a class="el" href="classporth_1_1PorthRingBuffer.html">name</a>, <a class="el" href="classporth_1_1PorthRingBuffer.html">bool</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">create</a>=<a class="el" href="classporth_1_1PorthRingBuffer.html">true</a>)</td></tr>
-<tr class="memdesc:aa2e8f50eb2cb5b9df565c95d1224696e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Initializes shared memory and the physics background thread.  <br /></td></tr>
+<tr class="memdesc:aa2e8f50eb2cb5b9df565c95d1224696e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Initializes the Digital Twin environment.  <br /></td></tr>
 <tr class="separator:aa2e8f50eb2cb5b9df565c95d1224696e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06863131b639d6310aa91f19ea959af3" id="r_a06863131b639d6310aa91f19ea959af3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#a06863131b639d6310aa91f19ea959af3">~PorthSimDevice</a> ()</td></tr>
-<tr class="memdesc:a06863131b639d6310aa91f19ea959af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: Safely shuts down simulation threads and closes logs.  <br /></td></tr>
+<tr class="memdesc:a06863131b639d6310aa91f19ea959af3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: Orchestrates a graceful "Hardware Power-Down".  <br /></td></tr>
 <tr class="separator:a06863131b639d6310aa91f19ea959af3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcea833913e8dfe3329ca766c11aae2e" id="r_adcea833913e8dfe3329ca766c11aae2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#adcea833913e8dfe3329ca766c11aae2e">apply_scenario</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">base_ns</a>, <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">jitter_ns</a>, <a class="el" href="classporth_1_1PorthRingBuffer.html">bool</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">chaos</a>=<a class="el" href="classporth_1_1PorthRingBuffer.html">false</a>)</td></tr>
-<tr class="memdesc:adcea833913e8dfe3329ca766c11aae2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configures a specific performance or failure scenario.  <br /></td></tr>
+<tr class="memdesc:adcea833913e8dfe3329ca766c11aae2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">apply_scenario: Configures the physics model for specific test cases.  <br /></td></tr>
 <tr class="separator:adcea833913e8dfe3329ca766c11aae2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a235ef91d53544cc2cee2c7d826011521" id="r_a235ef91d53544cc2cee2c7d826011521"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#a235ef91d53544cc2cee2c7d826011521">trigger_deadlock</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">bool</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">active</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a></td></tr>
+<tr class="memdesc:a235ef91d53544cc2cee2c7d826011521"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers a firmware deadlock (halts physics loop).  <br /></td></tr>
 <tr class="separator:a235ef91d53544cc2cee2c7d826011521"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd02212271579e4bb2d2530ada5a46a9" id="r_afd02212271579e4bb2d2530ada5a46a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#afd02212271579e4bb2d2530ada5a46a9">trigger_corruption</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">bool</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">active</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a></td></tr>
+<tr class="memdesc:afd02212271579e4bb2d2530ada5a46a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers status register bit-flips.  <br /></td></tr>
 <tr class="separator:afd02212271579e4bb2d2530ada5a46a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1fd652432085a64540c2e2d3208c3f17" id="r_a1fd652432085a64540c2e2d3208c3f17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#a1fd652432085a64540c2e2d3208c3f17">set_bus_hang</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">bool</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">active</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a></td></tr>
+<tr class="memdesc:a1fd652432085a64540c2e2d3208c3f17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulates a PCIe bus hang (read/write timeouts).  <br /></td></tr>
 <tr class="separator:a1fd652432085a64540c2e2d3208c3f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b368890645bb6ac59e856c9cc4a2d87" id="r_a2b368890645bb6ac59e856c9cc4a2d87"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> &gt; </td></tr>
 <tr class="memitem:a2b368890645bb6ac59e856c9cc4a2d87"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#a2b368890645bb6ac59e856c9cc4a2d87">read_reg</a> (<a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> &gt; &amp;<a class="el" href="classporth_1_1PorthRingBuffer.html">reg</a>) -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a></td></tr>
-<tr class="memdesc:a2b368890645bb6ac59e856c9cc4a2d87"><td class="mdescLeft">&#160;</td><td class="mdescRight">MMIO read with simulated bus hang and protocol latency.  <br /></td></tr>
+<tr class="memdesc:a2b368890645bb6ac59e856c9cc4a2d87"><td class="mdescLeft">&#160;</td><td class="mdescRight">MMIO read with simulated protocol latency.  <br /></td></tr>
 <tr class="separator:a2b368890645bb6ac59e856c9cc4a2d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65aae288b1007a1bcecc8e8ef978526d" id="r_a65aae288b1007a1bcecc8e8ef978526d"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> &gt; </td></tr>
 <tr class="memitem:a65aae288b1007a1bcecc8e8ef978526d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#a65aae288b1007a1bcecc8e8ef978526d">write_reg</a> (<a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> &gt; &amp;<a class="el" href="classporth_1_1PorthRingBuffer.html">reg</a>, <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">val</a>) -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a></td></tr>
-<tr class="memdesc:a65aae288b1007a1bcecc8e8ef978526d"><td class="mdescLeft">&#160;</td><td class="mdescRight">MMIO write with simulated bus hang and protocol latency.  <br /></td></tr>
+<tr class="memdesc:a65aae288b1007a1bcecc8e8ef978526d"><td class="mdescLeft">&#160;</td><td class="mdescRight">MMIO write with simulated protocol latency.  <br /></td></tr>
 <tr class="separator:a65aae288b1007a1bcecc8e8ef978526d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeec79c19d7a794af259577ae144553e0" id="r_aeec79c19d7a794af259577ae144553e0"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> &gt; </td></tr>
 <tr class="memitem:aeec79c19d7a794af259577ae144553e0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#aeec79c19d7a794af259577ae144553e0">read_flit</a> (<a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> &gt; &amp;<a class="el" href="classporth_1_1PorthRingBuffer.html">reg</a>, <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">offset</a>) -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a></td></tr>
-<tr class="memdesc:aeec79c19d7a794af259577ae144553e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protocol-aware read simulating a PCIe Gen 6 FLIT completion with logging.  <br /></td></tr>
+<tr class="memdesc:aeec79c19d7a794af259577ae144553e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protocol-aware read simulating a PCIe Gen 6 FLIT completion.  <br /></td></tr>
 <tr class="separator:aeec79c19d7a794af259577ae144553e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e87bfef2f9ba8f8a035c9081b4db5b1" id="r_a2e87bfef2f9ba8f8a035c9081b4db5b1"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> &gt; </td></tr>
 <tr class="memitem:a2e87bfef2f9ba8f8a035c9081b4db5b1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#a2e87bfef2f9ba8f8a035c9081b4db5b1">write_flit</a> (<a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> &gt; &amp;<a class="el" href="classporth_1_1PorthRingBuffer.html">reg</a>, <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">offset</a>, <a class="el" href="classporth_1_1PorthRingBuffer.html">T</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">val</a>) -&gt; <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a></td></tr>
-<tr class="memdesc:a2e87bfef2f9ba8f8a035c9081b4db5b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protocol-aware write simulating a PCIe Gen 6 Memory Write TLP with logging.  <br /></td></tr>
+<tr class="memdesc:a2e87bfef2f9ba8f8a035c9081b4db5b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Protocol-aware write simulating a PCIe Gen 6 Memory Write TLP.  <br /></td></tr>
 <tr class="separator:a2e87bfef2f9ba8f8a035c9081b4db5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aada7ac4d8936b63400340991bb4c107d" id="r_aada7ac4d8936b63400340991bb4c107d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#aada7ac4d8936b63400340991bb4c107d">view</a> () <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *</td></tr>
-<tr class="memdesc:aada7ac4d8936b63400340991bb4c107d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the register layout for handshakes.  <br /></td></tr>
+<tr class="memdesc:aada7ac4d8936b63400340991bb4c107d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the shared register map view.  <br /></td></tr>
 <tr class="separator:aada7ac4d8936b63400340991bb4c107d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3df9273d0a3ec3ce384926b81decce85" id="r_a3df9273d0a3ec3ce384926b81decce85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#a3df9273d0a3ec3ce384926b81decce85">get_phy</a> () <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="classporth_1_1PorthSimPHY.html">PorthSimPHY</a> &amp;</td></tr>
-<tr class="memdesc:a3df9273d0a3ec3ce384926b81decce85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access the PHY simulator configuration.  <br /></td></tr>
+<tr class="memdesc:a3df9273d0a3ec3ce384926b81decce85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the PHY physics configuration.  <br /></td></tr>
 <tr class="separator:a3df9273d0a3ec3ce384926b81decce85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a19abf705bc6aff5e0734fa40fbac14bc" id="r_a19abf705bc6aff5e0734fa40fbac14bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">static</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimDevice.html#a19abf705bc6aff5e0734fa40fbac14bc">force_buffer_overflow</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">PorthRingBuffer</a>&lt; <a class="el" href="namespaceporth.html#aec5ce4ce4725d24dc7c1ced3e399d364">SIM_DEFAULT_SHUTTLE_SIZE</a> &gt; &amp;ring)</td></tr>
-<tr class="memdesc:a19abf705bc6aff5e0734fa40fbac14bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sub-task 4.3: Buffer Overflow Testing.  <br /></td></tr>
+<tr class="memdesc:a19abf705bc6aff5e0734fa40fbac14bc"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classporth_1_1PorthSimDevice.html#a19abf705bc6aff5e0734fa40fbac14bc" title="force_buffer_overflow(): Resilience test against saturated links.">force_buffer_overflow()</a>: Resilience test against saturated links.  <br /></td></tr>
 <tr class="separator:a19abf705bc6aff5e0734fa40fbac14bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The high-fidelity Digital Twin for Cardiff Photonics. </p>
-<p>This class simulates the physical, electrical, and protocol-level behaviors of a compound semiconductor device on a PCIe Gen 6 bus. It manages a background physics thread that models thermal drift and power rail noise while providing hooks for chaos engineering and protocol-aware register access. </p>
+<p>This class simulates the physical, electrical, and protocol-level behaviors of a compound semiconductor device on a PCIe Gen 6 bus. It manages a background physics thread that models thermal drift and power rail noise.</p><ul>
+<li><dl class="section note"><dt>Note</dt><dd>This is the Sovereign testing ground; it allows for "Chaos Engineering" by injecting hardware-level failures that would be dangerous or impossible to trigger on physical GaN hardware. </dd></dl>
+</li>
+</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6d16aca716feb3ebc79b28e2bb101041" name="a6d16aca716feb3ebc79b28e2bb101041"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6d16aca716feb3ebc79b28e2bb101041">&#9670;&#160;</a></span>PorthSimDevice() <span class="overload">[1/3]</span></h2>
@@ -231,14 +237,17 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor: Initializes shared memory and the physics background thread. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Constructor: Initializes the Digital Twin environment. </p>
+<ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Name of the device for shared memory allocation. </td></tr>
-    <tr><td class="paramname">create</td><td>If true, creates the segment; if false, attaches as observer. </td></tr>
+    <tr><td class="paramname">name</td><td>The SHM identifier (e.g., "cardiff_0"). </td></tr>
+    <tr><td class="paramname">create</td><td>If true, allocates the mock-BARs (Simulator Mode). </td></tr>
   </table>
   </dd>
 </dl>
+</li>
+</ul>
 
 </div>
 </div>
@@ -265,7 +274,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Destructor: Safely shuts down simulation threads and closes logs. </p>
+<p>Destructor: Orchestrates a graceful "Hardware Power-Down". </p>
 
 </div>
 </div>
@@ -310,12 +319,12 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Configures a specific performance or failure scenario. </p>
+<p>apply_scenario: Configures the physics model for specific test cases. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">base_ns</td><td>The base propagation delay. </td></tr>
-    <tr><td class="paramname">jitter_ns</td><td>The maximum random jitter. </td></tr>
-    <tr><td class="paramname">chaos</td><td>If true, enables status register corruption. </td></tr>
+    <tr><td class="paramname">base_ns</td><td>The base propagation delay (light-in-fiber simulation). </td></tr>
+    <tr><td class="paramname">jitter_ns</td><td>Maximum jitter (clock recovery noise). </td></tr>
+    <tr><td class="paramname">chaos</td><td>Enable SEU/bit-flip simulation. </td></tr>
   </table>
   </dd>
 </dl>
@@ -346,12 +355,12 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sub-task 4.3: Buffer Overflow Testing. </p>
+<p><a class="el" href="classporth_1_1PorthSimDevice.html#a19abf705bc6aff5e0734fa40fbac14bc" title="force_buffer_overflow(): Resilience test against saturated links.">force_buffer_overflow()</a>: Resilience test against saturated links. </p>
 <ul>
-<li>Artificially saturates the RingBuffer to test driver resilience. Pushes 2048 junk descriptors into the 1024-slot ring.</li>
+<li>Floods the RingBuffer to verify that the <a class="el" href="classporth_1_1Driver.html" title="The high-level Master Driver for the Newport Cluster.">Driver</a> handles 'FULL' conditions without crashing or leaking memory.</li>
 <li><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ring</td><td>Reference to the ring buffer to overflow. </td></tr>
+    <tr><td class="paramname">ring</td><td>The target DMA ring. </td></tr>
   </table>
   </dd>
 </dl>
@@ -383,7 +392,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Access the PHY simulator configuration. </p>
+<p>Returns a reference to the PHY physics configuration. </p>
 
 </div>
 </div>
@@ -475,7 +484,8 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a>
 </table>
 </div><div class="memdoc">
 
-<p>Protocol-aware read simulating a PCIe Gen 6 FLIT completion with logging. </p>
+<p>Protocol-aware read simulating a PCIe Gen 6 FLIT completion. </p>
+<p>** Logs the request/completion to porth_tlp_traffic.log for logic auditing. </p>
 
 </div>
 </div>
@@ -505,7 +515,8 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a>
 </table>
 </div><div class="memdoc">
 
-<p>MMIO read with simulated bus hang and protocol latency. </p>
+<p>MMIO read with simulated protocol latency. </p>
+<p>*</p><dl class="section return"><dt>Returns</dt><dd>T The register value after propagation delay. </dd></dl>
 
 </div>
 </div>
@@ -533,6 +544,8 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a>
 </table>
 </div><div class="memdoc">
 
+<p>Simulates a PCIe bus hang (read/write timeouts). </p>
+
 </div>
 </div>
 <a id="afd02212271579e4bb2d2530ada5a46a9" name="afd02212271579e4bb2d2530ada5a46a9"></a>
@@ -558,6 +571,8 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Triggers status register bit-flips. </p>
 
 </div>
 </div>
@@ -585,6 +600,8 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a>
 </table>
 </div><div class="memdoc">
 
+<p>Triggers a firmware deadlock (halts physics loop). </p>
+
 </div>
 </div>
 <a id="aada7ac4d8936b63400340991bb4c107d" name="aada7ac4d8936b63400340991bb4c107d"></a>
@@ -610,7 +627,7 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a>
 </table>
 </div><div class="memdoc">
 
-<p>Access the register layout for handshakes. </p>
+<p>Returns the shared register map view. </p>
 
 </div>
 </div>
@@ -656,7 +673,10 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a>
 </table>
 </div><div class="memdoc">
 
-<p>Protocol-aware write simulating a PCIe Gen 6 Memory Write TLP with logging. </p>
+<p>Protocol-aware write simulating a PCIe Gen 6 Memory Write TLP. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -696,7 +716,13 @@ template&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">typename</a>
 </table>
 </div><div class="memdoc">
 
-<p>MMIO write with simulated bus hang and protocol latency. </p>
+<p>MMIO write with simulated protocol latency. </p>
+<p>*</p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The value to write to the physical register. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -4,7 +4,7 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="586,33,218,81,218,75,585,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="5,152,72,177"/>
 <area shape="poly" id="edge14_Node000001_Node000003" title=" " alt="" coords="612,33,378,81,86,154,85,148,377,76,611,28"/>
-<area shape="rect" id="Node000004" href="$PorthMetric_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="389,79,552,104"/>
+<area shape="rect" id="Node000004" href="$PorthMetric_8hpp.html" title="Statistical analysis engine for ultra&#45;low latency timing telemetry." alt="" coords="389,79,552,104"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="642,33,517,77,515,72,640,28"/>
 <area shape="rect" id="Node000010" title=" " alt="" coords="851,152,931,177"/>
 <area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="658,33,639,48,622,66,613,85,614,94,618,102,640,125,663,138,686,145,711,147,768,145,801,145,837,149,837,155,801,151,768,150,711,152,685,150,661,143,637,129,614,106,608,95,608,84,617,63,635,44,654,29"/>

@@ -82,7 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Hardware-abstracted access to high-precision CPU cycle counters.  
+<p>Zero-copy orchestrator for mapping memory structures to physical hardware.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="PorthHugePage_8hpp_source.html">PorthHugePage.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="PorthRingBuffer_8hpp_source.html">PorthRingBuffer.hpp</a>&quot;</code><br />
@@ -95,8 +95,8 @@ Include dependency graph for PorthShuttle.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthShuttle_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthShuttle_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthShuttle_8hpp" id="ainclude_2porth_2PorthShuttle_8hpp">
-<area shape="rect" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="407,5,625,31"/>
-<area shape="rect" href="PorthHugePage_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="296,79,445,104"/>
+<area shape="rect" title="Zero&#45;copy orchestrator for mapping memory structures to physical hardware." alt="" coords="407,5,625,31"/>
+<area shape="rect" href="PorthHugePage_8hpp.html" title="Strictly Linux RAII wrapper for HugePage memory." alt="" coords="296,79,445,104"/>
 <area shape="poly" title=" " alt="" coords="494,33,408,75,405,70,491,28"/>
 <area shape="rect" title=" " alt="" coords="621,152,688,177"/>
 <area shape="poly" title=" " alt="" coords="529,29,636,140,632,144,525,33"/>
@@ -104,7 +104,7 @@ Include dependency graph for PorthShuttle.hpp:</div>
 <area shape="poly" title=" " alt="" coords="437,33,336,52,227,81,143,114,73,148,71,143,141,109,226,76,335,47,436,28"/>
 <area shape="rect" title=" " alt="" coords="96,152,176,177"/>
 <area shape="poly" title=" " alt="" coords="453,33,372,53,285,81,219,113,165,147,162,142,217,109,283,76,370,47,452,28"/>
-<area shape="rect" href="PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer." alt="" coords="665,79,815,104"/>
+<area shape="rect" href="PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer for DMA telemetry." alt="" coords="665,79,815,104"/>
 <area shape="poly" title=" " alt="" coords="553,28,692,72,690,77,551,33"/>
 <area shape="rect" title=" " alt="" coords="970,152,1019,177"/>
 <area shape="poly" title=" " alt="" coords="614,28,719,47,829,76,904,109,966,142,963,147,902,113,827,81,718,52,613,33"/>
@@ -135,14 +135,14 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthShuttle_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthShuttle_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthShuttle_8hppdep" id="ainclude_2porth_2PorthShuttle_8hppdep">
-<area shape="rect" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="182,5,401,31"/>
+<area shape="rect" title="Zero&#45;copy orchestrator for mapping memory structures to physical hardware." alt="" coords="182,5,401,31"/>
 <area shape="rect" href="zero__copy__handshake_8cpp.html" title=" " alt="" coords="5,79,161,119"/>
 <area shape="poly" title=" " alt="" coords="249,38,134,81,132,76,248,33"/>
-<area shape="rect" href="PorthDriver_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="185,86,397,111"/>
+<area shape="rect" href="PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="185,86,397,111"/>
 <area shape="poly" title=" " alt="" coords="294,44,294,86,289,86,289,44"/>
-<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="422,86,665,111"/>
+<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="422,86,665,111"/>
 <area shape="poly" title=" " alt="" coords="342,32,507,83,506,89,340,37"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="341,167,493,207"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="341,167,493,207"/>
 <area shape="poly" title=" " alt="" coords="321,117,391,164,388,169,318,121"/>
 <area shape="poly" title=" " alt="" coords="516,121,446,169,443,164,513,117"/>
 </map>
@@ -167,14 +167,14 @@ Namespaces</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:abd755c35c5e55e3d521fdf6e181765ab" id="r_abd755c35c5e55e3d521fdf6e181765ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#abd755c35c5e55e3d521fdf6e181765ab">porth::DEFAULT_SHUTTLE_CAPACITY</a> = 1024</td></tr>
-<tr class="memdesc:abd755c35c5e55e3d521fdf6e181765ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default capacity for the Shuttle ring buffer.  <br /></td></tr>
+<tr class="memdesc:abd755c35c5e55e3d521fdf6e181765ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default capacity for the Shuttle ring buffer. Balanced to minimize cache-line walk depth while maintaining burst resilience.  <br /></td></tr>
 <tr class="separator:abd755c35c5e55e3d521fdf6e181765ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59859250362706d1f9670964d7e1586f" id="r_a59859250362706d1f9670964d7e1586f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a59859250362706d1f9670964d7e1586f">porth::SHUTTLE_PAGE_SIZE</a> = <a class="el" href="classporth_1_1PorthRingBuffer.html">static_cast</a>&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&gt;(2) * 1024 * 1024</td></tr>
-<tr class="memdesc:a59859250362706d1f9670964d7e1586f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard 2MB HugePage size for memory allocation.  <br /></td></tr>
+<tr class="memdesc:a59859250362706d1f9670964d7e1586f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard 2MB HugePage size for memory allocation. This is the atomic unit of the Linux hugetlbfs; using 2MB pages ensures that the entire data plane fits within a single TLB entry, eliminating Page-Walk-induced latency during high-speed Newport Cluster transfers.  <br /></td></tr>
 <tr class="separator:a59859250362706d1f9670964d7e1586f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Hardware-abstracted access to high-precision CPU cycle counters. </p>
+<div class="textblock"><p>Zero-copy orchestrator for mapping memory structures to physical hardware. </p>
 <p>Porth-IO: The Sovereign Logic Layer</p>
 <p>Copyright (c) 2026 Porth-IO Contributors SPDX-License-Identifier: Apache-2.0 </p>
 </div></div><!-- contents -->

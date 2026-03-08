@@ -89,7 +89,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:abae5b2824728536f673747bae1adf60d" id="r_abae5b2824728536f673747bae1adf60d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDescriptor.html#abae5b2824728536f673747bae1adf60d">addr</a></td></tr>
-<tr class="memdesc:abae5b2824728536f673747bae1adf60d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Physical or Virtual memory address.  <br /></td></tr>
+<tr class="memdesc:abae5b2824728536f673747bae1adf60d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Physical or Virtual memory address for the DMA engine.  <br /></td></tr>
 <tr class="separator:abae5b2824728536f673747bae1adf60d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5265703b7470c8a6ba765971f171e97" id="r_ad5265703b7470c8a6ba765971f171e97"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDescriptor.html#ad5265703b7470c8a6ba765971f171e97">len</a></td></tr>
 <tr class="memdesc:ad5265703b7470c8a6ba765971f171e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Length of the data buffer in bytes.  <br /></td></tr>
@@ -97,8 +97,9 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The "Cargo" box for DMA transactions. </p>
-<ul>
-<li>This represents a DMA-ready memory region that the Cardiff chip can read from or write to directly without CPU intervention. </li>
+<p>This structure is the primary unit of exchange between the CPU and the Newport Cluster's InP/GaN data plane.</p><ul>
+<li><dl class="section note"><dt>Note</dt><dd>addr must point to a HugePage-backed region for DMA-Sovereignty. </dd></dl>
+</li>
 </ul>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="abae5b2824728536f673747bae1adf60d" name="abae5b2824728536f673747bae1adf60d"></a>
@@ -113,7 +114,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Physical or Virtual memory address. </p>
+<p>Physical or Virtual memory address for the DMA engine. </p>
 
 </div>
 </div>

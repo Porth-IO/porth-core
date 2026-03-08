@@ -117,11 +117,11 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="PorthUtil_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthUtil_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthUtil_8hppdep" id="ainclude_2porth_2PorthUtil_8hppdep">
 <area shape="rect" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="30,5,226,31"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="52,152,204,192"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="52,152,204,192"/>
 <area shape="poly" title=" " alt="" coords="68,38,37,55,13,80,9,91,9,101,21,120,43,136,71,150,69,154,41,141,17,123,4,102,3,90,8,77,34,51,66,33"/>
-<area shape="rect" href="PorthDriver_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="22,79,234,104"/>
+<area shape="rect" href="PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="22,79,234,104"/>
 <area shape="poly" title=" " alt="" coords="131,44,131,79,125,79,125,44"/>
-<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="259,79,501,104"/>
+<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="259,79,501,104"/>
 <area shape="poly" title=" " alt="" coords="183,32,340,76,339,81,181,37"/>
 <area shape="poly" title=" " alt="" coords="131,118,131,152,125,152,125,118"/>
 <area shape="poly" title=" " alt="" coords="331,111,189,154,188,149,330,106"/>
@@ -154,7 +154,7 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aa5fa31ee74e7cbae3b25c259e872006d" id="r_aa5fa31ee74e7cbae3b25c259e872006d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aa5fa31ee74e7cbae3b25c259e872006d">porth::pin_thread_to_core</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">int</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">core_id</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a></td></tr>
-<tr class="memdesc:aa5fa31ee74e7cbae3b25c259e872006d"><td class="mdescLeft">&#160;</td><td class="mdescRight">pin_thread_to_core: Locks a thread to a specific CPU core.  <br /></td></tr>
+<tr class="memdesc:aa5fa31ee74e7cbae3b25c259e872006d"><td class="mdescLeft">&#160;</td><td class="mdescRight">pin_thread_to_core: Locks a thread to a specific physical CPU core.  <br /></td></tr>
 <tr class="separator:aa5fa31ee74e7cbae3b25c259e872006d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a063c5d5271b838e40162447e784e2846" id="r_a063c5d5271b838e40162447e784e2846"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a063c5d5271b838e40162447e784e2846">porth::set_realtime_priority</a> () <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a></td></tr>
 <tr class="memdesc:a063c5d5271b838e40162447e784e2846"><td class="mdescLeft">&#160;</td><td class="mdescRight">set_realtime_priority: Elevates the calling thread to SCHED_FIFO.  <br /></td></tr>
@@ -163,7 +163,7 @@ Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aee756e9319315feec4db4b265da4a82e" id="r_aee756e9319315feec4db4b265da4a82e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aee756e9319315feec4db4b265da4a82e">porth::MAX_PTHREAD_FIFO_PRIORITY</a> = 99</td></tr>
-<tr class="memdesc:aee756e9319315feec4db4b265da4a82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Real-time scheduling constants to resolve magic number warnings.  <br /></td></tr>
+<tr class="memdesc:aee756e9319315feec4db4b265da4a82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum priority for Real-Time FIFO scheduling. Level 99 ensures the Porth driver preempts all other system tasks, including standard kernel threads, to maintain GaN switching determinism.  <br /></td></tr>
 <tr class="separator:aee756e9319315feec4db4b265da4a82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>

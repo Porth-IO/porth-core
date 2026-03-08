@@ -1,14 +1,14 @@
 <map id="include/porth/PorthHugePage.hpp" name="include/porth/PorthHugePage.hpp">
-<area shape="rect" id="Node000001" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="172,5,411,31"/>
-<area shape="rect" id="Node000002" href="$PorthShuttle_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="182,79,401,104"/>
+<area shape="rect" id="Node000001" title="Strictly Linux RAII wrapper for HugePage memory." alt="" coords="172,5,411,31"/>
+<area shape="rect" id="Node000002" href="$PorthShuttle_8hpp.html" title="Zero&#45;copy orchestrator for mapping memory structures to physical hardware." alt="" coords="182,79,401,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="294,44,294,79,289,79,289,44"/>
 <area shape="rect" id="Node000003" href="$zero__copy__handshake_8cpp.html" title=" " alt="" coords="5,152,161,192"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="249,111,134,154,132,149,248,106"/>
-<area shape="rect" id="Node000004" href="$PorthDriver_8hpp.html" title="Hardware&#45;abstracted access to high&#45;precision CPU cycle counters." alt="" coords="185,159,397,185"/>
+<area shape="rect" id="Node000004" href="$PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="185,159,397,185"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="294,118,294,159,289,159,289,118"/>
-<area shape="rect" id="Node000006" href="$PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="422,159,665,185"/>
+<area shape="rect" id="Node000006" href="$PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="422,159,665,185"/>
 <area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="342,106,507,157,506,162,340,111"/>
-<area shape="rect" id="Node000005" href="$porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="341,240,493,280"/>
+<area shape="rect" id="Node000005" href="$porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="341,240,493,280"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="321,190,391,238,388,242,318,195"/>
 <area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="516,195,446,242,443,238,513,190"/>
 </map>
