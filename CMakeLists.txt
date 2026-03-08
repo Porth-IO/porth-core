@@ -8,6 +8,7 @@ project(porth-core
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
@@ -51,8 +52,9 @@ if(IWYU_PATH)
     set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE ${IWYU_PATH} -Wno-unknown-warning-option)
 endif()
 
-find_program(CLANG_TIDY_PATH clang-tidy)
+find_program(CLANG_TIDY_PATH NAMES clang-tidy clang-tidy-20)
 if(CLANG_TIDY_PATH)
+    # This will run clang-tidy during the 'make' process for all .cpp files
     set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_PATH} -extra-arg=-Wno-unknown-warning-option)
 endif()
 

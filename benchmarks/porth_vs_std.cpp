@@ -42,13 +42,19 @@ auto main() -> int {
     addr.sin_port        = htons(8888);
     addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
 
+    // Pre-calculate the cast to satisfy the linter and prevent clang-format drift.
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast)
+    const auto* target_addr = reinterpret_cast<const struct sockaddr*>(&addr); 
+
     for (int i = 0; i < iterations; ++i) {
-        uint64_t t1 = PorthClock::now_precise();
-        // Use reinterpret_cast instead of C-style cast
-        sendto(sock, "ping", 4, 0, reinterpret_cast<const struct sockaddr*>(&addr), sizeof(addr));
-        uint64_t t2 = PorthClock::now_precise();
+        const std::uint64_t t1 = porth::PorthClock::now_precise();
+        
+        (void)sendto(sock, "ping", 4, 0, target_addr, sizeof(addr));
+
+        const std::uint64_t t2 = porth::PorthClock::now_precise();
         std_results.record(t2 - t1);
     }
+
     close(sock);
 
     for (int i = 0; i < iterations; ++i) {

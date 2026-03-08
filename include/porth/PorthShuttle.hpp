@@ -1,6 +1,6 @@
 /**
  * @file PorthShuttle.hpp
- * @brief Hardware-abstracted access to high-precision CPU cycle counters.
+ * @brief Zero-copy orchestrator for mapping memory structures to physical hardware.
  *
  * Porth-IO: The Sovereign Logic Layer
  *
@@ -28,94 +28,110 @@ using owner = T;
 
 namespace porth {
 
-/** @brief Default capacity for the Shuttle ring buffer. */
+/** * @brief Default capacity for the Shuttle ring buffer.
+ * Balanced to minimize cache-line walk depth while maintaining burst resilience.
+ */
 constexpr size_t DEFAULT_SHUTTLE_CAPACITY = 1024;
 
-/** @brief Standard 2MB HugePage size for memory allocation. */
+/** * @brief Standard 2MB HugePage size for memory allocation.
+ * This is the atomic unit of the Linux hugetlbfs; using 2MB pages ensures that
+ * the entire data plane fits within a single TLB entry, eliminating
+ * Page-Walk-induced latency during high-speed Newport Cluster transfers.
+ */
 constexpr size_t SHUTTLE_PAGE_SIZE = static_cast<size_t>(2) * 1024 * 1024;
 
 /**
  * @class PorthShuttle
  * @brief The Zero-Copy Orchestrator for high-performance DMA.
  *
- * Handles the "Placement New" logic to ensure the RingBuffer lives inside
- * pinned HugePage memory. This eliminates memory copy overhead between
- * the hardware logic layer and user-space applications.
+ * This class handles the "Sovereign Mapping" logic, ensuring the PorthRingBuffer
+ * resides within pinned, hardware-visible HugePage memory. By utilizing
+ * Placement New, we align the C++ object model directly with the DMA engine's
+ * memory view, eliminating CPU-intensive 'memcpy' operations.
  *
- * @tparam Capacity The number of descriptors in the ring. Defaults to 1024.
+ * @tparam Capacity The number of descriptors in the ring. Must be a power of two.
  */
 template <size_t Capacity = DEFAULT_SHUTTLE_CAPACITY>
 class PorthShuttle {
 private:
-    PorthHugePage m_memory; ///< The underlying HugePage memory allocation.
-    gsl::owner<PorthRingBuffer<Capacity>*>
-        m_ring_ptr; ///< Typed pointer to the ring buffer within the HugePage.
+    /** @brief The underlying HugePage memory allocation.
+     * RAII-managed to ensure memory is pinned for the duration of the hardware session.
+     */
+    PorthHugePage m_memory;
+
+    /** @brief Typed pointer to the ring buffer within the HugePage.
+     * Managed via 'Placement New' logic.
+     */
+    gsl::owner<PorthRingBuffer<Capacity>*> m_ring_ptr;
 
 public:
     /**
      * @brief Constructor: Initializes the DMA fabric using Placement New.
-     * * This constructor allocates a 2MB HugePage and maps the PorthRingBuffer
-     * structure directly onto that memory region. Because HugePages are
-     * 2MB aligned, the ring buffer is guaranteed to be 64-byte aligned.
+     * * Allocates a 2MB HugePage and maps the PorthRingBuffer structure
+     * directly onto the raw memory base address.
+     * * @note Placement New is safe here because PorthRingBuffer satisfies
+     * 'Standard Layout' requirements and the HugePage provides the
+     * necessary 64-byte alignment for DMA-Sovereignty.
      */
-    PorthShuttle()
-        : m_memory(SHUTTLE_PAGE_SIZE), m_ring_ptr(nullptr) { // Allocate 2MB HugePage pool
+    PorthShuttle() : m_memory(SHUTTLE_PAGE_SIZE), m_ring_ptr(nullptr) {
 
-        // Safety check: Ensure the type is safe for memory-mapped placement
-        static_assert(std::is_standard_layout_v<PorthRingBuffer<Capacity>>,
-                      "Cannot map PorthRingBuffer: Type violates Standard Layout rules.");
+        // Safety Check: We cannot map non-Standard Layout types because
+        // compiler-specific padding would break the Newport hardware's view of memory.
+        static_assert(
+            std::is_standard_layout_v<PorthRingBuffer<Capacity>>,
+            "Cannot map PorthRingBuffer: Type violates Standard Layout rules for MMIO/DMA.");
 
-        // Get the raw address from the HugePage
+        // Retrieve the raw base address from the pinned HugePage region.
         void* base_addr = m_memory.data();
 
-        // We initialize the RingBuffer at the very start of the HugePage.
-        // This is a zero-copy operation that aligns the software structure with the hardware view.
+        // Placement New: We construct the C++ object directly onto the hardware-visible memory.
+        // This is a zero-copy operation; the CPU and InP/GaN chip now share this exact memory
+        // address.
         m_ring_ptr = new (base_addr) PorthRingBuffer<Capacity>();
 
-        // Professional logging using C++23 std::format for zero-jitter reporting
+        // Telemetry logging for the initialization phase.
         std::cout << std::format("[Porth-Shuttle] Zero-Copy Placement New successful at: {}\n",
                                  base_addr);
     }
 
     /**
-     * @brief Destructor: Manually releases the placement-new object.
-     * * Since we used placement new, we must explicitly invoke the destructor
-     * of the PorthRingBuffer before the PorthHugePage object cleans up the
-     * underlying memory mapping.
+     * @brief Destructor: Manually releases the placement-mapped object.
+     * * Since the object was constructed via Placement New (bypassing the heap allocator),
+     * we must explicitly invoke the destructor to ensure atomic indices and internal
+     * pointers are cleaned up before the HugePage is unmapped.
      */
     ~PorthShuttle() {
         if (m_ring_ptr != nullptr) {
-            // Task: Manually call the destructor for the placement-mapped object
+            // Explicitly call the destructor for the object living in the HugePage.
             m_ring_ptr->~PorthRingBuffer();
         }
     }
 
     /**
-     * @brief get_device_addr: Returns the DMA-ready physical address.
-     * * Converts the HugePage pointer to a uint64_t for the Hardware Handshake.
+     * @brief Returns the DMA-ready physical address for the hardware handshake.
      * @return uint64_t The physical/device address of the memory region.
+     * @note This address is written to the 'data_ptr' register in the PorthDeviceLayout.
      */
     [[nodiscard]] auto get_device_addr() const noexcept -> uint64_t {
+        // reinterpret_cast is justified as we are passing a physical memory pointer
+        // to a 64-bit hardware register.
         return reinterpret_cast<uint64_t>(m_memory.data());
     }
 
     /** @brief Access the zero-copy ring buffer for data transmission. */
-    [[nodiscard]] auto ring() noexcept -> PorthRingBuffer<Capacity>* {
-        return m_ring_ptr; // NOLINT(cppcoreguidelines-owning-memory)
-    }
+    [[nodiscard]] auto ring() noexcept -> PorthRingBuffer<Capacity>* { return m_ring_ptr; }
 
-    /** @brief Const access to the zero-copy ring buffer. */
+    /** @brief Const access to the zero-copy ring buffer for telemetry. */
     [[nodiscard]] auto ring() const noexcept -> const PorthRingBuffer<Capacity>* {
-        return m_ring_ptr; // NOLINT(cppcoreguidelines-owning-memory)
+        return m_ring_ptr;
     }
 
-    // Hardware-mapped orchestrators cannot be copied to prevent memory aliasing conflicts.
+    // Hardware-mapped orchestrators cannot be copied or moved to prevent
+    // memory aliasing and illegal DMA access to unmapped regions.
     PorthShuttle(const PorthShuttle&)                    = delete;
     auto operator=(const PorthShuttle&) -> PorthShuttle& = delete;
-
-    // Rule of Five compliance: Explicitly delete move operations.
-    PorthShuttle(PorthShuttle&&)                    = delete;
-    auto operator=(PorthShuttle&&) -> PorthShuttle& = delete;
+    PorthShuttle(PorthShuttle&&)                         = delete;
+    auto operator=(PorthShuttle&&) -> PorthShuttle&      = delete;
 };
 
 } // namespace porth
