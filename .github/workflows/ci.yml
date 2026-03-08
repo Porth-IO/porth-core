@@ -24,13 +24,11 @@ jobs:
           sudo ./llvm.sh 20
           
           # Install the specific versioned binaries
-          sudo apt-get install -y clang-format-20 clang-tidy-20 cmake ninja-build
+          sudo apt-get install -y clang-format-20 clang-tidy-20 cmake ninja-build iwyu libbenchmark-dev
           
           # Create symlinks so the standard 'clang-format' command points to 'clang-format-20'
           sudo ln -sf /usr/bin/clang-format-20 /usr/bin/clang-format
           sudo ln -sf /usr/bin/clang-tidy-20 /usr/bin/clang-tidy
-
-          sudo apt-get install -y iwyu # Add iwyu to your existing install list
 
       - name: 1. Format Audit
         run: |
@@ -57,15 +55,11 @@ jobs:
 
       - name: 5. Execute Performance Gate
         run: |
-          # Use absolute-style path relative to workspace to avoid 127 errors
-          ./build/porth_bench
+          # Run the professional suite and save results as JSON
+          ./build/benchmarks/porth_perf_suite --benchmark_format=json > benchmarks_report.json
           
-          # Verify the latency guard exists before running
-          if [ -f "scripts/latency_guard.py" ]; then
-            python3 scripts/latency_guard.py
-          else
-            echo "Warning: latency_guard.py not found, skipping gate."
-          fi
+          # Run the guard script to verify if we meet the Sovereign limits
+          python3 scripts/latency_guard.py benchmarks_report.json
 
       - name: 6. Generate Sovereign SBOM
         run: |

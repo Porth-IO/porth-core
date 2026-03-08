@@ -5,7 +5,8 @@
   "homepage": "https://github.com/harridavies/porth-core",
   "license": "Apache-2.0",
   "dependencies": [
-    "threads"
+    "threads",
+    "google-benchmark"
   ],
   "builtin-baseline": "802492f25b29f95d5351a44e6b6e4f3a776c59d9"
 }

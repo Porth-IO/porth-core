@@ -1,0 +1,6 @@
+{
+  "chip_name": "Newport_Gen1",
+  "base_delay_ns": 100,
+  "jitter_ns": 25,
+  "thermal_threshold_mc": 40000
+}

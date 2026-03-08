@@ -3,6 +3,19 @@
 Welcome. As a mission-critical, low-latency systems project, we maintain an uncompromising bar for performance, safety, and readability. To contribute, you must be prepared to defend every clock cycle and every byte of memory alignment.
 
 ---
+# ⚖️ Contributor License Agreement (CLA)
+
+By contributing to Porth-IO, you agree that:
+
+1. Your contributions are licensed under the **Apache License, Version 2.0**.
+
+2. You grant the Porth-IO project and its maintainers a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare derivative works of, and distribute your contributions.
+
+3. You have the legal right to submit the contribution (it is your original work or you have permission).
+
+This ensures the project remains **"Sovereign"** and can be safely integrated into industrial and commercial environments.
+
+---
 
 ## 1. Engineering Principles
 

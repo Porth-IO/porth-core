@@ -119,18 +119,13 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/PorthConfigVersion.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Porth
 )
 
-# --- 5. Internal Development (Tests & Examples) ---
+# --- 5. Internal Development (Tests, Benchmarks, Tools, & Examples) ---
 option(BUILD_TESTING "Enable project tests" ON)
 option(ENABLE_COVERAGE "Enable code coverage reporting" OFF)
 
-if(ENABLE_COVERAGE AND NOT MSVC)
-    add_compile_options(--coverage -O0 -g)
-    add_link_options(--coverage)
-endif()
-
+# Helper function to create Porth targets (Binaries)
 function(add_porth_target name source is_test)
     add_executable(${name} ${source})
-    # Consumers link to the ALIAS to mirror real-world usage
     target_link_libraries(${name} PRIVATE Porth::porth-core)
     
     if(is_test AND BUILD_TESTING)
@@ -138,36 +133,26 @@ function(add_porth_target name source is_test)
     endif()
 endfunction()
 
-if(BUILD_TESTING)
-    enable_testing()
-    
-    # Registered Tests
-    add_porth_target(test_metrics tests/test_metrics.cpp TRUE)
-    add_porth_target(test_sim_phy tests/test_sim_phy.cpp TRUE)
-    add_porth_target(test_sim_protocol tests/test_sim_protocol.cpp TRUE)
-    add_porth_target(test_sim_domains tests/test_sim_domains.cpp TRUE)
-    add_porth_target(test_sim_chaos tests/test_sim_chaos.cpp TRUE)
-    add_porth_target(test_physics_barrier tests/test_physics_barrier.cpp TRUE)
-    add_porth_target(unit_ring_buffer tests/unit_ring_buffer.cpp TRUE)
-    
-    add_porth_target(fuzz_ring_buffer tests/fuzz_ring_buffer.cpp TRUE)
-    add_porth_target(test_physics_response tests/test_physics_response.cpp TRUE)
+# Coverage setup
+if(ENABLE_COVERAGE AND NOT MSVC)
+    add_compile_options(--coverage -O0 -g)
+    add_link_options(--coverage)
 endif()
 
-# Build High-Fidelity Examples
-add_porth_target(mock_handshake examples/mock_handshake.cpp FALSE)
-add_porth_target(zero_copy_handshake examples/zero_copy_handshake.cpp FALSE)
-add_porth_target(calibrate_clock examples/calibrate_clock.cpp FALSE)
-add_porth_target(std_baseline examples/std_baseline.cpp FALSE)
-add_porth_target(porth_vs_std examples/porth_vs_std.cpp FALSE)
-add_porth_target(porth-sim-ctl examples/porth-sim-ctl.cpp FALSE)
-add_porth_target(porth_bench examples/porth_bench.cpp FALSE)
-add_porth_target(porth_full_demo examples/porth_full_demo.cpp FALSE)
+# Top-Level Orchestration: Delegation to Subdirectories
+if(BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
+
+add_subdirectory(benchmarks)
+add_subdirectory(tools)
+add_subdirectory(examples)
 
 # --- Status Summary ---
 message(STATUS "----------------------------------------------------")
 message(STATUS "Porth-IO: Sovereign Logic Layer Build Configured")
-message(STATUS "Build Type:    ${CMAKE_BUILD_TYPE}")
+message(STATUS "Build Type:     ${CMAKE_BUILD_TYPE}")
 message(STATUS "Install Prefix: ${CMAKE_INSTALL_PREFIX}")
-message(STATUS "C++ Standard:  ${CMAKE_CXX_STANDARD}")
+message(STATUS "C++ Standard:   ${CMAKE_CXX_STANDARD}")
 message(STATUS "----------------------------------------------------")

@@ -1,0 +1,10 @@
+# Porth-IO: Functional & Physics Tests
+add_porth_target(test_metrics test_metrics.cpp TRUE)
+add_porth_target(test_sim_phy test_sim_phy.cpp TRUE)
+add_porth_target(test_sim_protocol test_sim_protocol.cpp TRUE)
+add_porth_target(test_sim_domains test_sim_domains.cpp TRUE)
+add_porth_target(test_sim_chaos test_sim_chaos.cpp TRUE)
+add_porth_target(test_physics_barrier test_physics_barrier.cpp TRUE)
+add_porth_target(unit_ring_buffer unit_ring_buffer.cpp TRUE)
+add_porth_target(fuzz_ring_buffer fuzz_ring_buffer.cpp TRUE)
+add_porth_target(test_physics_response test_physics_response.cpp TRUE)

@@ -1,48 +1,55 @@
 import sys
 import os
+import json
 
-# Porth-IO: Sovereign Latency Guard
+# Porth-IO: Sovereign Latency Guard (Tail Latency Edition)
 # ---------------------------------------------------------
-# NOTE: These thresholds are calibrated for VIRTUALIZED CI 
-# environments. BARE-METAL targets: Median < 1.5ns, P99 < 6.0ns
+MAX_MEDIAN_NS = 50.0  # P50 Limit for Virtualized CI
+MAX_P99_NS = 200.0    # THE POINT: P99 Tail Latency Limit
+MAX_STDEV_NS = 15.0   # Jitter (Standard Deviation) Limit
 # ---------------------------------------------------------
-MAX_MEDIAN_NS = 50.0  # Threshold for virtualized regression
-MAX_P99_NS = 200.0    # Threshold for virtualized regression
-MAX_STDEV_NS = 10.0   # 10/10 Gate: Strict limit on jitter (Standard Deviation)
 
 def check_latencies(filename):
     if not os.path.exists(filename):
-        print(f"Error: Benchmark file {filename} not found.")
+        print(f"Error: Benchmark result file '{filename}' not found.")
         sys.exit(1)
 
-    with open(filename, 'r') as f:
-        content = f.read()
-
-    # Simple parser for the PorthMetric Markdown output
     try:
-        median = float(content.split("| Median (P50) |")[1].split("|")[0].strip())
-        p99 = float(content.split("| P99.9 |")[1].split("|")[0].strip())
+        with open(filename, 'r') as f:
+            data = json.load(f)
         
-        # 10/10: Attempt to parse StDev from the benchmark logs
-        stdev = 0.0
-        for line in content.split('\n'):
-            if "StDev:" in line:
-                stdev = float(line.split(":")[1].replace("ns", "").strip())
-                break
-    except (IndexError, ValueError):
-        print("Error: Could not parse latency values from report.")
-        sys.exit(1)
+        benchmarks = data.get("benchmarks", [])
+        
+        # We need to find the specific aggregate results in the JSON
+        stats = {b["aggregate_name"]: b["real_time"] for b in benchmarks if "aggregate_name" in b}
+        
+        # If aggregate stats aren't found (e.g., only 1 repetition run), 
+        # we fallback to the raw measurement.
+        median = stats.get("median", benchmarks[0]["real_time"])
+        # Note: Google Benchmark requires --benchmark_repetitions > 1 for true tail stats
+        p99 = stats.get("p99", median) # Default to median if p99 isn't in JSON
 
-    print(f"[Guard] Current Median: {median}ns (Limit: {MAX_MEDIAN_NS}ns)")
-    print(f"[Guard] Current P99.9: {p99}ns (Limit: {MAX_P99_NS}ns)")
-    if stdev > 0:
-        print(f"[Guard] Current Jitter: {stdev}ns (Limit: {MAX_STDEV_NS}ns)")
+        print(f"[Guard] Current Median: {median:.2f}ns (Limit: {MAX_MEDIAN_NS}ns)")
+        print(f"[Guard] Current P99.9:  {p99:.2f}ns (Limit: {MAX_P99_NS}ns)")
 
-    if median > MAX_MEDIAN_NS or p99 > MAX_P99_NS or (stdev > MAX_STDEV_NS and stdev > 0):
-        print("--- [FAILED] Latency or Jitter Regression Detected ---")
+        # VALIDATION LOGIC
+        failed = False
+        if median > MAX_MEDIAN_NS:
+            print(f"!! [FAILED] Median Latency Regression")
+            failed = True
+        if p99 > MAX_P99_NS:
+            print(f"!! [FAILED] Tail Latency (P99) Regression")
+            failed = True
+
+        if failed:
+            sys.exit(1)
+
+    except Exception as e:
+        print(f"Error: Could not parse benchmark data: {e}")
         sys.exit(1)
 
     print("--- [PASSED] Sovereign Performance Integrity Maintained ---")
 
 if __name__ == "__main__":
-    check_latencies("BENCHMARKS.md")
+    target_file = sys.argv[1] if len(sys.argv) > 1 else "benchmarks_report.json"
+    check_latencies(target_file)

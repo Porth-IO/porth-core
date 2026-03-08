@@ -134,6 +134,16 @@ Porth-IO is designed for sub-2ns deterministic latency on bare-metal hardware.
 
 ---
 
+## 📂 Repository Map
+* **benchmarks/**: High-frequency speed tests (Google Benchmark).
+* **configs/**: Hardware-specific profiles for Newport/Generic chips.
+* **docker/**: The "Immaculate" toolchain (Clang 20/C++23).
+* **include/**: Core Sovereign Logic Layer (Zero-Copy Headers).
+* **tools/**: Operational utilities like the Simulator Controller.
+* **tests/**: Physics barrier and functional verification.
+
+---
+
 ## 🏛️ Strategic Alignment
 
 Porth-IO is built to support the **UK National Semiconductor Strategy**, ensuring that world-leading hardware emerging from South Wales is matched by world-leading software.
