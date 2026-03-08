@@ -86,6 +86,7 @@ $(function() {
 <p>System-level utility functions for thread isolation and RT scheduling.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;expected&gt;</code><br />
 <code>#include &lt;format&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;pthread.h&gt;</code><br />
@@ -96,19 +97,21 @@ Include dependency graph for PorthUtil.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthUtil_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthUtil_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthUtil_8hpp" id="ainclude_2porth_2PorthUtil_8hpp">
-<area shape="rect" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="182,5,378,31"/>
+<area shape="rect" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="235,5,431,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,72,104"/>
-<area shape="poly" title=" " alt="" coords="242,33,86,79,85,74,240,28"/>
-<area shape="rect" title=" " alt="" coords="96,79,163,104"/>
-<area shape="poly" title=" " alt="" coords="257,33,168,75,165,70,255,28"/>
-<area shape="rect" title=" " alt="" coords="187,79,267,104"/>
-<area shape="poly" title=" " alt="" coords="273,33,246,69,241,66,269,29"/>
-<area shape="rect" title=" " alt="" coords="291,79,375,104"/>
-<area shape="poly" title=" " alt="" coords="291,29,319,66,314,69,287,33"/>
-<area shape="rect" title=" " alt="" coords="400,79,472,104"/>
-<area shape="poly" title=" " alt="" coords="306,28,399,70,397,75,304,33"/>
-<area shape="rect" title=" " alt="" coords="496,79,555,104"/>
-<area shape="poly" title=" " alt="" coords="320,28,483,75,482,80,319,33"/>
+<area shape="poly" title=" " alt="" coords="285,33,86,81,85,76,284,28"/>
+<area shape="rect" title=" " alt="" coords="96,79,179,104"/>
+<area shape="poly" title=" " alt="" coords="303,33,183,76,181,71,301,28"/>
+<area shape="rect" title=" " alt="" coords="203,79,269,104"/>
+<area shape="poly" title=" " alt="" coords="319,33,265,72,262,68,316,29"/>
+<area shape="rect" title=" " alt="" coords="293,79,373,104"/>
+<area shape="poly" title=" " alt="" coords="336,31,336,65,331,65,331,31"/>
+<area shape="rect" title=" " alt="" coords="398,79,482,104"/>
+<area shape="poly" title=" " alt="" coords="352,28,413,69,410,73,349,33"/>
+<area shape="rect" title=" " alt="" coords="507,79,579,104"/>
+<area shape="poly" title=" " alt="" coords="368,28,496,72,495,77,366,33"/>
+<area shape="rect" title=" " alt="" coords="603,79,661,104"/>
+<area shape="poly" title=" " alt="" coords="386,28,590,76,589,81,385,33"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -153,12 +156,12 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa5fa31ee74e7cbae3b25c259e872006d" id="r_aa5fa31ee74e7cbae3b25c259e872006d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aa5fa31ee74e7cbae3b25c259e872006d">porth::pin_thread_to_core</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">int</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">core_id</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a></td></tr>
-<tr class="memdesc:aa5fa31ee74e7cbae3b25c259e872006d"><td class="mdescLeft">&#160;</td><td class="mdescRight">pin_thread_to_core: Locks a thread to a specific physical CPU core.  <br /></td></tr>
-<tr class="separator:aa5fa31ee74e7cbae3b25c259e872006d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a063c5d5271b838e40162447e784e2846" id="r_a063c5d5271b838e40162447e784e2846"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a063c5d5271b838e40162447e784e2846">porth::set_realtime_priority</a> () <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a></td></tr>
-<tr class="memdesc:a063c5d5271b838e40162447e784e2846"><td class="mdescLeft">&#160;</td><td class="mdescRight">set_realtime_priority: Elevates the calling thread to SCHED_FIFO.  <br /></td></tr>
-<tr class="separator:a063c5d5271b838e40162447e784e2846"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a369fb79884349b1797e234cdaf4a9b7b" id="r_a369fb79884349b1797e234cdaf4a9b7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a369fb79884349b1797e234cdaf4a9b7b">porth::pin_thread_to_core</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">int</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">core_id</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; std::expected&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> &gt;</td></tr>
+<tr class="memdesc:a369fb79884349b1797e234cdaf4a9b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">pin_thread_to_core: Locks a thread to a specific physical CPU core.  <br /></td></tr>
+<tr class="separator:a369fb79884349b1797e234cdaf4a9b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26530af36da19a3d6959733e1139bc92" id="r_a26530af36da19a3d6959733e1139bc92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a26530af36da19a3d6959733e1139bc92">porth::set_realtime_priority</a> () <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; std::expected&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> &gt;</td></tr>
+<tr class="memdesc:a26530af36da19a3d6959733e1139bc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">set_realtime_priority: Elevates the calling thread to SCHED_FIFO.  <br /></td></tr>
+<tr class="separator:a26530af36da19a3d6959733e1139bc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>

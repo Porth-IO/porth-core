@@ -8,7 +8,7 @@ var searchData=
   ['performance_5',['⚡ Performance',['../md_README.html#autotoc_md18',1,'']]],
   ['performance_20demo_6',['3. Run Performance Demo',['../md_README.html#autotoc_md16',1,'']]],
   ['performance_20validation_7',['📊 Performance Validation',['../md_README.html#autotoc_md9',1,'']]],
-  ['pin_5fthread_5fto_5fcore_8',['pin_thread_to_core',['../namespaceporth.html#aa5fa31ee74e7cbae3b25c259e872006d',1,'porth']]],
+  ['pin_5fthread_5fto_5fcore_8',['pin_thread_to_core',['../namespaceporth.html#a369fb79884349b1797e234cdaf4a9b7b',1,'porth']]],
   ['pop_9',['pop',['../classporth_1_1PorthRingBuffer.html#afa0bd3860245edcf6eae1d41a1cb4054',1,'porth::PorthRingBuffer']]],
   ['porth_10',['porth',['../namespaceporth.html',1,'']]],
   ['porth_20io_20architecture_11',['⚡ The Solution: Porth-IO Architecture',['../md_README.html#autotoc_md5',1,'']]],

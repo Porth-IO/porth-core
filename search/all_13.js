@@ -5,7 +5,7 @@ var searchData=
   ['semiconductors_2',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]],
   ['set_5fbus_5fhang_3',['set_bus_hang',['../classporth_1_1PorthSimDevice.html#a1fd652432085a64540c2e2d3208c3f17',1,'porth::PorthSimDevice']]],
   ['set_5fconfig_4',['set_config',['../classporth_1_1PorthSimPHY.html#aad157483df75dc024ebe82e8c81f2240',1,'porth::PorthSimPHY']]],
-  ['set_5frealtime_5fpriority_5',['set_realtime_priority',['../namespaceporth.html#a063c5d5271b838e40162447e784e2846',1,'porth']]],
+  ['set_5frealtime_5fpriority_5',['set_realtime_priority',['../namespaceporth.html#a26530af36da19a3d6959733e1139bc92',1,'porth']]],
   ['shuttle_5fpage_5fsize_6',['SHUTTLE_PAGE_SIZE',['../namespaceporth.html#a59859250362706d1f9670964d7e1586f',1,'porth']]],
   ['sim_5fbase_5ftemp_5fmc_7',['SIM_BASE_TEMP_MC',['../namespaceporth.html#a8ad72df7aecf3cae43c47c5fa8e0fa2e',1,'porth']]],
   ['sim_5fbus_5fhang_5fms_8',['SIM_BUS_HANG_MS',['../namespaceporth.html#a049ca073ea45e6c8b00ce20acca81400',1,'porth']]],

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pin_5fthread_5fto_5fcore_0',['pin_thread_to_core',['../namespaceporth.html#aa5fa31ee74e7cbae3b25c259e872006d',1,'porth']]],
+  ['pin_5fthread_5fto_5fcore_0',['pin_thread_to_core',['../namespaceporth.html#a369fb79884349b1797e234cdaf4a9b7b',1,'porth']]],
   ['pop_1',['pop',['../classporth_1_1PorthRingBuffer.html#afa0bd3860245edcf6eae1d41a1cb4054',1,'porth::PorthRingBuffer']]],
   ['porthhugepage_2',['porthhugepage',['../classporth_1_1PorthHugePage.html#a9290978f5b4478fa41d760aa471dd4bf',1,'porth::PorthHugePage::PorthHugePage(size_t size)'],['../classporth_1_1PorthHugePage.html#af85f7c396e9dd185829f9dba55e7ad60',1,'porth::PorthHugePage::PorthHugePage(PorthHugePage &amp;&amp;)=delete'],['../classporth_1_1PorthHugePage.html#aad31fec30b5bd873478af11a50146027',1,'porth::PorthHugePage::PorthHugePage(const PorthHugePage &amp;)=delete']]],
   ['porthmetric_3',['PorthMetric',['../classporth_1_1PorthMetric.html#a27b1f98404fa9350aa215be8dfd055a9',1,'porth::PorthMetric']]],
