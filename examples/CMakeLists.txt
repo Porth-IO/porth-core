@@ -1,19 +1,14 @@
-# Porth-IO: High-Fidelity Examples
+# Porth-IO: Integration Examples
 # ---------------------------------------------------------
-# These examples demonstrate the zero-copy handshake 
-# and real-time synchronization protocols.
 
-# 1. Basic Hardware Handshake
-add_porth_target(mock_handshake mock_handshake.cpp FALSE)
+# Helper function for examples
+function(add_porth_example name source)
+    add_executable(${name} ${source})
+    target_link_libraries(${name} PRIVATE Porth::porth-core)
+endfunction()
 
-# 2. Zero-Copy Address Mapping (Task 2.4 Validation)
-add_porth_target(zero_copy_handshake zero_copy_handshake.cpp FALSE)
-
-# 3. System Calibration
-add_porth_target(calibrate_clock calibrate_clock.cpp FALSE)
-
-# 4. Standard Linux Comparison Baseline
-add_porth_target(std_baseline std_baseline.cpp FALSE)
-
-# 5. The Full Sovereign MVP Demo
-add_porth_target(porth_full_demo porth_full_demo.cpp FALSE)
+add_porth_example(std_baseline std_baseline.cpp)
+add_porth_example(porth_full_demo porth_full_demo.cpp)
+add_porth_example(zero_copy_handshake zero_copy_handshake.cpp)
+add_porth_example(calibrate_clock calibrate_clock.cpp)
+add_porth_example(mock_handshake mock_handshake.cpp)

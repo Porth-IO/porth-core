@@ -8,83 +8,89 @@ on:
 
 jobs:
   verify-and-audit:
+    name: Standard Audit & Compliance
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install System Toolchain
+      - name: Install Toolchain
         run: |
           sudo apt-get update
-          # Install lsb-release and wget to handle the LLVM repo setup
-          sudo apt-get install -y lsb-release wget software-properties-common
-          
-          # Use the official LLVM setup script to get version 20
+          sudo apt-get install -y lsb-release wget software-properties-common git curl zip unzip tar cmake ninja-build
           wget https://apt.llvm.org/llvm.sh
           chmod +x llvm.sh
           sudo ./llvm.sh 20
-          
-          # Install the specific versioned binaries
-          sudo apt-get install -y clang-format-20 clang-tidy-20 cmake ninja-build iwyu libbenchmark-dev
-          
-          # Create symlinks so the standard 'clang-format' command points to 'clang-format-20'
+          sudo apt-get install -y clang-format-20 clang-tidy-20
           sudo ln -sf /usr/bin/clang-format-20 /usr/bin/clang-format
           sudo ln -sf /usr/bin/clang-tidy-20 /usr/bin/clang-tidy
 
-      - name: 1. Format Audit
+      - name: Setup vcpkg
         run: |
-          # Dry-run format check; fails if code doesn't match .clang-format
-          # This ensures the "Immaculate" style is enforced automatically.
-          find include examples tests -name "*.hpp" -o -name "*.cpp" | xargs clang-format --dry-run -Werror
+          if [ ! -d "vcpkg" ]; then
+            # Simple, fast clone. No specific commit checkouts required anymore.
+            git clone --depth 1 https://github.com/microsoft/vcpkg.git
+            ./vcpkg/bootstrap-vcpkg.sh
+          fi
 
-      - name: 2. Configure Build (C++23)
+      - name: 1. Format Audit
+        run: find include examples tests -name "*.hpp" -o -name "*.cpp" | xargs clang-format --dry-run -Werror
+
+      - name: 2. Configure Build
         run: |
-          # We use Ninja for faster builds and enable clang-tidy for static analysis.
           cmake -B build -G Ninja \
-            -DCMAKE_CXX_CLANG_TIDY="clang-tidy" \
+            -DCMAKE_MAKE_PROGRAM=/usr/bin/ninja \
+            -DCMAKE_C_COMPILER=clang-20 \
+            -DCMAKE_CXX_COMPILER=clang++-20 \
+            -DCMAKE_TOOLCHAIN_FILE="$GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake" \
             -DCMAKE_BUILD_TYPE=Release \
             -DBUILD_TESTING=ON
 
-      - name: 3. Compile Sovereign Stack
+      - name: 3. Compile
         run: cmake --build build --parallel $(nproc)
 
-      - name: 4. Execute Physics Barrier Verification
-        run: |
-          # The 'ctest' command now finds the tests registered in CMake
-          cd build
-          ctest --output-on-failure
+      - name: 4. Test
+        run: cd build && ctest --output-on-failure
 
-      - name: 5. Execute Performance Gate
+      - name: 5. Performance Gate
         run: |
-          # Run the professional suite and save results as JSON
           ./build/benchmarks/porth_perf_suite --benchmark_format=json > benchmarks_report.json
-          
-          # Run the guard script to verify if we meet the Sovereign limits
           python3 scripts/latency_guard.py benchmarks_report.json
 
-      - name: 6. Generate Sovereign SBOM
+      - name: 6. Compliance (SBOM)
         run: |
-          # Hardened installation with 3 retries for transient 502 errors
-          for i in {1..3}; do
-            curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin && break || sleep 5;
-          done
-          
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
           syft dir:. -o cyclonedx-json=porth-io-sbom.json
-
-      - name: 7. Audit Sovereign SBOM for Vulnerabilities
-        run: |
-          # Hardened installation with 3 retries
-          for i in {1..3}; do
-            curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin && break || sleep 5;
-          done
-          
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
           grype sbom:porth-io-sbom.json --fail-on high
 
-      - name: Archive Compliance Artifacts
-        # This 'if' check ensures the step only runs on real GitHub servers
-        if: ${{ !env.ACT }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: porth-io-compliance-bundle
-          path: |
-            porth-io-sbom.json
-            BENCHMARKS.md
+  concurrency-audit:
+    name: ThreadSanitizer Race Detection
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lsb-release wget software-properties-common git curl zip unzip tar cmake ninja-build
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 20
+      - name: Setup vcpkg
+        run: |
+          if [ ! -d "vcpkg" ]; then
+            git clone --depth 1 https://github.com/microsoft/vcpkg.git
+            ./vcpkg/bootstrap-vcpkg.sh
+          fi
+      - name: Build with TSan
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_MAKE_PROGRAM=/usr/bin/ninja \
+            -DCMAKE_C_COMPILER=clang-20 \
+            -DCMAKE_CXX_COMPILER=clang++-20 \
+            -DCMAKE_TOOLCHAIN_FILE="$GITHUB_WORKSPACE/vcpkg/scripts/buildsystems/vcpkg.cmake" \
+            -DCMAKE_CXX_FLAGS="-fsanitize=thread -g" \
+            -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=thread" \
+            -DBUILD_TESTING=ON
+          cmake --build build
+      - name: Run Tests
+        run: cd build && ctest --output-on-failure

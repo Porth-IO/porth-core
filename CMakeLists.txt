@@ -34,7 +34,6 @@ endif()
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     add_compile_options(-Wno-interference-size)
 else()
-    # Clang and static analysis tools need to ignore unknown flags
     add_compile_options(-Wno-unknown-warning-option)
 endif()
 
@@ -42,7 +41,6 @@ endif()
 find_package(Threads REQUIRED)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    # REQUIRED ensures the build fails early if the OS isn't ready
     find_library(RT_LIBRARY NAMES rt REQUIRED)
 endif()
 
@@ -54,31 +52,30 @@ endif()
 
 find_program(CLANG_TIDY_PATH NAMES clang-tidy clang-tidy-20)
 if(CLANG_TIDY_PATH)
-    # This will run clang-tidy during the 'make' process for all .cpp files
     set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_PATH} -extra-arg=-Wno-unknown-warning-option)
 endif()
 
 # --- 3. Core Library Definition ---
+# FIX: Defined as INTERFACE to satisfy the header-only requirement.
 add_library(porth-core INTERFACE)
 add_library(Porth::porth-core ALIAS porth-core)
 
-target_include_directories(porth-core INTERFACE 
+# FIX: Changed PUBLIC to INTERFACE for header-only propagation.
+target_include_directories(porth-core INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-# 10/10 Fix: Link by name 'rt' instead of absolute path ${RT_LIBRARY} 
-# to ensure the exported PorthTargets.cmake is portable across systems.
+# FIX: Changed PUBLIC to INTERFACE.
 target_link_libraries(porth-core INTERFACE 
     Threads::Threads
     $<$<PLATFORM_ID:Linux>:rt>
 )
 
-# 10/10 Fix: Explicitly propagate C++23 requirement to any project 
-# that links against porth-core.
+# FIX: Changed PUBLIC to INTERFACE.
 target_compile_features(porth-core INTERFACE cxx_std_23)
 
-# --- 4. Installation & Export (The 10/10 Transition) ---
+# --- 4. Installation & Export ---
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
@@ -87,19 +84,16 @@ install(TARGETS porth-core
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-# Install the actual header files
 install(DIRECTORY include/porth 
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
-# Generate and install the CMake export set
 install(EXPORT PorthTargets
     FILE PorthTargets.cmake
     NAMESPACE Porth::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Porth
 )
 
-# Create PorthConfig.cmake so users can find_package(Porth)
 configure_package_config_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/PorthConfig.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/PorthConfig.cmake
@@ -110,7 +104,6 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PorthConfig.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Porth
 )
 
-# Generate and install the version file to prevent version mismatch
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/PorthConfigVersion.cmake"
     VERSION ${PROJECT_VERSION}
@@ -121,29 +114,18 @@ install(FILES "${CMAKE_CURRENT_BINARY_DIR}/PorthConfigVersion.cmake"
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Porth
 )
 
-# --- 5. Internal Development (Tests, Benchmarks, Tools, & Examples) ---
+# --- 5. Internal Development ---
 option(BUILD_TESTING "Enable project tests" ON)
 option(ENABLE_COVERAGE "Enable code coverage reporting" OFF)
 
-# Helper function to create Porth targets (Binaries)
-function(add_porth_target name source is_test)
-    add_executable(${name} ${source})
-    target_link_libraries(${name} PRIVATE Porth::porth-core)
-    
-    if(is_test AND BUILD_TESTING)
-        add_test(NAME ${name} COMMAND ${name})
-    endif()
-endfunction()
-
-# Coverage setup
 if(ENABLE_COVERAGE AND NOT MSVC)
     add_compile_options(--coverage -O0 -g)
     add_link_options(--coverage)
 endif()
 
-# Top-Level Orchestration: Delegation to Subdirectories
 if(BUILD_TESTING)
     enable_testing()
+    find_package(Catch2 CONFIG REQUIRED)
     add_subdirectory(tests)
 endif()
 

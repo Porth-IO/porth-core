@@ -11,6 +11,7 @@
 #pragma once
 
 #include <cstdint>
+#include <expected>
 #include <format>
 #include <iostream>
 #include <pthread.h>
@@ -52,10 +53,11 @@ enum class PorthStatus : uint8_t {
  * the 500ns–2000ns latency spikes associated with cache-misses and TLB flushes.
  *
  * @param core_id The logical index of the physical core (0-indexed).
- * @return PorthStatus::SUCCESS or PorthStatus::ERROR_AFFINITY if the OS denies isolation.
+ * @return std::expected containing void on success, or PorthStatus on failure.
  * @note This is a "Performance Guard" against kernel-level non-determinism.
  */
-[[nodiscard]] inline auto pin_thread_to_core(int core_id) noexcept -> PorthStatus {
+[[nodiscard]] inline auto pin_thread_to_core(int core_id) noexcept
+    -> std::expected<void, PorthStatus> {
     cpu_set_t cpuset;
     CPU_ZERO(&cpuset);
     CPU_SET(core_id, &cpuset);
@@ -67,11 +69,11 @@ enum class PorthStatus : uint8_t {
     if (result != 0) {
         std::cerr << std::format("[Porth-Util] Warning: Could not pin thread to core {}\n",
                                  core_id);
-        return PorthStatus::ERROR_AFFINITY;
+        return std::unexpected(PorthStatus::ERROR_AFFINITY);
     }
 
     std::cout << std::format("[Porth-Util] Thread successfully pinned to core {}\n", core_id);
-    return PorthStatus::SUCCESS;
+    return {};
 }
 
 /**
@@ -82,11 +84,11 @@ enum class PorthStatus : uint8_t {
  * interrupts). Priority 99 grants the logic layer total control over the
  * CPU cycle budget, critical for nanosecond-scale telemetry.
  *
- * @return PorthStatus::SUCCESS or PorthStatus::ERROR_PRIORITY.
+ * @return std::expected containing void on success, or PorthStatus on failure.
  * @note REQUIRES: CAP_SYS_NICE or root privileges. Without this, the
  * system remains vulnerable to millisecond-scale OS jitter.
  */
-[[nodiscard]] inline auto set_realtime_priority() noexcept -> PorthStatus {
+[[nodiscard]] inline auto set_realtime_priority() noexcept -> std::expected<void, PorthStatus> {
     struct sched_param param{};
     param.sched_priority = MAX_PTHREAD_FIFO_PRIORITY;
 
@@ -96,11 +98,11 @@ enum class PorthStatus : uint8_t {
 
     if (result != 0) {
         std::cerr << "[Porth-Util] Warning: Could not set SCHED_FIFO (requires sudo/root)\n";
-        return PorthStatus::ERROR_PRIORITY;
+        return std::unexpected(PorthStatus::ERROR_PRIORITY);
     }
 
     std::cout << "[Porth-Util] Thread priority elevated to Real-Time (SCHED_FIFO)\n";
-    return PorthStatus::SUCCESS;
+    return {};
 }
 
 } // namespace porth

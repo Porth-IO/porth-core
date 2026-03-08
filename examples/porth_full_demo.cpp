@@ -24,6 +24,7 @@
 #include <stdexcept>
 #include <string>
 #include <thread>
+#include <tuple>
 
 /**
  * @brief Main execution engine for the Porth-IO Newport Cluster Validation.
@@ -72,8 +73,8 @@ auto main() -> int {
          * logic and prevents the Linux kernel from interrupting our nanosecond-scale
          * telemetry loop for background system maintenance.
          */
-        (void)pin_thread_to_core(1);
-        (void)set_realtime_priority();
+        std::ignore = pin_thread_to_core(1);
+        std::ignore = set_realtime_priority();
 
         /**
          * PHASE 3: Master Driver Handshake.

@@ -25,8 +25,9 @@
 auto main() -> int {
     using namespace porth;
 
-    // Setup environment: Enforce thread affinity to isolate jitter
-    if (pin_thread_to_core(1) != PorthStatus::SUCCESS) {
+    // Fix: std::expected returns error via .error(), or check !has_value()
+    // Minimal change: Use the implicit boolean conversion or has_value()
+    if (!pin_thread_to_core(1)) {
         std::cerr
             << "[Warning] Could not pin benchmark thread. Results may show OS-induced jitter.\n";
     }

@@ -1,13 +1,20 @@
-# Porth-IO: Performance Validation Suite
-find_package(benchmark REQUIRED)
+# Porth-IO: Performance Benchmarks
+# ---------------------------------------------------------
 
-# Add the new Google Benchmark target
-add_executable(porth_perf_suite porth_perf_suite.cpp)
-target_link_libraries(porth_perf_suite PRIVATE 
-    Porth::porth-core 
-    benchmark::benchmark
-)
+# Find the vcpkg benchmark package
+find_package(benchmark CONFIG REQUIRED)
 
-# Legacy benchmarks for comparison
-add_porth_target(porth_bench porth_bench.cpp FALSE)
-add_porth_target(porth_vs_std porth_vs_std.cpp FALSE)
+# Helper function for benchmarks
+function(add_porth_benchmark name source)
+    add_executable(${name} ${source})
+    # Link against porth-core and the Google Benchmark libraries
+    target_link_libraries(${name} PRIVATE 
+        Porth::porth-core 
+        benchmark::benchmark 
+        benchmark::benchmark_main
+    )
+endfunction()
+
+add_porth_benchmark(porth_bench porth_bench.cpp)
+add_porth_benchmark(porth_vs_std porth_vs_std.cpp)
+add_porth_benchmark(porth_perf_suite porth_perf_suite.cpp)

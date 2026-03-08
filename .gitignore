@@ -35,3 +35,6 @@ cmake-build-*/
 
 # --- Personal Notes ---
 /notes
+
+# Bazel
+bazel-*
