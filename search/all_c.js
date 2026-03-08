@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['inertia_0',['🏗️ The Problem: Software Inertia',['../md_README.html#autotoc_md3',1,'']]],
-  ['init_5fdelay_5fms_1',['INIT_DELAY_MS',['../namespaceCardiffChip.html#a7832b38b016b3cb2b4d00d7ac24dc31c',1,'CardiffChip']]],
-  ['io_20architecture_2',['⚡ The Solution: Porth-IO Architecture',['../md_README.html#autotoc_md5',1,'']]],
-  ['io_3a_20the_20sovereign_20logic_20layer_20for_20compound_20semiconductors_3',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]]
+  ['laser_5ftemp_0',['laser_temp',['../structporth_1_1PorthDeviceLayout.html#ad2a6ecb586518ca6f429cef786d7df6b',1,'porth::PorthDeviceLayout']]],
+  ['layer_20for_20compound_20semiconductors_1',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]],
+  ['len_2',['len',['../structporth_1_1PorthDescriptor.html#ad5265703b7470c8a6ba765971f171e97',1,'porth::PorthDescriptor']]],
+  ['load_3',['load',['../classporth_1_1PorthRegister.html#abf16cb244b1a96126acce411b59d182d',1,'porth::PorthRegister']]],
+  ['logic_20layer_20for_20compound_20semiconductors_4',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]]
 ];

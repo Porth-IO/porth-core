@@ -1,7 +1,5 @@
 <map id="include/porth/PorthSimDevice.hpp" name="include/porth/PorthSimDevice.hpp">
-<area shape="rect" id="Node000001" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="49,5,291,31"/>
-<area shape="rect" id="Node000002" href="$porth-sim-ctl_8cpp.html" title=" " alt="" coords="5,79,159,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,42,105,81,101,77,145,38"/>
-<area shape="rect" id="Node000003" href="$porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="183,79,335,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="195,38,240,77,236,81,192,42"/>
+<area shape="rect" id="Node000001" title="High&#45;fidelity Digital Twin for Cardiff Photonics." alt="" coords="5,5,248,31"/>
+<area shape="rect" id="Node000002" href="$porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration." alt="" coords="51,79,203,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,44,129,79,124,79,124,44"/>
 </map>
