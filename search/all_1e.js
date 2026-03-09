@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🏗️_20the_20problem_3a_20software_20inertia_0',['🏗️ The Problem: Software Inertia',['../md_README.html#autotoc_md3',1,'']]]
+  ['🏁_20quick_20start_3a_20simulator_20mode_0',['🏁 Quick Start: Simulator Mode',['../md_README.html#autotoc_md13',1,'']]]
 ];

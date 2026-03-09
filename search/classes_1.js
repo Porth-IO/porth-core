@@ -6,12 +6,13 @@ var searchData=
   ['porthhugepage_3',['PorthHugePage',['../classporth_1_1PorthHugePage.html',1,'porth']]],
   ['porthmetric_4',['PorthMetric',['../classporth_1_1PorthMetric.html',1,'porth']]],
   ['porthmockdevice_5',['PorthMockDevice',['../classporth_1_1PorthMockDevice.html',1,'porth']]],
-  ['porthregister_6',['PorthRegister',['../classporth_1_1PorthRegister.html',1,'porth']]],
-  ['porthregister_3c_20int32_5ft_20_3e_7',['PorthRegister&lt; int32_t &gt;',['../classporth_1_1PorthRegister.html',1,'porth']]],
-  ['porthregister_3c_20uint32_5ft_20_3e_8',['PorthRegister&lt; uint32_t &gt;',['../classporth_1_1PorthRegister.html',1,'porth']]],
-  ['porthregister_3c_20uint64_5ft_20_3e_9',['PorthRegister&lt; uint64_t &gt;',['../classporth_1_1PorthRegister.html',1,'porth']]],
-  ['porthringbuffer_10',['PorthRingBuffer',['../classporth_1_1PorthRingBuffer.html',1,'porth']]],
-  ['porthshuttle_11',['PorthShuttle',['../classporth_1_1PorthShuttle.html',1,'porth']]],
-  ['porthsimdevice_12',['PorthSimDevice',['../classporth_1_1PorthSimDevice.html',1,'porth']]],
-  ['porthsimphy_13',['PorthSimPHY',['../classporth_1_1PorthSimPHY.html',1,'porth']]]
+  ['porthnetworkportal_6',['PorthNetworkPortal',['../classporth_1_1PorthNetworkPortal.html',1,'porth']]],
+  ['porthregister_7',['PorthRegister',['../classporth_1_1PorthRegister.html',1,'porth']]],
+  ['porthregister_3c_20int32_5ft_20_3e_8',['PorthRegister&lt; int32_t &gt;',['../classporth_1_1PorthRegister.html',1,'porth']]],
+  ['porthregister_3c_20uint32_5ft_20_3e_9',['PorthRegister&lt; uint32_t &gt;',['../classporth_1_1PorthRegister.html',1,'porth']]],
+  ['porthregister_3c_20uint64_5ft_20_3e_10',['PorthRegister&lt; uint64_t &gt;',['../classporth_1_1PorthRegister.html',1,'porth']]],
+  ['porthringbuffer_11',['PorthRingBuffer',['../classporth_1_1PorthRingBuffer.html',1,'porth']]],
+  ['porthshuttle_12',['PorthShuttle',['../classporth_1_1PorthShuttle.html',1,'porth']]],
+  ['porthsimdevice_13',['PorthSimDevice',['../classporth_1_1PorthSimDevice.html',1,'porth']]],
+  ['porthsimphy_14',['PorthSimPHY',['../classporth_1_1PorthSimPHY.html',1,'porth']]]
 ];

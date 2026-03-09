@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['fec_5fretry_5fspike_5fns_0',['FEC_RETRY_SPIKE_NS',['../namespaceporth.html#a75fd02690afdefe2868cdd1b5f4e736f',1,'porth']]],
-  ['fence_1',['fence',['../classporth_1_1PorthClock.html#a0f57ba05bf94ced059bfcfd0e4880464',1,'porth::PorthClock']]],
-  ['for_20compound_20semiconductors_2',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]],
-  ['force_5fbuffer_5foverflow_3',['force_buffer_overflow',['../classporth_1_1PorthSimDevice.html#a19abf705bc6aff5e0734fa40fbac14bc',1,'porth::PorthSimDevice']]],
-  ['full_4',['FULL',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995aba7de5bc6888294e5884b024a4c894f1',1,'porth']]]
+  ['ecosystem_0',['🌍 The Sovereign Ecosystem',['../md_README.html#autotoc_md11',1,'']]],
+  ['empty_1',['EMPTY',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995aba2b45bdc11e2a4a6e86aab2ac693cbb',1,'porth']]],
+  ['environment_201gb_20hugepages_2',['1. Optimize Environment (1GB HugePages)',['../md_README.html#autotoc_md14',1,'']]],
+  ['error_5faffinity_3',['ERROR_AFFINITY',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a7b3872e55fb088e41a464a2b277e46b6',1,'porth']]],
+  ['error_5fhardware_5ftimeout_4',['ERROR_HARDWARE_TIMEOUT',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a84893226f3641200094b08f4a4535446',1,'porth']]],
+  ['error_5fpriority_5',['ERROR_PRIORITY',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ac5a70f36195b7930decdbfe9ebbd9cff',1,'porth']]],
+  ['expected_5flayout_5fsize_6',['expected_layout_size',['../namespaceporth.html#a9feaff880cb1400c80e9198c2bcf10bb',1,'porth']]]
 ];

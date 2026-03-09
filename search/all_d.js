@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['main_0',['main',['../calibrate__clock_8cpp.html#a8216c1645620cdb2f629cde3ac02ffef',1,'main() -&gt; int:&#160;calibrate_clock.cpp'],['../mock__handshake_8cpp.html#a8216c1645620cdb2f629cde3ac02ffef',1,'main() -&gt; int:&#160;mock_handshake.cpp'],['../porth__full__demo_8cpp.html#a8216c1645620cdb2f629cde3ac02ffef',1,'main() -&gt; int:&#160;porth_full_demo.cpp'],['../std__baseline_8cpp.html#a8216c1645620cdb2f629cde3ac02ffef',1,'main() -&gt; int:&#160;std_baseline.cpp'],['../zero__copy__handshake_8cpp.html#a8216c1645620cdb2f629cde3ac02ffef',1,'main() -&gt; int:&#160;zero_copy_handshake.cpp']]],
-  ['map_1',['📂 Repository Map',['../md_README.html#autotoc_md20',1,'']]],
-  ['max_5fpthread_5ffifo_5fpriority_2',['MAX_PTHREAD_FIFO_PRIORITY',['../namespaceporth.html#aee756e9319315feec4db4b265da4a82e',1,'porth']]],
-  ['mc_5fto_5fc_5fdivisor_3',['MC_TO_C_DIVISOR',['../namespaceporth.html#a20922d8f3585b46cdcc1995bd45d5675',1,'porth']]],
-  ['mock_5fhandshake_2ecpp_4',['mock_handshake.cpp',['../mock__handshake_8cpp.html',1,'']]],
-  ['mode_5',['🏁 Quick Start: Simulator Mode',['../md_README.html#autotoc_md13',1,'']]]
+  ['laser_5ftemp_0',['laser_temp',['../structporth_1_1PorthDeviceLayout.html#ad2a6ecb586518ca6f429cef786d7df6b',1,'porth::PorthDeviceLayout']]],
+  ['layer_20for_20compound_20semiconductors_1',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]],
+  ['len_2',['len',['../structporth_1_1PorthDescriptor.html#ad5265703b7470c8a6ba765971f171e97',1,'porth::PorthDescriptor']]],
+  ['load_3',['load',['../classporth_1_1PorthRegister.html#abf16cb244b1a96126acce411b59d182d',1,'porth::PorthRegister']]],
+  ['load_5fkernel_5fprogram_4',['load_kernel_program',['../classporth_1_1PorthNetworkPortal.html#a465f6ec635659f1ec57a8063b30b5fa0',1,'porth::PorthNetworkPortal']]],
+  ['logic_20layer_20for_20compound_20semiconductors_5',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]]
 ];

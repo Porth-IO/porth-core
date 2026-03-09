@@ -1,10 +1,17 @@
 var searchData=
 [
-  ['ecosystem_0',['🌍 The Sovereign Ecosystem',['../md_README.html#autotoc_md11',1,'']]],
-  ['empty_1',['EMPTY',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995aba2b45bdc11e2a4a6e86aab2ac693cbb',1,'porth']]],
-  ['environment_201gb_20hugepages_2',['1. Optimize Environment (1GB HugePages)',['../md_README.html#autotoc_md14',1,'']]],
-  ['error_5faffinity_3',['ERROR_AFFINITY',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a7b3872e55fb088e41a464a2b277e46b6',1,'porth']]],
-  ['error_5fhardware_5ftimeout_4',['ERROR_HARDWARE_TIMEOUT',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995a84893226f3641200094b08f4a4535446',1,'porth']]],
-  ['error_5fpriority_5',['ERROR_PRIORITY',['../namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995ac5a70f36195b7930decdbfe9ebbd9cff',1,'porth']]],
-  ['expected_5flayout_5fsize_6',['expected_layout_size',['../namespaceporth.html#a9feaff880cb1400c80e9198c2bcf10bb',1,'porth']]]
+  ['data_0',['data',['../classporth_1_1PorthHugePage.html#a8fa9f89b66756359d0e6dd1ec8fbbe98',1,'porth::PorthHugePage']]],
+  ['data_5fptr_1',['data_ptr',['../structporth_1_1PorthDeviceLayout.html#ac204991c3a0e49f9f12f193585d17b94',1,'porth::PorthDeviceLayout']]],
+  ['default_5fbase_5fdelay_5fns_2',['DEFAULT_BASE_DELAY_NS',['../namespaceporth.html#acf4aaaad32bdb8a4267dc39e02fa2acc',1,'porth']]],
+  ['default_5fbase_5ftemp_5fmc_3',['DEFAULT_BASE_TEMP_MC',['../namespaceporth.html#aaeff1ff084c4d6762fb760d3f1de0f7b',1,'porth']]],
+  ['default_5fcpns_4',['DEFAULT_CPNS',['../namespaceporth.html#a2a67d2df2ae279e19c9e78c7ec3d782e',1,'porth']]],
+  ['default_5ffec_5ferror_5frate_5',['DEFAULT_FEC_ERROR_RATE',['../namespaceporth.html#a9ae6f1b33fd449d9fcd4089d97bf8fd4',1,'porth']]],
+  ['default_5ffec_5fpenalty_5fns_6',['DEFAULT_FEC_PENALTY_NS',['../namespaceporth.html#a596551ab22ecf2a7315895c242ce6a2e',1,'porth']]],
+  ['default_5fjitter_5finit_5fns_7',['DEFAULT_JITTER_INIT_NS',['../namespaceporth.html#a5321df22e6a10df3405459885710d9ae',1,'porth']]],
+  ['default_5fmetric_5fcapacity_8',['DEFAULT_METRIC_CAPACITY',['../namespaceporth.html#ae8240577da7894999e0d646dd4c3abd5',1,'porth']]],
+  ['default_5fring_5fcapacity_9',['DEFAULT_RING_CAPACITY',['../namespaceporth.html#a980282c72f0969f492a2c6f390959e35',1,'porth']]],
+  ['default_5fring_5fsize_10',['DEFAULT_RING_SIZE',['../namespaceporth.html#a60c30d392f859871f72a5345548eaba2',1,'porth']]],
+  ['default_5fshuttle_5fcapacity_11',['DEFAULT_SHUTTLE_CAPACITY',['../namespaceporth.html#abd755c35c5e55e3d521fdf6e181765ab',1,'porth']]],
+  ['demo_12',['3. Run Performance Demo',['../md_README.html#autotoc_md16',1,'']]],
+  ['driver_13',['driver',['../classporth_1_1Driver.html',1,'porth::Driver&lt; RingSize &gt;'],['../classporth_1_1Driver.html#ad573872cbd6cf0770a497a4600799385',1,'porth::Driver::Driver()']]]
 ];

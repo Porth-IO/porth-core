@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['write_0',['write',['../classporth_1_1PorthRegister.html#aaba570d76412f0766d0ffd5e12858e46',1,'porth::PorthRegister']]],
-  ['write_5fflit_1',['write_flit',['../classporth_1_1PorthSimDevice.html#a2e87bfef2f9ba8f8a035c9081b4db5b1',1,'porth::PorthSimDevice']]],
-  ['write_5freg_2',['write_reg',['../classporth_1_1PorthSimDevice.html#a65aae288b1007a1bcecc8e8ef978526d',1,'porth::PorthSimDevice']]]
+  ['validation_0',['📊 Performance Validation',['../md_README.html#autotoc_md9',1,'']]],
+  ['view_1',['view',['../classporth_1_1PorthMockDevice.html#a172d15726debb73193710b7789ce17bd',1,'porth::PorthMockDevice::view() noexcept -&gt; PorthDeviceLayout *'],['../classporth_1_1PorthMockDevice.html#ac54e39c895c473c46c4229a18cba2369',1,'porth::PorthMockDevice::view() const noexcept -&gt; const PorthDeviceLayout *'],['../classporth_1_1PorthSimDevice.html#aada7ac4d8936b63400340991bb4c107d',1,'porth::PorthSimDevice::view()']]]
 ];
