@@ -6,6 +6,8 @@
   "license": "Apache-2.0",
   "dependencies": [
     "benchmark",
-    "catch2"
+    "catch2",
+    "libbpf",
+    "libxdp"
   ]
 }

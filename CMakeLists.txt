@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 project(porth-core 
         VERSION 1.0.0 
         DESCRIPTION "The Sovereign Logic Layer for Compound Semiconductors"
-        LANGUAGES CXX)
+        LANGUAGES CXX C)
 
 # --- 1. C++ Standard & Build Settings ---
 set(CMAKE_CXX_STANDARD 23)
@@ -38,6 +38,10 @@ else()
 endif()
 
 # --- 2. Dependencies (Professional Search) ---
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(LIBBPF REQUIRED libbpf)
+pkg_check_modules(LIBXDP REQUIRED libxdp)
+
 find_package(Threads REQUIRED)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
@@ -55,6 +59,30 @@ if(CLANG_TIDY_PATH)
     set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_PATH} -extra-arg=-Wno-unknown-warning-option)
 endif()
 
+# --- eBPF Kernel Compilation ---
+find_program(CLANG_PATH clang)
+if(CLANG_PATH)
+    set(BPF_KERN_SRC "${CMAKE_CURRENT_SOURCE_DIR}/include/porth/porth_xdp_kern.c")
+    set(BPF_KERN_OBJ "${CMAKE_CURRENT_BINARY_DIR}/porth_xdp_kern.o")
+
+    set(ASM_INCLUDE_DIR "/usr/include/x86_64-linux-gnu")
+    if(NOT EXISTS ${ASM_INCLUDE_DIR})
+        set(ASM_INCLUDE_DIR "/usr/include/aarch64-linux-gnu")
+    endif()
+
+    add_custom_command(
+        OUTPUT ${BPF_KERN_OBJ}
+        COMMAND ${CLANG_PATH} -O2 -g -target bpf -D__TARGET_ARCH_x86 
+                -I${CMAKE_CURRENT_SOURCE_DIR}/include
+                -I${ASM_INCLUDE_DIR}
+                -c ${BPF_KERN_SRC} -o ${BPF_KERN_OBJ}
+        DEPENDS ${BPF_KERN_SRC}
+        COMMENT "Compiling Sovereign eBPF Kernel Program"
+        VERBATIM
+    )
+    add_custom_target(porth_bpf_kern ALL DEPENDS ${BPF_KERN_OBJ})
+endif()
+
 # --- 3. Core Library Definition ---
 # FIX: Defined as INTERFACE to satisfy the header-only requirement.
 add_library(porth-core INTERFACE)
@@ -64,11 +92,15 @@ add_library(Porth::porth-core ALIAS porth-core)
 target_include_directories(porth-core INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    ${LIBBPF_INCLUDE_DIRS}
+    ${LIBXDP_INCLUDE_DIRS}
 )
 
 # FIX: Changed PUBLIC to INTERFACE.
 target_link_libraries(porth-core INTERFACE 
     Threads::Threads
+    ${LIBBPF_LIBRARIES} 
+    ${LIBXDP_LIBRARIES}
     $<$<PLATFORM_ID:Linux>:rt>
 )
 
