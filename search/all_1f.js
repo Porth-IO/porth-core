@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🏗️_20the_20problem_3a_20software_20inertia_0',['🏗️ The Problem: Software Inertia',['../md_README.html#autotoc_md3',1,'']]]
+  ['🌟_20core_20capabilities_0',['🌟 Core Capabilities',['../md_README.html#autotoc_md7',1,'']]]
 ];

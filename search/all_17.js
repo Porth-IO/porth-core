@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['validation_0',['📊 Performance Validation',['../md_README.html#autotoc_md9',1,'']]],
-  ['view_1',['view',['../classporth_1_1PorthMockDevice.html#a172d15726debb73193710b7789ce17bd',1,'porth::PorthMockDevice::view() noexcept -&gt; PorthDeviceLayout *'],['../classporth_1_1PorthMockDevice.html#ac54e39c895c473c46c4229a18cba2369',1,'porth::PorthMockDevice::view() const noexcept -&gt; const PorthDeviceLayout *'],['../classporth_1_1PorthSimDevice.html#aada7ac4d8936b63400340991bb4c107d',1,'porth::PorthSimDevice::view()']]]
+  ['u16_0',['u16',['../porth__xdp__kern_8c.html#a511bb645f13930f9dfb7378323c18d8c',1,'porth_xdp_kern.c']]],
+  ['u32_1',['u32',['../porth__xdp__kern_8c.html#a4b24553f052bbb6aae7623e647e703c9',1,'porth_xdp_kern.c']]],
+  ['update_5fthermal_5fload_2',['update_thermal_load',['../classporth_1_1PorthSimPHY.html#a02e65f590dfa4c5bc443a80d6c86058c',1,'porth::PorthSimPHY']]]
 ];

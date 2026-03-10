@@ -75,71 +75,75 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">network_portal_demo.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Verification of the AF_XDP library link and eBPF kernel loading.  
+<p>Sovereign Interconnect - Final Victory Build.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="PorthNetworkPortal_8hpp_source.html">porth/PorthNetworkPortal.hpp</a>&quot;</code><br />
+<code>#include &lt;atomic&gt;</code><br />
+<code>#include &lt;csignal&gt;</code><br />
+<code>#include &lt;filesystem&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;exception&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for network_portal_demo.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="network__portal__demo_8cpp__incl.png" border="0" usemap="#aexamples_2network__portal__demo_8cpp" alt=""/></div>
 <map name="aexamples_2network__portal__demo_8cpp" id="aexamples_2network__portal__demo_8cpp">
-<area shape="rect" title="Verification of the AF_XDP library link and eBPF kernel loading." alt="" coords="367,5,555,45"/>
-<area shape="rect" href="PorthNetworkPortal_8hpp.html" title="Zero&#45;copy AF_XDP networking portal for kernel bypass." alt="" coords="354,93,569,119"/>
-<area shape="poly" title=" " alt="" coords="464,46,464,79,459,79,459,46"/>
+<area shape="rect" title="Sovereign Interconnect &#45; Final Victory Build." alt="" coords="639,5,827,45"/>
+<area shape="rect" href="PorthNetworkPortal_8hpp.html" title="Production Build: Pure Sovereign Signal Interconnect." alt="" coords="461,93,675,119"/>
+<area shape="poly" title=" " alt="" coords="695,48,606,90,603,85,693,43"/>
 <area shape="rect" title=" " alt="" coords="5,167,85,192"/>
-<area shape="poly" title=" " alt="" coords="411,48,91,164,89,159,409,43"/>
-<area shape="rect" title=" " alt="" coords="593,93,679,119"/>
-<area shape="poly" title=" " alt="" coords="504,43,599,85,597,90,502,48"/>
-<area shape="rect" href="PorthRingBuffer_8hpp.html" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer for DMA telemetry." alt="" coords="969,167,1159,192"/>
-<area shape="poly" title=" " alt="" coords="558,116,956,163,955,168,558,121"/>
-<area shape="rect" title=" " alt="" coords="1197,240,1283,265"/>
-<area shape="poly" title=" " alt="" coords="570,115,581,116,712,120,882,121,968,125,1048,132,1118,145,1172,164,1190,177,1206,193,1230,226,1226,229,1202,196,1187,181,1169,169,1117,150,1048,138,967,130,881,127,712,125,581,121,569,120"/>
-<area shape="rect" title=" " alt="" coords="441,240,503,265"/>
-<area shape="poly" title=" " alt="" coords="354,116,292,123,231,133,181,149,163,158,150,168,145,179,150,190,168,204,196,216,271,233,354,243,427,247,427,253,354,248,270,238,194,221,165,209,146,194,140,179,146,165,160,153,179,144,230,128,291,118,354,111"/>
-<area shape="rect" title=" " alt="" coords="160,167,219,192"/>
-<area shape="poly" title=" " alt="" coords="417,121,232,169,231,164,416,116"/>
-<area shape="poly" title=" " alt="" coords="390,121,104,169,99,170,98,165,104,164,389,116"/>
-<area shape="rect" title=" " alt="" coords="243,167,309,192"/>
-<area shape="poly" title=" " alt="" coords="433,121,320,164,318,159,431,116"/>
-<area shape="rect" title=" " alt="" coords="334,167,394,192"/>
-<area shape="poly" title=" " alt="" coords="447,121,393,160,390,156,444,117"/>
-<area shape="rect" title=" " alt="" coords="419,167,504,192"/>
-<area shape="poly" title=" " alt="" coords="464,119,464,153,459,153,459,119"/>
-<area shape="rect" title=" " alt="" coords="529,167,607,192"/>
-<area shape="poly" title=" " alt="" coords="480,116,541,157,538,161,477,121"/>
-<area shape="rect" title=" " alt="" coords="631,167,726,192"/>
-<area shape="poly" title=" " alt="" coords="497,116,631,160,630,165,495,121"/>
-<area shape="rect" title=" " alt="" coords="751,167,817,192"/>
-<area shape="poly" title=" " alt="" coords="518,116,737,164,736,169,517,121"/>
-<area shape="rect" title=" " alt="" coords="842,167,945,192"/>
-<area shape="poly" title=" " alt="" coords="534,116,829,164,828,169,534,121"/>
-<area shape="rect" title=" " alt="" coords="935,240,991,265"/>
-<area shape="poly" title=" " alt="" coords="1049,194,992,234,989,230,1046,190"/>
-<area shape="rect" title=" " alt="" coords="1015,240,1081,265"/>
-<area shape="poly" title=" " alt="" coords="1064,193,1056,227,1051,226,1059,192"/>
-<area shape="rect" title=" " alt="" coords="1105,240,1172,265"/>
-<area shape="poly" title=" " alt="" coords="1078,190,1118,229,1115,232,1074,194"/>
-<area shape="rect" title=" " alt="" coords="861,240,910,265"/>
-<area shape="poly" title=" " alt="" coords="1036,195,924,239,922,234,1034,190"/>
-<area shape="poly" title=" " alt="" coords="1093,190,1199,232,1197,237,1091,194"/>
-<area shape="poly" title=" " alt="" coords="969,195,518,249,517,243,969,189"/>
+<area shape="poly" title=" " alt="" coords="649,48,99,169,98,164,648,43"/>
+<area shape="rect" title=" " alt="" coords="700,93,767,119"/>
+<area shape="poly" title=" " alt="" coords="736,46,736,79,731,79,731,46"/>
+<area shape="rect" title=" " alt="" coords="791,93,859,119"/>
+<area shape="poly" title=" " alt="" coords="757,44,803,82,799,86,754,48"/>
+<area shape="rect" title=" " alt="" coords="884,93,975,119"/>
+<area shape="poly" title=" " alt="" coords="781,43,889,86,887,91,779,48"/>
+<area shape="rect" title=" " alt="" coords="109,167,176,192"/>
+<area shape="poly" title=" " alt="" coords="481,121,348,141,190,169,189,164,347,136,480,116"/>
+<area shape="rect" title=" " alt="" coords="200,167,267,192"/>
+<area shape="poly" title=" " alt="" coords="509,121,281,169,280,164,508,116"/>
+<area shape="rect" title=" " alt="" coords="291,167,357,192"/>
+<area shape="poly" title=" " alt="" coords="530,121,371,167,370,162,528,116"/>
+<area shape="poly" title=" " alt="" coords="461,121,295,140,99,169,98,164,294,135,460,115"/>
+<area shape="rect" title=" " alt="" coords="382,167,469,192"/>
+<area shape="poly" title=" " alt="" coords="546,121,462,163,460,158,544,116"/>
+<area shape="rect" title=" " alt="" coords="493,167,552,192"/>
+<area shape="poly" title=" " alt="" coords="563,120,540,157,535,154,558,118"/>
+<area shape="rect" title=" " alt="" coords="576,167,651,192"/>
+<area shape="poly" title=" " alt="" coords="578,118,601,154,596,157,573,120"/>
+<area shape="rect" title=" " alt="" coords="675,167,735,192"/>
+<area shape="poly" title=" " alt="" coords="591,116,672,158,670,163,589,121"/>
+<area shape="rect" title=" " alt="" coords="759,167,838,192"/>
+<area shape="poly" title=" " alt="" coords="606,116,749,160,748,165,604,121"/>
+<area shape="rect" title=" " alt="" coords="862,167,957,192"/>
+<area shape="poly" title=" " alt="" coords="623,116,849,163,848,168,622,121"/>
+<area shape="rect" title=" " alt="" coords="981,167,1048,192"/>
+<area shape="poly" title=" " alt="" coords="663,116,803,136,968,164,967,169,802,141,663,121"/>
+<area shape="rect" title=" " alt="" coords="1073,167,1175,192"/>
+<area shape="poly" title=" " alt="" coords="676,116,851,136,1059,164,1058,169,851,141,675,121"/>
+<area shape="rect" title=" " alt="" coords="1200,167,1285,192"/>
+<area shape="poly" title=" " alt="" coords="676,115,1187,164,1186,170,675,120"/>
 </map>
 </div>
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSignalContext.html">SignalContext</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a8216c1645620cdb2f629cde3ac02ffef" id="r_a8216c1645620cdb2f629cde3ac02ffef"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="network__portal__demo_8cpp.html#a8216c1645620cdb2f629cde3ac02ffef">main</a> () -&gt; int</td></tr>
 <tr class="separator:a8216c1645620cdb2f629cde3ac02ffef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Verification of the AF_XDP library link and eBPF kernel loading. </p>
+<div class="textblock"><p>Sovereign Interconnect - Final Victory Build. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a8216c1645620cdb2f629cde3ac02ffef" name="a8216c1645620cdb2f629cde3ac02ffef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8216c1645620cdb2f629cde3ac02ffef">&#9670;&#160;</a></span>main()</h2>

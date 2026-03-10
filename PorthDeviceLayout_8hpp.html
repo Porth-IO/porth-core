@@ -93,22 +93,24 @@ Include dependency graph for PorthDeviceLayout.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthDeviceLayout_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthDeviceLayout_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthDeviceLayout_8hpp" id="ainclude_2porth_2PorthDeviceLayout_8hpp">
-<area shape="rect" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="157,5,348,45"/>
-<area shape="rect" href="PorthRegister_8hpp.html" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="131,93,268,119"/>
-<area shape="poly" title=" " alt="" coords="242,47,217,83,213,80,238,44"/>
+<area shape="rect" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="231,5,421,45"/>
+<area shape="rect" href="PorthRegister_8hpp.html" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="204,93,341,119"/>
+<area shape="poly" title=" " alt="" coords="315,47,291,83,286,80,311,44"/>
 <area shape="rect" title=" " alt="" coords="5,167,76,192"/>
-<area shape="poly" title=" " alt="" coords="205,48,162,69,120,95,86,126,59,157,55,154,82,122,116,91,160,64,203,43"/>
-<area shape="rect" title=" " alt="" coords="265,167,331,192"/>
-<area shape="poly" title=" " alt="" coords="264,45,282,93,296,153,291,154,277,94,259,47"/>
-<area shape="rect" title=" " alt="" coords="356,167,448,192"/>
-<area shape="poly" title=" " alt="" coords="273,44,383,155,379,158,270,48"/>
-<area shape="rect" title=" " alt="" coords="174,167,241,192"/>
-<area shape="poly" title=" " alt="" coords="203,119,207,153,202,153,198,119"/>
-<area shape="poly" title=" " alt="" coords="175,121,80,163,78,159,173,116"/>
-<area shape="poly" title=" " alt="" coords="217,117,272,156,269,161,214,121"/>
-<area shape="rect" title=" " alt="" coords="100,167,149,192"/>
-<area shape="poly" title=" " alt="" coords="189,121,149,159,145,155,186,117"/>
-<area shape="poly" title=" " alt="" coords="233,116,357,160,356,165,231,121"/>
+<area shape="poly" title=" " alt="" coords="288,48,193,96,74,162,71,157,190,91,286,43"/>
+<area shape="rect" title=" " alt="" coords="346,167,413,192"/>
+<area shape="poly" title=" " alt="" coords="337,45,355,92,375,152,370,154,350,94,332,47"/>
+<area shape="rect" title=" " alt="" coords="437,167,529,192"/>
+<area shape="poly" title=" " alt="" coords="348,44,463,155,460,159,344,48"/>
+<area shape="rect" title=" " alt="" coords="101,167,157,192"/>
+<area shape="poly" title=" " alt="" coords="251,121,166,163,163,158,248,116"/>
+<area shape="rect" title=" " alt="" coords="181,167,247,192"/>
+<area shape="poly" title=" " alt="" coords="265,121,234,158,230,155,261,117"/>
+<area shape="poly" title=" " alt="" coords="236,121,90,166,88,161,235,116"/>
+<area shape="poly" title=" " alt="" coords="291,116,352,157,349,161,288,121"/>
+<area shape="rect" title=" " alt="" coords="272,167,321,192"/>
+<area shape="poly" title=" " alt="" coords="279,118,291,153,286,154,274,120"/>
+<area shape="poly" title=" " alt="" coords="307,116,437,160,436,165,306,121"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -151,25 +153,25 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a6da83c2b0b7c8e9583de6c77238c3a86" id="r_a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a6da83c2b0b7c8e9583de6c77238c3a86">porth::cache_line_alignment</a> = 64</td></tr>
+<tr class="memitem:a6da83c2b0b7c8e9583de6c77238c3a86" id="r_a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a6da83c2b0b7c8e9583de6c77238c3a86">porth::cache_line_alignment</a> = 64</td></tr>
 <tr class="memdesc:a6da83c2b0b7c8e9583de6c77238c3a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard x86_64/ARM64 cache line size. Aligned to 64 bytes to prevent "False Sharing" where the CPU's L1 cache coherency protocol (MESI/MOESI) would otherwise force unnecessary synchronization between registers in the same line.  <br /></td></tr>
 <tr class="separator:a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9feaff880cb1400c80e9198c2bcf10bb" id="r_a9feaff880cb1400c80e9198c2bcf10bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9feaff880cb1400c80e9198c2bcf10bb">porth::expected_layout_size</a> = 448</td></tr>
+<tr class="memitem:a9feaff880cb1400c80e9198c2bcf10bb" id="r_a9feaff880cb1400c80e9198c2bcf10bb"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9feaff880cb1400c80e9198c2bcf10bb">porth::expected_layout_size</a> = 448</td></tr>
 <tr class="memdesc:a9feaff880cb1400c80e9198c2bcf10bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total footprint of the MMIO region. Must remain exactly 448 bytes to match the FPGA/ASIC register file RTL.  <br /></td></tr>
 <tr class="separator:a9feaff880cb1400c80e9198c2bcf10bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91a19d7d68a1f3175f1af84db17434cc" id="r_a91a19d7d68a1f3175f1af84db17434cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a91a19d7d68a1f3175f1af84db17434cc">porth::offset_control</a> = 0x00</td></tr>
+<tr class="memitem:a91a19d7d68a1f3175f1af84db17434cc" id="r_a91a19d7d68a1f3175f1af84db17434cc"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a91a19d7d68a1f3175f1af84db17434cc">porth::offset_control</a> = 0x00</td></tr>
 <tr class="separator:a91a19d7d68a1f3175f1af84db17434cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0383aae6223f945976fd45bbe3029038" id="r_a0383aae6223f945976fd45bbe3029038"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a0383aae6223f945976fd45bbe3029038">porth::offset_status</a> = 0x40</td></tr>
+<tr class="memitem:a0383aae6223f945976fd45bbe3029038" id="r_a0383aae6223f945976fd45bbe3029038"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a0383aae6223f945976fd45bbe3029038">porth::offset_status</a> = 0x40</td></tr>
 <tr class="separator:a0383aae6223f945976fd45bbe3029038"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebcb08965f62333cc5402566d906e0ae" id="r_aebcb08965f62333cc5402566d906e0ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aebcb08965f62333cc5402566d906e0ae">porth::offset_data_ptr</a> = 0x80</td></tr>
+<tr class="memitem:aebcb08965f62333cc5402566d906e0ae" id="r_aebcb08965f62333cc5402566d906e0ae"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aebcb08965f62333cc5402566d906e0ae">porth::offset_data_ptr</a> = 0x80</td></tr>
 <tr class="separator:aebcb08965f62333cc5402566d906e0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c578cabe1b7cb940684049ba15c42b1" id="r_a9c578cabe1b7cb940684049ba15c42b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9c578cabe1b7cb940684049ba15c42b1">porth::offset_counter</a> = 0xC0</td></tr>
+<tr class="memitem:a9c578cabe1b7cb940684049ba15c42b1" id="r_a9c578cabe1b7cb940684049ba15c42b1"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9c578cabe1b7cb940684049ba15c42b1">porth::offset_counter</a> = 0xC0</td></tr>
 <tr class="separator:a9c578cabe1b7cb940684049ba15c42b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0ce5c85ab76ea3a0f277e1cfbe53d2b" id="r_ab0ce5c85ab76ea3a0f277e1cfbe53d2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ab0ce5c85ab76ea3a0f277e1cfbe53d2b">porth::offset_laser_temp</a> = 0x100</td></tr>
+<tr class="memitem:ab0ce5c85ab76ea3a0f277e1cfbe53d2b" id="r_ab0ce5c85ab76ea3a0f277e1cfbe53d2b"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ab0ce5c85ab76ea3a0f277e1cfbe53d2b">porth::offset_laser_temp</a> = 0x100</td></tr>
 <tr class="separator:ab0ce5c85ab76ea3a0f277e1cfbe53d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a235cc5817b66ba6670941535e368a162" id="r_a235cc5817b66ba6670941535e368a162"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a235cc5817b66ba6670941535e368a162">porth::offset_gan_voltage</a> = 0x140</td></tr>
+<tr class="memitem:a235cc5817b66ba6670941535e368a162" id="r_a235cc5817b66ba6670941535e368a162"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a235cc5817b66ba6670941535e368a162">porth::offset_gan_voltage</a> = 0x140</td></tr>
 <tr class="separator:a235cc5817b66ba6670941535e368a162"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbc5e364b4f96b9200b967fc608a63ae" id="r_abbc5e364b4f96b9200b967fc608a63ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#abbc5e364b4f96b9200b967fc608a63ae">porth::offset_rf_snr</a> = 0x180</td></tr>
+<tr class="memitem:abbc5e364b4f96b9200b967fc608a63ae" id="r_abbc5e364b4f96b9200b967fc608a63ae"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#abbc5e364b4f96b9200b967fc608a63ae">porth::offset_rf_snr</a> = 0x180</td></tr>
 <tr class="separator:abbc5e364b4f96b9200b967fc608a63ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>

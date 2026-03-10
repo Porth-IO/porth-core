@@ -1,18 +1,20 @@
 <map id="include/porth/PorthDeviceLayout.hpp" name="include/porth/PorthDeviceLayout.hpp">
-<area shape="rect" id="Node000001" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="157,5,348,45"/>
-<area shape="rect" id="Node000002" href="$PorthRegister_8hpp.html" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="131,93,268,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,47,217,83,213,80,238,44"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,167,76,192"/>
-<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="205,48,162,69,120,95,86,126,59,157,55,154,82,122,116,91,160,64,203,43"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="265,167,331,192"/>
-<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="264,45,282,93,296,153,291,154,277,94,259,47"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="356,167,448,192"/>
-<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="273,44,383,155,379,158,270,48"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="174,167,241,192"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="203,119,207,153,202,153,198,119"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="175,121,80,163,78,159,173,116"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="217,117,272,156,269,161,214,121"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="100,167,149,192"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="189,121,149,159,145,155,186,117"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="233,116,357,160,356,165,231,121"/>
+<area shape="rect" id="Node000001" title="Physical memory map definition for Porth&#45;IO hardware." alt="" coords="231,5,421,45"/>
+<area shape="rect" id="Node000002" href="$PorthRegister_8hpp.html" title="The atomic unit of the Porth&#45;IO Hardware Abstraction Layer (HAL)." alt="" coords="204,93,341,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="315,47,291,83,286,80,311,44"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,167,76,192"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="288,48,193,96,74,162,71,157,190,91,286,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="346,167,413,192"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="337,45,355,92,375,152,370,154,350,94,332,47"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="437,167,529,192"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="348,44,463,155,460,159,344,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="101,167,157,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="251,121,166,163,163,158,248,116"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="181,167,247,192"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="265,121,234,158,230,155,261,117"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="236,121,90,166,88,161,235,116"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="291,116,352,157,349,161,288,121"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="272,167,321,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="279,118,291,153,286,154,274,120"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="307,116,437,160,436,165,306,121"/>
 </map>

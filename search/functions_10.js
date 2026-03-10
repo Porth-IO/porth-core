@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['write_0',['write',['../classporth_1_1PorthRegister.html#aaba570d76412f0766d0ffd5e12858e46',1,'porth::PorthRegister']]],
-  ['write_5fflit_1',['write_flit',['../classporth_1_1PorthSimDevice.html#a2e87bfef2f9ba8f8a035c9081b4db5b1',1,'porth::PorthSimDevice']]],
-  ['write_5freg_2',['write_reg',['../classporth_1_1PorthSimDevice.html#a65aae288b1007a1bcecc8e8ef978526d',1,'porth::PorthSimDevice']]]
+  ['transmit_0',['transmit',['../classporth_1_1Driver.html#a002560ec806e5d7bb6bdf8ae38626716',1,'porth::Driver']]],
+  ['trigger_5fcorruption_1',['trigger_corruption',['../classporth_1_1PorthSimDevice.html#afd02212271579e4bb2d2530ada5a46a9',1,'porth::PorthSimDevice']]],
+  ['trigger_5fdeadlock_2',['trigger_deadlock',['../classporth_1_1PorthSimDevice.html#a235ef91d53544cc2cee2c7d826011521',1,'porth::PorthSimDevice']]]
 ];

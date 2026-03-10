@@ -8,7 +8,8 @@ var searchData=
   ['control_5',['control',['../structporth_1_1PorthDeviceLayout.html#a7ad48a4b73de74094b0fb8634940fe8c',1,'porth::PorthDeviceLayout']]],
   ['core_20capabilities_6',['🌟 Core Capabilities',['../md_README.html#autotoc_md7',1,'']]],
   ['counter_7',['counter',['../structporth_1_1PorthDeviceLayout.html#ab0d2c4e602d258db4649cb6b30d09f72',1,'porth::PorthDeviceLayout']]],
-  ['ctrl_5fidle_8',['CTRL_IDLE',['../namespacecardiff__chip.html#ae101593f40531b7089da9d0a581238d6',1,'cardiff_chip']]],
-  ['ctrl_5freset_9',['CTRL_RESET',['../namespacecardiff__chip.html#a7d6c8acc47cea16de768d8d3714f75e7',1,'cardiff_chip']]],
-  ['ctrl_5fstart_10',['CTRL_START',['../namespacecardiff__chip.html#a6219150942224e4651d7fc85a4934bde',1,'cardiff_chip']]]
+  ['create_5fsocket_8',['create_socket',['../classporth_1_1PorthNetworkPortal.html#a1074725bdd1a9f3c1b1cff6bab2a672b',1,'porth::PorthNetworkPortal']]],
+  ['ctrl_5fidle_9',['CTRL_IDLE',['../namespacecardiff__chip.html#ae101593f40531b7089da9d0a581238d6',1,'cardiff_chip']]],
+  ['ctrl_5freset_10',['CTRL_RESET',['../namespacecardiff__chip.html#a7d6c8acc47cea16de768d8d3714f75e7',1,'cardiff_chip']]],
+  ['ctrl_5fstart_11',['CTRL_START',['../namespacecardiff__chip.html#a6219150942224e4651d7fc85a4934bde',1,'cardiff_chip']]]
 ];

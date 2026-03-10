@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['📂_20repository_20map_0',['📂 Repository Map',['../md_README.html#autotoc_md20',1,'']]]
+  ['🏗️_20the_20problem_3a_20software_20inertia_0',['🏗️ The Problem: Software Inertia',['../md_README.html#autotoc_md3',1,'']]]
 ];

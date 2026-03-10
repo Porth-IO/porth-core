@@ -116,23 +116,19 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthRingBuffer_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthRingBuffer_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthRingBuffer_8hppdep" id="ainclude_2porth_2PorthRingBuffer_8hppdep">
-<area shape="rect" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer for DMA telemetry." alt="" coords="383,5,623,31"/>
-<area shape="rect" href="PorthNetworkPortal_8hpp.html" title="Zero&#45;copy AF_XDP networking portal for kernel bypass." alt="" coords="85,79,285,119"/>
-<area shape="poly" title=" " alt="" coords="444,37,262,81,261,76,443,31"/>
-<area shape="rect" href="PorthShuttle_8hpp.html" title="Zero&#45;copy orchestrator for mapping memory structures to physical hardware." alt="" coords="394,86,613,111"/>
-<area shape="poly" title=" " alt="" coords="506,44,506,86,501,86,501,44"/>
-<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="634,174,877,199"/>
-<area shape="poly" title=" " alt="" coords="545,34,626,76,695,128,745,172,741,176,691,132,623,81,543,39"/>
-<area shape="rect" href="network__portal__demo_8cpp.html" title="Verification of the AF_XDP library link and eBPF kernel loading." alt="" coords="5,167,193,207"/>
-<area shape="poly" title=" " alt="" coords="158,130,120,168,116,165,154,127"/>
-<area shape="rect" href="zero__copy__handshake_8cpp.html" title=" " alt="" coords="217,167,373,207"/>
-<area shape="poly" title=" " alt="" coords="464,119,342,169,340,164,462,114"/>
-<area shape="rect" href="PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="397,174,609,199"/>
-<area shape="poly" title=" " alt="" coords="506,125,506,173,501,173,501,125"/>
-<area shape="poly" title=" " alt="" coords="551,113,722,171,721,176,550,119"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="553,255,705,295"/>
-<area shape="poly" title=" " alt="" coords="533,205,603,252,600,257,530,209"/>
-<area shape="poly" title=" " alt="" coords="728,209,658,257,655,252,725,205"/>
+<area shape="rect" title="Lock&#45;free Single&#45;Producer Single&#45;Consumer (SPSC) ring buffer for DMA telemetry." alt="" coords="297,5,537,31"/>
+<area shape="rect" href="PorthShuttle_8hpp.html" title="Zero&#45;copy orchestrator for mapping memory structures to physical hardware." alt="" coords="234,79,453,104"/>
+<area shape="poly" title=" " alt="" coords="397,42,357,80,353,77,393,38"/>
+<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="422,159,665,185"/>
+<area shape="poly" title=" " alt="" coords="437,39,536,157,532,161,433,43"/>
+<area shape="rect" href="zero__copy__handshake_8cpp.html" title=" " alt="" coords="5,152,161,192"/>
+<area shape="poly" title=" " alt="" coords="293,110,147,154,145,149,292,105"/>
+<area shape="rect" href="PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="185,159,397,185"/>
+<area shape="poly" title=" " alt="" coords="330,117,301,161,297,158,326,114"/>
+<area shape="poly" title=" " alt="" coords="386,107,515,157,513,162,384,112"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="341,240,493,280"/>
+<area shape="poly" title=" " alt="" coords="321,190,391,238,388,242,318,195"/>
+<area shape="poly" title=" " alt="" coords="516,195,446,242,443,238,513,190"/>
 </map>
 </div>
 </div>
@@ -163,10 +159,10 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a13c13622bb48129275aba250446e5277" id="r_a13c13622bb48129275aba250446e5277"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a13c13622bb48129275aba250446e5277">porth::RING_CACHE_LINE_SIZE</a> = 64</td></tr>
+<tr class="memitem:a13c13622bb48129275aba250446e5277" id="r_a13c13622bb48129275aba250446e5277"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a13c13622bb48129275aba250446e5277">porth::RING_CACHE_LINE_SIZE</a> = 64</td></tr>
 <tr class="memdesc:a13c13622bb48129275aba250446e5277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard cache line size (64 bytes). We align the Producer and Consumer indices to separate lines to prevent "False Sharing," where the L1 cache coherency protocol (MESI) would otherwise cause constant cache-line ping-ponging between cores.  <br /></td></tr>
 <tr class="separator:a13c13622bb48129275aba250446e5277"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a980282c72f0969f492a2c6f390959e35" id="r_a980282c72f0969f492a2c6f390959e35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a980282c72f0969f492a2c6f390959e35">porth::DEFAULT_RING_CAPACITY</a> = 1024</td></tr>
+<tr class="memitem:a980282c72f0969f492a2c6f390959e35" id="r_a980282c72f0969f492a2c6f390959e35"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a980282c72f0969f492a2c6f390959e35">porth::DEFAULT_RING_CAPACITY</a> = 1024</td></tr>
 <tr class="memdesc:a980282c72f0969f492a2c6f390959e35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default ring buffer capacity.  <br /></td></tr>
 <tr class="separator:a980282c72f0969f492a2c6f390959e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>

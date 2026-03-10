@@ -141,8 +141,8 @@ $(document).ready(function() { init_codefold(0); });
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00103" data-start="{" data-end="}">
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classporth_1_1PorthRingBuffer.html#aaf3b79e228ecc52231216e794d099d62">  103</a></span>    <span class="keyword">explicit</span> <a class="code hl_function" href="classporth_1_1PorthRingBuffer.html#aaf3b79e228ecc52231216e794d099d62">PorthRingBuffer</a>(<a class="code hl_struct" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a>* external_buffer = <span class="keyword">nullptr</span>)</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        : m_buffer(external_buffer),</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>          m_owns_buffer(external_buffer == nullptr) { <span class="comment">// NOLINT(cppcoreguidelines-owning-memory)</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="comment">// NOLINTNEXTLINE(cppcoreguidelines-owning-memory)</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        : m_buffer(external_buffer), m_owns_buffer(external_buffer == nullptr) {</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">if</span> (m_owns_buffer) {</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            m_buffer = <span class="keyword">new</span> <a class="code hl_struct" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a>[SIZE];</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        }</div>

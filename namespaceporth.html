@@ -103,7 +103,6 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A RAII wrapper for POSIX Shared Memory simulating hardware BAR mapping.  <a href="classporth_1_1PorthMockDevice.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthNetworkPortal.html">PorthNetworkPortal</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a high-speed "Tunnel" (AF_XDP) for Sovereign data.  <a href="classporth_1_1PorthNetworkPortal.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The atomic "brick" of the Porth-IO Hardware Abstraction Layer.  <a href="classporth_1_1PorthRegister.html#details">More...</a><br /></td></tr>
@@ -139,122 +138,125 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a369fb79884349b1797e234cdaf4a9b7b" id="r_a369fb79884349b1797e234cdaf4a9b7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a369fb79884349b1797e234cdaf4a9b7b">pin_thread_to_core</a> (<a class="el" href="classporth_1_1PorthRingBuffer.html">int</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">core_id</a>) <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; std::expected&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> &gt;</td></tr>
+<tr class="memitem:a369fb79884349b1797e234cdaf4a9b7b" id="r_a369fb79884349b1797e234cdaf4a9b7b"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a369fb79884349b1797e234cdaf4a9b7b">pin_thread_to_core</a> (int core_id) noexcept -&gt; std::expected&lt; void, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> &gt;</td></tr>
 <tr class="memdesc:a369fb79884349b1797e234cdaf4a9b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">pin_thread_to_core: Locks a thread to a specific physical CPU core.  <br /></td></tr>
 <tr class="separator:a369fb79884349b1797e234cdaf4a9b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26530af36da19a3d6959733e1139bc92" id="r_a26530af36da19a3d6959733e1139bc92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a26530af36da19a3d6959733e1139bc92">set_realtime_priority</a> () <a class="el" href="classporth_1_1PorthRingBuffer.html">noexcept</a> -&gt; std::expected&lt; <a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> &gt;</td></tr>
+<tr class="memitem:a26530af36da19a3d6959733e1139bc92" id="r_a26530af36da19a3d6959733e1139bc92"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a26530af36da19a3d6959733e1139bc92">set_realtime_priority</a> () noexcept -&gt; std::expected&lt; void, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> &gt;</td></tr>
 <tr class="memdesc:a26530af36da19a3d6959733e1139bc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">set_realtime_priority: Elevates the calling thread to SCHED_FIFO.  <br /></td></tr>
 <tr class="separator:a26530af36da19a3d6959733e1139bc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a6da83c2b0b7c8e9583de6c77238c3a86" id="r_a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a6da83c2b0b7c8e9583de6c77238c3a86">cache_line_alignment</a> = 64</td></tr>
+<tr class="memitem:a6da83c2b0b7c8e9583de6c77238c3a86" id="r_a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a6da83c2b0b7c8e9583de6c77238c3a86">cache_line_alignment</a> = 64</td></tr>
 <tr class="memdesc:a6da83c2b0b7c8e9583de6c77238c3a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard x86_64/ARM64 cache line size. Aligned to 64 bytes to prevent "False Sharing" where the CPU's L1 cache coherency protocol (MESI/MOESI) would otherwise force unnecessary synchronization between registers in the same line.  <br /></td></tr>
 <tr class="separator:a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9feaff880cb1400c80e9198c2bcf10bb" id="r_a9feaff880cb1400c80e9198c2bcf10bb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9feaff880cb1400c80e9198c2bcf10bb">expected_layout_size</a> = 448</td></tr>
+<tr class="memitem:a9feaff880cb1400c80e9198c2bcf10bb" id="r_a9feaff880cb1400c80e9198c2bcf10bb"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9feaff880cb1400c80e9198c2bcf10bb">expected_layout_size</a> = 448</td></tr>
 <tr class="memdesc:a9feaff880cb1400c80e9198c2bcf10bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total footprint of the MMIO region. Must remain exactly 448 bytes to match the FPGA/ASIC register file RTL.  <br /></td></tr>
 <tr class="separator:a9feaff880cb1400c80e9198c2bcf10bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91a19d7d68a1f3175f1af84db17434cc" id="r_a91a19d7d68a1f3175f1af84db17434cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a91a19d7d68a1f3175f1af84db17434cc">offset_control</a> = 0x00</td></tr>
+<tr class="memitem:a91a19d7d68a1f3175f1af84db17434cc" id="r_a91a19d7d68a1f3175f1af84db17434cc"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a91a19d7d68a1f3175f1af84db17434cc">offset_control</a> = 0x00</td></tr>
 <tr class="separator:a91a19d7d68a1f3175f1af84db17434cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0383aae6223f945976fd45bbe3029038" id="r_a0383aae6223f945976fd45bbe3029038"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a0383aae6223f945976fd45bbe3029038">offset_status</a> = 0x40</td></tr>
+<tr class="memitem:a0383aae6223f945976fd45bbe3029038" id="r_a0383aae6223f945976fd45bbe3029038"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a0383aae6223f945976fd45bbe3029038">offset_status</a> = 0x40</td></tr>
 <tr class="separator:a0383aae6223f945976fd45bbe3029038"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebcb08965f62333cc5402566d906e0ae" id="r_aebcb08965f62333cc5402566d906e0ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aebcb08965f62333cc5402566d906e0ae">offset_data_ptr</a> = 0x80</td></tr>
+<tr class="memitem:aebcb08965f62333cc5402566d906e0ae" id="r_aebcb08965f62333cc5402566d906e0ae"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aebcb08965f62333cc5402566d906e0ae">offset_data_ptr</a> = 0x80</td></tr>
 <tr class="separator:aebcb08965f62333cc5402566d906e0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c578cabe1b7cb940684049ba15c42b1" id="r_a9c578cabe1b7cb940684049ba15c42b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9c578cabe1b7cb940684049ba15c42b1">offset_counter</a> = 0xC0</td></tr>
+<tr class="memitem:a9c578cabe1b7cb940684049ba15c42b1" id="r_a9c578cabe1b7cb940684049ba15c42b1"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9c578cabe1b7cb940684049ba15c42b1">offset_counter</a> = 0xC0</td></tr>
 <tr class="separator:a9c578cabe1b7cb940684049ba15c42b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0ce5c85ab76ea3a0f277e1cfbe53d2b" id="r_ab0ce5c85ab76ea3a0f277e1cfbe53d2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ab0ce5c85ab76ea3a0f277e1cfbe53d2b">offset_laser_temp</a> = 0x100</td></tr>
+<tr class="memitem:ab0ce5c85ab76ea3a0f277e1cfbe53d2b" id="r_ab0ce5c85ab76ea3a0f277e1cfbe53d2b"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ab0ce5c85ab76ea3a0f277e1cfbe53d2b">offset_laser_temp</a> = 0x100</td></tr>
 <tr class="separator:ab0ce5c85ab76ea3a0f277e1cfbe53d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a235cc5817b66ba6670941535e368a162" id="r_a235cc5817b66ba6670941535e368a162"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a235cc5817b66ba6670941535e368a162">offset_gan_voltage</a> = 0x140</td></tr>
+<tr class="memitem:a235cc5817b66ba6670941535e368a162" id="r_a235cc5817b66ba6670941535e368a162"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a235cc5817b66ba6670941535e368a162">offset_gan_voltage</a> = 0x140</td></tr>
 <tr class="separator:a235cc5817b66ba6670941535e368a162"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbc5e364b4f96b9200b967fc608a63ae" id="r_abbc5e364b4f96b9200b967fc608a63ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#abbc5e364b4f96b9200b967fc608a63ae">offset_rf_snr</a> = 0x180</td></tr>
+<tr class="memitem:abbc5e364b4f96b9200b967fc608a63ae" id="r_abbc5e364b4f96b9200b967fc608a63ae"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#abbc5e364b4f96b9200b967fc608a63ae">offset_rf_snr</a> = 0x180</td></tr>
 <tr class="separator:abbc5e364b4f96b9200b967fc608a63ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60c30d392f859871f72a5345548eaba2" id="r_a60c30d392f859871f72a5345548eaba2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a60c30d392f859871f72a5345548eaba2">DEFAULT_RING_SIZE</a> = 1024</td></tr>
+<tr class="memitem:a60c30d392f859871f72a5345548eaba2" id="r_a60c30d392f859871f72a5345548eaba2"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a60c30d392f859871f72a5345548eaba2">DEFAULT_RING_SIZE</a> = 1024</td></tr>
 <tr class="memdesc:a60c30d392f859871f72a5345548eaba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default capacity for the DMA ring buffer. Set to 1024 to balance memory pressure with throughput burst capabilities.  <br /></td></tr>
 <tr class="separator:a60c30d392f859871f72a5345548eaba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8240577da7894999e0d646dd4c3abd5" id="r_ae8240577da7894999e0d646dd4c3abd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ae8240577da7894999e0d646dd4c3abd5">DEFAULT_METRIC_CAPACITY</a> = 1000000</td></tr>
+<tr class="memitem:ae8240577da7894999e0d646dd4c3abd5" id="r_ae8240577da7894999e0d646dd4c3abd5"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ae8240577da7894999e0d646dd4c3abd5">DEFAULT_METRIC_CAPACITY</a> = 1000000</td></tr>
 <tr class="memdesc:ae8240577da7894999e0d646dd4c3abd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default capacity for the metric buffer. 1,000,000 samples provide a statistically significant window for 10Gbps line-rate packet analysis without excessive resident set size (RSS) pressure.  <br /></td></tr>
 <tr class="separator:ae8240577da7894999e0d646dd4c3abd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9a594d3bc323379ff3350c39efcd189" id="r_af9a594d3bc323379ff3350c39efcd189"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#af9a594d3bc323379ff3350c39efcd189">PERCENTILE_Q1</a> = 25.0</td></tr>
+<tr class="memitem:af9a594d3bc323379ff3350c39efcd189" id="r_af9a594d3bc323379ff3350c39efcd189"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#af9a594d3bc323379ff3350c39efcd189">PERCENTILE_Q1</a> = 25.0</td></tr>
 <tr class="memdesc:af9a594d3bc323379ff3350c39efcd189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Percentile constants for statistical analysis.  <br /></td></tr>
 <tr class="separator:af9a594d3bc323379ff3350c39efcd189"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab38ad03f9855da59a07b22888ec51e03" id="r_ab38ad03f9855da59a07b22888ec51e03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ab38ad03f9855da59a07b22888ec51e03">PERCENTILE_Q3</a> = 75.0</td></tr>
+<tr class="memitem:ab38ad03f9855da59a07b22888ec51e03" id="r_ab38ad03f9855da59a07b22888ec51e03"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ab38ad03f9855da59a07b22888ec51e03">PERCENTILE_Q3</a> = 75.0</td></tr>
 <tr class="separator:ab38ad03f9855da59a07b22888ec51e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3a658ca8a8f6aaedee1332928f09ce0" id="r_ae3a658ca8a8f6aaedee1332928f09ce0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ae3a658ca8a8f6aaedee1332928f09ce0">PERCENTILE_P50</a> = 50.0</td></tr>
+<tr class="memitem:ae3a658ca8a8f6aaedee1332928f09ce0" id="r_ae3a658ca8a8f6aaedee1332928f09ce0"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ae3a658ca8a8f6aaedee1332928f09ce0">PERCENTILE_P50</a> = 50.0</td></tr>
 <tr class="separator:ae3a658ca8a8f6aaedee1332928f09ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb2f09b17c551cd6876db4bc5a8ec5cd" id="r_acb2f09b17c551cd6876db4bc5a8ec5cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#acb2f09b17c551cd6876db4bc5a8ec5cd">PERCENTILE_P99_9</a> = 99.9</td></tr>
+<tr class="memitem:acb2f09b17c551cd6876db4bc5a8ec5cd" id="r_acb2f09b17c551cd6876db4bc5a8ec5cd"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#acb2f09b17c551cd6876db4bc5a8ec5cd">PERCENTILE_P99_9</a> = 99.9</td></tr>
 <tr class="separator:acb2f09b17c551cd6876db4bc5a8ec5cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a692bcf7caf30e80dcf9f224e574d9f8c" id="r_a692bcf7caf30e80dcf9f224e574d9f8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a692bcf7caf30e80dcf9f224e574d9f8c">PERCENTILE_P99_99</a> = 99.99</td></tr>
+<tr class="memitem:a692bcf7caf30e80dcf9f224e574d9f8c" id="r_a692bcf7caf30e80dcf9f224e574d9f8c"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a692bcf7caf30e80dcf9f224e574d9f8c">PERCENTILE_P99_99</a> = 99.99</td></tr>
 <tr class="separator:a692bcf7caf30e80dcf9f224e574d9f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0445d9d65f5f06a472597d6bfdb26a1" id="r_af0445d9d65f5f06a472597d6bfdb26a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#af0445d9d65f5f06a472597d6bfdb26a1">PORTH_CACHE_LINE_SIZE</a> = 64</td></tr>
+<tr class="memitem:af0445d9d65f5f06a472597d6bfdb26a1" id="r_af0445d9d65f5f06a472597d6bfdb26a1"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#af0445d9d65f5f06a472597d6bfdb26a1">PORTH_CACHE_LINE_SIZE</a> = 64</td></tr>
 <tr class="memdesc:af0445d9d65f5f06a472597d6bfdb26a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Cardiff Standard Cache Line (64 Bytes). This constant is the physical foundation of our MMIO map. We hardcode 64 bytes to align with the Newport Cluster's PCIe TLP (Transaction Layer Packet) granularity. This prevents "Cache Line Bouncing" between the CPU and the InP/GaN DMA engine, ensuring deterministic register access.  <br /></td></tr>
 <tr class="separator:af0445d9d65f5f06a472597d6bfdb26a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13c13622bb48129275aba250446e5277" id="r_a13c13622bb48129275aba250446e5277"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a13c13622bb48129275aba250446e5277">RING_CACHE_LINE_SIZE</a> = 64</td></tr>
+<tr class="memitem:a13c13622bb48129275aba250446e5277" id="r_a13c13622bb48129275aba250446e5277"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a13c13622bb48129275aba250446e5277">RING_CACHE_LINE_SIZE</a> = 64</td></tr>
 <tr class="memdesc:a13c13622bb48129275aba250446e5277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard cache line size (64 bytes). We align the Producer and Consumer indices to separate lines to prevent "False Sharing," where the L1 cache coherency protocol (MESI) would otherwise cause constant cache-line ping-ponging between cores.  <br /></td></tr>
 <tr class="separator:a13c13622bb48129275aba250446e5277"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a980282c72f0969f492a2c6f390959e35" id="r_a980282c72f0969f492a2c6f390959e35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a980282c72f0969f492a2c6f390959e35">DEFAULT_RING_CAPACITY</a> = 1024</td></tr>
+<tr class="memitem:a980282c72f0969f492a2c6f390959e35" id="r_a980282c72f0969f492a2c6f390959e35"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a980282c72f0969f492a2c6f390959e35">DEFAULT_RING_CAPACITY</a> = 1024</td></tr>
 <tr class="memdesc:a980282c72f0969f492a2c6f390959e35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default ring buffer capacity.  <br /></td></tr>
 <tr class="separator:a980282c72f0969f492a2c6f390959e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd755c35c5e55e3d521fdf6e181765ab" id="r_abd755c35c5e55e3d521fdf6e181765ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#abd755c35c5e55e3d521fdf6e181765ab">DEFAULT_SHUTTLE_CAPACITY</a> = 1024</td></tr>
+<tr class="memitem:abd755c35c5e55e3d521fdf6e181765ab" id="r_abd755c35c5e55e3d521fdf6e181765ab"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#abd755c35c5e55e3d521fdf6e181765ab">DEFAULT_SHUTTLE_CAPACITY</a> = 1024</td></tr>
 <tr class="memdesc:abd755c35c5e55e3d521fdf6e181765ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default capacity for the Shuttle ring buffer. Balanced to minimize cache-line walk depth while maintaining burst resilience.  <br /></td></tr>
 <tr class="separator:abd755c35c5e55e3d521fdf6e181765ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59859250362706d1f9670964d7e1586f" id="r_a59859250362706d1f9670964d7e1586f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a59859250362706d1f9670964d7e1586f">SHUTTLE_PAGE_SIZE</a> = <a class="el" href="classporth_1_1PorthRingBuffer.html">static_cast</a>&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&gt;(2) * 1024 * 1024</td></tr>
+<tr class="memitem:a59859250362706d1f9670964d7e1586f" id="r_a59859250362706d1f9670964d7e1586f"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a59859250362706d1f9670964d7e1586f">SHUTTLE_PAGE_SIZE</a> = static_cast&lt;size_t&gt;(2) * 1024 * 1024</td></tr>
 <tr class="memdesc:a59859250362706d1f9670964d7e1586f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard 2MB HugePage size for memory allocation. This is the atomic unit of the Linux hugetlbfs; using 2MB pages ensures that the entire data plane fits within a single TLB entry, eliminating Page-Walk-induced latency during high-speed Newport Cluster transfers.  <br /></td></tr>
 <tr class="separator:a59859250362706d1f9670964d7e1586f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ad72df7aecf3cae43c47c5fa8e0fa2e" id="r_a8ad72df7aecf3cae43c47c5fa8e0fa2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8ad72df7aecf3cae43c47c5fa8e0fa2e">SIM_BASE_TEMP_MC</a> = 25000</td></tr>
+<tr class="memitem:a8ad72df7aecf3cae43c47c5fa8e0fa2e" id="r_a8ad72df7aecf3cae43c47c5fa8e0fa2e"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8ad72df7aecf3cae43c47c5fa8e0fa2e">SIM_BASE_TEMP_MC</a> = 25000</td></tr>
 <tr class="memdesc:a8ad72df7aecf3cae43c47c5fa8e0fa2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulation Constants representing physical hardware limits of the Newport Cluster.  <br /></td></tr>
 <tr class="separator:a8ad72df7aecf3cae43c47c5fa8e0fa2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79c13456ebf6b4e99a125a10dc50eb33" id="r_a79c13456ebf6b4e99a125a10dc50eb33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a79c13456ebf6b4e99a125a10dc50eb33">SIM_TEMP_INC_MC</a> = 100</td></tr>
+<tr class="memitem:a79c13456ebf6b4e99a125a10dc50eb33" id="r_a79c13456ebf6b4e99a125a10dc50eb33"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a79c13456ebf6b4e99a125a10dc50eb33">SIM_TEMP_INC_MC</a> = 100</td></tr>
 <tr class="memdesc:a79c13456ebf6b4e99a125a10dc50eb33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Heating rate per step (0.1°C).  <br /></td></tr>
 <tr class="separator:a79c13456ebf6b4e99a125a10dc50eb33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ef78d9fb30782c83e45c81ba549c35c" id="r_a5ef78d9fb30782c83e45c81ba549c35c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a5ef78d9fb30782c83e45c81ba549c35c">SIM_TEMP_DEC_MC</a> = 50</td></tr>
+<tr class="memitem:a5ef78d9fb30782c83e45c81ba549c35c" id="r_a5ef78d9fb30782c83e45c81ba549c35c"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a5ef78d9fb30782c83e45c81ba549c35c">SIM_TEMP_DEC_MC</a> = 50</td></tr>
 <tr class="memdesc:a5ef78d9fb30782c83e45c81ba549c35c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passive cooling rate per step (0.05°C).  <br /></td></tr>
 <tr class="separator:a5ef78d9fb30782c83e45c81ba549c35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c3fefecde019177f27d5c610ea17095" id="r_a8c3fefecde019177f27d5c610ea17095"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8c3fefecde019177f27d5c610ea17095">SIM_STATUS_MAX_BIT</a> = 31</td></tr>
+<tr class="memitem:a8c3fefecde019177f27d5c610ea17095" id="r_a8c3fefecde019177f27d5c610ea17095"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8c3fefecde019177f27d5c610ea17095">SIM_STATUS_MAX_BIT</a> = 31</td></tr>
 <tr class="memdesc:a8c3fefecde019177f27d5c610ea17095"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit-width of the hardware status register.  <br /></td></tr>
 <tr class="separator:a8c3fefecde019177f27d5c610ea17095"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec5ce4ce4725d24dc7c1ced3e399d364" id="r_aec5ce4ce4725d24dc7c1ced3e399d364"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aec5ce4ce4725d24dc7c1ced3e399d364">SIM_DEFAULT_SHUTTLE_SIZE</a> = 1024</td></tr>
+<tr class="memitem:aec5ce4ce4725d24dc7c1ced3e399d364" id="r_aec5ce4ce4725d24dc7c1ced3e399d364"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aec5ce4ce4725d24dc7c1ced3e399d364">SIM_DEFAULT_SHUTTLE_SIZE</a> = 1024</td></tr>
 <tr class="memdesc:aec5ce4ce4725d24dc7c1ced3e399d364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of descriptors in the DMA ring.  <br /></td></tr>
 <tr class="separator:aec5ce4ce4725d24dc7c1ced3e399d364"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e8b7ea36f3650acdb76e3c736e4b951" id="r_a8e8b7ea36f3650acdb76e3c736e4b951"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8e8b7ea36f3650acdb76e3c736e4b951">SIM_PHYSICS_STEP_US</a> = 100</td></tr>
+<tr class="memitem:a8e8b7ea36f3650acdb76e3c736e4b951" id="r_a8e8b7ea36f3650acdb76e3c736e4b951"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8e8b7ea36f3650acdb76e3c736e4b951">SIM_PHYSICS_STEP_US</a> = 100</td></tr>
 <tr class="memdesc:a8e8b7ea36f3650acdb76e3c736e4b951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Physics update frequency (10kHz).  <br /></td></tr>
 <tr class="separator:a8e8b7ea36f3650acdb76e3c736e4b951"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a049ca073ea45e6c8b00ce20acca81400" id="r_a049ca073ea45e6c8b00ce20acca81400"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a049ca073ea45e6c8b00ce20acca81400">SIM_BUS_HANG_MS</a> = 100</td></tr>
+<tr class="memitem:a049ca073ea45e6c8b00ce20acca81400" id="r_a049ca073ea45e6c8b00ce20acca81400"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a049ca073ea45e6c8b00ce20acca81400">SIM_BUS_HANG_MS</a> = 100</td></tr>
 <tr class="memdesc:a049ca073ea45e6c8b00ce20acca81400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simulated duration of a PCIe TLP timeout.  <br /></td></tr>
 <tr class="separator:a049ca073ea45e6c8b00ce20acca81400"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba0bc713d5d4942c7b2fda73f8717f88" id="r_aba0bc713d5d4942c7b2fda73f8717f88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aba0bc713d5d4942c7b2fda73f8717f88">SIM_OVERFLOW_ITERATIONS</a> = 2048</td></tr>
+<tr class="memitem:aba0bc713d5d4942c7b2fda73f8717f88" id="r_aba0bc713d5d4942c7b2fda73f8717f88"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aba0bc713d5d4942c7b2fda73f8717f88">SIM_OVERFLOW_ITERATIONS</a> = 2048</td></tr>
 <tr class="memdesc:aba0bc713d5d4942c7b2fda73f8717f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterations to force RingBuffer saturation.  <br /></td></tr>
 <tr class="separator:aba0bc713d5d4942c7b2fda73f8717f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6b9db8e7c1b8db0fca6652335111d41" id="r_ab6b9db8e7c1b8db0fca6652335111d41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ab6b9db8e7c1b8db0fca6652335111d41">SIM_DESCRIPTOR_LEN_DEFAULT</a> = 64</td></tr>
+<tr class="memitem:ab6b9db8e7c1b8db0fca6652335111d41" id="r_ab6b9db8e7c1b8db0fca6652335111d41"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ab6b9db8e7c1b8db0fca6652335111d41">SIM_DESCRIPTOR_LEN_DEFAULT</a> = 64</td></tr>
 <tr class="memdesc:ab6b9db8e7c1b8db0fca6652335111d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard flit-aligned descriptor length.  <br /></td></tr>
 <tr class="separator:ab6b9db8e7c1b8db0fca6652335111d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ae6f1b33fd449d9fcd4089d97bf8fd4" id="r_a9ae6f1b33fd449d9fcd4089d97bf8fd4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9ae6f1b33fd449d9fcd4089d97bf8fd4">DEFAULT_FEC_ERROR_RATE</a></td></tr>
+<tr class="memitem:a7f44659fc05761fe4e6cd07557b0679f" id="r_a7f44659fc05761fe4e6cd07557b0679f"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a7f44659fc05761fe4e6cd07557b0679f">SIM_CHAOS_THRESHOLD</a> = 28</td></tr>
+<tr class="memdesc:a7f44659fc05761fe4e6cd07557b0679f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Threshold for critical DMA pointer corruption.  <br /></td></tr>
+<tr class="separator:a7f44659fc05761fe4e6cd07557b0679f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ae6f1b33fd449d9fcd4089d97bf8fd4" id="r_a9ae6f1b33fd449d9fcd4089d97bf8fd4"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9ae6f1b33fd449d9fcd4089d97bf8fd4">DEFAULT_FEC_ERROR_RATE</a></td></tr>
 <tr class="memdesc:a9ae6f1b33fd449d9fcd4089d97bf8fd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">PHY Simulation Constants for Newport Cluster hardware modeling.  <br /></td></tr>
 <tr class="separator:a9ae6f1b33fd449d9fcd4089d97bf8fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a596551ab22ecf2a7315895c242ce6a2e" id="r_a596551ab22ecf2a7315895c242ce6a2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a596551ab22ecf2a7315895c242ce6a2e">DEFAULT_FEC_PENALTY_NS</a> = 5</td></tr>
+<tr class="memitem:a596551ab22ecf2a7315895c242ce6a2e" id="r_a596551ab22ecf2a7315895c242ce6a2e"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a596551ab22ecf2a7315895c242ce6a2e">DEFAULT_FEC_PENALTY_NS</a> = 5</td></tr>
 <tr class="memdesc:a596551ab22ecf2a7315895c242ce6a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Baseline logic delay for FEC decoding (5ns).  <br /></td></tr>
 <tr class="separator:a596551ab22ecf2a7315895c242ce6a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaeff1ff084c4d6762fb760d3f1de0f7b" id="r_aaeff1ff084c4d6762fb760d3f1de0f7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aaeff1ff084c4d6762fb760d3f1de0f7b">DEFAULT_BASE_TEMP_MC</a></td></tr>
+<tr class="memitem:aaeff1ff084c4d6762fb760d3f1de0f7b" id="r_aaeff1ff084c4d6762fb760d3f1de0f7b"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aaeff1ff084c4d6762fb760d3f1de0f7b">DEFAULT_BASE_TEMP_MC</a></td></tr>
 <tr class="memdesc:aaeff1ff084c4d6762fb760d3f1de0f7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">25.0°C - Standard laboratory ambient temperature.  <br /></td></tr>
 <tr class="separator:aaeff1ff084c4d6762fb760d3f1de0f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf4aaaad32bdb8a4267dc39e02fa2acc" id="r_acf4aaaad32bdb8a4267dc39e02fa2acc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#acf4aaaad32bdb8a4267dc39e02fa2acc">DEFAULT_BASE_DELAY_NS</a></td></tr>
+<tr class="memitem:acf4aaaad32bdb8a4267dc39e02fa2acc" id="r_acf4aaaad32bdb8a4267dc39e02fa2acc"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#acf4aaaad32bdb8a4267dc39e02fa2acc">DEFAULT_BASE_DELAY_NS</a></td></tr>
 <tr class="memdesc:acf4aaaad32bdb8a4267dc39e02fa2acc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Propagation time for light in 20m of optical fiber.  <br /></td></tr>
 <tr class="separator:acf4aaaad32bdb8a4267dc39e02fa2acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5321df22e6a10df3405459885710d9ae" id="r_a5321df22e6a10df3405459885710d9ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a5321df22e6a10df3405459885710d9ae">DEFAULT_JITTER_INIT_NS</a> = 25</td></tr>
+<tr class="memitem:a5321df22e6a10df3405459885710d9ae" id="r_a5321df22e6a10df3405459885710d9ae"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a5321df22e6a10df3405459885710d9ae">DEFAULT_JITTER_INIT_NS</a> = 25</td></tr>
 <tr class="memdesc:a5321df22e6a10df3405459885710d9ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Baseline clock recovery jitter.  <br /></td></tr>
 <tr class="separator:a5321df22e6a10df3405459885710d9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a67d2df2ae279e19c9e78c7ec3d782e" id="r_a2a67d2df2ae279e19c9e78c7ec3d782e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a2a67d2df2ae279e19c9e78c7ec3d782e">DEFAULT_CPNS</a> = 2.4</td></tr>
+<tr class="memitem:a2a67d2df2ae279e19c9e78c7ec3d782e" id="r_a2a67d2df2ae279e19c9e78c7ec3d782e"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a2a67d2df2ae279e19c9e78c7ec3d782e">DEFAULT_CPNS</a> = 2.4</td></tr>
 <tr class="memdesc:a2a67d2df2ae279e19c9e78c7ec3d782e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default calibration for a 2.4GHz CPU.  <br /></td></tr>
 <tr class="separator:a2a67d2df2ae279e19c9e78c7ec3d782e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe5606888a776081a60e12597964591a" id="r_afe5606888a776081a60e12597964591a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#afe5606888a776081a60e12597964591a">THERMAL_THRESHOLD_MC</a> = 40000</td></tr>
+<tr class="memitem:afe5606888a776081a60e12597964591a" id="r_afe5606888a776081a60e12597964591a"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#afe5606888a776081a60e12597964591a">THERMAL_THRESHOLD_MC</a> = 40000</td></tr>
 <tr class="memdesc:afe5606888a776081a60e12597964591a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Physical thermal threshold (40.0°C). Beyond this limit, the Indium Phosphide (InP) lattice drift significantly impacts signal-to-noise ratio (SNR), introducing non-linear jitter.  <br /></td></tr>
 <tr class="separator:afe5606888a776081a60e12597964591a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20922d8f3585b46cdcc1995bd45d5675" id="r_a20922d8f3585b46cdcc1995bd45d5675"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a20922d8f3585b46cdcc1995bd45d5675">MC_TO_C_DIVISOR</a> = 1000</td></tr>
+<tr class="memitem:a20922d8f3585b46cdcc1995bd45d5675" id="r_a20922d8f3585b46cdcc1995bd45d5675"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a20922d8f3585b46cdcc1995bd45d5675">MC_TO_C_DIVISOR</a> = 1000</td></tr>
 <tr class="memdesc:a20922d8f3585b46cdcc1995bd45d5675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversion factor for milli-Celsius to Celsius.  <br /></td></tr>
 <tr class="separator:a20922d8f3585b46cdcc1995bd45d5675"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75fd02690afdefe2868cdd1b5f4e736f" id="r_a75fd02690afdefe2868cdd1b5f4e736f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a75fd02690afdefe2868cdd1b5f4e736f">FEC_RETRY_SPIKE_NS</a> = 500</td></tr>
+<tr class="memitem:a75fd02690afdefe2868cdd1b5f4e736f" id="r_a75fd02690afdefe2868cdd1b5f4e736f"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a75fd02690afdefe2868cdd1b5f4e736f">FEC_RETRY_SPIKE_NS</a> = 500</td></tr>
 <tr class="memdesc:a75fd02690afdefe2868cdd1b5f4e736f"><td class="mdescLeft">&#160;</td><td class="mdescRight">FEC Spike Penalty (500ns). Simulates a full packet retransmission or deep-interleaving buffer flush triggered by an uncorrectable error in the GaN power stage.  <br /></td></tr>
 <tr class="separator:a75fd02690afdefe2868cdd1b5f4e736f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee756e9319315feec4db4b265da4a82e" id="r_aee756e9319315feec4db4b265da4a82e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aee756e9319315feec4db4b265da4a82e">MAX_PTHREAD_FIFO_PRIORITY</a> = 99</td></tr>
+<tr class="memitem:aee756e9319315feec4db4b265da4a82e" id="r_aee756e9319315feec4db4b265da4a82e"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aee756e9319315feec4db4b265da4a82e">MAX_PTHREAD_FIFO_PRIORITY</a> = 99</td></tr>
 <tr class="memdesc:aee756e9319315feec4db4b265da4a82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum priority for Real-Time FIFO scheduling. Level 99 ensures the Porth driver preempts all other system tasks, including standard kernel threads, to maintain GaN switching determinism.  <br /></td></tr>
 <tr class="separator:aee756e9319315feec4db4b265da4a82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -269,7 +271,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">enum</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">class</a> <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">porth::PorthStatus</a> : <a class="el" href="classporth_1_1PorthRingBuffer.html">uint8_t</a></td>
+          <td class="memname">enum class <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">porth::PorthStatus</a> : uint8_t</td>
         </tr>
       </table>
   </td>
@@ -311,11 +313,11 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a> porth::pin_thread_to_core </td>
+          <td class="memname">auto porth::pin_thread_to_core </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classporth_1_1PorthRingBuffer.html">int</a>&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>core_id</em></td><td>)</td>
-          <td> -&gt; std::expected&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a>&gt; </td>
+          <td> -&gt; std::expected&lt;void, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a>&gt; </td>
         </tr>
       </table>
   </td>
@@ -348,10 +350,10 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">auto</a> porth::set_realtime_priority </td>
+          <td class="memname">auto porth::set_realtime_priority </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> -&gt; std::expected&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">void</a>, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a>&gt; </td>
+          <td> -&gt; std::expected&lt;void, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a>&gt; </td>
         </tr>
       </table>
   </td>
@@ -379,7 +381,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::cache_line_alignment = 64</td>
+          <td class="memname">constexpr size_t porth::cache_line_alignment = 64</td>
         </tr>
       </table>
   </td>
@@ -406,7 +408,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> porth::DEFAULT_BASE_DELAY_NS</td>
+          <td class="memname">constexpr uint64_t porth::DEFAULT_BASE_DELAY_NS</td>
         </tr>
       </table>
   </td>
@@ -432,7 +434,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> porth::DEFAULT_BASE_TEMP_MC</td>
+          <td class="memname">constexpr uint32_t porth::DEFAULT_BASE_TEMP_MC</td>
         </tr>
       </table>
   </td>
@@ -458,7 +460,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a> porth::DEFAULT_CPNS = 2.4</td>
+          <td class="memname">constexpr double porth::DEFAULT_CPNS = 2.4</td>
         </tr>
       </table>
   </td>
@@ -482,7 +484,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a> porth::DEFAULT_FEC_ERROR_RATE</td>
+          <td class="memname">constexpr double porth::DEFAULT_FEC_ERROR_RATE</td>
         </tr>
       </table>
   </td>
@@ -509,7 +511,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> porth::DEFAULT_FEC_PENALTY_NS = 5</td>
+          <td class="memname">constexpr uint64_t porth::DEFAULT_FEC_PENALTY_NS = 5</td>
         </tr>
       </table>
   </td>
@@ -533,7 +535,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> porth::DEFAULT_JITTER_INIT_NS = 25</td>
+          <td class="memname">constexpr uint64_t porth::DEFAULT_JITTER_INIT_NS = 25</td>
         </tr>
       </table>
   </td>
@@ -557,7 +559,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::DEFAULT_METRIC_CAPACITY = 1000000</td>
+          <td class="memname">constexpr size_t porth::DEFAULT_METRIC_CAPACITY = 1000000</td>
         </tr>
       </table>
   </td>
@@ -568,9 +570,6 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Default capacity for the metric buffer. 1,000,000 samples provide a statistically significant window for 10Gbps line-rate packet analysis without excessive resident set size (RSS) pressure. </p>
-<ul>
-<li></li>
-</ul>
 
 </div>
 </div>
@@ -584,7 +583,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::DEFAULT_RING_CAPACITY = 1024</td>
+          <td class="memname">constexpr size_t porth::DEFAULT_RING_CAPACITY = 1024</td>
         </tr>
       </table>
   </td>
@@ -608,7 +607,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::DEFAULT_RING_SIZE = 1024</td>
+          <td class="memname">constexpr size_t porth::DEFAULT_RING_SIZE = 1024</td>
         </tr>
       </table>
   </td>
@@ -635,7 +634,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::DEFAULT_SHUTTLE_CAPACITY = 1024</td>
+          <td class="memname">constexpr size_t porth::DEFAULT_SHUTTLE_CAPACITY = 1024</td>
         </tr>
       </table>
   </td>
@@ -662,7 +661,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::expected_layout_size = 448</td>
+          <td class="memname">constexpr size_t porth::expected_layout_size = 448</td>
         </tr>
       </table>
   </td>
@@ -689,7 +688,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint64_t</a> porth::FEC_RETRY_SPIKE_NS = 500</td>
+          <td class="memname">constexpr uint64_t porth::FEC_RETRY_SPIKE_NS = 500</td>
         </tr>
       </table>
   </td>
@@ -716,7 +715,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a> porth::MAX_PTHREAD_FIFO_PRIORITY = 99</td>
+          <td class="memname">constexpr int porth::MAX_PTHREAD_FIFO_PRIORITY = 99</td>
         </tr>
       </table>
   </td>
@@ -743,7 +742,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> porth::MC_TO_C_DIVISOR = 1000</td>
+          <td class="memname">constexpr uint32_t porth::MC_TO_C_DIVISOR = 1000</td>
         </tr>
       </table>
   </td>
@@ -767,7 +766,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::offset_control = 0x00</td>
+          <td class="memname">constexpr size_t porth::offset_control = 0x00</td>
         </tr>
       </table>
   </td>
@@ -789,7 +788,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::offset_counter = 0xC0</td>
+          <td class="memname">constexpr size_t porth::offset_counter = 0xC0</td>
         </tr>
       </table>
   </td>
@@ -811,7 +810,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::offset_data_ptr = 0x80</td>
+          <td class="memname">constexpr size_t porth::offset_data_ptr = 0x80</td>
         </tr>
       </table>
   </td>
@@ -833,7 +832,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::offset_gan_voltage = 0x140</td>
+          <td class="memname">constexpr size_t porth::offset_gan_voltage = 0x140</td>
         </tr>
       </table>
   </td>
@@ -855,7 +854,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::offset_laser_temp = 0x100</td>
+          <td class="memname">constexpr size_t porth::offset_laser_temp = 0x100</td>
         </tr>
       </table>
   </td>
@@ -877,7 +876,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::offset_rf_snr = 0x180</td>
+          <td class="memname">constexpr size_t porth::offset_rf_snr = 0x180</td>
         </tr>
       </table>
   </td>
@@ -899,7 +898,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::offset_status = 0x40</td>
+          <td class="memname">constexpr size_t porth::offset_status = 0x40</td>
         </tr>
       </table>
   </td>
@@ -921,7 +920,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a> porth::PERCENTILE_P50 = 50.0</td>
+          <td class="memname">constexpr double porth::PERCENTILE_P50 = 50.0</td>
         </tr>
       </table>
   </td>
@@ -943,7 +942,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a> porth::PERCENTILE_P99_9 = 99.9</td>
+          <td class="memname">constexpr double porth::PERCENTILE_P99_9 = 99.9</td>
         </tr>
       </table>
   </td>
@@ -965,7 +964,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a> porth::PERCENTILE_P99_99 = 99.99</td>
+          <td class="memname">constexpr double porth::PERCENTILE_P99_99 = 99.99</td>
         </tr>
       </table>
   </td>
@@ -987,7 +986,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a> porth::PERCENTILE_Q1 = 25.0</td>
+          <td class="memname">constexpr double porth::PERCENTILE_Q1 = 25.0</td>
         </tr>
       </table>
   </td>
@@ -1011,7 +1010,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">double</a> porth::PERCENTILE_Q3 = 75.0</td>
+          <td class="memname">constexpr double porth::PERCENTILE_Q3 = 75.0</td>
         </tr>
       </table>
   </td>
@@ -1033,7 +1032,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::PORTH_CACHE_LINE_SIZE = 64</td>
+          <td class="memname">constexpr size_t porth::PORTH_CACHE_LINE_SIZE = 64</td>
         </tr>
       </table>
   </td>
@@ -1060,7 +1059,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::RING_CACHE_LINE_SIZE = 64</td>
+          <td class="memname">constexpr size_t porth::RING_CACHE_LINE_SIZE = 64</td>
         </tr>
       </table>
   </td>
@@ -1087,7 +1086,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::SHUTTLE_PAGE_SIZE = <a class="el" href="classporth_1_1PorthRingBuffer.html">static_cast</a>&lt;<a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a>&gt;(2) * 1024 * 1024</td>
+          <td class="memname">constexpr size_t porth::SHUTTLE_PAGE_SIZE = static_cast&lt;size_t&gt;(2) * 1024 * 1024</td>
         </tr>
       </table>
   </td>
@@ -1114,7 +1113,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> porth::SIM_BASE_TEMP_MC = 25000</td>
+          <td class="memname">constexpr uint32_t porth::SIM_BASE_TEMP_MC = 25000</td>
         </tr>
       </table>
   </td>
@@ -1139,7 +1138,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a> porth::SIM_BUS_HANG_MS = 100</td>
+          <td class="memname">constexpr int porth::SIM_BUS_HANG_MS = 100</td>
         </tr>
       </table>
   </td>
@@ -1153,6 +1152,30 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a7f44659fc05761fe4e6cd07557b0679f" name="a7f44659fc05761fe4e6cd07557b0679f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f44659fc05761fe4e6cd07557b0679f">&#9670;&#160;</a></span>SIM_CHAOS_THRESHOLD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint32_t porth::SIM_CHAOS_THRESHOLD = 28</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Threshold for critical DMA pointer corruption. </p>
+
+</div>
+</div>
 <a id="aec5ce4ce4725d24dc7c1ced3e399d364" name="aec5ce4ce4725d24dc7c1ced3e399d364"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec5ce4ce4725d24dc7c1ced3e399d364">&#9670;&#160;</a></span>SIM_DEFAULT_SHUTTLE_SIZE</h2>
 
@@ -1163,7 +1186,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">size_t</a> porth::SIM_DEFAULT_SHUTTLE_SIZE = 1024</td>
+          <td class="memname">constexpr size_t porth::SIM_DEFAULT_SHUTTLE_SIZE = 1024</td>
         </tr>
       </table>
   </td>
@@ -1187,7 +1210,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> porth::SIM_DESCRIPTOR_LEN_DEFAULT = 64</td>
+          <td class="memname">constexpr uint32_t porth::SIM_DESCRIPTOR_LEN_DEFAULT = 64</td>
         </tr>
       </table>
   </td>
@@ -1211,7 +1234,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a> porth::SIM_OVERFLOW_ITERATIONS = 2048</td>
+          <td class="memname">constexpr int porth::SIM_OVERFLOW_ITERATIONS = 2048</td>
         </tr>
       </table>
   </td>
@@ -1235,7 +1258,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">int</a> porth::SIM_PHYSICS_STEP_US = 100</td>
+          <td class="memname">constexpr int porth::SIM_PHYSICS_STEP_US = 100</td>
         </tr>
       </table>
   </td>
@@ -1259,7 +1282,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> porth::SIM_STATUS_MAX_BIT = 31</td>
+          <td class="memname">constexpr uint32_t porth::SIM_STATUS_MAX_BIT = 31</td>
         </tr>
       </table>
   </td>
@@ -1283,7 +1306,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> porth::SIM_TEMP_DEC_MC = 50</td>
+          <td class="memname">constexpr uint32_t porth::SIM_TEMP_DEC_MC = 50</td>
         </tr>
       </table>
   </td>
@@ -1307,7 +1330,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> porth::SIM_TEMP_INC_MC = 100</td>
+          <td class="memname">constexpr uint32_t porth::SIM_TEMP_INC_MC = 100</td>
         </tr>
       </table>
   </td>
@@ -1331,7 +1354,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classporth_1_1PorthRingBuffer.html">constexpr</a> <a class="el" href="classporth_1_1PorthRingBuffer.html">uint32_t</a> porth::THERMAL_THRESHOLD_MC = 40000</td>
+          <td class="memname">constexpr uint32_t porth::THERMAL_THRESHOLD_MC = 40000</td>
         </tr>
       </table>
   </td>

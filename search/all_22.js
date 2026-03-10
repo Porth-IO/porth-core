@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['📊_20performance_20validation_0',['📊 Performance Validation',['../md_README.html#autotoc_md9',1,'']]]
+  ['🏛️_20strategic_20alignment_0',['🏛️ Strategic Alignment',['../md_README.html#autotoc_md22',1,'']]]
 ];
