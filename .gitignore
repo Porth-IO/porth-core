@@ -38,3 +38,15 @@ cmake-build-*/
 
 # Bazel
 bazel-*
+
+
+# Ignore all CMake build directories
+build*/
+out/
+bin/
+
+# Ignore specific CI artifacts
+benchmarks_report.json
+porth-io-sbom.json
+.artifacts/
+.grype.yaml

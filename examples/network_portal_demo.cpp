@@ -1,33 +1,58 @@
 /**
  * @file network_portal_demo.cpp
- * @brief Verification of the AF_XDP library link and eBPF kernel loading.
+ * @brief Sovereign Interconnect - Final Victory Build.
  */
 
 #include "porth/PorthNetworkPortal.hpp"
+#include <atomic>
+#include <csignal>
+#include <filesystem>
 #include <iostream>
-#include <exception>
+
+struct SignalContext {
+    static inline std::atomic<bool> keep_running{true};
+    static void handler(int signal_num) {
+        (void)signal_num;
+        keep_running.store(false, std::memory_order_release);
+    }
+};
 
 auto main() -> int {
     using namespace porth;
-
-    std::cout << "--- Porth-IO: AF_XDP & eBPF Verification ---\n";
+    std::signal(SIGINT, SignalContext::handler);
 
     try {
-        PorthNetworkPortal portal("lo");
+        PorthNetworkPortal portal("porth0");
 
-        // We try to load the bytecode we just compiled.
-        // It will be located in your build folder.
-        portal.load_kernel_program("./porth_xdp_kern.o");
-
-        if (portal.is_active()) {
-            std::cout << "[Success] Sovereign Portal Active and Kernel-Loaded.\n";
+        // Locate the eBPF object. It's usually in the root porth-core or build dir.
+        std::string bpf_path = "porth_xdp_kern.o";
+        if (!std::filesystem::exists(bpf_path)) {
+            bpf_path = "../porth_xdp_kern.o"; // Try parent if running from build/
         }
 
+        if (!std::filesystem::exists(bpf_path)) {
+            throw std::runtime_error(
+                "Could not find porth_xdp_kern.o. Please ensure it is compiled.");
+        }
+
+        portal.initialize_umem();
+        portal.create_socket();
+        portal.load_kernel_program(bpf_path);
+        portal.bind_xsk_map();
+        portal.prime_fill_ring();
+
+        std::cout << "--- Sovereign Sandbox Online [porth0] ---\n";
+        std::cout << "--- Polling for Sovereign Signals ---\n";
+
+        while (SignalContext::keep_running.load(std::memory_order_acquire)) {
+            portal.poll_rx();
+        }
+
+        std::cout << "\n[Porth-Portal] Graceful Shutdown.\n";
+
     } catch (const std::exception& e) {
-        std::cerr << "[Fatal] Portal Exception: " << e.what() << "\n";
-        std::cout << "[Note] If this failed with 'Failed to open', ensure you are running from build folder.\n";
+        std::cerr << "[Fatal Error] " << e.what() << "\n";
         return 1;
     }
-
     return 0;
 }

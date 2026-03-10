@@ -16,23 +16,31 @@ def check_latencies(filename):
 
     try:
         with open(filename, 'r') as f:
-            data = json.load(f)
+            raw_data = f.read()
+            
+        # FIX: Find the first '{' to skip any leading console logs/warnings
+        start_idx = raw_data.find('{')
+        if start_idx == -1:
+            print(f"Error: No JSON data found in {filename}")
+            sys.exit(1)
+            
+        data = json.loads(raw_data[start_idx:])
         
         benchmarks = data.get("benchmarks", [])
+        if not benchmarks:
+            print("Error: JSON parsed but no benchmark entries found.")
+            sys.exit(1)
         
-        # We need to find the specific aggregate results in the JSON
+        # Aggregate logic
         stats = {b["aggregate_name"]: b["real_time"] for b in benchmarks if "aggregate_name" in b}
         
-        # If aggregate stats aren't found (e.g., only 1 repetition run), 
-        # we fallback to the raw measurement.
+        # Fallback to the first measurement if aggregates (median/p99) aren't present
         median = stats.get("median", benchmarks[0]["real_time"])
-        # Note: Google Benchmark requires --benchmark_repetitions > 1 for true tail stats
-        p99 = stats.get("p99", median) # Default to median if p99 isn't in JSON
+        p99 = stats.get("p99", median) 
 
         print(f"[Guard] Current Median: {median:.2f}ns (Limit: {MAX_MEDIAN_NS}ns)")
         print(f"[Guard] Current P99.9:  {p99:.2f}ns (Limit: {MAX_P99_NS}ns)")
 
-        # VALIDATION LOGIC
         failed = False
         if median > MAX_MEDIAN_NS:
             print(f"!! [FAILED] Median Latency Regression")
@@ -46,6 +54,9 @@ def check_latencies(filename):
 
     except Exception as e:
         print(f"Error: Could not parse benchmark data: {e}")
+        # Print the first 100 chars of the file to help debug what's inside
+        with open(filename, 'r') as f:
+            print(f"Debug - First 100 chars of file: {f.read(100)}")
         sys.exit(1)
 
     print("--- [PASSED] Sovereign Performance Integrity Maintained ---")

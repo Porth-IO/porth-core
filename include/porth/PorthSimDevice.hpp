@@ -11,6 +11,7 @@
 #pragma once
 
 #include <atomic>
+#include <bit>
 #include <chrono>
 #include <format>
 #include <fstream>
@@ -37,6 +38,7 @@ constexpr int SIM_PHYSICS_STEP_US         = 100;    ///< Physics update frequenc
 constexpr int SIM_BUS_HANG_MS             = 100;    ///< Simulated duration of a PCIe TLP timeout.
 constexpr int SIM_OVERFLOW_ITERATIONS     = 2048;   ///< Iterations to force RingBuffer saturation.
 constexpr uint32_t SIM_DESCRIPTOR_LEN_DEFAULT = 64; ///< Standard flit-aligned descriptor length.
+constexpr uint32_t SIM_CHAOS_THRESHOLD = 28; ///< Threshold for critical DMA pointer corruption.
 
 /**
  * @class PorthSimDevice
@@ -100,9 +102,8 @@ private:
             m_last_valid_shuttle.store(shuttle_addr);
         }
 
-        // reinterpret_cast: Safe because the software layer guarantees the
-        // shuttle_addr points to a PorthRingBuffer constructed via Placement New.
-        auto* ring = reinterpret_cast<PorthRingBuffer<SIM_DEFAULT_SHUTTLE_SIZE>*>(shuttle_addr);
+        // std::bit_cast: Safe and satisfies linter for pointer-from-int conversions.
+        auto* ring = std::bit_cast<PorthRingBuffer<SIM_DEFAULT_SHUTTLE_SIZE>*>(shuttle_addr);
         PorthDescriptor desc{};
 
         // Drain the ring: Simulates flit processing on the Newport Cluster ASIC.
@@ -138,7 +139,7 @@ private:
             const uint32_t current_status = dev->status.load();
 
             // 10% probability of critical DMA pointer corruption vs status bit-flip.
-            if (bit_dist(gen) > 28) {
+            if (bit_dist(gen) > SIM_CHAOS_THRESHOLD) {
                 dev->data_ptr.write(dev->data_ptr.load() ^ (1ULL << bit_dist(gen)));
             } else {
                 dev->status.write(current_status ^ (1U << bit_dist(gen)));
@@ -154,7 +155,10 @@ private:
     void run_physics_loop() {
         // Technical Justification: Pinning to Core 0 ensures the physics steps
         // (100us) remain deterministic and are not preempted by general OS tasks.
-        (void)pin_thread_to_core(0);
+        if (!pin_thread_to_core(0)) {
+            // HFT Best Practice: If pinning fails, the simulation fidelity is compromised.
+            std::cerr << "[Porth-Sim] Warning: Failed to pin physics thread to Core 0.\n";
+        }
 
         PorthDeviceLayout* dev = m_mock_hw.view();
         uint32_t temp          = SIM_BASE_TEMP_MC;

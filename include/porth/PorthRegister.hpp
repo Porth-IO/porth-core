@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include <array>
 #include <atomic>
 #include <cstddef>
 #include <cstdint>
@@ -59,8 +60,9 @@ private:
      * This space is explicitly reserved to prevent the compiler from placing
      * unrelated objects in the same 64-byte window. This guarantees that
      * the MESI coherency protocol only triggers for this specific register.
+     * We use std::array to satisfy modern C++ safety guidelines without latency impact.
      */
-    std::byte m_padding[PORTH_CACHE_LINE_SIZE - sizeof(T)]{};
+    std::array<std::byte, PORTH_CACHE_LINE_SIZE - sizeof(T)> m_padding{};
 
 public:
     /** @brief Default constructor. Used when mapping the PorthDeviceLayout over an existing memory

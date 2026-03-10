@@ -1,0 +1,34 @@
+{
+    "name": "Porth-IO Sovereign Environment",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "runArgs": [
+        "--privileged"
+    ],
+    "capAdd": [
+        "SYS_PTRACE",
+        "SYS_ADMIN",
+        "NET_ADMIN",
+        "BPF"
+    ],
+    "securityOpt": [
+        "seccomp=unconfined"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cmake-tools",
+                "twink7.ebpf-extension",
+                "llvm-vs-code-extensions.vscode-clangd",
+                "vadimcn.vscode-lldb"
+            ],
+            "settings": {
+                "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json",
+                "C_Cpp.intelliSenseEngine": "disabled"
+            }
+        }
+    },
+    "remoteUser": "vscode"
+}

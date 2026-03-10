@@ -1,0 +1,27 @@
+FROM mcr.microsoft.com/devcontainers/cpp:1-ubuntu-24.04
+
+ARG LLVM_VER=20
+
+# Install system dependencies, eBPF libraries, and modern LLVM
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && apt-get -y install --no-install-recommends \
+    wget lsb-release software-properties-common gnupg pkg-config curl \
+    && wget https://apt.llvm.org/llvm.sh && chmod +x llvm.sh && ./llvm.sh ${LLVM_VER} all \
+    && apt-get -y install \
+    libbpf-dev \
+    libxdp-dev \
+    linux-headers-generic \
+    bpftool \
+    cmake \
+    ninja-build \
+    iproute2 \
+    iputils-ping \
+    netcat-openbsd \
+    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
+
+# Install Syft for Software Bill of Materials (SBOM) generation
+RUN curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+
+# Set LLVM 20 as the default toolchain
+ENV CC=clang-${LLVM_VER}
+ENV CXX=clang++-${LLVM_VER}

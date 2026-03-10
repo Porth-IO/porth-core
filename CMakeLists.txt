@@ -1,166 +1,79 @@
-cmake_minimum_required(VERSION 3.20)
-project(porth-core 
-        VERSION 1.0.0 
-        DESCRIPTION "The Sovereign Logic Layer for Compound Semiconductors"
-        LANGUAGES CXX C)
+cmake_minimum_required(VERSION 3.28)
+project(PorthCore VERSION 0.1.0 LANGUAGES C CXX)
 
-# --- 1. C++ Standard & Build Settings ---
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Release)
+# Ensure the cmake folder is in the search path for include(ebpf)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
+# --- Compiler Specifics & Linter Support ---
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(PORTH_WARNING_FLAGS -Wall -Wextra -Wshadow -Wpedantic -Wconversion -Wsign-conversion -Wno-unknown-warning-option)
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    set(PORTH_WARNING_FLAGS -Wall -Wextra -Wshadow -Wpedantic)
+    if(NOT CMAKE_CXX_CLANG_TIDY)
+        list(APPEND PORTH_WARNING_FLAGS -Wno-interference-size)
+    endif()
 endif()
 
-# Hardened compile options for "Sovereign" quality
-if(MSVC)
-    add_compile_options(/W4 /permissive- /WX)
-else()
-    add_compile_options(
-        -O3 
-        -Wall 
-        -Wextra 
-        -Wpedantic 
-        -Werror 
-        -Wshadow 
-        -Wnon-virtual-dtor 
-        -Wunused 
-        -fstack-protector-strong
-    )
-endif()
-
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    add_compile_options(-Wno-interference-size)
-else()
-    add_compile_options(-Wno-unknown-warning-option)
-endif()
-
-# --- 2. Dependencies (Professional Search) ---
+# --- External Dependencies ---
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBBPF REQUIRED libbpf)
 pkg_check_modules(LIBXDP REQUIRED libxdp)
-
 find_package(Threads REQUIRED)
 
-if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    find_library(RT_LIBRARY NAMES rt REQUIRED)
-endif()
+include(FetchContent)
 
-# Static Analysis Tooling
-find_program(IWYU_PATH include-what-you-use)
-if(IWYU_PATH)
-    set(CMAKE_CXX_INCLUDE_WHAT_YOU_USE ${IWYU_PATH} -Wno-unknown-warning-option)
-endif()
+# 1. Catch2 for Unit Testing
+FetchContent_Declare(Catch2 
+    GIT_REPOSITORY https://github.com/catchorg/Catch2.git 
+    GIT_TAG v3.5.2
+)
 
-find_program(CLANG_TIDY_PATH NAMES clang-tidy clang-tidy-20)
-if(CLANG_TIDY_PATH)
-    set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_PATH} -extra-arg=-Wno-unknown-warning-option)
-endif()
+# 2. Google Benchmark for performance analysis
+FetchContent_Declare(google_benchmark 
+    GIT_REPOSITORY https://github.com/google/benchmark.git 
+    GIT_TAG v1.8.3
+)
 
-# --- eBPF Kernel Compilation ---
-find_program(CLANG_PATH clang)
-if(CLANG_PATH)
-    set(BPF_KERN_SRC "${CMAKE_CURRENT_SOURCE_DIR}/include/porth/porth_xdp_kern.c")
-    set(BPF_KERN_OBJ "${CMAKE_CURRENT_BINARY_DIR}/porth_xdp_kern.o")
+set(BENCHMARK_ENABLE_GTEST_TESTS OFF CACHE BOOL "" FORCE)
+set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "" FORCE)
+set(BENCHMARK_INSTALL_LIBS OFF CACHE BOOL "" FORCE)
 
-    set(ASM_INCLUDE_DIR "/usr/include/x86_64-linux-gnu")
-    if(NOT EXISTS ${ASM_INCLUDE_DIR})
-        set(ASM_INCLUDE_DIR "/usr/include/aarch64-linux-gnu")
-    endif()
+FetchContent_MakeAvailable(Catch2 google_benchmark)
 
-    add_custom_command(
-        OUTPUT ${BPF_KERN_OBJ}
-        COMMAND ${CLANG_PATH} -O2 -g -target bpf -D__TARGET_ARCH_x86 
-                -I${CMAKE_CURRENT_SOURCE_DIR}/include
-                -I${ASM_INCLUDE_DIR}
-                -c ${BPF_KERN_SRC} -o ${BPF_KERN_OBJ}
-        DEPENDS ${BPF_KERN_SRC}
-        COMMENT "Compiling Sovereign eBPF Kernel Program"
-        VERBATIM
-    )
-    add_custom_target(porth_bpf_kern ALL DEPENDS ${BPF_KERN_OBJ})
-endif()
+# --- eBPF Module Integration ---
+include(ebpf)
+add_ebpf_program(porth_xdp ${CMAKE_CURRENT_SOURCE_DIR}/include/porth/porth_xdp_kern.c)
 
-# --- 3. Core Library Definition ---
-# FIX: Defined as INTERFACE to satisfy the header-only requirement.
+# --- Core Target (Interface Library) ---
 add_library(porth-core INTERFACE)
 add_library(Porth::porth-core ALIAS porth-core)
 
-# FIX: Changed PUBLIC to INTERFACE for header-only propagation.
-target_include_directories(porth-core INTERFACE
+target_compile_options(porth-core INTERFACE ${PORTH_WARNING_FLAGS})
+
+target_include_directories(porth-core INTERFACE 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     ${LIBBPF_INCLUDE_DIRS}
     ${LIBXDP_INCLUDE_DIRS}
+    ${porth_xdp_INCLUDE_DIR}
 )
 
-# FIX: Changed PUBLIC to INTERFACE.
 target_link_libraries(porth-core INTERFACE 
-    Threads::Threads
     ${LIBBPF_LIBRARIES} 
-    ${LIBXDP_LIBRARIES}
+    ${LIBXDP_LIBRARIES} 
+    Threads::Threads
     $<$<PLATFORM_ID:Linux>:rt>
 )
 
-# FIX: Changed PUBLIC to INTERFACE.
-target_compile_features(porth-core INTERFACE cxx_std_23)
+# --- Orchestration ---
+enable_testing()
 
-# --- 4. Installation & Export ---
-include(GNUInstallDirs)
-include(CMakePackageConfigHelpers)
-
-install(TARGETS porth-core
-    EXPORT PorthTargets
-    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
-
-install(DIRECTORY include/porth 
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
-
-install(EXPORT PorthTargets
-    FILE PorthTargets.cmake
-    NAMESPACE Porth::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Porth
-)
-
-configure_package_config_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/PorthConfig.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/PorthConfig.cmake
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Porth
-)
-
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/PorthConfig.cmake
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Porth
-)
-
-write_basic_package_version_file(
-    "${CMAKE_CURRENT_BINARY_DIR}/PorthConfigVersion.cmake"
-    VERSION ${PROJECT_VERSION}
-    COMPATIBILITY SameMajorVersion
-)
-
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/PorthConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Porth
-)
-
-# --- 5. Internal Development ---
-option(BUILD_TESTING "Enable project tests" ON)
-option(ENABLE_COVERAGE "Enable code coverage reporting" OFF)
-
-if(ENABLE_COVERAGE AND NOT MSVC)
-    add_compile_options(--coverage -O0 -g)
-    add_link_options(--coverage)
-endif()
-
-if(BUILD_TESTING)
-    enable_testing()
-    find_package(Catch2 CONFIG REQUIRED)
-    add_subdirectory(tests)
-endif()
-
+# We delegate the actual executable creation to the subdirectories
+# to keep the root file clean and easy to read.
+add_subdirectory(tests)
 add_subdirectory(benchmarks)
 add_subdirectory(tools)
 add_subdirectory(examples)

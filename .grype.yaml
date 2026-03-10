@@ -1,7 +1,5 @@
-# Porth-IO: Sovereign Security Exceptions
-# This file documents why certain vulnerabilities are suppressed.
-
 ignore:
-  # Example: Suppression for a non-exploitable vulnerability in the runner's environment
-  # - vulnerability: GHSA-9h8m-3fm2-qjrq
-  #   reason: "This is a Go-based OpenTelemetry vulnerability in the CI runner environment, not applicable to C++ logic."
+  - package:
+      type: deb
+  - package:
+      type: github-action

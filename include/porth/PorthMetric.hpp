@@ -22,7 +22,8 @@
 
 namespace porth {
 
-/** * @brief Default capacity for the metric buffer.
+/**
+ * @brief Default capacity for the metric buffer.
  * 1,000,000 samples provide a statistically significant window for 10Gbps
  * line-rate packet analysis without excessive resident set size (RSS) pressure.
  */
@@ -45,14 +46,16 @@ constexpr double PERCENTILE_P99_99 = 99.99;
  */
 class PorthMetric {
 private:
-    /** @brief Pre-allocated sample buffer.
+    /**
+     * @brief Pre-allocated sample buffer.
      * Reserving this space upfront protects the "Hot Path" from 'malloc' jitter.
      */
     std::vector<uint64_t> m_samples;
     size_t m_capacity;
     size_t m_count = 0;
 
-    /** @brief Prepares a sorted copy of the recorded samples for analysis.
+    /**
+     * @brief Prepares a sorted copy of the recorded samples for analysis.
      * @note This is an O(N log N) operation performed outside the hot path.
      * We create a copy to preserve the original chronological sequence of events.
      */
@@ -63,7 +66,8 @@ private:
         return sorted;
     }
 
-    /** @brief Calculates the arithmetic mean.
+    /**
+     * @brief Calculates the arithmetic mean.
      * @param samples Vector of sorted/unsorted timing samples.
      * @return double Average cycle count.
      */
@@ -73,7 +77,8 @@ private:
         return sum / static_cast<double>(m_count);
     }
 
-    /** @brief Calculates the standard deviation using the inner product for numerical stability.
+    /**
+     * @brief Calculates the standard deviation using the inner product for numerical stability.
      * @param samples Timing samples.
      * @param mean Pre-calculated mean.
      * @return double Standard deviation in cycles.
@@ -85,15 +90,18 @@ private:
         return std::sqrt(std::abs((sq_sum / static_cast<double>(m_count)) - (mean * mean)));
     }
 
-    /** @brief Retrieves a specific percentile and converts it to physical time (ns).
+    /**
+     * @brief Retrieves a specific percentile and converts it to physical time (ns).
      * @param samples Sorted timing samples.
      * @param percentile Target percentile (0.0 to 100.0).
      * @param cpns Cycles Per Nanosecond (Hardware Frequency).
      * @return double Latency in nanoseconds.
      */
-    [[nodiscard]] auto get_percentile_ns(const std::vector<uint64_t>& samples,
-                                         double percentile,
-                                         double cpns) const noexcept -> double {
+    [[nodiscard]] auto
+    get_percentile_ns(const std::vector<uint64_t>& samples,
+                      double percentile // NOLINT(bugprone-easily-swappable-parameters)
+                      ,
+                      double cpns) const noexcept -> double {
         auto idx = static_cast<size_t>(percentile * static_cast<double>(m_count) / 100.0);
         if (idx >= m_count) {
             idx = m_count - 1;
@@ -101,7 +109,8 @@ private:
         return static_cast<double>(samples[idx]) / cpns;
     }
 
-    /** * @brief Internal helper to write the formatted markdown table to a stream.
+    /**
+     * @brief Internal helper to write the formatted markdown table to a stream.
      * Used for automated CI/CD performance regression tracking.
      */
     static void write_markdown_table(std::ostream& out,
@@ -193,9 +202,11 @@ public:
      * @param label The name of the benchmark run (e.g., "Shuttle-Throughput").
      * @param cycles_per_ns Calibration constant for conversion.
      */
-    void save_markdown_report(const std::string& filename,
-                              const std::string& label,
-                              double cycles_per_ns) {
+    void
+    save_markdown_report(const std::string& filename // NOLINT(bugprone-easily-swappable-parameters)
+                         ,
+                         const std::string& label,
+                         double cycles_per_ns) {
         std::ofstream out(filename, std::ios::app);
         if (!out.is_open() || m_count == 0) {
             return;
@@ -215,6 +226,13 @@ public:
      * @note Does not deallocate memory; zeroing the counter is an O(1) operation.
      */
     void reset() noexcept { m_count = 0; }
+
+    // Boilerplate compliance for HFT resource management
+    PorthMetric(const PorthMetric&)                        = default;
+    auto operator=(const PorthMetric&) -> PorthMetric&     = default;
+    PorthMetric(PorthMetric&&) noexcept                    = default;
+    auto operator=(PorthMetric&&) noexcept -> PorthMetric& = default;
+    ~PorthMetric()                                         = default;
 };
 
 } // namespace porth

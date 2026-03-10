@@ -101,8 +101,8 @@ public:
      * which is suitable for SIL testing but not for physical InP hardware deployment.
      */
     explicit PorthRingBuffer(PorthDescriptor* external_buffer = nullptr)
-        : m_buffer(external_buffer),
-          m_owns_buffer(external_buffer == nullptr) { // NOLINT(cppcoreguidelines-owning-memory)
+        // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
+        : m_buffer(external_buffer), m_owns_buffer(external_buffer == nullptr) {
         if (m_owns_buffer) {
             m_buffer = new PorthDescriptor[SIZE];
         }

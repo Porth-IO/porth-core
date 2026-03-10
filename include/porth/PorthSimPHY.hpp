@@ -119,6 +119,7 @@ public:
      * @param jitter_init The peak-to-peak jitter range.
      * @param cpns Clock calibration factor (Cycles per Nanosecond).
      */
+    // NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
     explicit PorthSimPHY(uint64_t base_ns     = DEFAULT_BASE_DELAY_NS,
                          uint64_t jitter_init = DEFAULT_JITTER_INIT_NS,
                          double cpns          = DEFAULT_CPNS)
@@ -170,6 +171,7 @@ public:
      * @param base New base delay in ns (Fiber length simulation).
      * @param jitter New maximum jitter in ns (Clock noise simulation).
      */
+    // NOLINTNEXTLINE(bugprone-easily-swappable-parameters)
     auto set_config(uint64_t base, uint64_t jitter) -> void {
         m_base_delay_ns = base;
         m_jitter_ns     = jitter;
