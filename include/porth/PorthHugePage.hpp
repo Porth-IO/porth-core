@@ -72,7 +72,7 @@ public:
         }
 
         // Step 2: Attempt HugePage Mapping
-        int flags        = MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_LOCKED | MAP_FIXED;
+        int flags        = MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_LOCKED;
         void* mapped_ptr = mmap(m_ptr, m_total_size, PROT_READ | PROT_WRITE, flags, -1, 0);
 
         if (mapped_ptr == MAP_FAILED) {
@@ -91,6 +91,14 @@ public:
                 }
             }
         } else {
+            if (m_is_numa_managed) {
+                numa_free(m_ptr, m_total_size); // Assumes you have numa_free available
+            } else {
+                std::free(m_ptr);
+            }
+
+            // Reassign m_ptr to our new, valid HugePage memory
+            m_ptr       = mapped_ptr;
             m_is_mmaped = true;
         }
 
