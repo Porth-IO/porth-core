@@ -55,6 +55,7 @@ private:
 
     std::thread m_watchdog_thread;
     std::atomic<bool> m_run_watchdog{true};
+    std::atomic<bool> m_watchdog_ready{false};
 
     PorthStats* m_stats{nullptr};
 
@@ -79,6 +80,8 @@ private:
         } catch (...) {
             std::cerr << "[Trace] Watchdog: Core Pinning Failed.\n" << std::flush;
         }
+
+        m_watchdog_ready.store(true, std::memory_order_release);
 
         while (m_run_watchdog.load(std::memory_order_acquire)) {
             // Check for trip
@@ -121,6 +124,11 @@ public:
 
         // Spawn the background safety monitor on a housekeeping core.
         m_watchdog_thread = std::thread(&Driver::watchdog_loop, this);
+
+        // Wait for watchdog to finish initialization (pinning/startup)
+        while (!m_watchdog_ready.load(std::memory_order_acquire)) {
+            std::this_thread::yield();
+        }
 
         std::cout << std::format("[Porth-Driver] Handshake Complete. Shuttle 0x{:x} active.\n",
                                  dma_addr)

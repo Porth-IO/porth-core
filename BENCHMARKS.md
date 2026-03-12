@@ -94,3 +94,11 @@
 | P99.9 | 0.42 |
 | Maximum | 665.00 |
 
+### Benchmark: Porth-IO Newport Production Driver
+| Metric | Latency (ns) |
+| :--- | :--- |
+| Minimum | 0.00 |
+| Median (P50) | 0.00 |
+| P99.9 | 0.42 |
+| Maximum | 246.25 |
+

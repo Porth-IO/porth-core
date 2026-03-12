@@ -13,6 +13,7 @@
 #include <bit>
 #include <cstdint>
 #include <cstdlib>
+#include <cstring>
 #include <format>
 #include <iostream>
 #include <numa.h>
@@ -79,7 +80,11 @@ public:
                       << std::flush;
             m_is_mmaped = false;
             // Attempt to lock standard pages to prevent swapping
-            (void)mlock(m_ptr, m_total_size);
+            if (mlock(m_ptr, m_total_size) != 0) {
+                throw std::runtime_error(
+                    std::format("Porth-HugePage: mlock failed. Check 'ulimit -l'. Error: {}",
+                                std::strerror(errno)));
+            }
         } else {
             m_is_mmaped = true;
         }

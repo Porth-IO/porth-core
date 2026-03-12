@@ -190,12 +190,22 @@ public:
     PorthSimDevice(const std::string& name, bool create = true) : m_mock_hw(name, create) {
 
         PorthDeviceLayout* dev = m_mock_hw.view();
+
+        if (dev == nullptr) {
+            throw std::runtime_error("Porth-Sim: Failed to map shared memory view.");
+        }
+
         dev->laser_temp.write(SIM_BASE_TEMP_MC);
         dev->status.write(0);
         dev->control.write(0);
 
         m_tlp_log.open("porth_tlp_traffic.log", std::ios::app);
         m_physics_thread = std::thread(&PorthSimDevice::run_physics_loop, this);
+
+        // Wait for physics loop to start and signal 'Hardware Ready'
+        while (dev->status.load() == 0) {
+            std::this_thread::yield();
+        }
     }
 
     /**
