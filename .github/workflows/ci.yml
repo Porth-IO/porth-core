@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-24.04
     container:
       image: mcr.microsoft.com/devcontainers/cpp:1-ubuntu-24.04
-      options: --privileged --ulimit memlock=-1:-1 --ulimit stack=67108864:67108864
+      options: --privileged --ulimit memlock=-1:-1
     
     steps:
       - uses: actions/checkout@v4

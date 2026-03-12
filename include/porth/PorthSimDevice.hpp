@@ -91,6 +91,12 @@ private:
             return;
         }
 
+        // Chaos Guard: Ensure address is 64-byte aligned (standard cache-line boundary).
+        // If a bit-flip corrupts alignment, we skip processing to prevent a SegFault.
+        if ((shuttle_addr & 0x3F) != 0) {
+            return;
+        }
+
         // Sovereign Guard: If the shuttle address changes after init, we assume
         // a corruption event (chaos) and halt processing to protect the host.
         uint64_t expected = m_last_valid_shuttle.load();

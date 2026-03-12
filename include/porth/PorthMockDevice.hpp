@@ -51,6 +51,10 @@ public:
     PorthMockDevice(const std::string& mem_name, bool create = true)
         : m_name("/" + mem_name), m_is_owner(create) {
 
+        if (create) {
+            (void)shm_unlink(m_name.c_str());
+        }
+
         // 1. Open/Create the shared memory object
         // O_CREAT: Only used by the simulator to allocate the "physical" register file.
         int flags = O_RDWR;

@@ -103,8 +103,12 @@ public:
         }
 
         m_bar_size = reg.size;
-        m_bar_ptr =
-            mmap(nullptr, m_bar_size, PROT_READ | PROT_WRITE, MAP_SHARED, m_device_fd, reg.offset);
+        m_bar_ptr  = mmap(nullptr,
+                         m_bar_size,
+                         PROT_READ | PROT_WRITE,
+                         MAP_SHARED,
+                         m_device_fd,
+                         static_cast<off_t>(reg.offset));
 
         if (m_bar_ptr == MAP_FAILED) {
             throw std::runtime_error("Failed to mmap BAR0 into userspace.");
