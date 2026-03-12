@@ -92,7 +92,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af1bf7427a4ca54baf02dfd9038ece47a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. Used when mapping the <a class="el" href="structporth_1_1PorthDeviceLayout.html" title="The physical memory-mapped I/O (MMIO) layout for Porth-compatible hardware.">PorthDeviceLayout</a> over an existing memory region.  <br /></td></tr>
 <tr class="separator:af1bf7427a4ca54baf02dfd9038ece47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82b5a2b825ab967da9d25ef18049f655" id="r_a82b5a2b825ab967da9d25ef18049f655"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#a82b5a2b825ab967da9d25ef18049f655">~PorthRegister</a> ()=default</td></tr>
-<tr class="memdesc:a82b5a2b825ab967da9d25ef18049f655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. No-op as memory is typically managed by the <a class="el" href="classporth_1_1PorthMockDevice.html" title="A RAII wrapper for POSIX Shared Memory simulating hardware BAR mapping.">PorthMockDevice</a> or <a class="el" href="classporth_1_1PorthHugePage.html" title="RAII wrapper for pinning memory to 2MB HugePage boundaries.">PorthHugePage</a>.  <br /></td></tr>
+<tr class="memdesc:a82b5a2b825ab967da9d25ef18049f655"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. No-op as memory is typically managed by the <a class="el" href="classporth_1_1PorthMockDevice.html" title="A RAII wrapper for POSIX Shared Memory simulating hardware BAR mapping.">PorthMockDevice</a> or <a class="el" href="classporth_1_1PorthHugePage.html" title="RAII wrapper for pinning memory to 2MB HugePage boundaries with NUMA affinity.">PorthHugePage</a>.  <br /></td></tr>
 <tr class="separator:a82b5a2b825ab967da9d25ef18049f655"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3697e867aa902743d2bb96f3d63b81c" id="r_ac3697e867aa902743d2bb96f3d63b81c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html#ac3697e867aa902743d2bb96f3d63b81c">PorthRegister</a> (const <a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a> &amp;)=delete</td></tr>
 <tr class="separator:ac3697e867aa902743d2bb96f3d63b81c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,7 +180,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Destructor. No-op as memory is typically managed by the <a class="el" href="classporth_1_1PorthMockDevice.html" title="A RAII wrapper for POSIX Shared Memory simulating hardware BAR mapping.">PorthMockDevice</a> or <a class="el" href="classporth_1_1PorthHugePage.html" title="RAII wrapper for pinning memory to 2MB HugePage boundaries.">PorthHugePage</a>. </p>
+<p>Destructor. No-op as memory is typically managed by the <a class="el" href="classporth_1_1PorthMockDevice.html" title="A RAII wrapper for POSIX Shared Memory simulating hardware BAR mapping.">PorthMockDevice</a> or <a class="el" href="classporth_1_1PorthHugePage.html" title="RAII wrapper for pinning memory to 2MB HugePage boundaries with NUMA affinity.">PorthHugePage</a>. </p>
 
 </div>
 </div>

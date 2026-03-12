@@ -89,6 +89,7 @@ $(function() {
 <code>#include &lt;expected&gt;</code><br />
 <code>#include &lt;format&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;numa.h&gt;</code><br />
 <code>#include &lt;pthread.h&gt;</code><br />
 <code>#include &lt;sched.h&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
@@ -97,21 +98,23 @@ Include dependency graph for PorthUtil.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthUtil_8hpp__incl.png" border="0" usemap="#ainclude_2porth_2PorthUtil_8hpp" alt=""/></div>
 <map name="ainclude_2porth_2PorthUtil_8hpp" id="ainclude_2porth_2PorthUtil_8hpp">
-<area shape="rect" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="235,5,431,31"/>
+<area shape="rect" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="285,5,481,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,72,104"/>
-<area shape="poly" title=" " alt="" coords="285,33,86,81,85,76,284,28"/>
+<area shape="poly" title=" " alt="" coords="321,33,86,81,85,76,320,28"/>
 <area shape="rect" title=" " alt="" coords="96,79,179,104"/>
-<area shape="poly" title=" " alt="" coords="303,33,183,76,181,71,301,28"/>
+<area shape="poly" title=" " alt="" coords="344,33,191,77,189,72,343,28"/>
 <area shape="rect" title=" " alt="" coords="203,79,269,104"/>
-<area shape="poly" title=" " alt="" coords="319,33,265,72,262,68,316,29"/>
+<area shape="poly" title=" " alt="" coords="360,33,273,75,271,70,358,28"/>
 <area shape="rect" title=" " alt="" coords="293,79,373,104"/>
-<area shape="poly" title=" " alt="" coords="336,31,336,65,331,65,331,31"/>
-<area shape="rect" title=" " alt="" coords="398,79,482,104"/>
-<area shape="poly" title=" " alt="" coords="352,28,413,69,410,73,349,33"/>
-<area shape="rect" title=" " alt="" coords="507,79,579,104"/>
-<area shape="poly" title=" " alt="" coords="368,28,496,72,495,77,366,33"/>
-<area shape="rect" title=" " alt="" coords="603,79,661,104"/>
-<area shape="poly" title=" " alt="" coords="386,28,590,76,589,81,385,33"/>
+<area shape="poly" title=" " alt="" coords="377,33,351,69,347,66,372,29"/>
+<area shape="rect" title=" " alt="" coords="398,79,469,104"/>
+<area shape="poly" title=" " alt="" coords="393,29,419,66,415,69,389,33"/>
+<area shape="rect" title=" " alt="" coords="493,79,577,104"/>
+<area shape="poly" title=" " alt="" coords="408,28,499,70,497,75,406,33"/>
+<area shape="rect" title=" " alt="" coords="601,79,673,104"/>
+<area shape="poly" title=" " alt="" coords="424,28,588,74,587,79,423,33"/>
+<area shape="rect" title=" " alt="" coords="697,79,756,104"/>
+<area shape="poly" title=" " alt="" coords="448,28,684,76,683,81,447,33"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -119,15 +122,24 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="PorthUtil_8hpp__dep__incl.png" border="0" usemap="#ainclude_2porth_2PorthUtil_8hppdep" alt=""/></div>
 <map name="ainclude_2porth_2PorthUtil_8hppdep" id="ainclude_2porth_2PorthUtil_8hppdep">
-<area shape="rect" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="30,5,226,31"/>
-<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="52,152,204,192"/>
-<area shape="poly" title=" " alt="" coords="68,38,37,55,13,80,9,91,9,101,21,120,43,136,71,150,69,154,41,141,17,123,4,102,3,90,8,77,34,51,66,33"/>
-<area shape="rect" href="PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="22,79,234,104"/>
-<area shape="poly" title=" " alt="" coords="131,44,131,79,125,79,125,44"/>
-<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="259,79,501,104"/>
-<area shape="poly" title=" " alt="" coords="183,32,340,76,339,81,181,37"/>
-<area shape="poly" title=" " alt="" coords="131,118,131,152,125,152,125,118"/>
-<area shape="poly" title=" " alt="" coords="331,111,189,154,188,149,330,106"/>
+<area shape="rect" title="System&#45;level utility functions for thread isolation and RT scheduling." alt="" coords="175,5,371,31"/>
+<area shape="rect" href="porth__full__demo_8cpp.html" title="Sovereign Logic Layer MVP &#45; Final Immaculate Integration and Validation." alt="" coords="277,240,429,280"/>
+<area shape="poly" title=" " alt="" coords="212,37,134,61,94,78,58,96,30,117,12,140,9,152,9,164,13,177,22,190,38,203,62,215,128,233,204,245,277,252,277,257,204,250,127,238,60,220,35,208,18,194,8,179,3,165,3,151,8,138,26,113,55,92,92,73,132,56,210,32"/>
+<area shape="rect" href="PorthDriver_8hpp.html" title="Orchestration layer for Newport Cluster hardware control and data planes." alt="" coords="32,159,244,185"/>
+<area shape="poly" title=" " alt="" coords="256,43,150,161,146,157,252,39"/>
+<area shape="rect" href="PorthShuttle_8hpp.html" title="Zero&#45;copy orchestrator for mapping memory structures to physical hardware." alt="" coords="237,79,456,104"/>
+<area shape="poly" title=" " alt="" coords="296,38,336,77,333,80,293,42"/>
+<area shape="rect" href="PorthSimDevice_8hpp.html" title="High&#45;fidelity Digital Twin for Cardiff Photonics hardware simulation." alt="" coords="712,159,954,185"/>
+<area shape="poly" title=" " alt="" coords="329,32,791,157,790,162,327,37"/>
+<area shape="poly" title=" " alt="" coords="181,187,307,237,305,242,179,192"/>
+<area shape="poly" title=" " alt="" coords="304,111,169,162,168,157,302,106"/>
+<area shape="rect" href="zero__copy__handshake_8cpp.html" title=" " alt="" coords="268,152,424,192"/>
+<area shape="poly" title=" " alt="" coords="349,118,349,152,344,152,344,118"/>
+<area shape="poly" title=" " alt="" coords="431,104,762,157,762,162,430,109"/>
+<area shape="rect" href="PorthXDPPortal_8hpp.html" title="Zero&#45;copy network bridge using AF_XDP for the Sovereign Logic Layer." alt="" coords="448,159,687,185"/>
+<area shape="poly" title=" " alt="" coords="392,106,536,157,534,162,391,111"/>
+<area shape="poly" title=" " alt="" coords="756,190,430,248,429,243,755,185"/>
+<area shape="poly" title=" " alt="" coords="527,192,401,242,399,237,525,187"/>
 </map>
 </div>
 </div>
@@ -162,6 +174,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a26530af36da19a3d6959733e1139bc92" id="r_a26530af36da19a3d6959733e1139bc92"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a26530af36da19a3d6959733e1139bc92">porth::set_realtime_priority</a> () noexcept -&gt; std::expected&lt; void, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> &gt;</td></tr>
 <tr class="memdesc:a26530af36da19a3d6959733e1139bc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">set_realtime_priority: Elevates the calling thread to SCHED_FIFO.  <br /></td></tr>
 <tr class="separator:a26530af36da19a3d6959733e1139bc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ec06c73603ace7ad63a685c753cb6ac" id="r_a6ec06c73603ace7ad63a685c753cb6ac"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a6ec06c73603ace7ad63a685c753cb6ac">porth::get_current_numa_node</a> () noexcept -&gt; int</td></tr>
+<tr class="memdesc:a6ec06c73603ace7ad63a685c753cb6ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">get_current_numa_node: Identifies the physical NUMA node of the caller.  <br /></td></tr>
+<tr class="separator:a6ec06c73603ace7ad63a685c753cb6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>

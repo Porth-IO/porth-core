@@ -91,6 +91,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad573872cbd6cf0770a497a4600799385" id="r_ad573872cbd6cf0770a497a4600799385"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1Driver.html#ad573872cbd6cf0770a497a4600799385">Driver</a> (<a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *hardware_regs)</td></tr>
 <tr class="memdesc:ad573872cbd6cf0770a497a4600799385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Orchestrates the Logic-to-Physical Handshake.  <br /></td></tr>
 <tr class="separator:ad573872cbd6cf0770a497a4600799385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9dd6aab599abf16175dd02a74b35789" id="r_aa9dd6aab599abf16175dd02a74b35789"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1Driver.html#aa9dd6aab599abf16175dd02a74b35789">~Driver</a> ()</td></tr>
+<tr class="memdesc:aa9dd6aab599abf16175dd02a74b35789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: Executes the Sovereign Teardown Sequence.  <br /></td></tr>
+<tr class="separator:aa9dd6aab599abf16175dd02a74b35789"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac909691c24ff92b804bd0869f442611c" id="r_ac909691c24ff92b804bd0869f442611c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1Driver.html#ac909691c24ff92b804bd0869f442611c">set_stats_link</a> (<a class="el" href="structporth_1_1PorthStats.html">PorthStats</a> *stats) noexcept</td></tr>
+<tr class="separator:ac909691c24ff92b804bd0869f442611c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a002560ec806e5d7bb6bdf8ae38626716" id="r_a002560ec806e5d7bb6bdf8ae38626716"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1Driver.html#a002560ec806e5d7bb6bdf8ae38626716">transmit</a> (const <a class="el" href="structporth_1_1PorthDescriptor.html">PorthDescriptor</a> &amp;desc) noexcept -&gt; <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a></td></tr>
 <tr class="memdesc:a002560ec806e5d7bb6bdf8ae38626716"><td class="mdescLeft">&#160;</td><td class="mdescRight">transmit: Submits a descriptor to the hardware via the Zero-Copy Shuttle.  <br /></td></tr>
 <tr class="separator:a002560ec806e5d7bb6bdf8ae38626716"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,6 +162,38 @@ template&lt;size_t RingSize = DEFAULT_RING_SIZE&gt; </div>
   </dd>
 </dl>
 </li>
+</ul>
+
+</div>
+</div>
+<a id="aa9dd6aab599abf16175dd02a74b35789" name="aa9dd6aab599abf16175dd02a74b35789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9dd6aab599abf16175dd02a74b35789">&#9670;&#160;</a></span>~Driver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t RingSize = DEFAULT_RING_SIZE&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classporth_1_1Driver.html">porth::Driver</a>&lt; RingSize &gt;::~<a class="el" href="classporth_1_1Driver.html">Driver</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor: Executes the Sovereign Teardown Sequence. </p>
+<ul>
+<li>Ensures hardware is safely detached before memory is unmapped. Critically, clears the hardware DMA pointer to prevent Use-After-Free host panics, and safely synchronizes the background watchdog thread. </li>
 </ul>
 
 </div>
@@ -259,6 +296,34 @@ template&lt;size_t RingSize = DEFAULT_RING_SIZE&gt; </div>
 <li><dl class="section note"><dt>Note</dt><dd>Polling this method is the preferred way to handle high-frequency event loops in the Sovereign Logic Layer. </dd></dl>
 </li>
 </ul>
+
+</div>
+</div>
+<a id="ac909691c24ff92b804bd0869f442611c" name="ac909691c24ff92b804bd0869f442611c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac909691c24ff92b804bd0869f442611c">&#9670;&#160;</a></span>set_stats_link()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;size_t RingSize = DEFAULT_RING_SIZE&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classporth_1_1Driver.html">porth::Driver</a>&lt; RingSize &gt;::set_stats_link </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structporth_1_1PorthStats.html">PorthStats</a> *&#160;</td>
+          <td class="paramname"><em>stats</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

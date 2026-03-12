@@ -94,7 +94,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The physical memory-mapped I/O (MMIO) layout for Porth-compatible hardware.  <a href="structporth_1_1PorthDeviceLayout.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthHugePage.html">PorthHugePage</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII wrapper for pinning memory to 2MB HugePage boundaries.  <a href="classporth_1_1PorthHugePage.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAII wrapper for pinning memory to 2MB HugePage boundaries with NUMA affinity.  <a href="classporth_1_1PorthHugePage.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthMetric.html">PorthMetric</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Statistical analysis engine for ultra-low latency timing.  <a href="classporth_1_1PorthMetric.html#details">More...</a><br /></td></tr>
@@ -118,6 +118,15 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html">PorthSimPHY</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emulates PCIe physical layer effects for compound semiconductor interconnects.  <a href="classporth_1_1PorthSimPHY.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthStats.html">PorthStats</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthTelemetryHub.html">PorthTelemetryHub</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages physical PCIe hardware via the Linux VFIO interface.  <a href="classporth_1_1PorthVFIODevice.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -144,6 +153,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a26530af36da19a3d6959733e1139bc92" id="r_a26530af36da19a3d6959733e1139bc92"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a26530af36da19a3d6959733e1139bc92">set_realtime_priority</a> () noexcept -&gt; std::expected&lt; void, <a class="el" href="namespaceporth.html#af826f97977979efeae6b9ac3cf7b5995">PorthStatus</a> &gt;</td></tr>
 <tr class="memdesc:a26530af36da19a3d6959733e1139bc92"><td class="mdescLeft">&#160;</td><td class="mdescRight">set_realtime_priority: Elevates the calling thread to SCHED_FIFO.  <br /></td></tr>
 <tr class="separator:a26530af36da19a3d6959733e1139bc92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ec06c73603ace7ad63a685c753cb6ac" id="r_a6ec06c73603ace7ad63a685c753cb6ac"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a6ec06c73603ace7ad63a685c753cb6ac">get_current_numa_node</a> () noexcept -&gt; int</td></tr>
+<tr class="memdesc:a6ec06c73603ace7ad63a685c753cb6ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">get_current_numa_node: Identifies the physical NUMA node of the caller.  <br /></td></tr>
+<tr class="separator:a6ec06c73603ace7ad63a685c753cb6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -303,6 +315,34 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a6ec06c73603ace7ad63a685c753cb6ac" name="a6ec06c73603ace7ad63a685c753cb6ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ec06c73603ace7ad63a685c753cb6ac">&#9670;&#160;</a></span>get_current_numa_node()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto porth::get_current_numa_node </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt; int </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get_current_numa_node: Identifies the physical NUMA node of the caller. </p>
+<dl class="section return"><dt>Returns</dt><dd>The NUMA node ID (0-indexed). </dd></dl>
+
+</div>
+</div>
 <a id="a369fb79884349b1797e234cdaf4a9b7b" name="a369fb79884349b1797e234cdaf4a9b7b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a369fb79884349b1797e234cdaf4a9b7b">&#9670;&#160;</a></span>pin_thread_to_core()</h2>
 

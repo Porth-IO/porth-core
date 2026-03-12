@@ -10,5 +10,6 @@ var searchData=
   ['default_5fmetric_5fcapacity_7',['DEFAULT_METRIC_CAPACITY',['../namespaceporth.html#ae8240577da7894999e0d646dd4c3abd5',1,'porth']]],
   ['default_5fring_5fcapacity_8',['DEFAULT_RING_CAPACITY',['../namespaceporth.html#a980282c72f0969f492a2c6f390959e35',1,'porth']]],
   ['default_5fring_5fsize_9',['DEFAULT_RING_SIZE',['../namespaceporth.html#a60c30d392f859871f72a5345548eaba2',1,'porth']]],
-  ['default_5fshuttle_5fcapacity_10',['DEFAULT_SHUTTLE_CAPACITY',['../namespaceporth.html#abd755c35c5e55e3d521fdf6e181765ab',1,'porth']]]
+  ['default_5fshuttle_5fcapacity_10',['DEFAULT_SHUTTLE_CAPACITY',['../namespaceporth.html#abd755c35c5e55e3d521fdf6e181765ab',1,'porth']]],
+  ['dropped_5fpackets_11',['dropped_packets',['../structporth_1_1PorthStats.html#a789776bdc95fbb27e4fb8fb2a8a5115a',1,'porth::PorthStats']]]
 ];

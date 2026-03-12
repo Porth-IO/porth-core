@@ -14,5 +14,8 @@ var searchData=
   ['porthshuttle_2ehpp_11',['PorthShuttle.hpp',['../PorthShuttle_8hpp.html',1,'']]],
   ['porthsimdevice_2ehpp_12',['PorthSimDevice.hpp',['../PorthSimDevice_8hpp.html',1,'']]],
   ['porthsimphy_2ehpp_13',['PorthSimPHY.hpp',['../PorthSimPHY_8hpp.html',1,'']]],
-  ['porthutil_2ehpp_14',['PorthUtil.hpp',['../PorthUtil_8hpp.html',1,'']]]
+  ['porthtelemetry_2ehpp_14',['PorthTelemetry.hpp',['../PorthTelemetry_8hpp.html',1,'']]],
+  ['porthutil_2ehpp_15',['PorthUtil.hpp',['../PorthUtil_8hpp.html',1,'']]],
+  ['porthvfiodevice_2ehpp_16',['PorthVFIODevice.hpp',['../PorthVFIODevice_8hpp.html',1,'']]],
+  ['porthxdpportal_2ehpp_17',['PorthXDPPortal.hpp',['../PorthXDPPortal_8hpp.html',1,'']]]
 ];

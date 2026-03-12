@@ -14,5 +14,9 @@ var searchData=
   ['porthringbuffer_11',['PorthRingBuffer',['../classporth_1_1PorthRingBuffer.html',1,'porth']]],
   ['porthshuttle_12',['PorthShuttle',['../classporth_1_1PorthShuttle.html',1,'porth']]],
   ['porthsimdevice_13',['PorthSimDevice',['../classporth_1_1PorthSimDevice.html',1,'porth']]],
-  ['porthsimphy_14',['PorthSimPHY',['../classporth_1_1PorthSimPHY.html',1,'porth']]]
+  ['porthsimphy_14',['PorthSimPHY',['../classporth_1_1PorthSimPHY.html',1,'porth']]],
+  ['porthstats_15',['PorthStats',['../structporth_1_1PorthStats.html',1,'porth']]],
+  ['porthtelemetryhub_16',['PorthTelemetryHub',['../classporth_1_1PorthTelemetryHub.html',1,'porth']]],
+  ['porthvfiodevice_17',['PorthVFIODevice',['../classporth_1_1PorthVFIODevice.html',1,'porth']]],
+  ['porthxdpportal_18',['PorthXDPPortal',['../classporth_1_1PorthXDPPortal.html',1,'porth']]]
 ];

@@ -11,5 +11,6 @@ var searchData=
   ['create_5fsocket_8',['create_socket',['../classporth_1_1PorthNetworkPortal.html#a1074725bdd1a9f3c1b1cff6bab2a672b',1,'porth::PorthNetworkPortal']]],
   ['ctrl_5fidle_9',['CTRL_IDLE',['../namespacecardiff__chip.html#ae101593f40531b7089da9d0a581238d6',1,'cardiff_chip']]],
   ['ctrl_5freset_10',['CTRL_RESET',['../namespacecardiff__chip.html#a7d6c8acc47cea16de768d8d3714f75e7',1,'cardiff_chip']]],
-  ['ctrl_5fstart_11',['CTRL_START',['../namespacecardiff__chip.html#a6219150942224e4651d7fc85a4934bde',1,'cardiff_chip']]]
+  ['ctrl_5fstart_11',['CTRL_START',['../namespacecardiff__chip.html#a6219150942224e4651d7fc85a4934bde',1,'cardiff_chip']]],
+  ['current_5ftemp_5fmc_12',['current_temp_mc',['../structporth_1_1PorthStats.html#a053ced95181489c2aaebdd786d03b283',1,'porth::PorthStats']]]
 ];
