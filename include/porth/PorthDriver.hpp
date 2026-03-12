@@ -12,11 +12,14 @@
 
 #include "PorthDeviceLayout.hpp"
 #include "PorthShuttle.hpp"
+#include "PorthTelemetry.hpp"
 #include "PorthUtil.hpp"
+#include <atomic>
 #include <format>
 #include <iostream>
 #include <memory>
 #include <stdexcept>
+#include <thread>
 
 namespace porth {
 
@@ -50,6 +53,51 @@ private:
      */
     std::unique_ptr<PorthShuttle<RingSize>> m_shuttle;
 
+    std::thread m_watchdog_thread;
+    std::atomic<bool> m_run_watchdog{true};
+
+    PorthStats* m_stats{nullptr};
+
+    /**
+     * @brief Internal watchdog loop: Polling the physical safety boundary.
+     * Pins to a "Housekeeping" core (Core 0) to ensure telemetry doesn't
+     * interfere with the hot-path (Core 1).
+     */
+    void watchdog_loop() {
+        std::cout << "[Trace] Watchdog: Thread Entering Loop...\n" << std::flush;
+
+        // Safety: Local copy of pointer to avoid re-fetching from 'this' if unstable
+        auto* local_regs = m_regs;
+        if (!local_regs) {
+            std::cerr << "[Trace] Watchdog: FATAL - local_regs is null!\n" << std::flush;
+            return;
+        }
+
+        try {
+            (void)pin_thread_to_core(0);
+            std::cout << "[Trace] Watchdog: Core Pinning Successful.\n" << std::flush;
+        } catch (...) {
+            std::cerr << "[Trace] Watchdog: Core Pinning Failed.\n" << std::flush;
+        }
+
+        while (m_run_watchdog.load(std::memory_order_acquire)) {
+            // Check for trip
+            const uint32_t temp = local_regs->laser_temp.load();
+
+            if (temp > 45000) {
+                std::cerr << std::format("\n!! [Sovereign-Watchdog] THERMAL BREACH: {}mC. Halt.\n",
+                                         temp)
+                          << std::flush;
+                local_regs->control.write(0x0);
+                m_run_watchdog.store(false, std::memory_order_release);
+                break;
+            }
+
+            std::this_thread::sleep_for(std::chrono::microseconds(20));
+        }
+        std::cout << "[Trace] Watchdog: Thread Exiting Gracefully.\n" << std::flush;
+    }
+
 public:
     /**
      * @brief Constructor: Orchestrates the Logic-to-Physical Handshake.
@@ -60,26 +108,47 @@ public:
      * during the mandatory hardware handshake.
      */
     explicit Driver(PorthDeviceLayout* hardware_regs) : m_regs(hardware_regs) {
-
         if (m_regs == nullptr) {
-            throw std::runtime_error(
-                "Porth-Driver: Hardware registers pointer is null. Initialization aborted.");
+            throw std::runtime_error("Porth-Driver: Hardware registers pointer is null.");
         }
 
-        // Initialize the Shuttle: Allocates HugePage memory and constructs the PorthRingBuffer.
+        // Initialize the Shuttle: Allocates HugePage memory and maps the PorthRingBuffer.
         m_shuttle = std::make_unique<PorthShuttle<RingSize>>();
 
-        // Automated Handshake:
-        // Commit the 64-bit physical DMA address of the Shuttle to the hardware.
-        // Once written, the Newport chip's DMA scheduler begins polling this address.
+        // Automated Handshake: Commit the DMA address to the hardware.
         const uint64_t dma_addr = m_shuttle->get_device_addr();
         m_regs->data_ptr.write(dma_addr);
 
-        // Telemetry logging using C++23 std::format for compile-time string safety.
-        std::cout << std::format(
-            "[Porth-Driver] Handshake Complete. Shuttle address 0x{:x} committed to hardware.\n",
-            dma_addr);
+        // Spawn the background safety monitor on a housekeeping core.
+        m_watchdog_thread = std::thread(&Driver::watchdog_loop, this);
+
+        std::cout << std::format("[Porth-Driver] Handshake Complete. Shuttle 0x{:x} active.\n",
+                                 dma_addr)
+                  << std::flush;
     }
+
+    /**
+     * @brief Destructor: Executes the Sovereign Teardown Sequence.
+     * * Ensures hardware is safely detached before memory is unmapped.
+     * Critically, clears the hardware DMA pointer to prevent Use-After-Free
+     * host panics, and safely synchronizes the background watchdog thread.
+     */
+    ~Driver() {
+        // 1. CRITICAL SAFETRY TRIP: Stop hardware from polling system memory.
+        // By writing 0, we force the DMA engine to halt BEFORE the Shuttle
+        // (and its underlying pinned memory) is destroyed and returned to the OS.
+        if (m_regs != nullptr) {
+            m_regs->data_ptr.write(0);
+        }
+
+        // 2. Safely spin down and join the background watchdog thread.
+        m_run_watchdog.store(false, std::memory_order_release);
+        if (m_watchdog_thread.joinable()) {
+            m_watchdog_thread.join();
+        }
+    }
+
+    void set_stats_link(PorthStats* stats) noexcept { m_stats = stats; }
 
     /**
      * @brief transmit: Submits a descriptor to the hardware via the Zero-Copy Shuttle.
@@ -91,8 +160,14 @@ public:
      */
     [[nodiscard]] auto transmit(const PorthDescriptor& desc) noexcept -> PorthStatus {
         if (m_shuttle->ring()->push(desc)) {
+            if (m_stats) {
+                m_stats->total_packets.fetch_add(1, std::memory_order_relaxed);
+                m_stats->total_bytes.fetch_add(desc.len, std::memory_order_relaxed);
+            }
             return PorthStatus::SUCCESS;
         }
+        if (m_stats)
+            m_stats->dropped_packets.fetch_add(1, std::memory_order_relaxed);
         return PorthStatus::FULL;
     }
 

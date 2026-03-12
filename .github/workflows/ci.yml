@@ -22,7 +22,8 @@ jobs:
           apt-get install -y \
             linux-headers-generic libbpf-dev clang-20 llvm-20 \
             clang-format-20 clang-tidy-20 libxdp-dev ninja-build \
-            pkg-config curl libelf-dev tar nodejs python3 jq
+            pkg-config curl libelf-dev tar nodejs python3 jq \
+            libnuma-dev
 
           # 1. Architecture-aware bpftool installation
           ARCH=$(uname -m)

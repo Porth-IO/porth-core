@@ -12,6 +12,7 @@
 
 #include "PorthHugePage.hpp"
 #include "PorthRingBuffer.hpp"
+#include "PorthUtil.hpp"
 #include <bit>
 #include <cstdint>
 #include <format>
@@ -65,6 +66,8 @@ private:
      */
     gsl::owner<PorthRingBuffer<Capacity>*> m_ring_ptr;
 
+    uint64_t m_device_iova = 0; ///< Device-visible I/O Virtual Address.
+
 public:
     /**
      * @brief Constructor: Initializes the DMA fabric using Placement New.
@@ -74,7 +77,8 @@ public:
      * 'Standard Layout' requirements and the HugePage provides the
      * necessary 64-byte alignment for DMA-Sovereignty.
      */
-    PorthShuttle() : m_memory(SHUTTLE_PAGE_SIZE), m_ring_ptr(nullptr) {
+    explicit PorthShuttle(int numa_node = 0)
+        : m_memory(SHUTTLE_PAGE_SIZE, numa_node), m_ring_ptr(nullptr) {
 
         // Safety Check: We cannot map non-Standard Layout types because
         // compiler-specific padding would break the Newport hardware's view of memory.
@@ -93,6 +97,20 @@ public:
         // Telemetry logging for the initialization phase.
         std::cout << std::format("[Porth-Shuttle] Zero-Copy Placement New successful at: {}\n",
                                  base_addr);
+
+        // Sovereign Audit: Verify CPU-Memory Co-location
+        const int current_node = get_current_numa_node();
+        if (current_node != m_memory.node()) {
+            std::cerr << std::format(
+                "!! [Sovereign-Alert] Performance Hazard: Thread is on NUMA Node {}, "
+                "but Memory is locked on Node {}. Cross-socket latency detected.\n",
+                current_node,
+                m_memory.node());
+        } else {
+            std::cout << std::format(
+                "[Sovereign-Audit] Locality Verified: Thread and Memory co-located on Node {}.\n",
+                current_node);
+        }
     }
 
     /**
@@ -108,14 +126,17 @@ public:
         }
     }
 
+    /** @brief set_device_iova: Sets the IOVA provided by the VFIO/IOMMU layer. */
+    void set_device_iova(uint64_t iova) noexcept { m_device_iova = iova; }
+
     /**
      * @brief Returns the DMA-ready physical address for the hardware handshake.
      * @return uint64_t The physical/device address of the memory region.
      * @note This address is written to the 'data_ptr' register in the PorthDeviceLayout.
      */
     [[nodiscard]] auto get_device_addr() const noexcept -> uint64_t {
-        // std::bit_cast satisfies the linter's anti-reinterpret_cast rule with zero overhead.
-        return std::bit_cast<uint64_t>(m_memory.data());
+        // Return the hardware-visible IOVA if it was set; otherwise, fallback to standard address.
+        return (m_device_iova != 0) ? m_device_iova : std::bit_cast<uint64_t>(m_memory.data());
     }
 
     /** @brief Access the zero-copy ring buffer for data transmission. */
@@ -127,6 +148,12 @@ public:
         // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
         return m_ring_ptr;
     }
+
+    /** @brief Exposes raw virtual address for AF_XDP UMEM registration. */
+    [[nodiscard]] auto get_raw_memory_ptr() const noexcept -> void* { return m_memory.data(); }
+
+    /** @brief Exposes total allocation size for AF_XDP UMEM registration. */
+    [[nodiscard]] auto get_raw_memory_size() const noexcept -> size_t { return m_memory.size(); }
 
     // Hardware-mapped orchestrators cannot be copied or moved to prevent
     // memory aliasing and illegal DMA access to unmapped regions.

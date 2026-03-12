@@ -22,6 +22,14 @@ endif()
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBBPF REQUIRED libbpf)
 pkg_check_modules(LIBXDP REQUIRED libxdp)
+
+# Sovereign Search for libnuma
+find_path(NUMA_INCLUDE_DIR NAMES numa.h)
+find_library(NUMA_LIBRARY NAMES numa)
+if(NOT NUMA_INCLUDE_DIR OR NOT NUMA_LIBRARY)
+    message(FATAL_ERROR "Porth-IO: libnuma headers or library not found. Please ensure libnuma-dev is installed.")
+endif()
+
 find_package(Threads REQUIRED)
 
 include(FetchContent)
@@ -58,12 +66,14 @@ target_include_directories(porth-core INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     ${LIBBPF_INCLUDE_DIRS}
     ${LIBXDP_INCLUDE_DIRS}
+    ${NUMA_INCLUDE_DIR}
     ${porth_xdp_INCLUDE_DIR}
 )
 
 target_link_libraries(porth-core INTERFACE 
     ${LIBBPF_LIBRARIES} 
     ${LIBXDP_LIBRARIES} 
+    ${NUMA_LIBRARY}
     Threads::Threads
     $<$<PLATFORM_ID:Linux>:rt>
 )

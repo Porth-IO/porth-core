@@ -69,8 +69,8 @@ private:
     std::ofstream m_tlp_log;   ///< Persistent log for Transaction Layer Packet (TLP) auditing.
 
     // Physics & Simulation Threads
-    std::thread m_physics_thread;      ///< Models the non-linear physics of the InP lattice.
     std::atomic<bool> m_run_sim{true}; ///< Lifecycle guard for the simulation engine.
+    std::thread m_physics_thread;      ///< Models the non-linear physics of the InP lattice.
 
     // --- Chaos & Error Injection State ---
     std::atomic<bool> m_inject_deadlock{
@@ -202,13 +202,19 @@ public:
      * @brief Destructor: Orchestrates a graceful "Hardware Power-Down".
      */
     ~PorthSimDevice() {
-        m_run_sim.store(false, std::memory_order_relaxed);
+        // 1. Signal shutdown using the strongest memory barrier
+        m_run_sim.store(false, std::memory_order_seq_cst);
+
+        // 2. Wait for physics to PARK. This ensures the thread is DEAD
+        // before we exit this destructor and trigger m_mock_hw's munmap.
         if (m_physics_thread.joinable()) {
             m_physics_thread.join();
         }
+
         if (m_tlp_log.is_open()) {
             m_tlp_log.close();
         }
+        // Success: The thread is gone. Now it's safe for m_mock_hw to munmap.
     }
 
     /**

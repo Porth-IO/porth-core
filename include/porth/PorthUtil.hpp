@@ -14,6 +14,7 @@
 #include <expected>
 #include <format>
 #include <iostream>
+#include <numa.h>
 #include <pthread.h>
 #include <sched.h>
 #include <string>
@@ -103,6 +104,15 @@ enum class PorthStatus : uint8_t {
 
     std::cout << "[Porth-Util] Thread priority elevated to Real-Time (SCHED_FIFO)\n";
     return {};
+}
+
+/**
+ * @brief get_current_numa_node: Identifies the physical NUMA node of the caller.
+ * @return The NUMA node ID (0-indexed).
+ */
+[[nodiscard]] inline auto get_current_numa_node() noexcept -> int {
+    int node = numa_node_of_cpu(sched_getcpu());
+    return (node < 0) ? 0 : node; // Fallback to Node 0 if virtualized
 }
 
 } // namespace porth
