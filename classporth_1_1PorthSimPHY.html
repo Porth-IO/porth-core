@@ -97,9 +97,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9587a7b33c9ebdcd79755c5c321a766c" id="r_a9587a7b33c9ebdcd79755c5c321a766c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#a9587a7b33c9ebdcd79755c5c321a766c">get_current_temp</a> () const noexcept -&gt; uint32_t</td></tr>
 <tr class="memdesc:a9587a7b33c9ebdcd79755c5c321a766c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the internal inertial temperature for register syncing.  <br /></td></tr>
 <tr class="separator:a9587a7b33c9ebdcd79755c5c321a766c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4d16ac4e113ad6fec395a4b4aa4d4eb" id="r_ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#ab4d16ac4e113ad6fec395a4b4aa4d4eb">apply_protocol_delay</a> () noexcept -&gt; void</td></tr>
-<tr class="memdesc:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">apply_protocol_delay: Busy-waits to simulate physical propagation time.  <br /></td></tr>
-<tr class="separator:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb561d0df79814964f2eda49311f93a0" id="r_abb561d0df79814964f2eda49311f93a0"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#abb561d0df79814964f2eda49311f93a0">apply_protocol_delay</a> (int32_t current_snr=<a class="el" href="namespaceporth.html#a529328fea7c2bd9beb646366f33928f1">STANDARD_SNR_DB</a>) noexcept -&gt; void</td></tr>
+<tr class="memdesc:abb561d0df79814964f2eda49311f93a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">apply_protocol_delay: Busy-waits to simulate physical propagation time.  <br /></td></tr>
+<tr class="separator:abb561d0df79814964f2eda49311f93a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad157483df75dc024ebe82e8c81f2240" id="r_aad157483df75dc024ebe82e8c81f2240"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#aad157483df75dc024ebe82e8c81f2240">set_config</a> (uint64_t base, uint64_t jitter) -&gt; void</td></tr>
 <tr class="memdesc:aad157483df75dc024ebe82e8c81f2240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hot-swappable configuration for different hardware scenarios.  <br /></td></tr>
 <tr class="separator:aad157483df75dc024ebe82e8c81f2240"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,8 +161,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab4d16ac4e113ad6fec395a4b4aa4d4eb" name="ab4d16ac4e113ad6fec395a4b4aa4d4eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4d16ac4e113ad6fec395a4b4aa4d4eb">&#9670;&#160;</a></span>apply_protocol_delay()</h2>
+<a id="abb561d0df79814964f2eda49311f93a0" name="abb561d0df79814964f2eda49311f93a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb561d0df79814964f2eda49311f93a0">&#9670;&#160;</a></span>apply_protocol_delay()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,7 +173,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">auto porth::PorthSimPHY::apply_protocol_delay </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>current_snr</em> = <code><a class="el" href="namespaceporth.html#a529328fea7c2bd9beb646366f33928f1">STANDARD_SNR_DB</a></code></td><td>)</td>
           <td> -&gt; void </td>
         </tr>
       </table>
@@ -186,7 +187,13 @@ Public Member Functions</h2></td></tr>
 
 <p>apply_protocol_delay: Busy-waits to simulate physical propagation time. </p>
 <ul>
-<li>This is the high-level orchestrator for the PHY model. It enforces deterministic latency by summing fiber delay, jitter, thermal drift, and FEC retry penalties. <dl class="section note"><dt>Note</dt><dd>Utilizes a sovereign spin-loop to achieve nanosecond resolution that is impossible with standard OS sleep primitives. </dd></dl>
+<li>This is the high-level orchestrator for the PHY model. It enforces deterministic latency by summing fiber delay, jitter, thermal drift, and FEC retry penalties. <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">current_snr</td><td>The Signal-to-Noise Ratio (SNR) in milli-dB. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Utilizes a sovereign spin-loop to achieve nanosecond resolution that is impossible with standard OS sleep primitives. </dd></dl>
 </li>
 </ul>
 

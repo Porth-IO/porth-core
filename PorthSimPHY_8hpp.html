@@ -161,6 +161,21 @@ Variables</h2></td></tr>
 <tr class="memitem:a75fd02690afdefe2868cdd1b5f4e736f" id="r_a75fd02690afdefe2868cdd1b5f4e736f"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a75fd02690afdefe2868cdd1b5f4e736f">porth::FEC_RETRY_SPIKE_NS</a> = 500</td></tr>
 <tr class="memdesc:a75fd02690afdefe2868cdd1b5f4e736f"><td class="mdescLeft">&#160;</td><td class="mdescRight">FEC Spike Penalty (500ns). Simulates a full packet retransmission or deep-interleaving buffer flush triggered by an uncorrectable error in the GaN power stage.  <br /></td></tr>
 <tr class="separator:a75fd02690afdefe2868cdd1b5f4e736f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3550e092e4a6c1f788bcdb81234de315" id="r_a3550e092e4a6c1f788bcdb81234de315"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a3550e092e4a6c1f788bcdb81234de315">porth::PAM4_JITTER_FLOOR_PS</a> = 12</td></tr>
+<tr class="memdesc:a3550e092e4a6c1f788bcdb81234de315"><td class="mdescLeft">&#160;</td><td class="mdescRight">PAM4 Signaling Noise Floor (12ps). Simulates the high-frequency jitter floor of PCIe Gen 6 PAM4 signaling.  <br /></td></tr>
+<tr class="separator:a3550e092e4a6c1f788bcdb81234de315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99dd496fe06950648beac60d22a2d159" id="r_a99dd496fe06950648beac60d22a2d159"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a99dd496fe06950648beac60d22a2d159">porth::SNR_PENALTY_NS_PER_DB</a> = 2</td></tr>
+<tr class="memdesc:a99dd496fe06950648beac60d22a2d159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal-to-Noise Ratio (SNR) Penalty. As SNR drops, logic delay increases as the PHY works harder to recover the clock.  <br /></td></tr>
+<tr class="separator:a99dd496fe06950648beac60d22a2d159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a529328fea7c2bd9beb646366f33928f1" id="r_a529328fea7c2bd9beb646366f33928f1"><td class="memItemLeft" align="right" valign="top">constexpr int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a529328fea7c2bd9beb646366f33928f1">porth::STANDARD_SNR_DB</a> = 3000</td></tr>
+<tr class="memdesc:a529328fea7c2bd9beb646366f33928f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard SNR baseline for healthy hardware (30dB).  <br /></td></tr>
+<tr class="separator:a529328fea7c2bd9beb646366f33928f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affda609635eb6a5ce32f7bd2b62559f9" id="r_affda609635eb6a5ce32f7bd2b62559f9"><td class="memItemLeft" align="right" valign="top">constexpr int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#affda609635eb6a5ce32f7bd2b62559f9">porth::SNR_CRITICAL_THRESHOLD</a> = 2000</td></tr>
+<tr class="memdesc:affda609635eb6a5ce32f7bd2b62559f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Critical SNR threshold for increased error rates (20dB).  <br /></td></tr>
+<tr class="separator:affda609635eb6a5ce32f7bd2b62559f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99fae18cd55fe4600a7a44ff7ad5b4f2" id="r_a99fae18cd55fe4600a7a44ff7ad5b4f2"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a99fae18cd55fe4600a7a44ff7ad5b4f2">porth::FEC_LOW_SNR_MULTIPLIER</a> = 10.0</td></tr>
+<tr class="memdesc:a99fae18cd55fe4600a7a44ff7ad5b4f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error rate multiplier for low SNR conditions.  <br /></td></tr>
+<tr class="separator:a99fae18cd55fe4600a7a44ff7ad5b4f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Physics-based emulator for the Newport Cluster physical layer (PHY). </p>

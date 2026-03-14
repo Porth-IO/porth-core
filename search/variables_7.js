@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keep_5frunning_0',['keep_running',['../structSignalContext.html#a2ceb1b8c73f87fd43906ed6e1a183533',1,'SignalContext']]]
+  ['init_5fdelay_5fms_0',['INIT_DELAY_MS',['../namespacecardiff__chip.html#a90526b784526d09961c751a757e79dd6',1,'cardiff_chip']]]
 ];

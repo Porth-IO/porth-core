@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init_5fdelay_5fms_0',['INIT_DELAY_MS',['../namespacecardiff__chip.html#a90526b784526d09961c751a757e79dd6',1,'cardiff_chip']]]
+  ['hardware_5fdestructive_5finterference_5fsize_0',['hardware_destructive_interference_size',['../namespaceporth.html#ae783b97897b6675f8d12dc6c2d4a9467',1,'porth']]]
 ];

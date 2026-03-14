@@ -90,13 +90,13 @@ Collaboration diagram for porth::PorthDeviceLayout:</div>
 <div class="dyncontent">
 <div class="center"><img src="structporth_1_1PorthDeviceLayout__coll__graph.png" border="0" usemap="#aporth_1_1PorthDeviceLayout_coll__map" alt="Collaboration graph"/></div>
 <map name="aporth_1_1PorthDeviceLayout_coll__map" id="aporth_1_1PorthDeviceLayout_coll__map">
-<area shape="rect" title="The physical memory&#45;mapped I/O (MMIO) layout for Porth&#45;compatible hardware." alt="" coords="287,101,473,126"/>
-<area shape="rect" href="classporth_1_1PorthRegister.html" title=" " alt="" coords="5,29,157,69"/>
-<area shape="poly" title=" " alt="" coords="171,59,263,76,341,98,340,103,262,81,170,64"/>
-<area shape="rect" href="classporth_1_1PorthRegister.html" title=" " alt="" coords="5,93,157,133"/>
-<area shape="poly" title=" " alt="" coords="171,111,287,111,287,116,171,116"/>
-<area shape="rect" href="classporth_1_1PorthRegister.html" title=" " alt="" coords="5,157,157,197"/>
-<area shape="poly" title=" " alt="" coords="170,156,319,123,320,129,171,161"/>
+<area shape="rect" title="The physical memory&#45;mapped I/O (MMIO) layout for Porth&#45;compatible hardware." alt="" coords="287,115,473,141"/>
+<area shape="rect" href="classporth_1_1PorthRegister.html" title=" " alt="" coords="5,44,157,84"/>
+<area shape="poly" title=" " alt="" coords="171,73,263,91,341,113,340,118,262,96,170,79"/>
+<area shape="rect" href="classporth_1_1PorthRegister.html" title=" " alt="" coords="5,108,157,148"/>
+<area shape="poly" title=" " alt="" coords="171,125,287,125,287,131,171,131"/>
+<area shape="rect" href="classporth_1_1PorthRegister.html" title=" " alt="" coords="5,172,157,212"/>
+<area shape="poly" title=" " alt="" coords="170,170,319,138,320,143,171,176"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -123,6 +123,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:abaf6f8a9c47a3a8316caa7f32b7b9b8f" id="r_abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; int32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#abaf6f8a9c47a3a8316caa7f32b7b9b8f">rf_snr</a></td></tr>
 <tr class="memdesc:abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x180: RF Signal-to-Noise Ratio. Unit: scaled dB (Value = dB * 100). Represents the integrity of the high-speed RF mode coupling.  <br /></td></tr>
 <tr class="separator:abaf6f8a9c47a3a8316caa7f32b7b9b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c7e1c5f40f6028410c0ed17503a1cf9" id="r_a5c7e1c5f40f6028410c0ed17503a1cf9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structporth_1_1PorthDeviceLayout.html#a5c7e1c5f40f6028410c0ed17503a1cf9">safety_trip</a></td></tr>
+<tr class="memdesc:a5c7e1c5f40f6028410c0ed17503a1cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset 0x1C0: Hardware Emergency Trip. Write 0xDEADBEEF to trigger an immediate hardware-level shutdown. Designed to protect InP/GaN substrates during thermal/voltage excursions.  <br /></td></tr>
+<tr class="separator:a5c7e1c5f40f6028410c0ed17503a1cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The physical memory-mapped I/O (MMIO) layout for Porth-compatible hardware. </p>
@@ -240,6 +243,22 @@ Public Attributes</h2></td></tr>
 <ul>
 <li></li>
 </ul>
+
+</div>
+</div>
+<a id="a5c7e1c5f40f6028410c0ed17503a1cf9" name="a5c7e1c5f40f6028410c0ed17503a1cf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c7e1c5f40f6028410c0ed17503a1cf9">&#9670;&#160;</a></span>safety_trip</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a>&lt;uint32_t&gt; porth::PorthDeviceLayout::safety_trip</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Offset 0x1C0: Hardware Emergency Trip. Write 0xDEADBEEF to trigger an immediate hardware-level shutdown. Designed to protect InP/GaN substrates during thermal/voltage excursions. </p>
 
 </div>
 </div>

@@ -107,11 +107,16 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthNetworkPortal.html">PorthNetworkPortal</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthPDK.html">PorthPDK</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles dynamic loading of Newport foundry register maps.  <a href="classporth_1_1PorthPDK.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRegister.html">PorthRegister</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The atomic "brick" of the Porth-IO Hardware Abstraction Layer.  <a href="classporth_1_1PorthRegister.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthRingBuffer.html">PorthRingBuffer</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A high-performance SPSC Lock-Free Queue.  <a href="classporth_1_1PorthRingBuffer.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSentinel.html">PorthSentinel</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthShuttle.html">PorthShuttle</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Zero-Copy Orchestrator for high-performance DMA.  <a href="classporth_1_1PorthShuttle.html#details">More...</a><br /></td></tr>
@@ -165,8 +170,8 @@ Variables</h2></td></tr>
 <tr class="memitem:a6da83c2b0b7c8e9583de6c77238c3a86" id="r_a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a6da83c2b0b7c8e9583de6c77238c3a86">cache_line_alignment</a> = 64</td></tr>
 <tr class="memdesc:a6da83c2b0b7c8e9583de6c77238c3a86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard x86_64/ARM64 cache line size. Aligned to 64 bytes to prevent "False Sharing" where the CPU's L1 cache coherency protocol (MESI/MOESI) would otherwise force unnecessary synchronization between registers in the same line.  <br /></td></tr>
 <tr class="separator:a6da83c2b0b7c8e9583de6c77238c3a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9feaff880cb1400c80e9198c2bcf10bb" id="r_a9feaff880cb1400c80e9198c2bcf10bb"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9feaff880cb1400c80e9198c2bcf10bb">expected_layout_size</a> = 448</td></tr>
-<tr class="memdesc:a9feaff880cb1400c80e9198c2bcf10bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total footprint of the MMIO region. Must remain exactly 448 bytes to match the FPGA/ASIC register file RTL.  <br /></td></tr>
+<tr class="memitem:a9feaff880cb1400c80e9198c2bcf10bb" id="r_a9feaff880cb1400c80e9198c2bcf10bb"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a9feaff880cb1400c80e9198c2bcf10bb">expected_layout_size</a> = 512</td></tr>
+<tr class="memdesc:a9feaff880cb1400c80e9198c2bcf10bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total footprint of the MMIO region. Must remain exactly 512 bytes to match the FPGA/ASIC register file RTL.  <br /></td></tr>
 <tr class="separator:a9feaff880cb1400c80e9198c2bcf10bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91a19d7d68a1f3175f1af84db17434cc" id="r_a91a19d7d68a1f3175f1af84db17434cc"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a91a19d7d68a1f3175f1af84db17434cc">offset_control</a> = 0x00</td></tr>
 <tr class="separator:a91a19d7d68a1f3175f1af84db17434cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,6 +187,8 @@ Variables</h2></td></tr>
 <tr class="separator:a235cc5817b66ba6670941535e368a162"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbc5e364b4f96b9200b967fc608a63ae" id="r_abbc5e364b4f96b9200b967fc608a63ae"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#abbc5e364b4f96b9200b967fc608a63ae">offset_rf_snr</a> = 0x180</td></tr>
 <tr class="separator:abbc5e364b4f96b9200b967fc608a63ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ff5318fe70fea338bd79126cc991f62" id="r_a8ff5318fe70fea338bd79126cc991f62"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a8ff5318fe70fea338bd79126cc991f62">offset_safety_trip</a> = 0x1C0</td></tr>
+<tr class="separator:a8ff5318fe70fea338bd79126cc991f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60c30d392f859871f72a5345548eaba2" id="r_a60c30d392f859871f72a5345548eaba2"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a60c30d392f859871f72a5345548eaba2">DEFAULT_RING_SIZE</a> = 1024</td></tr>
 <tr class="memdesc:a60c30d392f859871f72a5345548eaba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default capacity for the DMA ring buffer. Set to 1024 to balance memory pressure with throughput burst capabilities.  <br /></td></tr>
 <tr class="separator:a60c30d392f859871f72a5345548eaba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,8 +209,10 @@ Variables</h2></td></tr>
 <tr class="memitem:af0445d9d65f5f06a472597d6bfdb26a1" id="r_af0445d9d65f5f06a472597d6bfdb26a1"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#af0445d9d65f5f06a472597d6bfdb26a1">PORTH_CACHE_LINE_SIZE</a> = 64</td></tr>
 <tr class="memdesc:af0445d9d65f5f06a472597d6bfdb26a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Cardiff Standard Cache Line (64 Bytes). This constant is the physical foundation of our MMIO map. We hardcode 64 bytes to align with the Newport Cluster's PCIe TLP (Transaction Layer Packet) granularity. This prevents "Cache Line Bouncing" between the CPU and the InP/GaN DMA engine, ensuring deterministic register access.  <br /></td></tr>
 <tr class="separator:af0445d9d65f5f06a472597d6bfdb26a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13c13622bb48129275aba250446e5277" id="r_a13c13622bb48129275aba250446e5277"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a13c13622bb48129275aba250446e5277">RING_CACHE_LINE_SIZE</a> = 64</td></tr>
-<tr class="memdesc:a13c13622bb48129275aba250446e5277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard cache line size (64 bytes). We align the Producer and Consumer indices to separate lines to prevent "False Sharing," where the L1 cache coherency protocol (MESI) would otherwise cause constant cache-line ping-ponging between cores.  <br /></td></tr>
+<tr class="memitem:ae783b97897b6675f8d12dc6c2d4a9467" id="r_ae783b97897b6675f8d12dc6c2d4a9467"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#ae783b97897b6675f8d12dc6c2d4a9467">hardware_destructive_interference_size</a> = 64</td></tr>
+<tr class="separator:ae783b97897b6675f8d12dc6c2d4a9467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13c13622bb48129275aba250446e5277" id="r_a13c13622bb48129275aba250446e5277"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a13c13622bb48129275aba250446e5277">RING_CACHE_LINE_SIZE</a> = <a class="el" href="namespaceporth.html#ae783b97897b6675f8d12dc6c2d4a9467">hardware_destructive_interference_size</a></td></tr>
+<tr class="memdesc:a13c13622bb48129275aba250446e5277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hardware-Aware cache line size. Using the compiler-provided interference size ensures the Porth logic layer is perfectly optimized for the specific "Sovereign" silicon it is compiled for.  <br /></td></tr>
 <tr class="separator:a13c13622bb48129275aba250446e5277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a980282c72f0969f492a2c6f390959e35" id="r_a980282c72f0969f492a2c6f390959e35"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a980282c72f0969f492a2c6f390959e35">DEFAULT_RING_CAPACITY</a> = 1024</td></tr>
 <tr class="memdesc:a980282c72f0969f492a2c6f390959e35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default ring buffer capacity.  <br /></td></tr>
@@ -271,6 +280,21 @@ Variables</h2></td></tr>
 <tr class="memitem:a75fd02690afdefe2868cdd1b5f4e736f" id="r_a75fd02690afdefe2868cdd1b5f4e736f"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a75fd02690afdefe2868cdd1b5f4e736f">FEC_RETRY_SPIKE_NS</a> = 500</td></tr>
 <tr class="memdesc:a75fd02690afdefe2868cdd1b5f4e736f"><td class="mdescLeft">&#160;</td><td class="mdescRight">FEC Spike Penalty (500ns). Simulates a full packet retransmission or deep-interleaving buffer flush triggered by an uncorrectable error in the GaN power stage.  <br /></td></tr>
 <tr class="separator:a75fd02690afdefe2868cdd1b5f4e736f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3550e092e4a6c1f788bcdb81234de315" id="r_a3550e092e4a6c1f788bcdb81234de315"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a3550e092e4a6c1f788bcdb81234de315">PAM4_JITTER_FLOOR_PS</a> = 12</td></tr>
+<tr class="memdesc:a3550e092e4a6c1f788bcdb81234de315"><td class="mdescLeft">&#160;</td><td class="mdescRight">PAM4 Signaling Noise Floor (12ps). Simulates the high-frequency jitter floor of PCIe Gen 6 PAM4 signaling.  <br /></td></tr>
+<tr class="separator:a3550e092e4a6c1f788bcdb81234de315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99dd496fe06950648beac60d22a2d159" id="r_a99dd496fe06950648beac60d22a2d159"><td class="memItemLeft" align="right" valign="top">constexpr uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a99dd496fe06950648beac60d22a2d159">SNR_PENALTY_NS_PER_DB</a> = 2</td></tr>
+<tr class="memdesc:a99dd496fe06950648beac60d22a2d159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal-to-Noise Ratio (SNR) Penalty. As SNR drops, logic delay increases as the PHY works harder to recover the clock.  <br /></td></tr>
+<tr class="separator:a99dd496fe06950648beac60d22a2d159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a529328fea7c2bd9beb646366f33928f1" id="r_a529328fea7c2bd9beb646366f33928f1"><td class="memItemLeft" align="right" valign="top">constexpr int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a529328fea7c2bd9beb646366f33928f1">STANDARD_SNR_DB</a> = 3000</td></tr>
+<tr class="memdesc:a529328fea7c2bd9beb646366f33928f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard SNR baseline for healthy hardware (30dB).  <br /></td></tr>
+<tr class="separator:a529328fea7c2bd9beb646366f33928f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affda609635eb6a5ce32f7bd2b62559f9" id="r_affda609635eb6a5ce32f7bd2b62559f9"><td class="memItemLeft" align="right" valign="top">constexpr int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#affda609635eb6a5ce32f7bd2b62559f9">SNR_CRITICAL_THRESHOLD</a> = 2000</td></tr>
+<tr class="memdesc:affda609635eb6a5ce32f7bd2b62559f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Critical SNR threshold for increased error rates (20dB).  <br /></td></tr>
+<tr class="separator:affda609635eb6a5ce32f7bd2b62559f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99fae18cd55fe4600a7a44ff7ad5b4f2" id="r_a99fae18cd55fe4600a7a44ff7ad5b4f2"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#a99fae18cd55fe4600a7a44ff7ad5b4f2">FEC_LOW_SNR_MULTIPLIER</a> = 10.0</td></tr>
+<tr class="memdesc:a99fae18cd55fe4600a7a44ff7ad5b4f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Error rate multiplier for low SNR conditions.  <br /></td></tr>
+<tr class="separator:a99fae18cd55fe4600a7a44ff7ad5b4f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee756e9319315feec4db4b265da4a82e" id="r_aee756e9319315feec4db4b265da4a82e"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceporth.html#aee756e9319315feec4db4b265da4a82e">MAX_PTHREAD_FIFO_PRIORITY</a> = 99</td></tr>
 <tr class="memdesc:aee756e9319315feec4db4b265da4a82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum priority for Real-Time FIFO scheduling. Level 99 ensures the Porth driver preempts all other system tasks, including standard kernel threads, to maintain GaN switching determinism.  <br /></td></tr>
 <tr class="separator:aee756e9319315feec4db4b265da4a82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -704,7 +728,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr size_t porth::expected_layout_size = 448</td>
+          <td class="memname">constexpr size_t porth::expected_layout_size = 512</td>
         </tr>
       </table>
   </td>
@@ -714,7 +738,34 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Total footprint of the MMIO region. Must remain exactly 448 bytes to match the FPGA/ASIC register file RTL. </p>
+<p>Total footprint of the MMIO region. Must remain exactly 512 bytes to match the FPGA/ASIC register file RTL. </p>
+<ul>
+<li></li>
+</ul>
+
+</div>
+</div>
+<a id="a99fae18cd55fe4600a7a44ff7ad5b4f2" name="a99fae18cd55fe4600a7a44ff7ad5b4f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99fae18cd55fe4600a7a44ff7ad5b4f2">&#9670;&#160;</a></span>FEC_LOW_SNR_MULTIPLIER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr double porth::FEC_LOW_SNR_MULTIPLIER = 10.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Error rate multiplier for low SNR conditions. </p>
 <ul>
 <li></li>
 </ul>
@@ -745,6 +796,28 @@ Variables</h2></td></tr>
 <ul>
 <li></li>
 </ul>
+
+</div>
+</div>
+<a id="ae783b97897b6675f8d12dc6c2d4a9467" name="ae783b97897b6675f8d12dc6c2d4a9467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae783b97897b6675f8d12dc6c2d4a9467">&#9670;&#160;</a></span>hardware_destructive_interference_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr size_t porth::hardware_destructive_interference_size = 64</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -931,6 +1004,28 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a8ff5318fe70fea338bd79126cc991f62" name="a8ff5318fe70fea338bd79126cc991f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ff5318fe70fea338bd79126cc991f62">&#9670;&#160;</a></span>offset_safety_trip</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr size_t porth::offset_safety_trip = 0x1C0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a0383aae6223f945976fd45bbe3029038" name="a0383aae6223f945976fd45bbe3029038"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0383aae6223f945976fd45bbe3029038">&#9670;&#160;</a></span>offset_status</h2>
 
@@ -950,6 +1045,33 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3550e092e4a6c1f788bcdb81234de315" name="a3550e092e4a6c1f788bcdb81234de315"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3550e092e4a6c1f788bcdb81234de315">&#9670;&#160;</a></span>PAM4_JITTER_FLOOR_PS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint64_t porth::PAM4_JITTER_FLOOR_PS = 12</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>PAM4 Signaling Noise Floor (12ps). Simulates the high-frequency jitter floor of PCIe Gen 6 PAM4 signaling. </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>
@@ -1102,7 +1224,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr size_t porth::RING_CACHE_LINE_SIZE = 64</td>
+          <td class="memname">constexpr size_t porth::RING_CACHE_LINE_SIZE = <a class="el" href="namespaceporth.html#ae783b97897b6675f8d12dc6c2d4a9467">hardware_destructive_interference_size</a></td>
         </tr>
       </table>
   </td>
@@ -1112,7 +1234,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Standard cache line size (64 bytes). We align the Producer and Consumer indices to separate lines to prevent "False Sharing," where the L1 cache coherency protocol (MESI) would otherwise cause constant cache-line ping-ponging between cores. </p>
+<p>Hardware-Aware cache line size. Using the compiler-provided interference size ensures the Porth logic layer is perfectly optimized for the specific "Sovereign" silicon it is compiled for. </p>
 <ul>
 <li></li>
 </ul>
@@ -1384,6 +1506,87 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Heating rate per step (0.1°C). </p>
+
+</div>
+</div>
+<a id="affda609635eb6a5ce32f7bd2b62559f9" name="affda609635eb6a5ce32f7bd2b62559f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affda609635eb6a5ce32f7bd2b62559f9">&#9670;&#160;</a></span>SNR_CRITICAL_THRESHOLD</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int32_t porth::SNR_CRITICAL_THRESHOLD = 2000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Critical SNR threshold for increased error rates (20dB). </p>
+<ul>
+<li></li>
+</ul>
+
+</div>
+</div>
+<a id="a99dd496fe06950648beac60d22a2d159" name="a99dd496fe06950648beac60d22a2d159"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99dd496fe06950648beac60d22a2d159">&#9670;&#160;</a></span>SNR_PENALTY_NS_PER_DB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint64_t porth::SNR_PENALTY_NS_PER_DB = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Signal-to-Noise Ratio (SNR) Penalty. As SNR drops, logic delay increases as the PHY works harder to recover the clock. </p>
+<ul>
+<li></li>
+</ul>
+
+</div>
+</div>
+<a id="a529328fea7c2bd9beb646366f33928f1" name="a529328fea7c2bd9beb646366f33928f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a529328fea7c2bd9beb646366f33928f1">&#9670;&#160;</a></span>STANDARD_SNR_DB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int32_t porth::STANDARD_SNR_DB = 3000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Standard SNR baseline for healthy hardware (30dB). </p>
+<ul>
+<li></li>
+</ul>
 
 </div>
 </div>

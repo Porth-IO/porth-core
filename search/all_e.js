@@ -6,6 +6,7 @@ var searchData=
   ['len_3',['len',['../structporth_1_1PorthDescriptor.html#ad5265703b7470c8a6ba765971f171e97',1,'porth::PorthDescriptor']]],
   ['load_4',['load',['../classporth_1_1PorthRegister.html#abf16cb244b1a96126acce411b59d182d',1,'porth::PorthRegister']]],
   ['load_5fkernel_5fprogram_5',['load_kernel_program',['../classporth_1_1PorthNetworkPortal.html#a465f6ec635659f1ec57a8063b30b5fa0',1,'porth::PorthNetworkPortal']]],
-  ['load_5fnewport_5fprofile_6',['load_newport_profile',['../classporth_1_1PorthSimDevice.html#a7f93700ef09195664d0657626711109d',1,'porth::PorthSimDevice']]],
-  ['logic_20layer_20for_20compound_20semiconductors_7',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]]
+  ['load_5fmanifest_6',['load_manifest',['../classporth_1_1PorthPDK.html#a521d591f2ecd8b620c31194a699d8760',1,'porth::PorthPDK']]],
+  ['load_5fnewport_5fprofile_7',['load_newport_profile',['../classporth_1_1PorthSimDevice.html#a7f93700ef09195664d0657626711109d',1,'porth::PorthSimDevice']]],
+  ['logic_20layer_20for_20compound_20semiconductors_8',['Porth-IO: The Sovereign Logic Layer for Compound Semiconductors',['../md_README.html',1,'']]]
 ];
