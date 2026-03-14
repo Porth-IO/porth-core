@@ -89,6 +89,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a57f2f0ef8b2f90ada2a163e266cbebdb" id="r_a57f2f0ef8b2f90ada2a163e266cbebdb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthXDPPortal.html#a57f2f0ef8b2f90ada2a163e266cbebdb">PorthXDPPortal</a> (std::string ifname, uint32_t queue_id=0)</td></tr>
 <tr class="separator:a57f2f0ef8b2f90ada2a163e266cbebdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f481d36a2a8275ed0a421292f9d1cf9" id="r_a3f481d36a2a8275ed0a421292f9d1cf9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthXDPPortal.html#a3f481d36a2a8275ed0a421292f9d1cf9">~PorthXDPPortal</a> ()</td></tr>
+<tr class="memdesc:a3f481d36a2a8275ed0a421292f9d1cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: Releases AF_XDP resources.  <br /></td></tr>
 <tr class="separator:a3f481d36a2a8275ed0a421292f9d1cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c953522d7210c7f23926a446ae56420" id="r_a7c953522d7210c7f23926a446ae56420"><td class="memTemplParams" colspan="2">template&lt;size_t Cap&gt; </td></tr>
 <tr class="memitem:a7c953522d7210c7f23926a446ae56420"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthXDPPortal.html#a7c953522d7210c7f23926a446ae56420">bind_shuttle_memory</a> (<a class="el" href="classporth_1_1PorthShuttle.html">PorthShuttle</a>&lt; Cap &gt; &amp;shuttle)</td></tr>
@@ -105,10 +106,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3e8ca59d369788fc2003b4ed4f89217e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdf72befea72762f3b894c68cd5741db" id="r_afdf72befea72762f3b894c68cd5741db"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthXDPPortal.html#afdf72befea72762f3b894c68cd5741db">operator=</a> (const <a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;) -&gt; <a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;=delete</td></tr>
 <tr class="separator:afdf72befea72762f3b894c68cd5741db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ef3aba3671c6844cd953f8a0966fa08" id="r_a1ef3aba3671c6844cd953f8a0966fa08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthXDPPortal.html#a1ef3aba3671c6844cd953f8a0966fa08">PorthXDPPortal</a> (<a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;&amp;)=delete</td></tr>
+<tr class="separator:a1ef3aba3671c6844cd953f8a0966fa08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a466a474ec71e1f9b41eba6c68348249e" id="r_a466a474ec71e1f9b41eba6c68348249e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthXDPPortal.html#a466a474ec71e1f9b41eba6c68348249e">operator=</a> (<a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;&amp;) -&gt; <a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;=delete</td></tr>
+<tr class="separator:a466a474ec71e1f9b41eba6c68348249e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a57f2f0ef8b2f90ada2a163e266cbebdb" name="a57f2f0ef8b2f90ada2a163e266cbebdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57f2f0ef8b2f90ada2a163e266cbebdb">&#9670;&#160;</a></span>PorthXDPPortal() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a57f2f0ef8b2f90ada2a163e266cbebdb">&#9670;&#160;</a></span>PorthXDPPortal() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,10 +171,12 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Destructor: Releases AF_XDP resources. </p>
+
 </div>
 </div>
 <a id="a3e8ca59d369788fc2003b4ed4f89217e" name="a3e8ca59d369788fc2003b4ed4f89217e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e8ca59d369788fc2003b4ed4f89217e">&#9670;&#160;</a></span>PorthXDPPortal() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e8ca59d369788fc2003b4ed4f89217e">&#9670;&#160;</a></span>PorthXDPPortal() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -181,6 +188,32 @@ Public Member Functions</h2></td></tr>
           <td class="memname">porth::PorthXDPPortal::PorthXDPPortal </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1ef3aba3671c6844cd953f8a0966fa08" name="a1ef3aba3671c6844cd953f8a0966fa08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ef3aba3671c6844cd953f8a0966fa08">&#9670;&#160;</a></span>PorthXDPPortal() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">porth::PorthXDPPortal::PorthXDPPortal </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;&amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -274,7 +307,6 @@ template&lt;size_t Cap&gt; </div>
 </div><div class="memdoc">
 
 <p>bridge_to_shuttle: Polls the NIC and pushes work to the hardware. </p>
-<dl class="section note"><dt>Note</dt><dd>This is the Sovereign "Hot-Path". It must be called from the RT-pinned thread to maintain nanosecond-scale determinism. </dd></dl>
 
 </div>
 </div>
@@ -302,20 +334,11 @@ template&lt;size_t Cap&gt; </div>
 </div><div class="memdoc">
 
 <p>Hijacks the NIC queue and binds the AF_XDP socket to our UMEM. </p>
-<ul>
-<li>Must be called AFTER <a class="el" href="classporth_1_1PorthXDPPortal.html#a7c953522d7210c7f23926a446ae56420" title="Binds the XDP socket directly to the PorthShuttle&#39;s HugePage memory.">bind_shuttle_memory()</a>. <dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">std::runtime_error</td><td>If the socket creation fails or UMEM is missing. </td></tr>
-  </table>
-  </dd>
-</dl>
-</li>
-</ul>
 
 </div>
 </div>
 <a id="afdf72befea72762f3b894c68cd5741db" name="afdf72befea72762f3b894c68cd5741db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afdf72befea72762f3b894c68cd5741db">&#9670;&#160;</a></span>operator=()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf72befea72762f3b894c68cd5741db">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -327,6 +350,32 @@ template&lt;size_t Cap&gt; </div>
           <td class="memname">auto porth::PorthXDPPortal::operator= </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt;  <a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;=delete</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a466a474ec71e1f9b41eba6c68348249e" name="a466a474ec71e1f9b41eba6c68348249e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a466a474ec71e1f9b41eba6c68348249e">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto porth::PorthXDPPortal::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;&amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td> -&gt;  <a class="el" href="classporth_1_1PorthXDPPortal.html">PorthXDPPortal</a> &amp;=delete</td>
         </tr>

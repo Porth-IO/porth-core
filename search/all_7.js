@@ -13,6 +13,6 @@ var searchData=
   ['default_5fring_5fsize_10',['DEFAULT_RING_SIZE',['../namespaceporth.html#a60c30d392f859871f72a5345548eaba2',1,'porth']]],
   ['default_5fshuttle_5fcapacity_11',['DEFAULT_SHUTTLE_CAPACITY',['../namespaceporth.html#abd755c35c5e55e3d521fdf6e181765ab',1,'porth']]],
   ['demo_12',['3. Run Performance Demo',['../md_README.html#autotoc_md16',1,'']]],
-  ['driver_13',['driver',['../classporth_1_1Driver.html',1,'porth::Driver&lt; RingSize &gt;'],['../classporth_1_1Driver.html#ad573872cbd6cf0770a497a4600799385',1,'porth::Driver::Driver()']]],
+  ['driver_13',['driver',['../classporth_1_1Driver.html#a29818a95d6d777df78ee07d011071e1a',1,'porth::Driver::Driver(Driver &amp;&amp;)=delete'],['../classporth_1_1Driver.html#ad96b6969cf286111a99d93f2a8753113',1,'porth::Driver::Driver(const Driver &amp;)=delete'],['../classporth_1_1Driver.html#ad573872cbd6cf0770a497a4600799385',1,'porth::Driver::Driver(PorthDeviceLayout *hardware_regs)'],['../classporth_1_1Driver.html',1,'porth::Driver&lt; RingSize &gt;']]],
   ['dropped_5fpackets_14',['dropped_packets',['../structporth_1_1PorthStats.html#a789776bdc95fbb27e4fb8fb2a8a5115a',1,'porth::PorthStats']]]
 ];

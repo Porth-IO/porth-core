@@ -94,6 +94,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a02e65f590dfa4c5bc443a80d6c86058c" id="r_a02e65f590dfa4c5bc443a80d6c86058c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#a02e65f590dfa4c5bc443a80d6c86058c">update_thermal_load</a> (uint32_t temp_mc) noexcept -&gt; void</td></tr>
 <tr class="memdesc:a02e65f590dfa4c5bc443a80d6c86058c"><td class="mdescLeft">&#160;</td><td class="mdescRight">update_thermal_load: Pushes real-time temperature telemetry into the PHY model.  <br /></td></tr>
 <tr class="separator:a02e65f590dfa4c5bc443a80d6c86058c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9587a7b33c9ebdcd79755c5c321a766c" id="r_a9587a7b33c9ebdcd79755c5c321a766c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#a9587a7b33c9ebdcd79755c5c321a766c">get_current_temp</a> () const noexcept -&gt; uint32_t</td></tr>
+<tr class="memdesc:a9587a7b33c9ebdcd79755c5c321a766c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the internal inertial temperature for register syncing.  <br /></td></tr>
+<tr class="separator:a9587a7b33c9ebdcd79755c5c321a766c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4d16ac4e113ad6fec395a4b4aa4d4eb" id="r_ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthSimPHY.html#ab4d16ac4e113ad6fec395a4b4aa4d4eb">apply_protocol_delay</a> () noexcept -&gt; void</td></tr>
 <tr class="memdesc:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">apply_protocol_delay: Busy-waits to simulate physical propagation time.  <br /></td></tr>
 <tr class="separator:ab4d16ac4e113ad6fec395a4b4aa4d4eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,6 +189,33 @@ Public Member Functions</h2></td></tr>
 <li>This is the high-level orchestrator for the PHY model. It enforces deterministic latency by summing fiber delay, jitter, thermal drift, and FEC retry penalties. <dl class="section note"><dt>Note</dt><dd>Utilizes a sovereign spin-loop to achieve nanosecond resolution that is impossible with standard OS sleep primitives. </dd></dl>
 </li>
 </ul>
+
+</div>
+</div>
+<a id="a9587a7b33c9ebdcd79755c5c321a766c" name="a9587a7b33c9ebdcd79755c5c321a766c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9587a7b33c9ebdcd79755c5c321a766c">&#9670;&#160;</a></span>get_current_temp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto porth::PorthSimPHY::get_current_temp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const -&gt; uint32_t </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the internal inertial temperature for register syncing. </p>
 
 </div>
 </div>

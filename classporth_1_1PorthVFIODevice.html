@@ -93,9 +93,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abeb566bb2bc8edd2eb76a2b7e79b87c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa19fa568a0e11b56b8529093ef7d31a0" id="r_aa19fa568a0e11b56b8529093ef7d31a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthVFIODevice.html#aa19fa568a0e11b56b8529093ef7d31a0">~PorthVFIODevice</a> ()</td></tr>
 <tr class="separator:aa19fa568a0e11b56b8529093ef7d31a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af112755043611b8499b70efeeb7c0dae" id="r_af112755043611b8499b70efeeb7c0dae"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthVFIODevice.html#af112755043611b8499b70efeeb7c0dae">map_dma</a> (void *vaddr, size_t size) -&gt; uint64_t</td></tr>
-<tr class="memdesc:af112755043611b8499b70efeeb7c0dae"><td class="mdescLeft">&#160;</td><td class="mdescRight">map_dma: Maps a userspace memory region into the IOMMU.  <br /></td></tr>
-<tr class="separator:af112755043611b8499b70efeeb7c0dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad7c5104e0d1e1a11a4bd9b0ce629452" id="r_aad7c5104e0d1e1a11a4bd9b0ce629452"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthVFIODevice.html#aad7c5104e0d1e1a11a4bd9b0ce629452">map_dma</a> (void *vaddr, size_t size) const -&gt; uint64_t</td></tr>
+<tr class="memdesc:aad7c5104e0d1e1a11a4bd9b0ce629452"><td class="mdescLeft">&#160;</td><td class="mdescRight">map_dma: Maps a userspace memory region into the IOMMU.  <br /></td></tr>
+<tr class="separator:aad7c5104e0d1e1a11a4bd9b0ce629452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7118680672d3039adbde6db86c9eb48" id="r_ab7118680672d3039adbde6db86c9eb48"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthVFIODevice.html#ab7118680672d3039adbde6db86c9eb48">view</a> () noexcept -&gt; <a class="el" href="structporth_1_1PorthDeviceLayout.html">PorthDeviceLayout</a> *</td></tr>
 <tr class="memdesc:ab7118680672d3039adbde6db86c9eb48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the mapped register layout.  <br /></td></tr>
 <tr class="separator:ab7118680672d3039adbde6db86c9eb48"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -103,13 +103,17 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a812245d599ac4ecf282ff94730d1ee8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24e0e49b8bfc54f13b126f4456a6ac5c" id="r_a24e0e49b8bfc54f13b126f4456a6ac5c"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthVFIODevice.html#a24e0e49b8bfc54f13b126f4456a6ac5c">operator=</a> (const <a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;) -&gt; <a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;=delete</td></tr>
 <tr class="separator:a24e0e49b8bfc54f13b126f4456a6ac5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba2705a3856aa482394ab50c1516be8a" id="r_aba2705a3856aa482394ab50c1516be8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthVFIODevice.html#aba2705a3856aa482394ab50c1516be8a">PorthVFIODevice</a> (<a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;&amp;)=delete</td></tr>
+<tr class="separator:aba2705a3856aa482394ab50c1516be8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e20740fe6ebca7323bb0df0ed8a093a" id="r_a1e20740fe6ebca7323bb0df0ed8a093a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classporth_1_1PorthVFIODevice.html#a1e20740fe6ebca7323bb0df0ed8a093a">operator=</a> (<a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;&amp;) -&gt; <a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;=delete</td></tr>
+<tr class="separator:a1e20740fe6ebca7323bb0df0ed8a093a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Manages physical PCIe hardware via the Linux VFIO interface. </p>
 <p>This class implements the "Sovereign Takeover" of a PCIe device. It claims the device's IOMMU group, enables bus mastering, and maps the hardware registers (BARs) directly into the logic layer's address space. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="abeb566bb2bc8edd2eb76a2b7e79b87c4" name="abeb566bb2bc8edd2eb76a2b7e79b87c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abeb566bb2bc8edd2eb76a2b7e79b87c4">&#9670;&#160;</a></span>PorthVFIODevice() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abeb566bb2bc8edd2eb76a2b7e79b87c4">&#9670;&#160;</a></span>PorthVFIODevice() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,7 +178,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a812245d599ac4ecf282ff94730d1ee8e" name="a812245d599ac4ecf282ff94730d1ee8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a812245d599ac4ecf282ff94730d1ee8e">&#9670;&#160;</a></span>PorthVFIODevice() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a812245d599ac4ecf282ff94730d1ee8e">&#9670;&#160;</a></span>PorthVFIODevice() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,9 +203,35 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="aba2705a3856aa482394ab50c1516be8a" name="aba2705a3856aa482394ab50c1516be8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba2705a3856aa482394ab50c1516be8a">&#9670;&#160;</a></span>PorthVFIODevice() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">porth::PorthVFIODevice::PorthVFIODevice </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="af112755043611b8499b70efeeb7c0dae" name="af112755043611b8499b70efeeb7c0dae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af112755043611b8499b70efeeb7c0dae">&#9670;&#160;</a></span>map_dma()</h2>
+<a id="aad7c5104e0d1e1a11a4bd9b0ce629452" name="aad7c5104e0d1e1a11a4bd9b0ce629452"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad7c5104e0d1e1a11a4bd9b0ce629452">&#9670;&#160;</a></span>map_dma()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -224,7 +254,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td> -&gt; uint64_t </td>
+          <td></td><td> const -&gt; uint64_t </td>
         </tr>
       </table>
   </td>
@@ -247,7 +277,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a24e0e49b8bfc54f13b126f4456a6ac5c" name="a24e0e49b8bfc54f13b126f4456a6ac5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24e0e49b8bfc54f13b126f4456a6ac5c">&#9670;&#160;</a></span>operator=()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a24e0e49b8bfc54f13b126f4456a6ac5c">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -259,6 +289,32 @@ Public Member Functions</h2></td></tr>
           <td class="memname">auto porth::PorthVFIODevice::operator= </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> -&gt;  <a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;=delete</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e20740fe6ebca7323bb0df0ed8a093a" name="a1e20740fe6ebca7323bb0df0ed8a093a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e20740fe6ebca7323bb0df0ed8a093a">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto porth::PorthVFIODevice::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;&amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
           <td> -&gt;  <a class="el" href="classporth_1_1PorthVFIODevice.html">PorthVFIODevice</a> &amp;=delete</td>
         </tr>
