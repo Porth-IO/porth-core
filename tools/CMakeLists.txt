@@ -9,3 +9,7 @@ target_link_libraries(porth_stat PRIVATE Porth::porth-core)
 
 add_executable(porth-chaos porth-chaos.cpp)
 target_link_libraries(porth-chaos PRIVATE porth-core)
+
+# Environmental diagnostic for Newport Cluster deployment
+add_executable(porth-check-env porth-check-env.cpp)
+target_link_libraries(porth-check-env PRIVATE Porth::porth-core)

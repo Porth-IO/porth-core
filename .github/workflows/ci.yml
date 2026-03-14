@@ -96,6 +96,15 @@ jobs:
 
           # 3. Trigger the Sovereign Latency Guard
           python3 scripts/latency_guard.py benchmarks_report.json
+      
+      - name: 6.5 Execute Sovereign Resilience Audit
+        run: |
+          # 1. Ensure the Python environment is ready
+          chmod +x scripts/generate_resilience_report.py
+          
+          # 2. Execute the report generator we built in Phase 2
+          # This runs the test_safety_trip binary and produces resilience_report.json
+          python3 scripts/generate_resilience_report.py
 
       - name: 7. Generate Sovereign SBOM
         run: |
@@ -139,6 +148,7 @@ jobs:
           path: |
             porth-io-sbom.json
             benchmarks_report.json
+            resilience_report.json
             build-ci/*.o
 
   deploy:

@@ -51,24 +51,44 @@ private:
 
     static constexpr size_t HP_SIZE = static_cast<size_t>(2) * 1024 * 1024;
 
+    /** @brief Bits per byte constant to eliminate magic numbers. */
+    static constexpr size_t BITS_PER_BYTE = 8;
+
     /** @brief Internal helper to handle the initial memory acquisition. */
-    void allocate_initial_buffer() noexcept {
+    void allocate_initial_buffer() {
+        // Verify NUMA node is available before allocation
+        if (numa_available() < 0) {
+            std::cerr << "[Porth-IO] Warning: NUMA support not available in kernel.\n";
+            m_ptr             = std::aligned_alloc(HP_SIZE, m_total_size);
+            m_is_numa_managed = false;
+            return;
+        }
+
+        // Strict allocation on the target node.
+        // This ensures the logic layer and Newport hardware share the same local memory bus.
         // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
         m_ptr = numa_alloc_onnode(m_total_size, m_node);
 
         if (m_ptr == nullptr) {
-            std::cout << "[Porth-IO] Warning: NUMA node allocation failed.\n";
-            // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
+            std::cerr << std::format("[Porth-IO] Critical: Allocation failed on NUMA node {}.\n",
+                                     m_node);
             m_ptr             = std::aligned_alloc(HP_SIZE, m_total_size);
             m_is_numa_managed = false;
         } else {
             m_is_numa_managed = true;
+            // Explicitly bind the memory policy to this node to prevent pages from migrating.
+            unsigned long nodemask = (1UL << m_node);
+            if (set_mempolicy(MPOL_BIND, &nodemask, (sizeof(nodemask) * BITS_PER_BYTE) + 1) != 0) {
+                std::cerr << "[Porth-IO] Warning: Could not set strict MPOL_BIND policy.\n";
+            }
         }
     }
 
     /** @brief Internal helper to attempt the HugePage upgrade. */
     void attempt_hugepage_upgrade() {
-        int flags = MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_LOCKED;
+        // MAP_LOCKED ensures the memory is pinned in RAM and never swapped to disk.
+        // MAP_POPULATE pre-faults the pages to ensure the TLB is primed before use.
+        int flags = MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_LOCKED | MAP_POPULATE;
 
         // Declare as owner immediately so the assignment to m_ptr is valid.
         // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)

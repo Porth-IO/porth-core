@@ -1,50 +1,78 @@
+/**
+ * @file test_safety_trip.cpp
+ * @brief Verification of the Lattice-Guard Sentinel emergency shutdown.
+ */
+
 #include "porth/PorthDriver.hpp"
+#include "porth/PorthSentinel.hpp"
 #include "porth/PorthSimDevice.hpp"
 #include <catch2/catch_test_macros.hpp>
 #include <chrono>
+#include <filesystem>
 #include <thread>
+#include <vector>
 
-// Tell Clang-Tidy to ignore macro-expansion noise from Catch2
 // NOLINTBEGIN(cppcoreguidelines-avoid-do-while, bugprone-chained-comparison,
 // cppcoreguidelines-avoid-goto)
 
 TEST_CASE("Sovereign Watchdog: Thermal Emergency Halt", "[safety]") {
     using namespace porth;
+    namespace fs = std::filesystem;
 
-    // 1. Setup the Hardware Simulation FIRST
+    // 1. Ultra-Robust Pathing: Hunt for the config file in common locations
+    std::string config_path;
+    std::vector<std::string> search_paths = {
+        "../configs/newport_default.json",    // Normal local build
+        "../../configs/newport_default.json", // CI running from build-ci/tests
+        "configs/newport_default.json"        // Root execution
+    };
+
+    bool found = false;
+    for (const auto& path : search_paths) {
+        if (fs::exists(path)) {
+            config_path = path;
+            found       = true;
+            break;
+        }
+    }
+
+    // 2. Setup the Hardware Simulation
     PorthSimDevice sim("safety_test_device");
+
+    if (found) {
+        sim.load_newport_profile(config_path);
+    } else {
+        std::cerr << "[Test] Warning: No PDK profile found. Using hardware defaults.\n";
+    }
+
     auto* regs = sim.view();
 
-    // 2. Create a nested scope for the Driver
-    {
-        Driver<1024> driver(regs);
+    // 3. Initialize the Lattice-Guard Sentinel on Core 1
+    porth::PorthSentinel sentinel(regs, 1);
+    sentinel.start();
 
-        // 3. Power on the "Laser"
-        regs->control.write(0x1);
+    // 4. Power on and Inject Heat
+    regs->control.write(0x1);
+    std::cout << "[Test] Injecting 46,000mC thermal spike...\n";
+    regs->laser_temp.write(46000);
 
-        // 4. Inject "Illegal" Heat (50.0°C)
-        std::cout << "[Test] Injecting 50,000mC thermal spike...\n";
-        regs->laser_temp.write(50000);
-
-        // 5. SOVEREIGN POLL: Give the watchdog time to wake up.
-        bool tripped = false;
-        for (int i = 0; i < 1000; ++i) {
-            regs->laser_temp.write(50000);
-
-            if (regs->control.load() == 0x0) {
-                tripped = true;
-                break;
-            }
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    // 5. Verification Loop with extended window for CI jitter
+    bool tripped = false;
+    for (int i = 0; i < 500; ++i) { // 1 second total window
+        if (regs->safety_trip.load() == 0xDEADBEEF) {
+            tripped = true;
+            break;
         }
-
-        // 6. Verify the hardware was SHUT DOWN
-        REQUIRE(tripped == true);
-        std::atomic_thread_fence(std::memory_order_acquire);
-        REQUIRE(regs->control.load() == 0x0);
-
-        std::cout << "[Success] Watchdog successfully killed the hardware power rail.\n";
+        std::this_thread::sleep_for(std::chrono::milliseconds(2));
     }
+
+    // 6. Verify success
+    REQUIRE(tripped == true);
+    REQUIRE(regs->safety_trip.load() == 0xDEADBEEF);
+
+    std::cout << "[Success] Sentinel triggered 0xDEADBEEF trip.\n";
+
+    sentinel.stop();
 }
 
 // NOLINTEND(cppcoreguidelines-avoid-do-while, bugprone-chained-comparison,

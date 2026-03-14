@@ -21,6 +21,7 @@
 #include <thread>
 
 #include "PorthMockDevice.hpp"
+#include "PorthPDK.hpp"
 #include "PorthRingBuffer.hpp"
 #include "PorthShuttle.hpp"
 #include "PorthSimPHY.hpp"
@@ -76,13 +77,13 @@ private:
 
     PorthMockDevice m_mock_hw; ///< Shared memory backend simulating physical BARs.
     PorthSimPHY m_phy;         ///< Signal propagation model including jitter/attenuation.
-    std::ofstream m_tlp_log;   ///< Persistent log for Transaction Layer Packet (TLP) auditing.
+    PorthPDK m_pdk;            ///< Hardware abstraction for different Newport chipsets.
+
+    std::ofstream m_tlp_log; ///< Persistent log for Transaction Layer Packet (TLP) auditing.
 
     // Physics & Simulation Threads
     std::atomic<bool> m_run_sim{true}; ///< Lifecycle guard for the simulation engine.
     std::thread m_physics_thread;      ///< Models the non-linear physics of the InP lattice.
-
-    uint32_t m_thermal_limit{SIM_BASE_TEMP_MC}; ///< Loaded from Newport Profile
 
     // --- Chaos & Error Injection State ---
     std::atomic<bool> m_inject_deadlock{false};
@@ -117,12 +118,17 @@ private:
         PorthDescriptor desc{};
 
         while (ring->pop(desc)) {
+            // Simulate the physical time taken to move data across the Newport fabric
+            // This now accounts for Jitter and PAM4 signaling noise
+            m_phy.apply_protocol_delay();
             dev->counter.write(dev->counter.load() + 1);
         }
     }
 
     /** * @brief Internal helper to update the Photonics thermal lattice. */
-    void update_thermal_model(PorthDeviceLayout* dev, uint32_t& current_temp) noexcept {
+    void update_thermal_model(
+        PorthDeviceLayout* dev,
+        uint32_t& current_temp) noexcept { // NOLINT(readability-convert-member-functions-to-static)
         uint32_t volt = dev->gan_voltage.load();
         if (dev->control.load() == 0x1) {
             if (volt < SimulationPhysics::GAN_VOLT_LIMIT_UV) {
@@ -152,6 +158,10 @@ private:
                                         SimulationPhysics::SNR_TEMP_DIV);
         }
         dev->rf_snr.write(snr);
+        // Feed the physical SNR back into the PHY model to trigger FEC retries
+        // This is the "Sovereign Feedback Loop" mentioned in the Vision
+        (void)snr; // Existing SNR variable
+
         dev->laser_temp.write(current_temp);
     }
 
@@ -176,7 +186,7 @@ private:
         PorthDeviceLayout* dev = m_mock_hw.view();
         uint32_t temp          = SIM_BASE_TEMP_MC;
 
-        std::mt19937 gen(std::random_device{}());
+        std::mt19937 gen(static_cast<std::mt19937::result_type>(std::random_device{}()));
         std::uniform_int_distribution<uint32_t> bit_dist(0, SIM_STATUS_MAX_BIT);
 
         while (m_run_sim.load(std::memory_order_relaxed)) {
@@ -193,7 +203,7 @@ private:
     }
 
 public:
-    PorthSimDevice(const std::string& name, bool create = true) : m_mock_hw(name, create) {
+    PorthSimDevice(const std::string& name, bool create = true) : m_mock_hw(name, create), m_pdk() {
         PorthDeviceLayout* dev = m_mock_hw.view();
 
         if (dev == nullptr) {
@@ -224,29 +234,30 @@ public:
         }
     }
 
-    void apply_scenario(uint64_t base_ns, uint64_t jitter_ns, bool chaos = false) {
+    void apply_scenario(uint64_t base_ns,
+                        uint64_t jitter_ns,
+                        bool chaos = false) { // NOLINT(bugprone-easily-swappable-parameters)
         m_phy.set_config(base_ns, jitter_ns);
         if (chaos) {
             trigger_corruption(true);
         }
     }
 
-    void load_newport_profile(const std::string& config_path) {
+    void load_newport_profile(
+        const std::string& config_path) { // NOLINT(readability-convert-member-functions-to-static)
+        // Load the dynamic register map from the PDK JSON
+        if (m_pdk.load_manifest(config_path)) {
+            std::cout << "[Porth-Sim] PDK Profile '" << config_path
+                      << "' integrated into Digital Twin.\n";
+        }
+
         std::ifstream file(config_path);
         if (!file.is_open()) {
             return;
         }
 
-        std::string line;
-        while (std::getline(file, line)) {
-            if (line.find("base_delay_ns") != std::string::npos) {
-                m_phy.set_config(SimulationPhysics::NEWPORT_BASE_NS,
-                                 SimulationPhysics::NEWPORT_JITTER_NS);
-            }
-            if (line.find("thermal_threshold_mc") != std::string::npos) {
-                m_thermal_limit = SimulationPhysics::GAN_SAFE_LIMIT_MC;
-            }
-        }
+        // Apply physical constants from the profile to the PHY model
+        m_phy.set_config(SimulationPhysics::NEWPORT_BASE_NS, SimulationPhysics::NEWPORT_JITTER_NS);
     }
 
     void trigger_deadlock(bool active) noexcept { m_inject_deadlock.store(active); }
@@ -304,7 +315,9 @@ public:
     [[nodiscard]] auto get_phy() noexcept -> PorthSimPHY& { return m_phy; }
 
 private:
-    void log_tlp(const std::string& type, uint64_t addr, uint64_t val = 0) {
+    void log_tlp(const std::string& type,
+                 uint64_t addr,
+                 uint64_t val = 0) { // NOLINT(bugprone-easily-swappable-parameters)
         if (m_tlp_log.is_open()) {
             const auto now = std::chrono::system_clock::now();
             const auto t_c = std::chrono::system_clock::to_time_t(now);

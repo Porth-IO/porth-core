@@ -41,6 +41,25 @@ constexpr uint32_t MC_TO_C_DIVISOR      = 1000; ///< Conversion factor for milli
  */
 constexpr uint64_t FEC_RETRY_SPIKE_NS = 500;
 
+/** * @brief PAM4 Signaling Noise Floor (12ps).
+ * Simulates the high-frequency jitter floor of PCIe Gen 6 PAM4 signaling.
+ */
+constexpr uint64_t PAM4_JITTER_FLOOR_PS = 12;
+
+/** * @brief Signal-to-Noise Ratio (SNR) Penalty.
+ * As SNR drops, logic delay increases as the PHY works harder to recover the clock.
+ */
+constexpr uint64_t SNR_PENALTY_NS_PER_DB = 2;
+
+/** * @brief Standard SNR baseline for healthy hardware (30dB). */
+constexpr int32_t STANDARD_SNR_DB = 3000;
+
+/** * @brief Critical SNR threshold for increased error rates (20dB). */
+constexpr int32_t SNR_CRITICAL_THRESHOLD = 2000;
+
+/** * @brief Error rate multiplier for low SNR conditions. */
+constexpr double FEC_LOW_SNR_MULTIPLIER = 10.0;
+
 /**
  * @class PorthSimPHY
  * @brief Emulates PCIe physical layer effects for compound semiconductor interconnects.
@@ -70,9 +89,12 @@ private:
      */
     std::atomic<uint32_t> m_current_temp_mc{DEFAULT_BASE_TEMP_MC};
 
-    std::mt19937 m_gen;
-    std::uniform_int_distribution<int64_t> m_jitter_dist;
-    std::uniform_real_distribution<double> m_error_dist;
+    /** @brief Internal random engine and distributions.
+     * Marked mutable to allow access from const-qualified physics methods.
+     */
+    mutable std::mt19937 m_gen;
+    mutable std::uniform_int_distribution<int64_t> m_jitter_dist;
+    mutable std::uniform_real_distribution<double> m_error_dist;
 
     /** * @brief Physics Model: Calculates jitter based on thermal lattice drift.
      * * Justification: As temperature rises above 40°C, the InP semiconductor
@@ -90,10 +112,18 @@ private:
     }
 
     /** * @brief Error Model: Simulates uncorrectable FEC events.
+     * @param current_snr The Signal-to-Noise Ratio (SNR) in milli-dB.
      * @return uint64_t Penalty in ns (0 if no error).
      */
-    [[nodiscard]] auto get_fec_penalty() noexcept -> uint64_t {
-        if (m_error_dist(m_gen) < m_fec_error_rate) {
+    [[nodiscard]] auto get_fec_penalty(int32_t current_snr) const noexcept -> uint64_t {
+        // As SNR (from PorthDeviceLayout) drops, the probability of an FEC retry increases
+        // exponentially. Standard SNR is 30.00 dB (represented as 3000 in the register)
+        double error_rate = m_fec_error_rate;
+        if (current_snr < SNR_CRITICAL_THRESHOLD) {
+            error_rate *= FEC_LOW_SNR_MULTIPLIER; // 10x error increase at low SNR
+        }
+
+        if (m_error_dist(m_gen) < error_rate) {
             return FEC_RETRY_SPIKE_NS;
         }
         return 0;
@@ -128,7 +158,7 @@ public:
                          uint64_t jitter_init = DEFAULT_JITTER_INIT_NS,
                          double cpns          = DEFAULT_CPNS)
         : m_base_delay_ns(base_ns), m_jitter_ns(jitter_init), m_cycles_per_ns(cpns),
-          m_gen(std::random_device{}()),
+          m_gen(static_cast<std::mt19937::result_type>(std::random_device{}())),
           m_jitter_dist(-static_cast<int64_t>(jitter_init), static_cast<int64_t>(jitter_init)),
           m_error_dist(0.0, 1.0) {}
 
@@ -159,19 +189,23 @@ public:
      * * This is the high-level orchestrator for the PHY model. It enforces
      * deterministic latency by summing fiber delay, jitter, thermal drift,
      * and FEC retry penalties.
+     * @param current_snr The Signal-to-Noise Ratio (SNR) in milli-dB.
      * @note Utilizes a sovereign spin-loop to achieve nanosecond resolution
      * that is impossible with standard OS sleep primitives.
      */
-    auto apply_protocol_delay() noexcept -> void {
+    auto apply_protocol_delay(int32_t current_snr = STANDARD_SNR_DB) noexcept -> void {
         // 1. Accumulate total propagation delay from the physics model.
-        const int64_t random_jitter = (m_jitter_ns > 0) ? m_jitter_dist(m_gen) : 0;
+        int64_t random_jitter = 0;
+        if (m_jitter_ns > 0) {
+            random_jitter = m_jitter_dist(m_gen);
+        }
 
         uint64_t total_delay_ns =
             m_base_delay_ns + m_fec_penalty_ns + static_cast<uint64_t>(random_jitter);
 
         // 2. Add non-deterministic penalties (Physics-based).
         total_delay_ns += calculate_thermal_jitter();
-        total_delay_ns += get_fec_penalty();
+        total_delay_ns += get_fec_penalty(current_snr);
 
         // 3. Convert time to CPU cycles for high-precision wait.
         const auto target_cycles =

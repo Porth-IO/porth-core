@@ -28,12 +28,20 @@ using owner = T;
 
 namespace porth {
 
-/** * @brief Standard cache line size (64 bytes).
- * We align the Producer and Consumer indices to separate lines to prevent
- * "False Sharing," where the L1 cache coherency protocol (MESI) would otherwise
- * cause constant cache-line ping-ponging between cores.
+#ifdef __cpp_lib_hardware_interference_size
+using std::hardware_constructive_interference_size;
+using std::hardware_destructive_interference_size;
+#else
+// Fallback for architectures or compilers that don't yet export the size.
+// 64 is the safe industrial standard for x86 and current ARM servers.
+constexpr size_t hardware_destructive_interference_size = 64;
+#endif
+
+/** * @brief Hardware-Aware cache line size.
+ * Using the compiler-provided interference size ensures the Porth logic layer
+ * is perfectly optimized for the specific "Sovereign" silicon it is compiled for.
  */
-constexpr size_t RING_CACHE_LINE_SIZE = 64;
+constexpr size_t RING_CACHE_LINE_SIZE = hardware_destructive_interference_size;
 
 /** @brief Default ring buffer capacity. */
 constexpr size_t DEFAULT_RING_CAPACITY = 1024;
@@ -80,8 +88,8 @@ private:
      * Marked as gsl::owner to denote that this class manages the memory
      * lifecycle if an external HugePage pointer is not provided.
      */
-    gsl::owner<PorthDescriptor*> m_buffer;
-    bool m_owns_buffer; ///< RAII flag for memory lifecycle management.
+    gsl::owner<PorthDescriptor*> m_buffer = nullptr;
+    bool m_owns_buffer                    = false; ///< RAII flag for memory lifecycle management.
 
     // Cache-line 1: The Producer's territory (Typically the Chip or TX side).
     // Aligned to 64 bytes to ensure the producer thread owns this cache line exclusively.
@@ -92,6 +100,9 @@ private:
     // Isolated to prevent the consumer's 'tail' updates from invalidating the producer's L1 cache.
     alignas(RING_CACHE_LINE_SIZE) std::atomic<uint32_t> m_tail{0};
     std::array<uint8_t, RING_CACHE_LINE_SIZE - sizeof(std::atomic<uint32_t>)> m_pad1{};
+
+    // Ensure the rest of the class doesn't bleed into the tail's cache line
+    alignas(RING_CACHE_LINE_SIZE) std::array<char, 0> m_final_pad{};
 
 public:
     /**

@@ -25,9 +25,9 @@ namespace porth {
 constexpr size_t cache_line_alignment = 64;
 
 /** * @brief Total footprint of the MMIO region.
- * Must remain exactly 448 bytes to match the FPGA/ASIC register file RTL.
+ * Must remain exactly 512 bytes to match the FPGA/ASIC register file RTL.
  */
-constexpr size_t expected_layout_size = 448;
+constexpr size_t expected_layout_size = 512;
 
 // --- MMIO Layout Offsets ---
 // These offsets are strictly defined by the Physical Design Kit (PDK).
@@ -41,6 +41,7 @@ constexpr size_t offset_counter     = 0xC0;
 constexpr size_t offset_laser_temp  = 0x100;
 constexpr size_t offset_gan_voltage = 0x140;
 constexpr size_t offset_rf_snr      = 0x180;
+constexpr size_t offset_safety_trip = 0x1C0;
 
 /**
  * @struct PorthDeviceLayout
@@ -99,6 +100,12 @@ struct alignas(cache_line_alignment) PorthDeviceLayout {
      * Represents the integrity of the high-speed RF mode coupling.
      */
     PorthRegister<int32_t> rf_snr;
+
+    /** @brief Offset 0x1C0: Hardware Emergency Trip.
+     * Write 0xDEADBEEF to trigger an immediate hardware-level shutdown.
+     * Designed to protect InP/GaN substrates during thermal/voltage excursions.
+     */
+    PorthRegister<uint32_t> safety_trip;
 };
 
 // --- PHYSICAL MEMORY AUDIT ---
@@ -128,5 +135,7 @@ static_assert(offsetof(PorthDeviceLayout, gan_voltage) == offset_gan_voltage,
               "Physical Mismatch: 'gan_voltage' register moved from 0x140.");
 static_assert(offsetof(PorthDeviceLayout, rf_snr) == offset_rf_snr,
               "Physical Mismatch: 'rf_snr' register moved from 0x180.");
+static_assert(offsetof(PorthDeviceLayout, safety_trip) == offset_safety_trip,
+              "Physical Mismatch: 'safety_trip' register moved from 0x1C0.");
 
 } // namespace porth

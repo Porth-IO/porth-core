@@ -25,3 +25,6 @@ echo "[Porth-Demo] 4. Connecting Sovereign Dashboard..."
 sleep 2 
 # Add sudo here so the dashboard can read the root-owned telemetry SHM
 sudo ./build/tools/porth-sim-ctl monitor porth_newport_0
+
+echo "--- Running Sovereign Resilience Audit ---"
+python3 ./scripts/generate_resilience_report.py

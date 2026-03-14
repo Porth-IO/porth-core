@@ -54,7 +54,7 @@ constexpr size_t SHUTTLE_PAGE_SIZE = static_cast<size_t>(2) * 1024 * 1024;
  * @tparam Capacity The number of descriptors in the ring. Must be a power of two.
  */
 template <size_t Capacity = DEFAULT_SHUTTLE_CAPACITY>
-class PorthShuttle {
+class alignas(RING_CACHE_LINE_SIZE) PorthShuttle {
 private:
     /** @brief The underlying HugePage memory allocation.
      * RAII-managed to ensure memory is pinned for the duration of the hardware session.
@@ -64,7 +64,7 @@ private:
     /** @brief Typed pointer to the ring buffer within the HugePage.
      * Managed via 'Placement New' logic.
      */
-    gsl::owner<PorthRingBuffer<Capacity>*> m_ring_ptr;
+    gsl::owner<PorthRingBuffer<Capacity>*> m_ring_ptr = nullptr;
 
     uint64_t m_device_iova = 0; ///< Device-visible I/O Virtual Address.
 
@@ -77,8 +77,7 @@ public:
      * 'Standard Layout' requirements and the HugePage provides the
      * necessary 64-byte alignment for DMA-Sovereignty.
      */
-    explicit PorthShuttle(int numa_node = 0)
-        : m_memory(SHUTTLE_PAGE_SIZE, NumaNode(numa_node)), m_ring_ptr(nullptr) {
+    explicit PorthShuttle(int numa_node = 0) : m_memory(SHUTTLE_PAGE_SIZE, NumaNode(numa_node)) {
 
         // Safety Check: We cannot map non-Standard Layout types because
         // compiler-specific padding would break the Newport hardware's view of memory.
@@ -87,7 +86,8 @@ public:
             "Cannot map PorthRingBuffer: Type violates Standard Layout rules for MMIO/DMA.");
 
         // Retrieve the raw base address from the pinned HugePage region.
-        void* base_addr = m_memory.data();
+        void* base_addr = nullptr;
+        base_addr       = m_memory.data();
 
         // Placement New: We construct the C++ object directly onto the hardware-visible memory.
         // This is a zero-copy operation; the CPU and InP/GaN chip now share this exact memory
@@ -102,6 +102,7 @@ public:
 
         // Sovereign Audit: Verify CPU-Memory Co-location
         const int current_node = get_current_numa_node();
+        // NOLINTNEXTLINE(bugprone-branch-clone)
         if (current_node != m_memory.node()) {
             std::cerr << std::format(
                 "!! [Sovereign-Alert] Performance Hazard: Thread is on NUMA Node {}, "
