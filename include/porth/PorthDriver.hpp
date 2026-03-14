@@ -57,6 +57,9 @@ private:
     std::atomic<bool> m_run_watchdog{true};
     std::atomic<bool> m_watchdog_ready{false};
 
+    static constexpr uint32_t THERMAL_THRESHOLD_MC = 45000;
+    static constexpr uint64_t WATCHDOG_SLEEP_US    = 20;
+
     PorthStats* m_stats{nullptr};
 
     /**
@@ -69,13 +72,13 @@ private:
 
         // Safety: Local copy of pointer to avoid re-fetching from 'this' if unstable
         auto* local_regs = m_regs;
-        if (!local_regs) {
+        if (local_regs == nullptr) {
             std::cerr << "[Trace] Watchdog: FATAL - local_regs is null!\n" << std::flush;
             return;
         }
 
         try {
-            (void)pin_thread_to_core(0);
+            [[maybe_unused]] auto status = pin_thread_to_core(0);
             std::cout << "[Trace] Watchdog: Core Pinning Successful.\n" << std::flush;
         } catch (...) {
             std::cerr << "[Trace] Watchdog: Core Pinning Failed.\n" << std::flush;
@@ -87,7 +90,7 @@ private:
             // Check for trip
             const uint32_t temp = local_regs->laser_temp.load();
 
-            if (temp > 45000) {
+            if (temp > THERMAL_THRESHOLD_MC) {
                 std::cerr << std::format("\n!! [Sovereign-Watchdog] THERMAL BREACH: {}mC. Halt.\n",
                                          temp)
                           << std::flush;
@@ -96,7 +99,7 @@ private:
                 break;
             }
 
-            std::this_thread::sleep_for(std::chrono::microseconds(20));
+            std::this_thread::sleep_for(std::chrono::microseconds(WATCHDOG_SLEEP_US));
         }
         std::cout << "[Trace] Watchdog: Thread Exiting Gracefully.\n" << std::flush;
     }
@@ -168,14 +171,15 @@ public:
      */
     [[nodiscard]] auto transmit(const PorthDescriptor& desc) noexcept -> PorthStatus {
         if (m_shuttle->ring()->push(desc)) {
-            if (m_stats) {
+            if (m_stats != nullptr) {
                 m_stats->total_packets.fetch_add(1, std::memory_order_relaxed);
                 m_stats->total_bytes.fetch_add(desc.len, std::memory_order_relaxed);
             }
             return PorthStatus::SUCCESS;
         }
-        if (m_stats)
+        if (m_stats != nullptr) {
             m_stats->dropped_packets.fetch_add(1, std::memory_order_relaxed);
+        }
         return PorthStatus::FULL;
     }
 
@@ -201,6 +205,11 @@ public:
     [[nodiscard]] auto get_shuttle() const noexcept -> PorthShuttle<RingSize>* {
         return m_shuttle.get();
     }
+
+    Driver(const Driver&)                    = delete;
+    Driver(Driver&&)                         = delete;
+    auto operator=(const Driver&) -> Driver& = delete;
+    auto operator=(Driver&&) -> Driver&      = delete;
 };
 
 } // namespace porth

@@ -55,6 +55,10 @@ private:
     uint64_t m_jitter_ns;     ///< Peak-to-peak range of random clock noise.
     double m_cycles_per_ns;   ///< Calibrated CPU frequency factor.
 
+    /** @brief Constants for thermal inertia increments. */
+    static constexpr uint32_t HEATING_STEP_MC = 25;
+    static constexpr uint32_t COOLING_STEP_MC = 15;
+
     /** @brief Probability of a Forward Error Correction (FEC) retry. */
     double m_fec_error_rate = DEFAULT_FEC_ERROR_RATE;
 
@@ -133,7 +137,21 @@ public:
      * @param temp_mc Current laser temperature in milli-Celsius (mC).
      */
     auto update_thermal_load(uint32_t temp_mc) noexcept -> void {
-        m_current_temp_mc.store(temp_mc, std::memory_order_relaxed);
+        // Thermal Inertia: Instead of an instant "jump", we model the heat capacity
+        // of the InP lattice. The temperature "sloughs" towards the target.
+        const uint32_t current = m_current_temp_mc.load(std::memory_order_relaxed);
+        if (temp_mc > current) {
+            m_current_temp_mc.store(current + HEATING_STEP_MC,
+                                    std::memory_order_relaxed); // Gradual heating
+        } else if (temp_mc < current) {
+            m_current_temp_mc.store(current - COOLING_STEP_MC,
+                                    std::memory_order_relaxed); // Gradual cooling
+        }
+    }
+
+    /** @brief Returns the internal inertial temperature for register syncing. */
+    [[nodiscard]] auto get_current_temp() const noexcept -> uint32_t {
+        return m_current_temp_mc.load(std::memory_order_relaxed);
     }
 
     /**

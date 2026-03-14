@@ -49,21 +49,45 @@ void handle_monitor(const std::string& name,
     PorthSimDevice sim(name, false); // Client
     auto* dev = sim.view();
 
-    std::cout << "\n--- [ NEWPORT CLUSTER TELEMETRY: " << name << " ] ---" << '\n';
-    std::cout << "TIME     | TEMP (C) | RAIL (V) | STATUS | COUNTER" << '\n';
-    std::cout << "------------------------------------------------" << '\n';
+    // Sovereign Dashboard Initialization: Clear screen and draw header
+    std::cout << "\033[2J\033[H"; // ANSI escape code to clear terminal and home cursor
+    std::cout << "========================================================\n";
+    std::cout << "          PORTH-IO: SOVEREIGN LOGIC DASHBOARD           \n";
+    std::cout << "========================================================\n";
+
 
     for (int i = 0; i < iterations; ++i) {
-        const float temp     = static_cast<float>(sim.read_reg(dev->laser_temp)) / scale_factor;
-        const float volt     = static_cast<float>(sim.read_reg(dev->gan_voltage)) / scale_factor;
-        const uint32_t stat  = sim.read_reg(dev->status);
-        const uint64_t count = sim.read_reg(dev->counter);
 
-        std::cout << i << "s       | " << std::fixed << std::setprecision(1) << temp << "      | "
-                  << volt << "      | 0x" << std::hex << stat << "    | " << std::dec << count
-                  << '\n';
+        if (dev->status.load() == 0) {
+            std::cout << "\n[System] Chip Offline (Safety Trip/Shutdown). Demo Finished.\n";
+            return; 
+        }
 
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        // 1. Read Physics Registers from the Sovereign Logic Layer
+        const uint32_t temp_mc = sim.read_reg(dev->laser_temp);
+        const uint32_t volt_mv = sim.read_reg(dev->gan_voltage);
+        const int32_t snr_raw  = sim.read_reg(dev->rf_snr);
+        const uint64_t count   = sim.read_reg(dev->counter);
+
+        // 1. Clear the line before printing to prevent ghosting/glitches
+        // \r moves to start, \033[K clears from cursor to end of line
+        std::cout << "\r\033[K" << std::flush; 
+
+        // 2. Format Split-Screen View: NET on left, HW on right
+        std::cout << std::format("[NET] Packets: {:<10} | [HW] Temp: {:.1f}C  Volt: {:>3}V  SNR: {:.2f}dB",
+                                 count,
+                                 static_cast<double>(temp_mc) / static_cast<double>(scale_factor),
+                                 volt_mv / static_cast<uint32_t>(scale_factor),
+                                 static_cast<double>(snr_raw) / 100.0);
+
+        // 3. Visual "Trip Wire" Alert
+        if (temp_mc > 40000) { 
+            std::cout << "  !! THERMAL WARNING !!";
+        }
+        std::cout << std::flush;
+
+        // Timing delay so the human eye can see the dashboard
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
 } // namespace

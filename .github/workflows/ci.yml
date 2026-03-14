@@ -54,20 +54,23 @@ jobs:
 
       - name: 3. Static Analysis (Clang-Tidy)
         run: |
-          # 1. Analyze C++ files
-          # We use -p build-ci so it finds the compile_commands.json
-          find examples -name "*.cpp" | xargs -r clang-tidy -p build-ci --quiet
+          # 1. Audit Sovereign Engine & Examples (Maximum Strictness)
+          find examples include -name "*.cpp" -not -path "*/build/*" | \
+          xargs -r clang-tidy -p build-ci --quiet --warnings-as-errors='*' \
+            --header-filter="${{ github.workspace }}/include/porth/.*"
 
-          # 2. Analyze eBPF C files (The Fix)
-          # We need to explicitly tell clang-tidy:
-          # - Use C mode (-xc)
-          # - Target BPF architecture
-          # - Where the 'asm' headers are located for this specific machine
-          
+          # 2. Audit Tests (Framework-Aware)
+          # We disable checks triggered by Catch2's internal macro expansion
+          find tests -name "*.cpp" -not -path "*/build/*" | \
+          xargs -r clang-tidy -p build-ci --quiet --warnings-as-errors='*' \
+            --header-filter="${{ github.workspace }}/include/porth/.*" \
+            --checks="-cppcoreguidelines-avoid-do-while,-bugprone-chained-comparison,-cppcoreguidelines-avoid-goto"
+
+          # 3. Audit eBPF Logic
           ARCH_INC="/usr/include/$(uname -m)-linux-gnu"
-          
-          find include -name "*.c" | xargs -r clang-tidy -p build-ci --quiet \
-            --header-filter="include/porth/.*" \
+          find include -name "*.c" -not -path "*/build/*" | xargs -r clang-tidy -p build-ci --quiet \
+            --warnings-as-errors='*' \
+            --header-filter="${{ github.workspace }}/include/porth/.*" \
             --checks="-*,clang-diagnostic-*,bugprone-*,performance-*,readability-braces-around-statements" \
             --extra-arg="-xc" \
             --extra-arg="-target" --extra-arg="bpf" \

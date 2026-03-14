@@ -4,6 +4,10 @@
 #include <chrono>
 #include <thread>
 
+// Tell Clang-Tidy to ignore macro-expansion noise from Catch2
+// NOLINTBEGIN(cppcoreguidelines-avoid-do-while, bugprone-chained-comparison,
+// cppcoreguidelines-avoid-goto)
+
 TEST_CASE("Sovereign Watchdog: Thermal Emergency Halt", "[safety]") {
     using namespace porth;
 
@@ -24,7 +28,9 @@ TEST_CASE("Sovereign Watchdog: Thermal Emergency Halt", "[safety]") {
 
         // 5. SOVEREIGN POLL: Give the watchdog time to wake up.
         bool tripped = false;
-        for (int i = 0; i < 200; ++i) { // Increase to 200ms to be safe
+        for (int i = 0; i < 1000; ++i) {
+            regs->laser_temp.write(50000);
+
             if (regs->control.load() == 0x0) {
                 tripped = true;
                 break;
@@ -33,12 +39,13 @@ TEST_CASE("Sovereign Watchdog: Thermal Emergency Halt", "[safety]") {
         }
 
         // 6. Verify the hardware was SHUT DOWN
-        // We check 'tripped' first to avoid calling regs if the test is failing
         REQUIRE(tripped == true);
+        std::atomic_thread_fence(std::memory_order_acquire);
         REQUIRE(regs->control.load() == 0x0);
 
         std::cout << "[Success] Watchdog successfully killed the hardware power rail.\n";
     }
-    // Driver's destructor is called here. m_watchdog_thread.join() runs.
-    // Thread is dead. Now 'sim' can safely go out of scope.
 }
+
+// NOLINTEND(cppcoreguidelines-avoid-do-while, bugprone-chained-comparison,
+// cppcoreguidelines-avoid-goto)

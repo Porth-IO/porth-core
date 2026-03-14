@@ -21,6 +21,8 @@ struct PorthStats {
 
 class PorthTelemetryHub {
 private:
+    static constexpr mode_t SHM_PERMISSIONS = 0666;
+
     std::string m_name;
     PorthStats* m_stats{nullptr};
     bool m_owner;
@@ -30,9 +32,10 @@ public:
         : m_name("/" + name), m_owner(create) {
 
         int flags = O_RDWR | (create ? O_CREAT : 0);
-        int fd    = shm_open(m_name.c_str(), flags, 0666);
-        if (fd == -1)
+        int fd    = shm_open(m_name.c_str(), flags, SHM_PERMISSIONS);
+        if (fd == -1) {
             throw std::runtime_error("Telemetry SHM failed");
+        }
 
         if (create) {
             // 1. Set the size of the shared memory block
@@ -43,7 +46,7 @@ public:
 
             // 2. Change permissions so non-root users can read/write.
             // This allows porth_stat (standard user) to talk to the Driver (root).
-            if (fchmod(fd, 0666) == -1) {
+            if (fchmod(fd, SHM_PERMISSIONS) == -1) {
                 close(fd);
                 throw std::runtime_error("Failed to set SHM permissions");
             }
@@ -53,15 +56,25 @@ public:
         close(fd);
 
         m_stats = static_cast<PorthStats*>(ptr);
-        if (create)
+        if (create) {
             new (m_stats) PorthStats(); // Placement new to init atomics
+        }
     }
 
     ~PorthTelemetryHub() {
-        munmap(m_stats, sizeof(PorthStats));
-        if (m_owner)
+        if (m_stats != nullptr) {
+            munmap(m_stats, sizeof(PorthStats));
+        }
+        if (m_owner) {
             shm_unlink(m_name.c_str());
+        }
     }
+
+    // SHM handles are unique to the process mapping; copying or moving is prohibited.
+    PorthTelemetryHub(const PorthTelemetryHub&)                    = delete;
+    auto operator=(const PorthTelemetryHub&) -> PorthTelemetryHub& = delete;
+    PorthTelemetryHub(PorthTelemetryHub&&)                         = delete;
+    auto operator=(PorthTelemetryHub&&) -> PorthTelemetryHub&      = delete;
 
     auto view() noexcept -> PorthStats* { return m_stats; }
 };

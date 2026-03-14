@@ -78,7 +78,7 @@ public:
      * necessary 64-byte alignment for DMA-Sovereignty.
      */
     explicit PorthShuttle(int numa_node = 0)
-        : m_memory(SHUTTLE_PAGE_SIZE, numa_node), m_ring_ptr(nullptr) {
+        : m_memory(SHUTTLE_PAGE_SIZE, NumaNode(numa_node)), m_ring_ptr(nullptr) {
 
         // Safety Check: We cannot map non-Standard Layout types because
         // compiler-specific padding would break the Newport hardware's view of memory.
@@ -92,7 +92,9 @@ public:
         // Placement New: We construct the C++ object directly onto the hardware-visible memory.
         // This is a zero-copy operation; the CPU and InP/GaN chip now share this exact memory
         // address.
-        m_ring_ptr = new (base_addr) PorthRingBuffer<Capacity>();
+        if (base_addr != nullptr) {
+            m_ring_ptr = new (base_addr) PorthRingBuffer<Capacity>();
+        }
 
         // Telemetry logging for the initialization phase.
         std::cout << std::format("[Porth-Shuttle] Zero-Copy Placement New successful at: {}\n",

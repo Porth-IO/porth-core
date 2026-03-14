@@ -23,84 +23,90 @@
 #include <sys/mman.h>
 #include <unistd.h>
 
+// Minimal GSL-like owner tag to satisfy Clang-Tidy ownership rules.
+namespace gsl {
+template <typename T>
+using owner = T;
+}
+
 namespace porth {
+
+/** @brief Strongly typed NUMA node to prevent swappable parameter errors. */
+struct NumaNode {
+    int value;
+    explicit NumaNode(int v) : value(v) {}
+};
 
 /**
  * @class PorthHugePage
  * @brief RAII wrapper for pinning memory to 2MB HugePage boundaries with NUMA affinity.
- *
- * Optimized for InP/GaN DMA transfers, this class ensures memory is physically
- * co-located on the same NUMA node as the hardware device to eliminate
- * cross-socket interconnect latency.
  */
 class PorthHugePage {
 private:
-    void* m_ptr = nullptr;  ///< Base address of the mapped memory region.
-    size_t m_total_size;    ///< Total size after alignment to HugePage boundaries.
-    int m_node;             ///< The target NUMA node for this allocation.
-    bool m_is_numa_managed; ///< Tracks if libnuma was used for allocation.
+    gsl::owner<void*> m_ptr = nullptr; ///< Base address of the mapped memory region.
+    size_t m_total_size;               ///< Total size after alignment to HugePage boundaries.
+    int m_node;                        ///< The target NUMA node for this allocation.
+    bool m_is_numa_managed{false};     ///< Tracks if libnuma was used for allocation.
     bool m_is_mmaped = false;
 
     static constexpr size_t HP_SIZE = static_cast<size_t>(2) * 1024 * 1024;
 
-public:
-    /**
-     * @brief Constructor: Allocates pinned, node-locked HugePage memory.
-     * @param size The requested size in bytes.
-     * @param numa_node The target physical NUMA node (default: 0).
-     * @throws std::runtime_error If NUMA-aware HugePage allocation fails.
-     */
-    explicit PorthHugePage(size_t size, int numa_node = 0)
-        : m_total_size(((size + HP_SIZE - 1) / HP_SIZE) * HP_SIZE), m_node(numa_node),
-          m_is_numa_managed(false) {
-
-        // Step 1: Attempt Sovereign NUMA-Locked Allocation
+    /** @brief Internal helper to handle the initial memory acquisition. */
+    void allocate_initial_buffer() noexcept {
+        // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
         m_ptr = numa_alloc_onnode(m_total_size, m_node);
 
-        // FALLBACK LOGIC FOR VIRTUALIZED ENVIRONMENTS (Bedroom Lab)
         if (m_ptr == nullptr) {
-            std::cout << "[Porth-IO] Warning: NUMA node allocation failed. Falling back to "
-                         "standard heap for simulation.\n";
+            std::cout << "[Porth-IO] Warning: NUMA node allocation failed.\n";
+            // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
             m_ptr             = std::aligned_alloc(HP_SIZE, m_total_size);
             m_is_numa_managed = false;
         } else {
             m_is_numa_managed = true;
         }
+    }
+
+    /** @brief Internal helper to attempt the HugePage upgrade. */
+    void attempt_hugepage_upgrade() {
+        int flags = MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_LOCKED;
+
+        // Declare as owner immediately so the assignment to m_ptr is valid.
+        // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
+        gsl::owner<void*> mapped_ptr =
+            mmap(m_ptr, m_total_size, PROT_READ | PROT_WRITE, flags, -1, 0);
+
+        if (mapped_ptr == MAP_FAILED) {
+            std::cout << "[Porth-IO] Note: HugePages not supported.\n";
+            m_is_mmaped = false;
+            if (mlock(m_ptr, m_total_size) != 0) {
+                if (std::getenv("CI") == nullptr) {
+                    throw std::runtime_error("Porth-HugePage: mlock failed.");
+                }
+            }
+        } else {
+            if (m_is_numa_managed) {
+                numa_free(m_ptr, m_total_size);
+            } else {
+                // NOLINTNEXTLINE(cppcoreguidelines-no-malloc, cppcoreguidelines-owning-memory)
+                std::free(m_ptr);
+            }
+
+            m_ptr       = mapped_ptr;
+            m_is_mmaped = true;
+        }
+    }
+
+public:
+    explicit PorthHugePage(size_t size, NumaNode numa_node = NumaNode(0))
+        : m_total_size(((size + HP_SIZE - 1) / HP_SIZE) * HP_SIZE), m_node(numa_node.value) {
+
+        allocate_initial_buffer();
 
         if (m_ptr == nullptr) {
             throw std::runtime_error("[Porth-IO] Fatal: Total memory allocation failure.");
         }
 
-        // Step 2: Attempt HugePage Mapping
-        int flags        = MAP_PRIVATE | MAP_ANONYMOUS | MAP_HUGETLB | MAP_LOCKED;
-        void* mapped_ptr = mmap(m_ptr, m_total_size, PROT_READ | PROT_WRITE, flags, -1, 0);
-
-        if (mapped_ptr == MAP_FAILED) {
-            std::cout << "[Porth-IO] Note: HugePages not supported. Using standard locked pages.\n"
-                      << std::flush;
-            m_is_mmaped = false;
-            // Attempt to lock standard pages to prevent swapping
-            if (mlock(m_ptr, m_total_size) != 0) {
-                if (std::getenv("CI") != nullptr) {
-                    std::cout << "[Porth-IO] CI detected: Ignoring mlock failure ("
-                              << std::strerror(errno) << ")\n";
-                } else {
-                    throw std::runtime_error(
-                        std::format("Porth-HugePage: mlock failed. Check 'ulimit -l'. Error: {}",
-                                    std::strerror(errno)));
-                }
-            }
-        } else {
-            if (m_is_numa_managed) {
-                numa_free(m_ptr, m_total_size); // Assumes you have numa_free available
-            } else {
-                std::free(m_ptr);
-            }
-
-            // Reassign m_ptr to our new, valid HugePage memory
-            m_ptr       = mapped_ptr;
-            m_is_mmaped = true;
-        }
+        attempt_hugepage_upgrade();
 
         std::cout << std::format(
             "[Porth-IO] Memory Initialized: {} bytes at {}\n", m_total_size, m_ptr);
@@ -111,24 +117,25 @@ public:
         if (m_ptr != nullptr) {
             if (m_is_mmaped) {
                 munmap(m_ptr, m_total_size);
-            }
-
-            if (m_is_numa_managed) {
+            } else if (m_is_numa_managed) {
                 numa_free(m_ptr, m_total_size);
-            } else if (!m_is_mmaped) {
-                // Only free if we didn't successfully mmap over the aligned_alloc
+            } else {
+                // NOLINTNEXTLINE(cppcoreguidelines-no-malloc, cppcoreguidelines-owning-memory)
                 std::free(m_ptr);
             }
         }
     }
 
-    // Prohibit copying/moving to maintain address stability for DMA.
     PorthHugePage(const PorthHugePage&)                    = delete;
     auto operator=(const PorthHugePage&) -> PorthHugePage& = delete;
     PorthHugePage(PorthHugePage&&)                         = delete;
     auto operator=(PorthHugePage&&) -> PorthHugePage&      = delete;
 
-    [[nodiscard]] auto data() const noexcept -> void* { return m_ptr; }
+    [[nodiscard]] auto data() const noexcept -> void* {
+        // NOLINTNEXTLINE(cppcoreguidelines-owning-memory)
+        return m_ptr;
+    }
+
     [[nodiscard]] auto size() const noexcept -> size_t { return m_total_size; }
     [[nodiscard]] auto node() const noexcept -> int { return m_node; }
 

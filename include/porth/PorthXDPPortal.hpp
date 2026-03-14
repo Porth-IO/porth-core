@@ -11,6 +11,7 @@
 
 #include "PorthShuttle.hpp"
 #include "PorthTelemetry.hpp"
+#include <bit>
 #include <bpf/bpf.h>
 #include <bpf/libbpf.h>
 #include <format>
@@ -41,6 +42,9 @@ private:
     int m_xsk_fd = -1;
     void* m_umem_buffer{nullptr}; ///< Pointer to the underlying Shuttle memory
 
+    uint64_t m_umem_start{0}; ///< Start address of the Sovereign HugePage
+    uint64_t m_umem_end{0};   ///< End address of the Sovereign HugePage
+
     /** @brief Recycles a frame back to the NIC for future packet ingestion. */
     void recycle_frame(uint64_t addr) noexcept {
         uint32_t idx_fill = 0;
@@ -48,6 +52,15 @@ private:
             *xsk_ring_prod__fill_addr(&m_fill_ring, idx_fill) = addr;
             xsk_ring_prod__submit(&m_fill_ring, 1);
         }
+    }
+
+    /** * @brief Internal validation helper to lower cognitive complexity.
+     * Functions defined inside the class body are implicitly inline.
+     */
+    [[nodiscard]] __attribute__((always_inline)) auto is_addr_valid(uint64_t addr,
+                                                                    uint32_t len) const noexcept
+        -> bool {
+        return (addr >= m_umem_start) && ((addr + len) <= m_umem_end);
     }
 
 public:
@@ -59,12 +72,12 @@ public:
                   << std::flush;
     }
 
+    /** @brief Destructor: Releases AF_XDP resources. */
     ~PorthXDPPortal() {
         std::cout << std::format("[Porth-XDP] Closing portal on {}. Releasing XDP hooks.\n",
                                  m_ifname)
                   << std::flush;
 
-        // Proper AF_XDP Teardown
         if (m_xsk != nullptr) {
             xsk_socket__delete(m_xsk);
         }
@@ -80,23 +93,22 @@ public:
      */
     template <size_t Cap>
     void bind_shuttle_memory(PorthShuttle<Cap>& shuttle) {
-        // 1. Extract the raw pointer and size from the Shuttle
-        // Note: We will add an accessor to PorthShuttle for this in the next step.
         m_umem_buffer          = shuttle.get_raw_memory_ptr();
         const size_t umem_size = shuttle.get_raw_memory_size();
 
-        // 2. Configure the UMEM
+        m_umem_start = std::bit_cast<uint64_t>(m_umem_buffer);
+        m_umem_end   = m_umem_start + shuttle.get_raw_memory_size();
+
         struct xsk_umem_config umem_cfg = {.fill_size      = XSK_RING_PROD__DEFAULT_NUM_DESCS,
                                            .comp_size      = XSK_RING_CONS__DEFAULT_NUM_DESCS,
                                            .frame_size     = XSK_UMEM__DEFAULT_FRAME_SIZE,
                                            .frame_headroom = XSK_UMEM__DEFAULT_FRAME_HEADROOM,
                                            .flags          = 0};
 
-        // 3. Register the Shuttle memory with the Linux Kernel as XDP UMEM
         int ret = xsk_umem__create(
             &m_umem, m_umem_buffer, umem_size, &m_fill_ring, &m_comp_ring, &umem_cfg);
 
-        if (ret) {
+        if (ret != 0) {
             throw std::runtime_error("Failed to map PorthShuttle as XDP UMEM.");
         }
 
@@ -106,8 +118,6 @@ public:
 
     /**
      * @brief Hijacks the NIC queue and binds the AF_XDP socket to our UMEM.
-     * * Must be called AFTER bind_shuttle_memory().
-     * @throws std::runtime_error If the socket creation fails or UMEM is missing.
      */
     void open_portal() {
         if (m_umem == nullptr) {
@@ -115,19 +125,11 @@ public:
                 "Porth-XDP: UMEM not initialized. Call bind_shuttle_memory first.");
         }
 
-        struct xsk_socket_config xsk_cfg = {
-            .rx_size = XSK_RING_CONS__DEFAULT_NUM_DESCS,
-            .tx_size = XSK_RING_PROD__DEFAULT_NUM_DESCS,
-            // We load the eBPF kernel program externally via our CMake ebpf target
-            .libbpf_flags = XSK_LIBBPF_FLAGS__INHIBIT_PROG_LOAD,
-            .xdp_flags    = XDP_FLAGS_UPDATE_IF_NOEXIST,
-            // HFT Standard: Allows the driver to sleep and only wake the app when packets arrive
-            .bind_flags = XDP_USE_NEED_WAKEUP};
-
-        // Note on "Zero-Copy": In a physical 1.6T lab, we would bitwise OR 'XDP_ZEROCOPY' into
-        // bind_flags. In the Bedroom Lab (Docker/OrbStack), the virtual 'lo' or 'veth' interface
-        // doesn't support hardware zero-copy. Libbpf will automatically fall back to "SKB Mode" (1
-        // copy) so our code still runs locally without modification.
+        struct xsk_socket_config xsk_cfg = {.rx_size      = XSK_RING_CONS__DEFAULT_NUM_DESCS,
+                                            .tx_size      = XSK_RING_PROD__DEFAULT_NUM_DESCS,
+                                            .libbpf_flags = XSK_LIBBPF_FLAGS__INHIBIT_PROG_LOAD,
+                                            .xdp_flags    = XDP_FLAGS_UPDATE_IF_NOEXIST,
+                                            .bind_flags   = XDP_USE_NEED_WAKEUP};
 
         int ret = xsk_socket__create(
             &m_xsk, m_ifname.c_str(), m_queue_id, m_umem, &m_rx_ring, &m_tx_ring, &xsk_cfg);
@@ -138,7 +140,7 @@ public:
             throw std::runtime_error("Porth-XDP: Failed to retrieve XDP socket file descriptor.");
         }
 
-        if (ret) {
+        if (ret != 0) {
             throw std::runtime_error(std::format(
                 "Porth-XDP: Failed to create AF_XDP socket on {} (Queue {}). Error code: {}",
                 m_ifname,
@@ -154,15 +156,12 @@ public:
 
     /**
      * @brief bridge_to_shuttle: Polls the NIC and pushes work to the hardware.
-     * @note This is the Sovereign "Hot-Path". It must be called from the
-     * RT-pinned thread to maintain nanosecond-scale determinism.
      */
     template <size_t Cap>
     void bridge_to_shuttle(PorthShuttle<Cap>& shuttle, PorthStats* stats = nullptr) noexcept {
-        uint32_t idx_rx = 0;
+        uint32_t idx_rx     = 0;
+        const uint32_t rcvd = xsk_ring_cons__peek(&m_rx_ring, 1, &idx_rx);
 
-        // 1. Peek the RX ring for incoming network frames
-        uint32_t rcvd = xsk_ring_cons__peek(&m_rx_ring, 1, &idx_rx);
         if (rcvd == 0) {
             if (xsk_ring_prod__needs_wakeup(&m_fill_ring)) {
                 (void)recvfrom(m_xsk_fd, nullptr, 0, MSG_DONTWAIT, nullptr, nullptr);
@@ -171,36 +170,37 @@ public:
         }
 
         const struct xdp_desc* desc = xsk_ring_cons__rx_desc(&m_rx_ring, idx_rx);
+        const uint64_t packet_addr  = xsk_umem__add_offset_to_addr(desc->addr);
+        const uint32_t packet_len   = desc->len;
 
-        // 2. Calculate Sovereign Offset (Skip XDP Headroom)
-        uint64_t packet_addr = xsk_umem__add_offset_to_addr(desc->addr);
-        uint32_t packet_len  = desc->len;
-
-        // 3. Attempt Zero-Copy Handoff to Hardware
-        if (shuttle.ring()->push({.addr = packet_addr, .len = packet_len})) {
-            // Success: Packet is now owned by the Newport Cluster DMA engine
+        if (!is_addr_valid(packet_addr, packet_len)) {
+            if (stats != nullptr) {
+                stats->dropped_packets.fetch_add(1, std::memory_order_relaxed);
+            }
+            recycle_frame(desc->addr);
             xsk_ring_cons__release(&m_rx_ring, 1);
+            return;
+        }
 
-            // --- TELEMETRY RECORDING ---
-            if (stats) {
-                // Use fetch_add for thread-safe, lock-free counter increments
+        if (shuttle.ring()->push({.addr = packet_addr, .len = packet_len})) {
+            xsk_ring_cons__release(&m_rx_ring, 1);
+            if (stats != nullptr) {
                 stats->total_packets.fetch_add(1, std::memory_order_relaxed);
                 stats->total_bytes.fetch_add(packet_len, std::memory_order_relaxed);
             }
-
-            // Recycle the frame back to the Fill Ring
             recycle_frame(desc->addr);
         } else {
-            // Backpressure: Hardware ring is full
-            if (stats) {
+            if (stats != nullptr) {
                 stats->dropped_packets.fetch_add(1, std::memory_order_relaxed);
             }
         }
     }
 
-    // Prohibit copying
+    // Prohibit copying and moving to maintain address stability for AF_XDP
     PorthXDPPortal(const PorthXDPPortal&)                    = delete;
     auto operator=(const PorthXDPPortal&) -> PorthXDPPortal& = delete;
+    PorthXDPPortal(PorthXDPPortal&&)                         = delete;
+    auto operator=(PorthXDPPortal&&) -> PorthXDPPortal&      = delete;
 };
 
 } // namespace porth

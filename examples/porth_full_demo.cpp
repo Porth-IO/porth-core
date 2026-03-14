@@ -130,11 +130,11 @@ auto main(int argc, char** argv) -> int {
 
     // Constants reflecting the physical and protocol limits of the Newport hardware.
     constexpr size_t shuttle_size      = 1024;
-    constexpr int handshake_timeout_ms = 5000;
+    constexpr int handshake_timeout_ms = 5000000;
 
     // Named constants for Clang-Tidy magic numbers
     constexpr int warmup_delay_ms    = 10;
-    constexpr int parking_duration_s = 60;
+    constexpr int parking_duration_s = 600;
     constexpr int handshake_poll_ms  = 1;
 
     constexpr double cycles_per_ns_newport = 2.4;
